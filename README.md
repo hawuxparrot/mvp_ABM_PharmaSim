@@ -2,7 +2,8 @@
 The end goal is to model the pharmaceutical distribution network EU-wide to detect cross-border theft/counterfeiting of pharmaceuticals. 
 
 ### MVP Definition
-The first step is to provide a small-scale (< 100 nodes) proof of concept using synthetic data to fix the general architecture of the project. We will try to make the synthetic data as compatible/realistic as possible as the format used by the EMVO and NMVOs.
+The first step is to provide a small-scale (< 100 nodes) proof of concept using synthetic data to fix the general architecture of the project. We therefore focus on 1 single "country", with 1 EMVO as the central hub for information and multiple agents of types: OBP (On-Board-Partners, here domestic or international manufacturers), WHOLESALER (distributors), LOCAL_ORG (pharmacies, hospitals), and NMVOs. 
+We will try to make the synthetic data as compatible/realistic as possible as the format used by the EMVO and NMVOs.
 
 We want to combine the ease-of-use and mature library ecosystem of data processing and visualization in Python, while sidestepping the performance issues that Python's interpreted nature and the GIL impose. To do so, we separate the problem into "policy" vs "mechanism", where we define the policy and initial state using python, and leave the execution to custom C++ modules.
 
