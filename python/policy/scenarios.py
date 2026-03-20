@@ -30,7 +30,7 @@ def two_markets_demo() -> Scenario:
         Organization(ext_id='emvo', org_type=OrgType.EMVO),
     ]
 
-    locations = [
+    locs = [
         Location(ext_id='loc_obp_de', org_ext_id='obp_de', market_code='DE', postal_code='11451'),
         Location(ext_id='loc_wh_de', org_ext_id='wh_de', market_code='DE', postal_code='51334'),
         Location(ext_id='loc_ph_de', org_ext_id='ph_de', market_code='DE', postal_code='45431'),
