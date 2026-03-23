@@ -27,3 +27,7 @@ cmake.args = ["-GNinja"]
 # You have Python code under ./python
 wheel.packages = ["python"]
 build-dir = "build/{wheel_tag}"
+
+[tool.pytest.ini_options]
+pythonpath = ["python"]
+testpaths = ["tests"]

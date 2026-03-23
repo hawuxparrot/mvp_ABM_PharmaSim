@@ -42,21 +42,30 @@ def two_markets_demo() -> Scenario:
     ]
 
     products = [
-        Product(ext_id='prod_1', codes=[ProductCode(scheme=ProductCodeScheme.GTIN, value='01234567891011', is_primary=True)])
+        Product(
+            ext_id="prod_1",
+            codes=(
+                ProductCode(
+                    scheme=ProductCodeScheme.GTIN,
+                    value="01234567891011",
+                    is_primary=True,
+                ),
+            ),
+        ),
     ]
 
     batches = [
         Batch(
             ext_id="batch_001",
-            product_ext_id="prod_amox_500",
-            manufacturer_org_ext_id="obp_acme",
+            product_ext_id="prod_1",
+            manufacturer_org_ext_id="obp_de",
             intended_markets=("DE", "FR"),
         ),
     ]
     packs = [
         Pack(
             ext_id="pack_001",
-            product_ext_id="prod_amox_500",
+            product_ext_id="prod_1",
             batch_ext_id="batch_001",
             serial="SN000001",
             initial_market_code="DE",
@@ -65,7 +74,7 @@ def two_markets_demo() -> Scenario:
         ),
         Pack(
             ext_id="pack_002",
-            product_ext_id="prod_amox_500",
+            product_ext_id="prod_1",
             batch_ext_id="batch_001",
             serial="SN000002",
             initial_market_code="DE",
