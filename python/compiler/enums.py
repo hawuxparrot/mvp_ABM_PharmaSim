@@ -1,8 +1,9 @@
 """
 Stable uint8 encodings for policy.models.OrgType and policy.models.PackState.
 
-These values are part of the EngineInput ABI — keep them in sync with C++ enums.hpp for the native layer. 
-Bump compiler.types.ENGINE_INPUT_SCHEMA_VERSION if numeric assignments are changed.
+These values are part of the EngineInput ABI — keep them in sync with C++ ``enums.hpp`` for the native layer.
+Bump ``compiler.types.ENGINE_INPUT_SCHEMA_VERSION`` if numeric assignments are changed.
+``EngineInput`` schema is ``engine_input.v2`` (dense location behavior arrays; see ``compile.py``).
 """
 
 from __future__ import annotations

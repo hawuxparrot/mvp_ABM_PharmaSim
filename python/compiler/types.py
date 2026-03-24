@@ -11,7 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 # ABI version: bump when adding/removing/reordering fields or changing dtypes.
-ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v1"
+ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v2"
 
 
 @dataclass
@@ -65,17 +65,17 @@ class EngineInput:
     pack_initial_market_id: NDArray[np.uint32]
     pack_initial_state: NDArray[np.uint8] # PackState encoded as uint8.
     pack_serial: list[str] # optional parallel ext_id strings (debug / round-trip); empty = omit
+
+    # Location behavior (Option B): always length n_locations; zeros when no policy for that row/scenario.
+    location_has_behavior: NDArray[np.uint8]
+    location_verify_prob: NDArray[np.float32]
+    location_decommission_prob: NDArray[np.float32]
+    location_reactivate_prob: NDArray[np.float32]
+
     org_ext_id: list[str] = field(default_factory=list)
     location_ext_id: list[str] = field(default_factory=list)
     batch_ext_id: list[str] = field(default_factory=list)
     pack_ext_id: list[str] = field(default_factory=list)
-
-    # optional location behavior; sparse: use has_behavior flag
-    location_has_behavior: NDArray[np.uint8] | None = None
-    # 1 if probabilities below are defined for this location row; 0 otherwise.
-    location_verify_prob: NDArray[np.float32] | None = None
-    location_decommission_prob: NDArray[np.float32] | None = None
-    location_reactivate_prob: NDArray[np.float32] | None = None
 
     #: Expected schema string for this layout (class attribute, not an instance field).
     EXPECTED_SCHEMA: ClassVar[str] = ENGINE_INPUT_SCHEMA_VERSION
@@ -122,13 +122,7 @@ class EngineInput:
         if not np.all(off[:-1] <= off[1:]):
             raise ValueError("batch_intended_market_offset must be non-decreasing")
 
-        if self.location_has_behavior is not None:
-            _len("location_has_behavior", self.location_has_behavior, self.n_locations)
-            for name, arr in (
-                ("location_verify_prob", self.location_verify_prob),
-                ("location_decommission_prob", self.location_decommission_prob),
-                ("location_reactivate_prob", self.location_reactivate_prob),
-            ):
-                if arr is None:
-                    raise ValueError(f"{name} must be set when location_has_behavior is set")
-                _len(name, arr, self.n_locations)
+        _len("location_has_behavior", self.location_has_behavior, self.n_locations)
+        _len("location_verify_prob", self.location_verify_prob, self.n_locations)
+        _len("location_decommission_prob", self.location_decommission_prob, self.n_locations)
+        _len("location_reactivate_prob", self.location_reactivate_prob, self.n_locations)

@@ -1,4 +1,4 @@
-"""Compile a validated policy.model,s.Scenario into compiler.types.EngineInput."""
+"""Compile a validated :class:`~policy.models.Scenario` into :class:`~compiler.types.EngineInput`."""
 
 from __future__ import annotations
 
@@ -24,10 +24,13 @@ def _collect_market_codes(s: Scenario) -> list[str]:
 
 def compile_scenario(scenario: Scenario) -> EngineInput:
     """
-    Validate scenario, assign dense IDs (list order = row id), build columnar EngineInput.
+    Validate *scenario*, assign dense IDs (list order = row id), build columnar :class:`EngineInput`.
 
-    ID policy: for each entity list on Scenario, row_index == ext_id space dense id (0 .. n-1). 
-    dense id (0 .. n-1). Markets are interned: sorted unique market strings → market_id.
+    ID policy: for each entity list on :class:`~policy.models.Scenario`, ``row_index`` is the dense
+    id (0 .. n-1). Markets are interned: sorted unique market strings → ``market_id``.
+
+    Location behavior (Option B): always emit dense arrays of length ``n_locations``; rows are
+    zero unless :attr:`~policy.models.Scenario.behavior_by_location` defines a row for that site.
     """
     s = validate_scenario(scenario)
 
@@ -91,24 +94,18 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         pack_initial_state[i] = pack_state_u8(p.initial_state)
         pack_serial.append(p.serial)
 
-    location_has_behavior: np.ndarray | None = None
-    location_verify_prob: np.ndarray | None = None
-    location_decommission_prob: np.ndarray | None = None
-    location_reactivate_prob: np.ndarray | None = None
-
-    if s.behavior_by_location:
-        location_has_behavior = np.zeros(n_loc, dtype=np.uint8)
-        location_verify_prob = np.zeros(n_loc, dtype=np.float32)
-        location_decommission_prob = np.zeros(n_loc, dtype=np.float32)
-        location_reactivate_prob = np.zeros(n_loc, dtype=np.float32)
-        for i, loc in enumerate(s.locations):
-            beh = s.behavior_by_location.get(loc.ext_id)
-            if beh is None:
-                continue
-            location_has_behavior[i] = 1
-            location_verify_prob[i] = np.float32(beh.verify_prob)
-            location_decommission_prob[i] = np.float32(beh.decomission_prob)
-            location_reactivate_prob[i] = np.float32(beh.reactivate_prob)
+    location_has_behavior = np.zeros(n_loc, dtype=np.uint8)
+    location_verify_prob = np.zeros(n_loc, dtype=np.float32)
+    location_decommission_prob = np.zeros(n_loc, dtype=np.float32)
+    location_reactivate_prob = np.zeros(n_loc, dtype=np.float32)
+    for i, loc in enumerate(s.locations):
+        beh = s.behavior_by_location.get(loc.ext_id)
+        if beh is None:
+            continue
+        location_has_behavior[i] = 1
+        location_verify_prob[i] = np.float32(beh.verify_prob)
+        location_decommission_prob[i] = np.float32(beh.decomission_prob)
+        location_reactivate_prob[i] = np.float32(beh.reactivate_prob)
 
     engine_input = EngineInput(
         schema_version=ENGINE_INPUT_SCHEMA_VERSION,
@@ -121,26 +118,26 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         n_markets=n_markets,
         market_code=market_code,
         org_type=org_type,
-        org_ext_id=org_ext_id,
         location_org_id=location_org_id,
         location_market_id=location_market_id,
-        location_ext_id=location_ext_id,
         batch_product_id=batch_product_id,
         batch_manufacturer_org_id=batch_manufacturer_org_id,
         batch_intended_market_offset=batch_intended_market_offset,
         batch_intended_market_id=batch_intended_market_id,
-        batch_ext_id=batch_ext_id,
         pack_product_id=pack_product_id,
         pack_batch_id=pack_batch_id,
         pack_initial_location_id=pack_initial_location_id,
         pack_initial_market_id=pack_initial_market_id,
         pack_initial_state=pack_initial_state,
         pack_serial=pack_serial,
-        pack_ext_id=pack_ext_id,
         location_has_behavior=location_has_behavior,
         location_verify_prob=location_verify_prob,
         location_decommission_prob=location_decommission_prob,
         location_reactivate_prob=location_reactivate_prob,
+        org_ext_id=org_ext_id,
+        location_ext_id=location_ext_id,
+        batch_ext_id=batch_ext_id,
+        pack_ext_id=pack_ext_id,
     )
     engine_input.validate_shapes()
     return engine_input
