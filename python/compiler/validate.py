@@ -5,15 +5,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Sequence
 from typing import Callable, TypeVar
 
-from policy.models import (
-    Batch,
-    Location,
-    LocationBehavior,
-    Organization,
-    Pack,
-    Product,
-    Scenario,
-)
+from policy.models import LocationBehavior, Scenario
 
 T = TypeVar("T")
 
@@ -85,7 +77,7 @@ def validate_scenario(scenario: Scenario) -> Scenario:
     batches = _unique_by_ext_id(
         "Batch", scenario.batches, lambda o: o.ext_id, errors
     )
-    packs = _unique_by_ext_id("Pack", scenario.packs, lambda o: o.ext_id, errors)
+    _ = _unique_by_ext_id("Pack", scenario.packs, lambda o: o.ext_id, errors)
 
     # check products
     for p in scenario.products:

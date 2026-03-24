@@ -57,7 +57,6 @@ class EngineInput:
     batch_manufacturer_org_id: NDArray[np.uint32]
     batch_intended_market_offset: NDArray[np.uint32]
     batch_intended_market_id: NDArray[np.uint32] # batch_intended_market_id[offset[i]:offset[i+1]] are market ids.
-    batch_intended_market_id: NDArray[np.uint32] # Flattened market ids; length batch_intended_market_offset[-1].
 
     # packs main simulation SoA
     pack_product_id: NDArray[np.uint32]
