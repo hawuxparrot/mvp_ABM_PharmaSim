@@ -111,6 +111,34 @@ def validate_scenario(scenario: Scenario) -> Scenario:
                 f"Location {loc.ext_id!r}: unknown org_ext_id {loc.org_ext_id!r}"
             )
 
+    # location graph edges (directed)
+    for i, edge in enumerate(scenario.location_edges):
+        if edge.src_location_ext_id not in locs:
+            errors.append(
+                f"LocationEdge[{i}]: unknown src_location_ext_id "
+                f"{edge.src_location_ext_id!r}"
+            )
+        if edge.dst_location_ext_id not in locs:
+            errors.append(
+                f"LocationEdge[{i}]: unknown dst_location_ext_id "
+                f"{edge.dst_location_ext_id!r}"
+            )
+        if edge.src_location_ext_id == edge.dst_location_ext_id:
+            errors.append(
+                f"LocationEdge[{i}]: self-loop is not allowed "
+                f"({edge.src_location_ext_id!r})"
+            )
+        if not isinstance(edge.cost, (int, float)) or edge.cost < 0.0:
+            errors.append(
+                f"LocationEdge[{i}]: cost must be a non-negative number, "
+                f"got {edge.cost!r}"
+            )
+        if not isinstance(edge.capacity, int) or edge.capacity < 0:
+            errors.append(
+                f"LocationEdge[{i}]: capacity must be a non-negative integer, "
+                f"got {edge.capacity!r}"
+            )
+
     # check batches: FKs and intended markets
     for b in scenario.batches:
         if b.product_ext_id not in products:

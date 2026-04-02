@@ -14,6 +14,7 @@ dev = [
   "ruff>=0.5",
   "mypy>=1.10",
   "build>=1.2",
+  "pytest-benchmark>=5.2.3",
 ]
 [build-system]
 requires = [
@@ -31,3 +32,6 @@ build-dir = "build/{wheel_tag}"
 [tool.pytest.ini_options]
 pythonpath = ["python"]
 testpaths = ["tests"]
+
+[tool.pyright]
+extraPaths = ["python"]

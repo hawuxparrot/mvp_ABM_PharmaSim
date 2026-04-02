@@ -9,7 +9,7 @@ execute_process(
 find_package(nanobind CONFIG REQUIRED)
 
 nanobind_add_module(_pharmasim_native
-  dummy.cpp
+  module.cpp
 )
 
 target_link_libraries(_pharmasim_native PRIVATE engine_core)

@@ -2,7 +2,10 @@
 
 #include <cstdint>
 
-enum class ORG_TYPE: std::uint8_t {
+/// Must match ``compiler.types.ENGINE_INPUT_SCHEMA_VERSION`` in Python.
+constexpr const char* ENGINE_INPUT_SCHEMA_VERSION = "engine_input.v3";
+
+enum class ORG_TYPE : std::uint8_t {
     OBP = 0,
     WHOLESALER = 1,
     LOCAL_ORG = 2,
@@ -10,13 +13,18 @@ enum class ORG_TYPE: std::uint8_t {
     EMVO = 4,
 };
 
-enum class PACK_STATE: std::uint8_t {
+enum class PACK_STATE : std::uint8_t {
     UPLOADED = 0,
     ACTIVE = 1,
     DECOMISSIONED = 2,
 };
 
-enum LOCATION_BEHAVIOR {
-    HAS_BEHAVIOR = 1,
+enum class LOCATION_BEHAVIOR : std::uint8_t {
     NO_BEHAVIOR = 0,
+    HAS_BEHAVIOR = 1,
+};
+
+/// Reserved for future event-log columns (FSM transitions, etc.).
+enum class EventType : std::uint8_t {
+    RESERVED = 0,
 };

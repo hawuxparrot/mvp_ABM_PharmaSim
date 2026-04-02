@@ -48,6 +48,7 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     n_prod = len(s.products)
     n_batch = len(s.batches)
     n_pack = len(s.packs)
+    n_edge = len(s.location_edges)
 
     org_type = np.zeros(n_org, dtype=np.uint8)
     org_ext_id = [o.ext_id for o in s.organizations]
@@ -60,6 +61,28 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     for i, loc in enumerate(s.locations):
         location_org_id[i] = org_ext_to_id[loc.org_ext_id]
         location_market_id[i] = market_str_to_id[loc.market_code]
+
+    edge_src_location_id = np.zeros(n_edge, dtype=np.uint32)
+    edge_dst_location_id = np.zeros(n_edge, dtype=np.uint32)
+    edge_cost = np.zeros(n_edge, dtype=np.float32)
+    edge_capacity = np.zeros(n_edge, dtype=np.uint32)
+    for i, edge in enumerate(s.location_edges):
+        edge_src_location_id[i] = loc_ext_to_id[edge.src_location_ext_id]
+        edge_dst_location_id[i] = loc_ext_to_id[edge.dst_location_ext_id]
+        edge_cost[i] = np.float32(edge.cost)
+        edge_capacity[i] = np.uint32(edge.capacity)
+
+    out_edges_by_location: list[list[int]] = [[] for _ in range(n_loc)]
+    for edge_id in range(n_edge):
+        src_id = int(edge_src_location_id[edge_id])
+        out_edges_by_location[src_id].append(edge_id)
+
+    location_out_edge_offset = np.zeros(n_loc + 1, dtype=np.uint32)
+    out_edge_flat: list[int] = []
+    for loc_id, out_ids in enumerate(out_edges_by_location):
+        out_edge_flat.extend(out_ids)
+        location_out_edge_offset[loc_id + 1] = len(out_edge_flat)
+    location_out_edge_id = np.array(out_edge_flat, dtype=np.uint32)
 
     batch_product_id = np.zeros(n_batch, dtype=np.uint32)
     batch_manufacturer_org_id = np.zeros(n_batch, dtype=np.uint32)
@@ -116,10 +139,17 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         n_batches=n_batch,
         n_packs=n_pack,
         n_markets=n_markets,
+        n_edges=n_edge,
         market_code=market_code,
         org_type=org_type,
         location_org_id=location_org_id,
         location_market_id=location_market_id,
+        location_out_edge_offset=location_out_edge_offset,
+        location_out_edge_id=location_out_edge_id,
+        edge_src_location_id=edge_src_location_id,
+        edge_dst_location_id=edge_dst_location_id,
+        edge_cost=edge_cost,
+        edge_capacity=edge_capacity,
         batch_product_id=batch_product_id,
         batch_manufacturer_org_id=batch_manufacturer_org_id,
         batch_intended_market_offset=batch_intended_market_offset,

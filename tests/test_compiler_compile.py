@@ -34,6 +34,12 @@ def test_compile_is_deterministic() -> None:
     assert a.seed == b.seed
     np.testing.assert_array_equal(a.org_type, b.org_type)
     np.testing.assert_array_equal(a.pack_initial_state, b.pack_initial_state)
+    np.testing.assert_array_equal(a.edge_src_location_id, b.edge_src_location_id)
+    np.testing.assert_array_equal(a.edge_dst_location_id, b.edge_dst_location_id)
+    np.testing.assert_array_equal(a.edge_cost, b.edge_cost)
+    np.testing.assert_array_equal(a.edge_capacity, b.edge_capacity)
+    np.testing.assert_array_equal(a.location_out_edge_offset, b.location_out_edge_offset)
+    np.testing.assert_array_equal(a.location_out_edge_id, b.location_out_edge_id)
     np.testing.assert_array_equal(a.batch_intended_market_offset, b.batch_intended_market_offset)
     assert a.pack_serial == b.pack_serial
     assert a.market_code == b.market_code
@@ -67,6 +73,25 @@ def test_compile_location_behavior_dense() -> None:
     assert inp.location_has_behavior.shape == (n,)
     assert inp.location_verify_prob.shape == (n,)
     assert float(inp.location_verify_prob[inp.location_ext_id.index("loc_wh_de")]) == pytest.approx(0.2)
+
+
+def test_compile_location_graph_columns_and_csr() -> None:
+    inp = compile_scenario(two_markets_demo())
+    assert inp.n_edges == len(inp.edge_src_location_id)
+    assert inp.edge_dst_location_id.shape == (inp.n_edges,)
+    assert inp.edge_cost.shape == (inp.n_edges,)
+    assert inp.edge_capacity.shape == (inp.n_edges,)
+    assert inp.location_out_edge_offset.shape == (inp.n_locations + 1,)
+    assert inp.location_out_edge_id.shape == (inp.n_edges,)
+    assert int(inp.location_out_edge_offset[0]) == 0
+    assert int(inp.location_out_edge_offset[-1]) == inp.n_edges
+
+    for loc_id in range(inp.n_locations):
+        start = int(inp.location_out_edge_offset[loc_id])
+        end = int(inp.location_out_edge_offset[loc_id + 1])
+        out_edge_ids = inp.location_out_edge_id[start:end]
+        for edge_id in out_edge_ids:
+            assert int(inp.edge_src_location_id[int(edge_id)]) == loc_id
 
 
 def test_compile_location_behavior_all_zeros_without_policy() -> None:

@@ -1,5 +1,7 @@
 add_library(engine_core STATIC
-  dummy.cpp
+  engine_input_validate.cpp
+  simulation_state.cpp
+  simulator.cpp
 )
 
 target_include_directories(engine_core

@@ -17,11 +17,19 @@ struct EngineInput {
     int n_batches;
     int n_packs;
     int n_markets;
+    int n_edges;
 
     std::vector<std::string> market_code;
     std::vector<std::uint8_t> org_type;
     std::vector<std::uint32_t> location_org_id;
     std::vector<std::uint32_t> location_market_id;
+    std::vector<std::uint32_t> location_out_edge_offset;
+    std::vector<std::uint32_t> location_out_edge_id;
+
+    std::vector<std::uint32_t> edge_src_location_id;
+    std::vector<std::uint32_t> edge_dst_location_id;
+    std::vector<float> edge_cost;
+    std::vector<std::uint32_t> edge_capacity;
 
     std::vector<std::uint32_t> batch_product_id;
     std::vector<std::uint32_t> batch_manufacturer_org_id;

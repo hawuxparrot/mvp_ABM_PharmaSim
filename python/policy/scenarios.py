@@ -2,6 +2,7 @@ from __future__ import annotations
 from policy.models import (
     Batch,
     Location,
+    LocationEdge,
     LocationBehavior,
     Organization,
     OrgType,
@@ -94,12 +95,51 @@ def two_markets_demo() -> Scenario:
             reactivate_prob=0.02,
         ),
     }
+    location_edges = [
+        LocationEdge(
+            src_location_ext_id="loc_obp_de",
+            dst_location_ext_id="loc_wh_de",
+            cost=1.0,
+            capacity=1000,
+        ),
+        LocationEdge(
+            src_location_ext_id="loc_wh_de",
+            dst_location_ext_id="loc_ph_de",
+            cost=2.0,
+            capacity=500,
+        ),
+        LocationEdge(
+            src_location_ext_id="loc_obp_de",
+            dst_location_ext_id="loc_wh_fr",
+            cost=5.0,
+            capacity=700,
+        ),
+        LocationEdge(
+            src_location_ext_id="loc_wh_fr",
+            dst_location_ext_id="loc_ph_fr",
+            cost=2.5,
+            capacity=450,
+        ),
+        LocationEdge(
+            src_location_ext_id="loc_emvo",
+            dst_location_ext_id="loc_nmvo_de",
+            cost=0.5,
+            capacity=2000,
+        ),
+        LocationEdge(
+            src_location_ext_id="loc_emvo",
+            dst_location_ext_id="loc_nmvo_fr",
+            cost=0.6,
+            capacity=2000,
+        ),
+    ]
     return Scenario(
         organizations=orgs,
         locations=locs,
         products=products,
         batches=batches,
         packs=packs,
+        location_edges=location_edges,
         behavior_by_location=behavior,
         seed=42,
     )

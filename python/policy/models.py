@@ -34,6 +34,15 @@ class Location:
     market_code: str
     postal_code: str
 
+
+@dataclass(frozen=True)
+class LocationEdge:
+    """Directed location graph edge with transport cost and throughput capacity."""
+    src_location_ext_id: str
+    dst_location_ext_id: str
+    cost: float
+    capacity: int
+
 @dataclass(frozen=True)
 class ProductCode:
     scheme: ProductCodeScheme
@@ -76,5 +85,6 @@ class Scenario:
     products: list[Product]
     batches: list[Batch]
     packs: list[Pack]
+    location_edges: list[LocationEdge] = field(default_factory=list)
     behavior_by_location: dict[str, LocationBehavior] = field(default_factory=dict)
     seed: int = 42
