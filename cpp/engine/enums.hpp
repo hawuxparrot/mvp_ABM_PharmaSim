@@ -24,7 +24,11 @@ enum class LOCATION_BEHAVIOR : std::uint8_t {
     HAS_BEHAVIOR = 1,
 };
 
-/// Reserved for future event-log columns (FSM transitions, etc.).
 enum class EventType : std::uint8_t {
-    RESERVED = 0,
+    VERIFY = 0,
+    DECOMMISSION = 1,
+    REACTIVATE = 2,
+    MOVE = 3,
+    /// Placeholder for future ground-truth vs registry mismatch alerts.
+    REGISTRY_SYNC = 4,
 };

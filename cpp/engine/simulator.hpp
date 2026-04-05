@@ -18,6 +18,9 @@ public:
     [[nodiscard]] const EventLog& events() const noexcept { return events_; }
     [[nodiscard]] std::uint64_t current_tick() const noexcept { return current_tick_; }
 
+    [[nodiscard]] std::size_t event_count() const noexcept { return events_.tick.size(); }
+    [[nodiscard]] bool registry_matches_physical() const noexcept;
+
     /// Advances the simulation clock by n ticks.
     void run_ticks(std::uint64_t n);
 

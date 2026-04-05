@@ -117,5 +117,39 @@ NB_MODULE(_pharmasim_native, m) {
 
     nb::class_<Simulator>(m, "Simulator")
         .def("run_ticks", &Simulator::run_ticks)
-        .def("current_tick", &Simulator::current_tick);
+        .def("current_tick", &Simulator::current_tick)
+        .def("event_count", &Simulator::event_count)
+        .def("registry_matches_physical", &Simulator::registry_matches_physical)
+        .def(
+            "event_log_ticks",
+            [](const Simulator& s) { return s.events().tick; }
+        )
+        .def(
+            "event_log_pack_ids",
+            [](const Simulator& s) { return s.events().pack_id; }
+        )
+        .def(
+            "event_log_types",
+            [](const Simulator& s) { return s.events().event_type; }
+        )
+        .def(
+            "event_log_from_locations",
+            [](const Simulator& s) { return s.events().from_location_id; }
+        )
+        .def(
+            "event_log_to_locations",
+            [](const Simulator& s) { return s.events().to_location_id; }
+        )
+        .def(
+            "physical_pack_states",
+            [](const Simulator& s) { return s.state().pack_state; }
+        )
+        .def(
+            "physical_pack_location_ids",
+            [](const Simulator& s) { return s.state().pack_location_id; }
+        )
+        .def(
+            "physical_pack_market_ids",
+            [](const Simulator& s) { return s.state().pack_market_id; }
+        );
 }
