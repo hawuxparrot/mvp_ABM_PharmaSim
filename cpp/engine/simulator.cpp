@@ -15,17 +15,6 @@ bool is_terminal_org_for_movement(ORG_TYPE ot) {
     return ot == ORG_TYPE::LOCAL_ORG || ot == ORG_TYPE::NMVO || ot == ORG_TYPE::EMVO;
 }
 
-bool bernoulli(std::mt19937_64& rng, float p) {
-    if (p <= 0.f) {
-        return false;
-    }
-    if (p >= 1.f) {
-        return true;
-    }
-    std::uniform_real_distribution<float> dist(0.0f, 1.0f);
-    return dist(rng) < p;
-}
-
 /// Picks an outgoing edge id from ``src_loc`` using weights ``capacity / (1 + cost)``.
 /// Precondition: ``src_loc`` has at least one outgoing edge.
 std::uint32_t pick_outgoing_edge(const EngineInput& in, std::uint32_t src_loc, std::mt19937_64& rng) {
@@ -71,6 +60,12 @@ Simulator::Simulator(EngineInput input) {
     rng_.seed(static_cast<std::uint64_t>(input_.seed));
 }
 
+bool Simulator::bernoulli(float p) {
+    if (p <= 0.f) return false;
+    if (p >= 1.f) return true;
+    return dist_(rng_) < p;
+}
+
 bool Simulator::registry_matches_physical() const noexcept {
     const SimulationState& s = state_;
     for (std::size_t i = 0; i < s.pack_state.size(); ++i) {
@@ -107,18 +102,18 @@ void Simulator::run_ticks(std::uint64_t n) {
                 const float dp = input_.location_decommission_prob[li];
                 const float rp = input_.location_reactivate_prob[li];
 
-                if (bernoulli(rng_, vp)) {
+                if (bernoulli(vp)) {
                     events_.push(tick, pid, EventType::VERIFY, loc, k_event_no_location);
                 }
 
                 const auto st = static_cast<PACK_STATE>(state_.pack_state[pi]);
                 if (st == PACK_STATE::ACTIVE) {
-                    if (bernoulli(rng_, dp)) {
+                    if (bernoulli(dp)) {
                         state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::DECOMISSIONED);
                         events_.push(tick, pid, EventType::DECOMMISSION, loc, k_event_no_location);
                     }
                 } else if (st == PACK_STATE::DECOMISSIONED) {
-                    if (bernoulli(rng_, rp)) {
+                    if (bernoulli(rp)) {
                         state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
                         events_.push(tick, pid, EventType::REACTIVATE, loc, k_event_no_location);
                     }
@@ -133,7 +128,7 @@ void Simulator::run_ticks(std::uint64_t n) {
                 continue;
             }
 
-            if (!bernoulli(rng_, k_move_probability)) {
+            if (!bernoulli(k_move_probability)) {
                 state_.sync_registry_from_physical(pid);
                 continue;
             }

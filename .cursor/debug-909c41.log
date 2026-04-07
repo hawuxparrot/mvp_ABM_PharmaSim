@@ -1,0 +1,1 @@
+{"sessionId": "909c41", "hypothesisId": "H1", "location": "scripts/run_simulation.sh:post-import", "message": "simulation_viz symbols in globals", "data": {"has_format_events_text": true, "has_format_snapshot_text": true, "has_filter_events_for_pack": true}, "timestamp": 1775593540837}
