@@ -7,9 +7,25 @@
 #include <cstdint>
 #include <random>
 
+#include <limits>
+
 namespace {
 
 constexpr float k_move_probability = 0.25f;
+
+inline std::uint64_t prob_to_threshold(double p) {
+    if (!(p > 0.0)) return 0.0;
+    if (p >= 1.0) return std::numeric_limits<std::uint64_t>::max();
+
+    const auto space = (static_cast<unsigned __int128>(1) << 64);
+    auto t = static_cast<unsigned __int128>(static_cast<long double>(p) * static_cast<long double>(space));
+    if (t >= space) {
+        return std::numeric_limits<std::uint64_t>::max();
+    }
+    return static_cast<std::uint64_t>(t);
+}
+
+const std::uint64_t k_move_threshold = prob_to_threshold(static_cast<double>(k_move_probability));
 
 bool is_terminal_org_for_movement(ORG_TYPE ot) {
     return ot == ORG_TYPE::LOCAL_ORG || ot == ORG_TYPE::NMVO || ot == ORG_TYPE::EMVO;
@@ -128,7 +144,7 @@ void Simulator::run_ticks(std::uint64_t n) {
                 continue;
             }
 
-            if (!bernoulli(k_move_probability)) {
+            if ((rng_() >= k_move_threshold)) {
                 state_.sync_registry_from_physical(pid);
                 continue;
             }
