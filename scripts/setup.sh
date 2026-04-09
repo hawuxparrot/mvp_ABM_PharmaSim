@@ -18,6 +18,25 @@ echo "==> Using Python_EXECUTABLE: $PY"
 
 BUILD_DIR="${BUILD_DIR:-build}"
 
+# If this build dir was configured on another machine/path, CMake will fail.
+# Detect stale cache entries and clean only when necessary.
+CACHE_FILE="$BUILD_DIR/CMakeCache.txt"
+if [[ -f "$CACHE_FILE" ]]; then
+  CACHE_SOURCE="$(sed -n 's|^CMAKE_HOME_DIRECTORY:INTERNAL=||p' "$CACHE_FILE" | head -n1)"
+  CACHE_BUILD="$(sed -n 's|^CMAKE_CACHEFILE_DIR:INTERNAL=||p' "$CACHE_FILE" | head -n1)"
+  BUILD_ABS="$(cd "$BUILD_DIR" && pwd)"
+
+  if [[ -n "$CACHE_SOURCE" && "$CACHE_SOURCE" != "$ROOT" ]] || [[ -n "$CACHE_BUILD" && "$CACHE_BUILD" != "$BUILD_ABS" ]]; then
+    echo "==> Detected stale CMake cache in $BUILD_DIR"
+    echo "    cached source: ${CACHE_SOURCE:-<unset>}"
+    echo "    current source: $ROOT"
+    echo "    cached build:  ${CACHE_BUILD:-<unset>}"
+    echo "    current build: $BUILD_ABS"
+    echo "==> Removing incompatible build directory: $BUILD_DIR"
+    rm -rf "$BUILD_DIR"
+  fi
+fi
+
 echo "==> CMake configure: $BUILD_DIR"
 cmake -S "$ROOT" -B "$BUILD_DIR" \
   -G Ninja \
