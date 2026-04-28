@@ -1,10 +1,12 @@
 #include "simulator.hpp"
 
 #include "engine_input_validate.hpp"
+#include "engine_input_make_view.hpp"
 #include "enums.hpp"
 
 #include <cstddef>
 #include <cstdint>
+#include <memory>
 #include <random>
 
 #include <limits>
@@ -33,7 +35,7 @@ bool is_terminal_org_for_movement(ORG_TYPE ot) {
 
 /// Picks an outgoing edge id from ``src_loc`` using weights ``capacity / (1 + cost)``.
 /// Precondition: ``src_loc`` has at least one outgoing edge.
-std::uint32_t pick_outgoing_edge(const EngineInput& in, std::uint32_t src_loc, std::mt19937_64& rng) {
+std::uint32_t pick_outgoing_edge(const EngineInputView& in, std::uint32_t src_loc, std::mt19937_64& rng) {
     const std::size_t sl = static_cast<std::size_t>(src_loc);
     const std::uint32_t beg = in.location_out_edge_offset[sl];
     const std::uint32_t end = in.location_out_edge_offset[sl + 1];
@@ -69,11 +71,23 @@ std::uint32_t pick_outgoing_edge(const EngineInput& in, std::uint32_t src_loc, s
 
 } // namespace
 
-Simulator::Simulator(EngineInput input) {
+void Simulator::init(std::shared_ptr<const void> owner, EngineInputView input) {
     validate_engine_input_or_throw(input);
     input_ = std::move(input);
+    owner_ = std::move(owner);
     state_ = SimulationState(input_);
     rng_.seed(static_cast<std::uint64_t>(input_.seed));
+}
+
+Simulator::Simulator(std::shared_ptr<const void> owner, EngineInputView input) {
+    init(std::move(owner), std::move(input));
+}
+
+Simulator::Simulator(EngineInput input) {
+    auto owned = std::make_shared<EngineInput>(std::move(input));
+    EngineInputView view = make_view(*owned);
+    std::shared_ptr<const void> opaque = owned;
+    init(std::move(opaque), std::move(view));
 }
 
 bool Simulator::bernoulli(float p) {

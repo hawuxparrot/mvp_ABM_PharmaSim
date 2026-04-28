@@ -1,6 +1,7 @@
 #pragma once
 
 #include "engine_input.hpp"
+#include "engine_input_view.hpp"
 
 #include <string>
 
@@ -10,3 +11,5 @@
 
 /// @throws std::invalid_argument on failure.
 void validate_engine_input_or_throw(const EngineInput& in);
+
+void validate_engine_input_or_throw(const EngineInputView& in);

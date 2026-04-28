@@ -1,6 +1,7 @@
 #pragma once
 
 #include "engine_input.hpp"
+#include "engine_input_view.hpp"
 
 #include <cstdint>
 #include <vector>
@@ -23,6 +24,8 @@ struct SimulationState {
     SimulationState() = default;
 
     explicit SimulationState(const EngineInput& in);
+
+    explicit SimulationState(const EngineInputView& in);
 
     void sync_registry_from_physical(std::uint32_t pack_index);
 };

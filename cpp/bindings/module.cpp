@@ -1,7 +1,9 @@
 #include <nanobind/nanobind.h>
+#include <nanobind/ndarray.h>
 #include <nanobind/stl/string.h>
 #include <nanobind/stl/vector.h>
 
+#include "py_engine_input_owner.hpp"
 #include "simulator.hpp"
 #include "engine_input.hpp"
 #include "engine_input_validate.hpp"
@@ -80,9 +82,9 @@ static EngineInput load_engine_input(const nb::object& src) {
 }
 
 static Simulator create_simulator(const nb::object& py_in) {
-    EngineInput in = load_engine_input(py_in);
-    validate_engine_input_or_throw(in);
-    return Simulator(std::move(in));
+    auto owner = build_py_engine_input_owner(py_in);
+    std::shared_ptr<const void> opaque = owner;
+    return Simulator(std::move(opaque), owner->view);
 }
 
 NB_MODULE(_pharmasim_native, m) {
