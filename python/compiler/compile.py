@@ -22,18 +22,14 @@ def _collect_market_codes(s: Scenario) -> list[str]:
     return sorted(codes)
 
 
-def compile_scenario(scenario: Scenario) -> EngineInput:
-    """
-    Validate *scenario*, assign dense IDs (list order = row id), build columnar :class:`EngineInput`.
-
-    ID policy: for each entity list on :class:`~policy.models.Scenario`, ``row_index`` is the dense
-    id (0 .. n-1). Markets are interned: sorted unique market strings → ``market_id``.
-
-    Location behavior (Option B): always emit dense arrays of length ``n_locations``; rows are
-    zero unless :attr:`~policy.models.Scenario.behavior_by_location` defines a row for that site.
-    """
-    s = validate_scenario(scenario)
-
+def _engine_input_from_validated_scenario(
+    s: Scenario,
+    edge_src_location_id: np.ndarray,
+    edge_dst_location_id: np.ndarray,
+    edge_cost: np.ndarray,
+    edge_capacity: np.ndarray,
+) -> EngineInput:
+    """Build :class:`EngineInput` from a validated scenario and dense edge column arrays."""
     market_code = _collect_market_codes(s)
     market_str_to_id = {m: i for i, m in enumerate(market_code)}
     n_markets = len(market_code)
@@ -48,7 +44,7 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     n_prod = len(s.products)
     n_batch = len(s.batches)
     n_pack = len(s.packs)
-    n_edge = len(s.location_edges)
+    n_edge = int(edge_src_location_id.shape[0])
 
     org_type = np.zeros(n_org, dtype=np.uint8)
     org_ext_id = [o.ext_id for o in s.organizations]
@@ -61,16 +57,6 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     for i, loc in enumerate(s.locations):
         location_org_id[i] = org_ext_to_id[loc.org_ext_id]
         location_market_id[i] = market_str_to_id[loc.market_code]
-
-    edge_src_location_id = np.zeros(n_edge, dtype=np.uint32)
-    edge_dst_location_id = np.zeros(n_edge, dtype=np.uint32)
-    edge_cost = np.zeros(n_edge, dtype=np.float32)
-    edge_capacity = np.zeros(n_edge, dtype=np.uint32)
-    for i, edge in enumerate(s.location_edges):
-        edge_src_location_id[i] = loc_ext_to_id[edge.src_location_ext_id]
-        edge_dst_location_id[i] = loc_ext_to_id[edge.dst_location_ext_id]
-        edge_cost[i] = np.float32(edge.cost)
-        edge_capacity[i] = np.uint32(edge.capacity)
 
     out_edges_by_location: list[list[int]] = [[] for _ in range(n_loc)]
     for edge_id in range(n_edge):
@@ -171,3 +157,65 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     )
     engine_input.validate_shapes()
     return engine_input
+
+
+def compile_scenario(scenario: Scenario) -> EngineInput:
+    """
+    Validate *scenario*, assign dense IDs (list order = row id), build columnar :class:`EngineInput`.
+
+    ID policy: for each entity list on :class:`~policy.models.Scenario`, ``row_index`` is the dense
+    id (0 .. n-1). Markets are interned: sorted unique market strings → ``market_id``.
+
+    Location behavior (Option B): always emit dense arrays of length ``n_locations``; rows are
+    zero unless :attr:`~policy.models.Scenario.behavior_by_location` defines a row for that site.
+    """
+    s = validate_scenario(scenario)
+
+    loc_ext_to_id = {loc.ext_id: i for i, loc in enumerate(s.locations)}
+    n_edge = len(s.location_edges)
+
+    edge_src_location_id = np.zeros(n_edge, dtype=np.uint32)
+    edge_dst_location_id = np.zeros(n_edge, dtype=np.uint32)
+    edge_cost = np.zeros(n_edge, dtype=np.float32)
+    edge_capacity = np.zeros(n_edge, dtype=np.uint32)
+    for i, edge in enumerate(s.location_edges):
+        edge_src_location_id[i] = loc_ext_to_id[edge.src_location_ext_id]
+        edge_dst_location_id[i] = loc_ext_to_id[edge.dst_location_ext_id]
+        edge_cost[i] = np.float32(edge.cost)
+        edge_capacity[i] = np.uint32(edge.capacity)
+
+    return _engine_input_from_validated_scenario(
+        s, edge_src_location_id, edge_dst_location_id, edge_cost, edge_capacity
+    )
+
+
+def compile_scenario_with_precomputed_edges(
+    scenario: Scenario,
+    edge_src_location_id: np.ndarray,
+    edge_dst_location_id: np.ndarray,
+    edge_cost: np.ndarray,
+    edge_capacity: np.ndarray,
+) -> EngineInput:
+    """
+    Like :func:`compile_scenario`, but edge topology is given as dense location-index column arrays
+    (global row ids matching ``scenario.locations`` order). Use with
+    :func:`policy.scenarios_large.multi_market_sparse_scenario_precomputed`.
+    """
+    s = validate_scenario(scenario)
+    es = np.asarray(edge_src_location_id, dtype=np.uint32)
+    ed = np.asarray(edge_dst_location_id, dtype=np.uint32)
+    ec = np.asarray(edge_cost, dtype=np.float32)
+    ek = np.asarray(edge_capacity, dtype=np.uint32)
+    n_edge = es.shape[0]
+    if ed.shape[0] != n_edge or ec.shape[0] != n_edge or ek.shape[0] != n_edge:
+        raise ValueError(
+            "edge arrays must have equal length: "
+            f"src={es.shape[0]}, dst={ed.shape[0]}, cost={ec.shape[0]}, cap={ek.shape[0]}"
+        )
+    n_loc = len(s.locations)
+    if n_edge and (int(es.max()) >= n_loc or int(ed.max()) >= n_loc):
+        raise ValueError(
+            f"edge location id out of range: n_locations={n_loc}, "
+            f"max src={int(es.max())}, max dst={int(ed.max())}"
+        )
+    return _engine_input_from_validated_scenario(s, es, ed, ec, ek)

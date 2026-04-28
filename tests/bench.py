@@ -1,15 +1,13 @@
 import pytest
 
-from compiler.compile import compile_scenario
-from policy.scenarios import two_markets_demo
-from policy.scenarios_large import multi_market_sparse_scenario
+from compiler.compile import compile_scenario_with_precomputed_edges
+from policy.scenarios_large import multi_market_sparse_scenario_precomputed
 from runtime.native_bridge import create_native_simulator
 
 @pytest.fixture(scope="module")
 def compiled():
-    s = multi_market_sparse_scenario()
-    # s = two_markets_demo()
-    return compile_scenario(s)
+    s_l, es, ed, ec, ek = multi_market_sparse_scenario_precomputed()
+    return compile_scenario_with_precomputed_edges(s_l, es, ed, ec, ek)
 
 def test_bench_create_simulator(benchmark,compiled):
     benchmark(create_native_simulator, compiled)

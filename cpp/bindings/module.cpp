@@ -12,27 +12,28 @@
 #include <utility>
 #include <vector>
 
+#include <nanobind/nanobind.h>
+#include <nanobind/ndarray.h>
+
 namespace nb = nanobind;
 
+/* 1-time copy from numpy arrays to std::vector, will refactor into zero-copy if needed */
 template <typename T>
 std::vector<T> load_numpy_1d(
     const nb::object& src,
-    const char* field_name,
-    const char* expected_dtype_name
+    const char* field_name
 ) {
-    nb::object arr = src.attr(field_name);
-    const int ndim = nb::cast<int>(arr.attr("ndim"));
-    if (ndim != 1) {
+    // Require: NumPy ndarray, 1D, C-contiguous
+    try {
+        nb::object obj = src.attr(field_name);
+        nb::ndarray<T, nb::ndim<1>, nb::c_contig> a = nb::cast<nb::ndarray<T, nb::ndim<1>, nb::c_contig>>(obj);
+        const size_t n = (size_t) a.shape(0);
+        std::vector<T> out(n);
+        std::memcpy(out.data(), a.data(), n * sizeof(T));
+        return out;
+    } catch (const std::exception& e) {
         throw std::invalid_argument(std::string(field_name) + " must be a 1-D numpy array");
     }
-    const std::string dtype_name = nb::cast<std::string>(arr.attr("dtype").attr("name"));
-    if (dtype_name != expected_dtype_name) {
-        throw std::invalid_argument(
-            std::string(field_name) + " expected dtype " + expected_dtype_name + ", got "
-            + dtype_name
-        );
-    }
-    return nb::cast<std::vector<T>>(arr.attr("tolist")());
 }
 
 static EngineInput load_engine_input(const nb::object& src) {
@@ -49,54 +50,44 @@ static EngineInput load_engine_input(const nb::object& src) {
 
     in.market_code = nb::cast<std::vector<std::string>>(src.attr("market_code"));
 
-    in.org_type = load_numpy_1d<std::uint8_t>(src, "org_type", "uint8");
-    in.location_org_id = load_numpy_1d<std::uint32_t>(src, "location_org_id", "uint32");
-    in.location_market_id = load_numpy_1d<std::uint32_t>(src, "location_market_id", "uint32");
+    in.org_type = load_numpy_1d<std::uint8_t>(src, "org_type");
+    in.location_org_id = load_numpy_1d<std::uint32_t>(src, "location_org_id");
+    in.location_market_id = load_numpy_1d<std::uint32_t>(src, "location_market_id");
     in.location_out_edge_offset = load_numpy_1d<std::uint32_t>(
-        src, "location_out_edge_offset", "uint32"
+        src, "location_out_edge_offset"
     );
     in.location_out_edge_id = load_numpy_1d<std::uint32_t>(
-        src, "location_out_edge_id", "uint32"
+        src, "location_out_edge_id"
     );
     in.edge_src_location_id = load_numpy_1d<std::uint32_t>(
-        src, "edge_src_location_id", "uint32"
+        src, "edge_src_location_id"
     );
     in.edge_dst_location_id = load_numpy_1d<std::uint32_t>(
-        src, "edge_dst_location_id", "uint32"
+        src, "edge_dst_location_id"
     );
-    in.edge_cost = load_numpy_1d<float>(src, "edge_cost", "float32");
-    in.edge_capacity = load_numpy_1d<std::uint32_t>(src, "edge_capacity", "uint32");
-    in.batch_product_id = load_numpy_1d<std::uint32_t>(src, "batch_product_id", "uint32");
+    in.edge_cost = load_numpy_1d<float>(src, "edge_cost");
+    in.edge_capacity = load_numpy_1d<std::uint32_t>(src, "edge_capacity");
+    in.batch_product_id = load_numpy_1d<std::uint32_t>(src, "batch_product_id");
     in.batch_manufacturer_org_id = load_numpy_1d<std::uint32_t>(
-        src, "batch_manufacturer_org_id", "uint32"
+        src, "batch_manufacturer_org_id"
     );
     in.batch_intended_market_offset = load_numpy_1d<std::uint32_t>(
-        src, "batch_intended_market_offset", "uint32"
+        src, "batch_intended_market_offset"
     );
     in.batch_intended_market_id = load_numpy_1d<std::uint32_t>(
-        src, "batch_intended_market_id", "uint32"
+        src, "batch_intended_market_id"
     );
-    in.pack_product_id = load_numpy_1d<std::uint32_t>(src, "pack_product_id", "uint32");
-    in.pack_batch_id = load_numpy_1d<std::uint32_t>(src, "pack_batch_id", "uint32");
-    in.pack_initial_location_id = load_numpy_1d<std::uint32_t>(
-        src, "pack_initial_location_id", "uint32"
-    );
-    in.pack_initial_market_id = load_numpy_1d<std::uint32_t>(
-        src, "pack_initial_market_id", "uint32"
-    );
-    in.pack_initial_state = load_numpy_1d<std::uint8_t>(src, "pack_initial_state", "uint8");
+    in.pack_product_id = load_numpy_1d<std::uint32_t>(src, "pack_product_id");
+    in.pack_batch_id = load_numpy_1d<std::uint32_t>(src, "pack_batch_id");
+    in.pack_initial_location_id = load_numpy_1d<std::uint32_t>(src, "pack_initial_location_id");
+    in.pack_initial_market_id = load_numpy_1d<std::uint32_t>(src, "pack_initial_market_id");
+    in.pack_initial_state = load_numpy_1d<std::uint8_t>(src, "pack_initial_state");
 
     in.pack_serial = nb::cast<std::vector<std::string>>(src.attr("pack_serial"));
-    in.location_has_behavior = load_numpy_1d<std::uint8_t>(
-        src, "location_has_behavior", "uint8"
-    );
-    in.location_verify_prob = load_numpy_1d<float>(src, "location_verify_prob", "float32");
-    in.location_decommission_prob = load_numpy_1d<float>(
-        src, "location_decommission_prob", "float32"
-    );
-    in.location_reactivate_prob = load_numpy_1d<float>(
-        src, "location_reactivate_prob", "float32"
-    );
+    in.location_has_behavior = load_numpy_1d<std::uint8_t>(src, "location_has_behavior");
+    in.location_verify_prob = load_numpy_1d<float>(src, "location_verify_prob");
+    in.location_decommission_prob = load_numpy_1d<float>(src, "location_decommission_prob");
+    in.location_reactivate_prob = load_numpy_1d<float>(src, "location_reactivate_prob");
 
     in.org_ext_id = nb::cast<std::vector<std::string>>(src.attr("org_ext_id"));
     in.location_ext_id = nb::cast<std::vector<std::string>>(src.attr("location_ext_id"));

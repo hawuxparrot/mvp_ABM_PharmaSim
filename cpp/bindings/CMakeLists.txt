@@ -5,8 +5,10 @@ execute_process(
   OUTPUT_VARIABLE nanobind_DIR
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+#set (nanobind_DIR "${nanobind_DIR}" CACHE PATH "Path to nanobind-config.cmake" FORCE)
 
 find_package(nanobind CONFIG REQUIRED) # ignore this error, does not affect compilation
+
 
 nanobind_add_module(_pharmasim_native
   module.cpp
