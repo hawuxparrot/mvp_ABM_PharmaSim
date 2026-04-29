@@ -1,0 +1,9 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0
+benchmark: 5.2.3 (defaults: timer=time.perf_counter disable_gc=False min_rounds=1 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: /Users/kureha/Documents/ethz/FS26/ABM for EU Pharmaceutical Distrubution/mvp_ABM_PharmaSim
+configfile: pyproject.toml
+plugins: benchmark-5.2.3
+collected 2 items
+
+tests/bench.py .

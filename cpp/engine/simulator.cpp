@@ -112,83 +112,98 @@ bool Simulator::registry_matches_physical() const noexcept {
     return true;
 }
 
+void Simulator::process_pack_tick(std::uint32_t pack_id, std::uint64_t tick) {
+    const std::size_t pi = static_cast<std::size_t>(pack_id);
+    const std::uint32_t loc = state_.pack_location_id[pi];
+    
+    apply_location_behavior(pack_id, loc, tick);
+    attempt_movement(pack_id, loc);    
+}
+
+void Simulator::apply_location_behavior(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick) {
+    const std::size_t pi = static_cast<std::size_t>(pack_id);
+    const std::size_t li = static_cast<std::size_t>(loc);
+    
+    if (input_.location_has_behavior[li] == 0) return;
+
+    const float vp = input_.location_verify_prob[li];
+    const float dp = input_.location_decommission_prob[li];
+    const float rp = input_.location_reactivate_prob[li];
+
+    if (bernoulli(vp)) {
+        events_.push(tick, pack_id, EventType::VERIFY, loc, k_event_no_location);
+    }
+    
+    const auto st = static_cast<PACK_STATE>(state_.pack_state[pi]);
+    if (st == PACK_STATE::ACTIVE) {
+        if (bernoulli(dp)) {
+            state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::DECOMISSIONED);
+            events_.push(tick, pack_id, EventType::DECOMMISSION, loc, k_event_no_location);
+        }
+    } else if (st == PACK_STATE::DECOMISSIONED) {
+        if (bernoulli(rp)) {
+            state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
+            events_.push(tick, pack_id, EventType::REACTIVATE, loc, k_event_no_location);
+        }
+    }
+}
+
+bool Simulator::has_outgoing_edge(std::uint32_t loc) const {
+    const std::size_t li = static_cast<std::size_t>(loc);
+    const std::uint32_t beg = input_.location_out_edge_offset[li];
+    const std::uint32_t end = input_.location_out_edge_offset[li + 1];
+    return beg < end;
+}
+
+bool Simulator::attempt_movement(std::uint32_t pack_id, std::uint32_t loc) {
+    const std::size_t pi = static_cast<std::size_t>(pack_id);
+    const std::size_t li = static_cast<std::size_t>(loc);
+
+    const auto st = static_cast<PACK_STATE>(state_.pack_state[pi]);
+    const bool movable_state = (st == PACK_STATE::UPLOADED || st == PACK_STATE::ACTIVE);  // Assume only uploaded and active packs can move, may not be the case for fraud detection
+    const ORG_TYPE org_at_loc = static_cast<ORG_TYPE>(state_.location_org_type[li]);
+    
+    if (!movable_state || is_terminal_org_for_movement(org_at_loc) || (rng_() >= k_move_threshold) || !has_outgoing_edge(loc)) {
+        return false;
+    }
+
+    move_pack(pack_id, loc, current_tick_);
+    sync_pack_registry(pack_id);
+    return true;
+}
+
+void Simulator::move_pack(std::uint32_t pack_id, std::uint32_t from_loc, std::uint64_t tick) {
+    const std::size_t pi = static_cast<std::size_t>(pack_id);
+    const std::uint32_t edge_id = pick_outgoing_edge(input_, from_loc, rng_);
+    const std::uint32_t dst = input_.edge_dst_location_id[static_cast<std::size_t>(edge_id)];
+    
+    state_.pack_location_id[pi] = dst;
+    state_.pack_market_id[pi] = input_.location_market_id[static_cast<std::size_t>(dst)];
+    events_.push(tick, pack_id, EventType::MOVE, from_loc, dst);
+    
+    apply_post_movement_transition(pack_id, dst);
+}
+
+void Simulator::apply_post_movement_transition(std::uint32_t pack_id, std::uint32_t to_loc) {
+    const std::size_t pi = static_cast<std::size_t>(pack_id);
+    const ORG_TYPE org_at_dst = static_cast<ORG_TYPE>(state_.location_org_type[static_cast<std::size_t>(to_loc)]);
+
+    if (static_cast<PACK_STATE>(state_.pack_state[pi]) == PACK_STATE::UPLOADED && org_at_dst == ORG_TYPE::WHOLESALER) {
+        state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
+    }
+}
+
+void Simulator::sync_pack_registry(std::uint32_t pack_id) {
+    state_.sync_registry_from_physical(pack_id);
+}
+
 void Simulator::run_ticks(std::uint64_t n) {
     const int n_packs = input_.n_packs;
-
     for (std::uint64_t step = 0; step < n; ++step) {
         const std::uint64_t tick = current_tick_;
-
-        for (int pack = 0; pack < n_packs; ++pack) {
-            const std::uint32_t pid = static_cast<std::uint32_t>(pack);
-            const std::size_t pi = static_cast<std::size_t>(pack);
-
-            std::uint32_t loc = state_.pack_location_id[pi];
-            const std::size_t li = static_cast<std::size_t>(loc);
-            const ORG_TYPE org_at_loc = static_cast<ORG_TYPE>(state_.location_org_type[li]);
-
-            // Behavior at start of tick (VERIFY / DECOMMISSION / REACTIVATE), then movement.
-            if (input_.location_has_behavior[li] != 0) {
-                const float vp = input_.location_verify_prob[li];
-                const float dp = input_.location_decommission_prob[li];
-                const float rp = input_.location_reactivate_prob[li];
-
-                if (bernoulli(vp)) {
-                    events_.push(tick, pid, EventType::VERIFY, loc, k_event_no_location);
-                }
-
-                const auto st = static_cast<PACK_STATE>(state_.pack_state[pi]);
-                if (st == PACK_STATE::ACTIVE) {
-                    if (bernoulli(dp)) {
-                        state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::DECOMISSIONED);
-                        events_.push(tick, pid, EventType::DECOMMISSION, loc, k_event_no_location);
-                    }
-                } else if (st == PACK_STATE::DECOMISSIONED) {
-                    if (bernoulli(rp)) {
-                        state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
-                        events_.push(tick, pid, EventType::REACTIVATE, loc, k_event_no_location);
-                    }
-                }
-            }
-
-            const auto st_move = static_cast<PACK_STATE>(state_.pack_state[pi]);
-            const bool movable_state =
-                (st_move == PACK_STATE::UPLOADED || st_move == PACK_STATE::ACTIVE);
-            if (!movable_state || is_terminal_org_for_movement(org_at_loc)) {
-                state_.sync_registry_from_physical(pid);
-                continue;
-            }
-
-            if ((rng_() >= k_move_threshold)) {
-                state_.sync_registry_from_physical(pid);
-                continue;
-            }
-
-            const std::uint32_t beg = input_.location_out_edge_offset[li];
-            const std::uint32_t end = input_.location_out_edge_offset[li + 1];
-            if (beg >= end) {
-                state_.sync_registry_from_physical(pid);
-                continue;
-            }
-
-            const std::uint32_t edge_id = pick_outgoing_edge(input_, loc, rng_);
-            const std::uint32_t dst =
-                input_.edge_dst_location_id[static_cast<std::size_t>(edge_id)];
-            const std::uint32_t from_loc = loc;
-
-            state_.pack_location_id[pi] = dst;
-            state_.pack_market_id[pi] = input_.location_market_id[static_cast<std::size_t>(dst)];
-            events_.push(tick, pid, EventType::MOVE, from_loc, dst);
-
-            const ORG_TYPE org_at_dst =
-                static_cast<ORG_TYPE>(state_.location_org_type[static_cast<std::size_t>(dst)]);
-            if (static_cast<PACK_STATE>(state_.pack_state[pi]) == PACK_STATE::UPLOADED
-                && org_at_dst == ORG_TYPE::WHOLESALER) {
-                state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
-            }
-
-            state_.sync_registry_from_physical(pid);
+        for (std::uint32_t pack_id = 0; pack_id < n_packs; ++pack_id) {
+            process_pack_tick(pack_id, tick);
         }
-
         ++current_tick_;
     }
 }
