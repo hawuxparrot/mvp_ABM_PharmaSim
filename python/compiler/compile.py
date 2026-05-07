@@ -121,6 +121,21 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     location_verify_prob = np.zeros(n_loc, dtype=np.float32)
     location_decommission_prob = np.zeros(n_loc, dtype=np.float32)
     location_reactivate_prob = np.zeros(n_loc, dtype=np.float32)
+    location_demand_policy_id = np.zeros(n_loc, dtype=np.uint8)
+    location_supply_policy_id = np.zeros(n_loc, dtype=np.uint8)
+    location_initial_on_hand = np.zeros(n_loc, dtype=np.int32)
+    location_initial_backlog = np.zeros(n_loc, dtype=np.int32)
+    location_initial_pipeline_outstanding = np.zeros(n_loc, dtype=np.int32)
+    location_demand_const_rate = np.zeros(n_loc, dtype=np.int32)
+    location_reorder_point_s = np.zeros(n_loc, dtype=np.int32)
+    location_order_up_to_S = np.zeros(n_loc, dtype=np.int32)
+    location_unfulfilled_unit_penalty = np.zeros(n_loc, dtype=np.float32)
+    location_preferred_supplier_edge_id = np.full(n_loc, np.uint32(2**32 - 1), dtype=np.uint32)
+    location_base_stock_level = np.zeros(n_loc, dtype=np.int32)
+    location_ewma_alpha = np.zeros(n_loc, dtype=np.float32)
+    location_supply_capacity_per_tick = np.zeros(n_loc, dtype=np.uint32)
+    location_min_order_interval_ticks = np.zeros(n_loc, dtype=np.uint32)
+    edge_lead_time_ticks = np.zeros(n_edge, dtype=np.uint16)
     for i, loc in enumerate(s.locations):
         beh = s.behavior_by_location.get(loc.ext_id)
         if beh is None:
@@ -164,6 +179,21 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         location_verify_prob=location_verify_prob,
         location_decommission_prob=location_decommission_prob,
         location_reactivate_prob=location_reactivate_prob,
+        location_demand_policy_id=location_demand_policy_id,
+        location_supply_policy_id=location_supply_policy_id,
+        location_initial_on_hand=location_initial_on_hand,
+        location_initial_backlog=location_initial_backlog,
+        location_initial_pipeline_outstanding=location_initial_pipeline_outstanding,
+        location_demand_const_rate=location_demand_const_rate,
+        location_reorder_point_s=location_reorder_point_s,
+        location_order_up_to_S=location_order_up_to_S,
+        location_base_stock_level=location_base_stock_level,
+        location_ewma_alpha=location_ewma_alpha,
+        location_supply_capacity_per_tick=location_supply_capacity_per_tick,
+        location_min_order_interval_ticks=location_min_order_interval_ticks,
+        location_unfulfilled_unit_penalty=location_unfulfilled_unit_penalty,
+        location_preferred_supplier_edge_id=location_preferred_supplier_edge_id,
+        edge_lead_time_ticks=edge_lead_time_ticks,
         org_ext_id=org_ext_id,
         location_ext_id=location_ext_id,
         batch_ext_id=batch_ext_id,

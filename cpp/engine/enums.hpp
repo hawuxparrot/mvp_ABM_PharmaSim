@@ -2,8 +2,8 @@
 
 #include <cstdint>
 
-/// Must match ``compiler.types.ENGINE_INPUT_SCHEMA_VERSION`` in Python.
-constexpr const char* ENGINE_INPUT_SCHEMA_VERSION = "engine_input.v3";
+/// Must match ``compiler.types.ENGINE_INPUT_SCHEMA_VERSION`` in Python (defined in compiler/types.py)..
+constexpr const char* ENGINE_INPUT_SCHEMA_VERSION = "engine_input.v4";
 
 enum class ORG_TYPE : std::uint8_t {
     OBP = 0,

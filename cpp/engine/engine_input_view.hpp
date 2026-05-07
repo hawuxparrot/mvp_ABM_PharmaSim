@@ -39,6 +39,28 @@ struct EngineInputView {
     std::span<const float> location_verify_prob;
     std::span<const float> location_decommission_prob;
     std::span<const float> location_reactivate_prob;
+    // location order/supply policy
+    std::span<const std::uint8_t> location_demand_policy_id;
+    std::span<const std::uint8_t> location_supply_policy_id;
+    // initial aggregate state
+    std::span<const std::int32_t> location_initial_on_hand;
+    std::span<const std::int32_t> location_initial_backlog;
+    std::span<const std::int32_t> location_initial_pipeline_outstanding;
+    // demand policy params
+    std::span<const std::int32_t> location_demand_const_rate;
+    std::span<const std::int32_t> location_reorder_point_s;
+    std::span<const std::int32_t> location_order_up_to_S;
+    std::span<const std::int32_t> location_base_stock_level;
+    std::span<const float> location_ewma_alpha;
+    // supply policy params
+    std::span<const std::uint32_t> location_supply_capacity_per_tick;
+    std::span<const std::uint32_t> location_min_order_interval_ticks;
+    // cost, penalty params
+    std::span<const float> location_unfulfilled_unit_penalty;
+    // supplier selection
+    std::span<const std::uint32_t> location_preferred_supplier_edge_id;
+    // order transport
+    std::span<const std::uint16_t> edge_lead_time_ticks;
 
     // strings: must own, don't want to deal with no-copy moving between python strings and cpp std::string
     std::vector<std::string> market_code;

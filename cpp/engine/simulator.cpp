@@ -117,7 +117,8 @@ void Simulator::process_pack_tick(std::uint32_t pack_id, std::uint64_t tick) {
     const std::uint32_t loc = state_.pack_location_id[pi];
     
     apply_location_behavior(pack_id, loc, tick);
-    attempt_movement(pack_id, loc);    
+    attempt_movement(pack_id, loc);
+    sync_pack_registry(pack_id);
 }
 
 void Simulator::apply_location_behavior(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick) {
@@ -139,11 +140,13 @@ void Simulator::apply_location_behavior(std::uint32_t pack_id, std::uint32_t loc
         if (bernoulli(dp)) {
             state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::DECOMISSIONED);
             events_.push(tick, pack_id, EventType::DECOMMISSION, loc, k_event_no_location);
+            sync_pack_registry(pack_id);
         }
     } else if (st == PACK_STATE::DECOMISSIONED) {
         if (bernoulli(rp)) {
             state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
             events_.push(tick, pack_id, EventType::REACTIVATE, loc, k_event_no_location);
+            sync_pack_registry(pack_id);
         }
     }
 }

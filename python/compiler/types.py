@@ -11,7 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 # ABI version: bump when adding/removing/reordering fields or changing dtypes.
-ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v3"
+ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v4"
 
 
 @dataclass
@@ -60,6 +60,8 @@ class EngineInput:
     edge_dst_location_id: NDArray[np.uint32]
     edge_cost: NDArray[np.float32]
     edge_capacity: NDArray[np.uint32]
+    # order transport
+    edge_lead_time_ticks: NDArray[np.uint16]
 
     # batches + CSR for variable-length intended markets
     batch_product_id: NDArray[np.uint32]
@@ -80,6 +82,26 @@ class EngineInput:
     location_verify_prob: NDArray[np.float32]
     location_decommission_prob: NDArray[np.float32]
     location_reactivate_prob: NDArray[np.float32]
+    # location order/supply policy
+    location_demand_policy_id: NDArray[np.uint8]
+    location_supply_policy_id: NDArray[np.uint8]
+    # initial aggregate state
+    location_initial_on_hand: NDArray[np.int32]
+    location_initial_backlog: NDArray[np.int32]
+    location_initial_pipeline_outstanding: NDArray[np.int32]
+    # demand policy params
+    location_demand_const_rate: NDArray[np.int32]
+    location_reorder_point_s: NDArray[np.int32]
+    location_order_up_to_S: NDArray[np.int32]
+    location_base_stock_level: NDArray[np.int32]
+    location_ewma_alpha: NDArray[np.float32]
+    # supply policy params
+    location_supply_capacity_per_tick: NDArray[np.uint32]
+    location_min_order_interval_ticks: NDArray[np.uint32]
+    # cost, penalty params
+    location_unfulfilled_unit_penalty: NDArray[np.float32]
+    # supplier selection
+    location_preferred_supplier_edge_id: NDArray[np.uint32]
 
     org_ext_id: list[str] = field(default_factory=list)
     location_ext_id: list[str] = field(default_factory=list)
@@ -158,3 +180,18 @@ class EngineInput:
         _len("location_verify_prob", self.location_verify_prob, self.n_locations)
         _len("location_decommission_prob", self.location_decommission_prob, self.n_locations)
         _len("location_reactivate_prob", self.location_reactivate_prob, self.n_locations)
+        _len("location_demand_policy_id", self.location_demand_policy_id, self.n_locations)
+        _len("location_supply_policy_id", self.location_supply_policy_id, self.n_locations)
+        _len("location_initial_on_hand", self.location_initial_on_hand, self.n_locations)
+        _len("location_initial_backlog", self.location_initial_backlog, self.n_locations)
+        _len("location_initial_pipeline_outstanding", self.location_initial_pipeline_outstanding, self.n_locations)
+        _len("location_demand_const_rate", self.location_demand_const_rate, self.n_locations)
+        _len("location_reorder_point_s", self.location_reorder_point_s, self.n_locations)
+        _len("location_order_up_to_S", self.location_order_up_to_S, self.n_locations)
+        _len("location_base_stock_level", self.location_base_stock_level, self.n_locations)
+        _len("location_ewma_alpha", self.location_ewma_alpha, self.n_locations)
+        _len("location_supply_capacity_per_tick", self.location_supply_capacity_per_tick, self.n_locations)
+        _len("location_min_order_interval_ticks", self.location_min_order_interval_ticks, self.n_locations)
+        _len("location_unfulfilled_unit_penalty", self.location_unfulfilled_unit_penalty, self.n_locations)
+        _len("location_preferred_supplier_edge_id", self.location_preferred_supplier_edge_id, self.n_locations)
+        _len("edge_lead_time_ticks", self.edge_lead_time_ticks, self.n_edges)

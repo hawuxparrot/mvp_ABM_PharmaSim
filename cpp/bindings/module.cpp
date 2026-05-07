@@ -9,6 +9,7 @@
 #include "engine_input_validate.hpp"
 
 #include <cstdint>
+#include <cstring>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -72,6 +73,21 @@ static EngineInput load_engine_input(const nb::object& src) {
     in.location_verify_prob = load_numpy_1d<float>(src, "location_verify_prob");
     in.location_decommission_prob = load_numpy_1d<float>(src, "location_decommission_prob");
     in.location_reactivate_prob = load_numpy_1d<float>(src, "location_reactivate_prob");
+    in.location_demand_policy_id = load_numpy_1d<std::uint8_t>(src, "location_demand_policy_id");
+    in.location_supply_policy_id = load_numpy_1d<std::uint8_t>(src, "location_supply_policy_id");
+    in.location_initial_on_hand = load_numpy_1d<std::int32_t>(src, "location_initial_on_hand");
+    in.location_initial_backlog = load_numpy_1d<std::int32_t>(src, "location_initial_backlog");
+    in.location_initial_pipeline_outstanding = load_numpy_1d<std::int32_t>(src, "location_initial_pipeline_outstanding");
+    in.location_demand_const_rate = load_numpy_1d<std::int32_t>(src, "location_demand_const_rate");
+    in.location_reorder_point_s = load_numpy_1d<std::int32_t>(src, "location_reorder_point_s");
+    in.location_order_up_to_S = load_numpy_1d<std::int32_t>(src, "location_order_up_to_S");
+    in.location_base_stock_level = load_numpy_1d<std::int32_t>(src, "location_base_stock_level");
+    in.location_ewma_alpha = load_numpy_1d<float>(src, "location_ewma_alpha");
+    in.location_supply_capacity_per_tick = load_numpy_1d<std::uint32_t>(src, "location_supply_capacity_per_tick");
+    in.location_min_order_interval_ticks = load_numpy_1d<std::uint32_t>(src, "location_min_order_interval_ticks");
+    in.location_unfulfilled_unit_penalty = load_numpy_1d<float>(src, "location_unfulfilled_unit_penalty");
+    in.location_preferred_supplier_edge_id = load_numpy_1d<std::uint32_t>(src, "location_preferred_supplier_edge_id");
+    in.edge_lead_time_ticks = load_numpy_1d<std::uint16_t>(src, "edge_lead_time_ticks");
 
     in.org_ext_id = nb::cast<std::vector<std::string>>(src.attr("org_ext_id"));
     in.location_ext_id = nb::cast<std::vector<std::string>>(src.attr("location_ext_id"));

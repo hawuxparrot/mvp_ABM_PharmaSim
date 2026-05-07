@@ -21,6 +21,14 @@ struct SimulationState {
     /// ``org_type`` of the organization owning each location (by location id).
     std::vector<std::uint8_t> location_org_type;
 
+    // order system
+    std::vector<std::uint32_t> location_on_hand;                    // on_hand >= 0
+    std::vector<std::uint32_t> location_backlog;                    // backlog >= 0
+    std::vector<std::uint32_t> location_pipeline_outstanding;       // pipeline_outstanding >= 0
+    std::vector<float> location_forecast;
+    std::vector<std::uint64_t> location_last_order_tick;
+    std::vector<double> location_cum_unfulfilled_penalty;
+
     SimulationState() = default;
 
     explicit SimulationState(const EngineInput& in);

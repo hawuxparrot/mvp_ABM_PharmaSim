@@ -30,6 +30,8 @@ struct EngineInput {
     std::vector<std::uint32_t> edge_dst_location_id;
     std::vector<float> edge_cost;
     std::vector<std::uint32_t> edge_capacity;
+    // order transport
+    std::vector<std::uint16_t> edge_lead_time_ticks;
 
     std::vector<std::uint32_t> batch_product_id;
     std::vector<std::uint32_t> batch_manufacturer_org_id;
@@ -47,6 +49,27 @@ struct EngineInput {
     std::vector<float> location_verify_prob;
     std::vector<float> location_decommission_prob;
     std::vector<float> location_reactivate_prob;
+    // location order/supply policy
+    std::vector<std::uint8_t> location_demand_policy_id;
+    std::vector<std::uint8_t> location_supply_policy_id;
+    // initial aggregate state
+    std::vector<std::int32_t> location_initial_on_hand;
+    std::vector<std::int32_t> location_initial_backlog;
+    std::vector<std::int32_t> location_initial_pipeline_outstanding;
+    // demand policy params
+    std::vector<std::int32_t> location_demand_const_rate;
+    std::vector<std::int32_t> location_reorder_point_s;
+    std::vector<std::int32_t> location_order_up_to_S;
+    std::vector<std::int32_t> location_base_stock_level;
+    std::vector<float> location_ewma_alpha;
+    // supply policy params
+    std::vector<std::uint32_t> location_supply_capacity_per_tick;
+    std::vector<std::uint32_t> location_min_order_interval_ticks;
+    // cost, penalty params
+    std::vector<float> location_unfulfilled_unit_penalty;
+    // supplier selection
+    std::vector<std::uint32_t> location_preferred_supplier_edge_id;
+
 
     std::vector<std::string> org_ext_id;
     std::vector<std::string> location_ext_id;

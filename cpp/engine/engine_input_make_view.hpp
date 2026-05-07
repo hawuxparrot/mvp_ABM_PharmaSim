@@ -49,6 +49,24 @@ inline EngineInputView make_view(const EngineInput& in) {
     v.location_decommission_prob = std::span<const float>(in.location_decommission_prob.data(), in.location_decommission_prob.size());
     v.location_reactivate_prob = std::span<const float>(in.location_reactivate_prob.data(), in.location_reactivate_prob.size());
 
+    v.location_demand_policy_id = std::span<const std::uint8_t>(in.location_demand_policy_id.data(), in.location_demand_policy_id.size());
+    v.location_supply_policy_id = std::span<const std::uint8_t>(in.location_supply_policy_id.data(), in.location_supply_policy_id.size());
+    v.location_initial_on_hand = std::span<const std::int32_t>(in.location_initial_on_hand.data(), in.location_initial_on_hand.size());
+    v.location_initial_backlog = std::span<const std::int32_t>(in.location_initial_backlog.data(), in.location_initial_backlog.size());
+    v.location_initial_pipeline_outstanding = std::span<const std::int32_t>(in.location_initial_pipeline_outstanding.data(), in.location_initial_pipeline_outstanding.size());
+    
+    v.location_demand_const_rate = std::span<const std::int32_t>(in.location_demand_const_rate.data(), in.location_demand_const_rate.size());
+    v.location_reorder_point_s = std::span<const std::int32_t>(in.location_reorder_point_s.data(), in.location_reorder_point_s.size());
+    v.location_order_up_to_S = std::span<const std::int32_t>(in.location_order_up_to_S.data(), in.location_order_up_to_S.size());
+    v.location_base_stock_level = std::span<const std::int32_t>(in.location_base_stock_level.data(), in.location_base_stock_level.size());
+    v.location_ewma_alpha = std::span<const float>(in.location_ewma_alpha.data(), in.location_ewma_alpha.size());
+    v.location_supply_capacity_per_tick = std::span<const std::uint32_t>(in.location_supply_capacity_per_tick.data(), in.location_supply_capacity_per_tick.size());
+    v.location_min_order_interval_ticks = std::span<const std::uint32_t>(in.location_min_order_interval_ticks.data(), in.location_min_order_interval_ticks.size());
+    v.location_unfulfilled_unit_penalty = std::span<const float>(in.location_unfulfilled_unit_penalty.data(), in.location_unfulfilled_unit_penalty.size());
+    v.location_preferred_supplier_edge_id = std::span<const std::uint32_t>(in.location_preferred_supplier_edge_id.data(), in.location_preferred_supplier_edge_id.size());
+    
+    v.edge_lead_time_ticks = std::span<const std::uint16_t>(in.edge_lead_time_ticks.data(), in.edge_lead_time_ticks.size());
+
     v.market_code = in.market_code;
     v.pack_serial = in.pack_serial;
     v.org_ext_id = in.org_ext_id;
