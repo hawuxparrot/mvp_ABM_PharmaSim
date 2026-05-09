@@ -40,6 +40,12 @@ private:
     std::mt19937_64 rng_{};
     std::uniform_real_distribution<float> dist_{}; // [0.0f, 1.0f]
     std::uint64_t current_tick_{0};
+
+    std::vector<std::uint64_t> ship_due_tick_;
+    std::vector<std::uint32_t> ship_pack_id_;
+    std::vector<std::uint32_t> ship_edge_id_;
+    std::vector<std::uint32_t> ship_final_dst_loc_;
+
    
 
     void process_pack_tick(std::uint32_t pack_id, std::uint64_t tick);
@@ -49,5 +55,20 @@ private:
     void move_pack(std::uint32_t pack_id, std::uint32_t from_loc, std::uint64_t tick);
     void apply_post_movement_transition(std::uint32_t pack_id, std::uint32_t to_loc);
     void sync_pack_registry(std::uint32_t pack_id);
+
+    void run_location_phase(std::uint64_t tick);
+    void run_supply_phase(std::uint64_t tick);
+    void run_shipment_phase(std::uint64_t tick);
+    void run_pack_behavior_phase(std::uint64_t tick);
+
+    void apply_demand_policy(std::uint32_t loc, std::uint64_t tick);
+    void apply_supply_policy(std::uint32_t loc, std::uint64_t tick);
+
+    void schedule_pack_hop(std::uint32_t pack_id, std::uint32_t edge_id, std::uint32_t final_dst, std::uint64_t curr_tick);
+    void execute_due_shipments(std::uint64_t tick);
+    std::uint32_t lookup_next_edge(std::uint32_t src_loc, std::uint32_t dst_loc) const;
+    std::uint32_t pick_pack_for_shipment(std::uint32_t src_loc) const;
+    void on_pack_arrival(std::uint32_t pack_id, std::uint32_t to_loc, std::uint64_t tick);
+
 
 };

@@ -70,6 +70,11 @@ struct EngineInput {
     // supplier selection
     std::vector<std::uint32_t> location_preferred_supplier_edge_id;
 
+    // precomputed multihop routing CSR
+    std::vector<std::uint32_t> location_route_offset;
+    std::vector<std::uint32_t> location_route_dst_location_id;
+    std::vector<std::uint32_t> location_route_next_edge_id;
+
 
     std::vector<std::string> org_ext_id;
     std::vector<std::string> location_ext_id;

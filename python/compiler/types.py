@@ -103,6 +103,12 @@ class EngineInput:
     # supplier selection
     location_preferred_supplier_edge_id: NDArray[np.uint32]
 
+    # locations: precomputed multihop routing CSR
+    location_route_offset: NDArray[np.uint32]           # len = n_locations + 1
+    location_route_dst_location_id: NDArray[np.uint32]  # flat dst ids
+    location_route_next_edge_id: NDArray[np.uint32]      # flat next-hop edge ids
+    
+
     org_ext_id: list[str] = field(default_factory=list)
     location_ext_id: list[str] = field(default_factory=list)
     batch_ext_id: list[str] = field(default_factory=list)
@@ -195,3 +201,15 @@ class EngineInput:
         _len("location_unfulfilled_unit_penalty", self.location_unfulfilled_unit_penalty, self.n_locations)
         _len("location_preferred_supplier_edge_id", self.location_preferred_supplier_edge_id, self.n_locations)
         _len("edge_lead_time_ticks", self.edge_lead_time_ticks, self.n_edges)
+
+        _len("location_route_offset", self.location_route_offset, self.n_locations + 1)
+        if self.location_route_dst_location_id.shape != self.location_route_next_edge_id.shape:
+            raise ValueError("location_route_dst_location_id and location_route_next_edge_id shapes must match")
+        if self.location_route_offset[0] != 0 or self.location_route_offset[-1] != len(self.location_route_dst_location_id):
+            raise ValueError("location_route_offset must start at 0 and end at len(location_route_dst_location_id)")
+        if not np.all(self.location_route_offset[:-1] <= self.location_route_offset[1:]):
+            raise ValueError("location_route_offset must be non-decreasing")
+        if len(self.location_route_dst_location_id) > 0 and np.max(self.location_route_dst_location_id) >= self.n_locations:
+            raise ValueError("location_route_dst_location_id entries must be < n_locations")
+        if len(self.location_route_next_edge_id) > 0 and np.max(self.location_route_next_edge_id) >= self.n_edges:
+            raise ValueError("location_route_next_edge_id entries must be < n_edges")

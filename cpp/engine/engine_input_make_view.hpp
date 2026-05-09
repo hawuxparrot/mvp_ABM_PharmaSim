@@ -67,6 +67,10 @@ inline EngineInputView make_view(const EngineInput& in) {
     
     v.edge_lead_time_ticks = std::span<const std::uint16_t>(in.edge_lead_time_ticks.data(), in.edge_lead_time_ticks.size());
 
+    v.location_route_offset = std::span<const std::uint32_t>(in.location_route_offset.data(), in.location_route_offset.size());
+    v.location_route_dst_location_id = std::span<const std::uint32_t>(in.location_route_dst_location_id.data(), in.location_route_dst_location_id.size());
+    v.location_route_next_edge_id = std::span<const std::uint32_t>(in.location_route_next_edge_id.data(), in.location_route_next_edge_id.size());
+
     v.market_code = in.market_code;
     v.pack_serial = in.pack_serial;
     v.org_ext_id = in.org_ext_id;

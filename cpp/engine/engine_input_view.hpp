@@ -62,6 +62,10 @@ struct EngineInputView {
     // order transport
     std::span<const std::uint16_t> edge_lead_time_ticks;
 
+    std::span<const std::uint32_t> location_route_offset;
+    std::span<const std::uint32_t> location_route_dst_location_id;
+    std::span<const std::uint32_t> location_route_next_edge_id;
+
     // strings: must own, don't want to deal with no-copy moving between python strings and cpp std::string
     std::vector<std::string> market_code;
     std::vector<std::string> pack_serial;

@@ -1,3 +1,7 @@
+# TODO 10.05.26
+1. Implement state memory of orders, backlogs, which then inform ordering behavior defined as policy
+2. Brainstorm + Implement multiple different policies, one for `LOCAL_ORG`, `WHOLESALER`, `PRODUCER` each
+3. Test correctness
 ### Problem Overview 
 The end goal is to model the pharmaceutical distribution network EU-wide to detect cross-border theft/counterfeiting of pharmaceuticals. 
 

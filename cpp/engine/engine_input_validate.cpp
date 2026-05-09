@@ -160,6 +160,66 @@ void validate_engine_input_or_throw(const EngineInput& in) {
             }
         }
     }
+
+    const auto& route_off = in.location_route_offset;
+    const auto& route_dst = in.location_route_dst_location_id;
+    const auto& route_edge = in.location_route_next_edge_id;
+    if (route_off.size() != n_loc + 1) {
+        fail("EngineInput.location_route_offset length must be n_locations + 1");
+    }
+
+    if (route_dst.size() != route_edge.size()) {
+        fail("EngineInput.location_route_dst_location_id and location_route_next_edge_id must have same length");
+    }
+
+    if (route_off.empty()) {
+        fail("EngineInput.location_route_offset must not be empty");
+    }
+
+    if(route_off.front() != 0) {
+        fail("EngineInput.location_route_offset[0] must be 0");
+    }
+
+    if (static_cast<std::size_t>(route_off.back()) != route_dst.size()) {
+        fail("EngineInput.location_route_offset.back() must equal location_route_dst_location_id.size()");
+    }
+
+    for (std::size_t i = 1; i < route_off.size(); ++i) {
+        if (route_off[i] < route_off[i - 1]) {
+            fail("EngineInput.location_route_offset must be non-decreasing");
+        }
+    }
+
+    for (std::size_t i = 0; i < route_dst.size(); ++i) {
+        if (static_cast<std::size_t>(route_dst[i]) >= n_loc) {
+            fail("EngineInput.location_route_dst_location_id entries must be < n_locations");
+        }
+
+        if (static_cast<std::size_t>(route_edge[i]) >= n_edge) {
+            fail("EngineInput.location_route_next_edge_id entries must be < n_edges");
+        }
+    }
+
+    for (std::size_t loc = 0; loc < n_loc; ++loc) {
+        const auto start = static_cast<std::size_t>(route_off[loc]);
+        const auto end = static_cast<std::size_t>(route_off[loc + 1]);
+        for (std::size_t k = start; k < end; ++k) {
+            const auto dst = static_cast<std::size_t>(route_dst[k]);
+            if (dst == loc) {
+                fail("EngineInput.location_route must not include self routes");
+            }
+            const auto edge_id = static_cast<std::size_t>(route_edge[k]);
+            if (static_cast<std::size_t>(in.edge_src_location_id[edge_id]) != loc) {
+                fail("EngineInput location_route_next_edge_id must refer to an edge whose source is the CSR row location");
+            }
+            for (std::size_t b = k + 1; b < end; ++b) {
+                if (route_dst[k] == route_dst[b]) {
+                    fail("EngineInput location_route CSR must not duplicate destination ids within a source row");
+                }
+            }
+        }
+    }
+    
 }
 
 void validate_engine_input_or_throw(const EngineInputView& in) {
@@ -310,4 +370,54 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
         }
     }
 
+    const auto& route_off = in.location_route_offset;
+    const auto& route_dst = in.location_route_dst_location_id;
+    const auto& route_edge = in.location_route_next_edge_id;
+    if (route_off.size() != n_loc + 1) {
+        fail("EngineInput.location_route_offset length must be n_locations + 1");
+    }
+    if (route_dst.size() != route_edge.size()) {
+        fail("EngineInput.location_route_dst_location_id and location_route_next_edge_id must have same length");
+    }
+    if (route_off.empty()) {
+        fail("EngineInput.location_route_offset must not be empty");
+    }
+    if (route_off.front() != 0) {
+        fail("EngineInput.location_route_offset[0] must be 0");
+    }
+    if (static_cast<std::size_t>(route_off.back()) != route_dst.size()) {
+        fail("EngineInput.location_route_offset.back() must equal location_route_dst_location_id.size()");
+    }
+    for (std::size_t i = 1; i < route_off.size(); ++i) {
+        if (route_off[i] < route_off[i - 1]) {
+            fail("EngineInput.location_route_offset must be non-decreasing");
+        }
+    }
+    for (std::size_t i = 0; i < route_dst.size(); ++i) {
+        if (static_cast<std::size_t>(route_dst[i]) >= n_loc) {
+            fail("EngineInput.location_route_dst_location_id entries must be < n_locations");
+        }
+        if (static_cast<std::size_t>(route_edge[i]) >= n_edge) {
+            fail("EngineInput.location_route_next_edge_id entries must be < n_edges");
+        }
+    }
+    for (std::size_t loc = 0; loc < n_loc; ++loc) {
+        const auto start = static_cast<std::size_t>(route_off[loc]);
+        const auto end = static_cast<std::size_t>(route_off[loc + 1]);
+        for (std::size_t k = start; k < end; ++k) {
+            const auto dst = static_cast<std::size_t>(route_dst[k]);
+            if (dst == loc) {
+                fail("EngineInput.location_route must not include self routes");
+            }
+            const auto edge_id = static_cast<std::size_t>(route_edge[k]);
+            if (static_cast<std::size_t>(in.edge_src_location_id[edge_id]) != loc) {
+                fail("EngineInput location_route_next_edge_id must refer to an edge whose source is the CSR row location");
+            }
+            for (std::size_t b = k + 1; b < end; ++b) {
+                if (route_dst[k] == route_dst[b]) {
+                    fail("EngineInput location_route CSR must not duplicate destination ids within a source row");
+                }
+            }
+        }
+    }
 }

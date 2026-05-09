@@ -10,6 +10,7 @@
 #include <random>
 
 #include <limits>
+#include <stdexcept>
 
 namespace {
 
@@ -31,6 +32,22 @@ const std::uint64_t k_move_threshold = prob_to_threshold(static_cast<double>(k_m
 
 bool is_terminal_org_for_movement(ORG_TYPE ot) {
     return ot == ORG_TYPE::LOCAL_ORG || ot == ORG_TYPE::NMVO || ot == ORG_TYPE::EMVO;
+}
+
+inline std::uint8_t pack_flag_mask(SimulationState::PackFlag flag) {
+    return static_cast<std::uint8_t>(flag);
+}
+
+inline bool pack_has_flag(std::uint8_t flags, SimulationState::PackFlag flag) {
+    return (flags & pack_flag_mask(flag)) != 0u;
+}
+
+inline void pack_set_flag(std::uint8_t& flags, SimulationState::PackFlag flag) {
+    flags = static_cast<std::uint8_t>(flags | pack_flag_mask(flag));
+}
+
+inline void pack_clear_flag(std::uint8_t& flags, SimulationState::PackFlag flag) {
+    flags = static_cast<std::uint8_t>(flags & static_cast<std::uint8_t>(~pack_flag_mask(flag)));
 }
 
 /// Picks an outgoing edge id from ``src_loc`` using weights ``capacity / (1 + cost)``.
@@ -196,17 +213,177 @@ void Simulator::apply_post_movement_transition(std::uint32_t pack_id, std::uint3
     }
 }
 
+std::uint32_t Simulator::lookup_next_edge(std::uint32_t src_loc, std::uint32_t dst_loc) const {
+    const std::size_t s = static_cast<std::size_t>(src_loc);
+    const auto beg = input_.location_route_offset[s];
+    const auto end = input_.location_route_offset[s + 1];
+    for (std::uint32_t i = beg; i < end; ++i) {
+        if (input_.location_route_dst_location_id[static_cast<std::size_t>(i)] == dst_loc) {
+            return input_.location_route_next_edge_id[static_cast<std::size_t>(i)];
+        }
+    }
+    throw std::runtime_error("no route from src location to destination location");
+}
+
+std::uint32_t Simulator::pick_pack_for_shipment(std::uint32_t src_loc) const {
+    std::uint32_t pid = state_.location_pack_head[static_cast<std::size_t>(src_loc)];
+    while (pid != SimulationState::k_no_pack_id) {
+        const std::size_t pi = static_cast<std::size_t>(pid);
+        const auto st = static_cast<PACK_STATE>(state_.pack_state[pi]);
+        const bool movable = (st == PACK_STATE::UPLOADED || st == PACK_STATE::ACTIVE);
+        const bool reserved = pack_has_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
+        if (movable && !reserved) return pid;
+        pid = state_.pack_next[pi];
+    }
+    return SimulationState::k_no_pack_id;
+}
+
+void Simulator::schedule_pack_hop(std::uint32_t pack_id, std::uint32_t edge_id, std::uint32_t final_dst, std::uint64_t now_tick) {
+    const std::uint64_t due = now_tick + static_cast<std::uint64_t>(
+        input_.edge_lead_time_ticks[static_cast<std::size_t>(edge_id)]
+    );
+    ship_due_tick_.push_back(due);
+    ship_pack_id_.push_back(pack_id);
+    ship_edge_id_.push_back(edge_id);
+    ship_final_dst_loc_.push_back(final_dst);
+}
+
+void Simulator::execute_due_shipments(std::uint64_t tick) {
+    std::size_t write = 0;
+    for (std::size_t i = 0; i < ship_due_tick_.size(); ++i) {
+        if (ship_due_tick_[i] > tick) {
+            if (write != i) {
+                ship_due_tick_[write] = ship_due_tick_[i];
+                ship_pack_id_[write] = ship_pack_id_[i];
+                ship_edge_id_[write] = ship_edge_id_[i];
+                ship_final_dst_loc_[write] = ship_final_dst_loc_[i];
+            }
+            ++write;
+            continue;
+        }
+
+        const std::uint32_t pack_id = ship_pack_id_[i];
+        const std::uint32_t edge_id = ship_edge_id_[i];
+        const std::uint32_t final_dst = ship_final_dst_loc_[i];
+        const std::size_t pi = static_cast<std::size_t>(pack_id);
+
+        const std::uint32_t from = state_.pack_location_id[pi];
+        const std::uint32_t to = input_.edge_dst_location_id[static_cast<std::size_t>(edge_id)];
+
+        state_.relink_pack_location(pack_id, from, to);
+        state_.pack_location_id[pi] = to;
+        state_.pack_market_id[pi] = input_.location_market_id[static_cast<std::size_t>(to)];
+        events_.push(tick, pack_id, EventType::MOVE, from, to);
+
+        if (to == final_dst) {
+            pack_clear_flag(state_.pack_flags[pi], SimulationState::PackFlag::IN_TRANSIT);
+            pack_clear_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
+            state_.pack_route_dst_location_id[pi] = SimulationState::k_no_location_id;
+            on_pack_arrival(pack_id, to, tick);
+        } else {
+            const std::uint32_t next_edge = lookup_next_edge(to, final_dst);
+            schedule_pack_hop(pack_id, next_edge, final_dst, tick);
+        }
+
+        sync_pack_registry(pack_id);
+    }
+
+    ship_due_tick_.resize(write);
+    ship_pack_id_.resize(write);
+    ship_edge_id_.resize(write);
+    ship_final_dst_loc_.resize(write);
+}
+
+void Simulator::apply_demand_policy(std::uint32_t loc, std::uint64_t /*tick*/) {
+    const std::size_t li = static_cast<std::size_t>(loc);
+    const std::uint8_t pid = input_.location_demand_policy_id[li];
+    if (pid == 0) return;
+    if (pid == 1) {
+        const std::int32_t rate = input_.location_demand_const_rate[li];
+        if (rate > 0) {
+            state_.location_backlog[li] += static_cast<std::uint32_t>(rate);
+        }
+        return;
+    }
+    throw std::runtime_error("unknown demand policy id");
+}
+
+void Simulator::apply_supply_policy(std::uint32_t loc, std::uint64_t tick) {
+    const std::size_t li = static_cast<std::size_t>(loc);
+    const std::uint8_t pid = input_.location_supply_policy_id[li];
+    if (pid == 0) return;
+    if (pid == 1) {
+        std::uint32_t cap = input_.location_supply_capacity_per_tick[li];
+        const std::uint32_t preferred_edge = input_.location_preferred_supplier_edge_id[li];
+        if (preferred_edge == std::numeric_limits<std::uint32_t>::max()) return;
+
+        const std::uint32_t dst = input_.edge_dst_location_id[static_cast<std::size_t>(preferred_edge)];
+        while (cap > 0) {
+            const std::size_t dsti = static_cast<std::size_t>(dst);
+            if (state_.location_backlog[dsti] == 0) break;
+            const std::uint32_t pack_id = pick_pack_for_shipment(loc);
+            if (pack_id == SimulationState::k_no_pack_id) break;
+
+            const std::size_t pi = static_cast<std::size_t>(pack_id);
+            pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
+            pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::IN_TRANSIT);
+            state_.pack_route_dst_location_id[pi] = dst;
+
+            const std::uint32_t first_edge = lookup_next_edge(loc, dst);
+            schedule_pack_hop(pack_id, first_edge, dst, tick);
+
+            --cap;
+        }
+        return;
+    }
+    throw std::runtime_error("unknown supply policy id");
+}
+
+void Simulator::on_pack_arrival(std::uint32_t /*pack_id*/, std::uint32_t to_loc, std::uint64_t /*tick*/) {
+    const std::size_t li = static_cast<std::size_t>(to_loc);
+    const ORG_TYPE ot = static_cast<ORG_TYPE>(state_.location_org_type[li]);
+    if (ot == ORG_TYPE::LOCAL_ORG && state_.location_backlog[li] > 0) {
+        --state_.location_backlog[li];
+    }
+}
+
+void Simulator::run_location_phase(std::uint64_t tick) {
+    for (std::uint32_t loc = 0; loc < static_cast<std::uint32_t>(input_.n_locations); ++loc) {
+        apply_demand_policy(loc, tick);
+    }
+}
+
+void Simulator::run_supply_phase(std::uint64_t tick) {
+    for (std::uint32_t loc = 0; loc < static_cast<std::uint32_t>(input_.n_locations); ++loc) {
+        apply_supply_policy(loc, tick);
+    }
+}
+
+void Simulator::run_shipment_phase(std::uint64_t tick) {
+    execute_due_shipments(tick);
+}
+
+void Simulator::run_pack_behavior_phase(std::uint64_t tick) {
+    const std::uint32_t n_packs = static_cast<std::uint32_t>(input_.n_packs);
+    for (std::uint32_t pack_id = 0; pack_id < n_packs; ++pack_id) {
+        const std::size_t pi = static_cast<std::size_t>(pack_id);
+        const std::uint32_t loc = state_.pack_location_id[pi];
+        apply_location_behavior(pack_id, loc, tick);
+        sync_pack_registry(pack_id);
+    }
+}
+
 void Simulator::sync_pack_registry(std::uint32_t pack_id) {
     state_.sync_registry_from_physical(pack_id);
 }
 
 void Simulator::run_ticks(std::uint64_t n) {
-    const int n_packs = input_.n_packs;
-    for (std::uint64_t step = 0; step < n; ++step) {
+    for(std::uint64_t step = 0; step < n; ++step) {
         const std::uint64_t tick = current_tick_;
-        for (std::uint32_t pack_id = 0; pack_id < n_packs; ++pack_id) {
-            process_pack_tick(pack_id, tick);
-        }
+        run_location_phase(tick);
+        run_supply_phase(tick);
+        run_shipment_phase(tick);
+        run_pack_behavior_phase(tick);
         ++current_tick_;
     }
 }

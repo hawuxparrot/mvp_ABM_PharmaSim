@@ -89,6 +89,11 @@ static EngineInput load_engine_input(const nb::object& src) {
     in.location_preferred_supplier_edge_id = load_numpy_1d<std::uint32_t>(src, "location_preferred_supplier_edge_id");
     in.edge_lead_time_ticks = load_numpy_1d<std::uint16_t>(src, "edge_lead_time_ticks");
 
+
+    in.location_route_offset = load_numpy_1d<std::uint32_t>(src, "location_route_offset");
+    in.location_route_dst_location_id = load_numpy_1d<std::uint32_t>(src, "location_route_dst_location_id");
+    in.location_route_next_edge_id = load_numpy_1d<std::uint32_t>(src, "location_route_next_edge_id");
+
     in.org_ext_id = nb::cast<std::vector<std::string>>(src.attr("org_ext_id"));
     in.location_ext_id = nb::cast<std::vector<std::string>>(src.attr("location_ext_id"));
     in.batch_ext_id = nb::cast<std::vector<std::string>>(src.attr("batch_ext_id"));

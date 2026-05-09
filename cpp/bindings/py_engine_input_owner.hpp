@@ -65,6 +65,10 @@ struct PyEngineInputOwner {
     nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> location_preferred_supplier_edge_id;
     nb::ndarray<std::uint16_t, nb::ndim<1>, nb::c_contig> edge_lead_time_ticks;
 
+    nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> location_route_offset;
+    nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> location_route_dst_location_id;
+    nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> location_route_next_edge_id;
+
     EngineInputView view;
 };
 
@@ -171,6 +175,13 @@ inline std::shared_ptr<PyEngineInputOwner> build_py_engine_input_owner(const nb:
     owner->view.location_preferred_supplier_edge_id = as_span(owner->location_preferred_supplier_edge_id);
     owner->edge_lead_time_ticks = require_1d_contig<std::uint16_t>(py_in, "edge_lead_time_ticks");
     owner->view.edge_lead_time_ticks = as_span(owner->edge_lead_time_ticks);
+    // precomputed multihop routing CSR
+    owner->location_route_offset = require_1d_contig<std::uint32_t>(py_in, "location_route_offset");
+    owner->view.location_route_offset = as_span(owner->location_route_offset);
+    owner->location_route_dst_location_id = require_1d_contig<std::uint32_t>(py_in, "location_route_dst_location_id");
+    owner->view.location_route_dst_location_id = as_span(owner->location_route_dst_location_id);
+    owner->location_route_next_edge_id = require_1d_contig<std::uint32_t>(py_in, "location_route_next_edge_id");
+    owner->view.location_route_next_edge_id = as_span(owner->location_route_next_edge_id);
     // strings
     owner->view.market_code = nb::cast<std::vector<std::string>>(py_in.attr("market_code"));
     owner->view.pack_serial = nb::cast<std::vector<std::string>>(py_in.attr("pack_serial"));
