@@ -14,7 +14,19 @@ if (
 
 from compiler.compile import compile_scenario
 from compiler.enums import PACK_STATE_TO_U8
-from policy.models import PackState
+from policy.models import (
+    Batch,
+    Location,
+    LocationEdge,
+    Organization,
+    OrgType,
+    Pack,
+    PackState,
+    Product,
+    ProductCode,
+    ProductCodeScheme,
+    Scenario,
+)
 from policy.scenarios import two_markets_demo
 from runtime.native_bridge import (
     compile_and_create_native_simulator,
@@ -75,8 +87,139 @@ def test_some_moves_occur_on_two_markets_demo() -> None:
 def test_cross_market_pack_market_ids_possible() -> None:
     """Graph includes DE→FR path; long runs should place packs in more than one market column."""
     inp = compile_scenario(two_markets_demo())
+    obp_loc = inp.location_ext_id.index("loc_obp_de")
+    wh_fr_loc = inp.location_ext_id.index("loc_wh_fr")
+    for edge_id in range(inp.n_edges):
+        if (
+            int(inp.edge_src_location_id[edge_id]) == obp_loc
+            and int(inp.edge_dst_location_id[edge_id]) == wh_fr_loc
+        ):
+            inp.location_preferred_supplier_edge_id[obp_loc] = edge_id
+            break
     sim = create_native_simulator(inp)
     sim.run_ticks(800)
     markets = set(sim.physical_pack_market_ids())
-    assert len(markets) >= 2
+    fr_id = inp.market_code.index("FR")
+    assert fr_id in markets
     assert all(0 <= m < inp.n_markets for m in markets)
+
+
+def test_poisson_demand_is_deterministic_with_fixed_seed() -> None:
+    s1 = compile_and_create_native_simulator(two_markets_demo())
+    s1.run_ticks(120)
+    s2 = compile_and_create_native_simulator(two_markets_demo())
+    s2.run_ticks(120)
+    assert list(s1.location_backlog()) == list(s2.location_backlog())
+    assert list(s1.location_cum_unfulfilled_penalty()) == pytest.approx(
+        list(s2.location_cum_unfulfilled_penalty())
+    )
+
+
+def test_unfulfilled_penalty_is_monotone_non_decreasing() -> None:
+    sim = compile_and_create_native_simulator(two_markets_demo())
+    prev = list(sim.location_cum_unfulfilled_penalty())
+    for _ in range(8):
+        sim.run_ticks(25)
+        cur = list(sim.location_cum_unfulfilled_penalty())
+        for i in range(len(cur)):
+            assert cur[i] >= prev[i]
+        prev = cur
+
+
+def _capacity_limited_lane_scenario() -> Scenario:
+    orgs = [
+        Organization(ext_id="obp", org_type=OrgType.OBP),
+        Organization(ext_id="wh", org_type=OrgType.WHOLESALER),
+        Organization(ext_id="ph", org_type=OrgType.LOCAL_ORG),
+    ]
+    locs = [
+        Location(ext_id="loc_obp", org_ext_id="obp", market_code="DE", postal_code="10000"),
+        Location(ext_id="loc_wh", org_ext_id="wh", market_code="DE", postal_code="20000"),
+        Location(ext_id="loc_ph", org_ext_id="ph", market_code="DE", postal_code="30000"),
+    ]
+    products = [
+        Product(
+            ext_id="prod",
+            codes=(ProductCode(ProductCodeScheme.GTIN, "01234567890123", True),),
+        )
+    ]
+    batches = [
+        Batch(
+            ext_id="batch",
+            product_ext_id="prod",
+            manufacturer_org_ext_id="obp",
+            intended_markets=("DE",),
+        )
+    ]
+    packs = [
+        Pack(
+            ext_id=f"pack_{i}",
+            product_ext_id="prod",
+            batch_ext_id="batch",
+            serial=f"SN{i:06d}",
+            initial_market_code="DE",
+            initial_location_ext_id="loc_wh",
+            initial_state=PackState.ACTIVE,
+        )
+        for i in range(20)
+    ]
+    edges = [
+        LocationEdge(
+            src_location_ext_id="loc_obp",
+            dst_location_ext_id="loc_wh",
+            cost=1.0,
+            capacity=10,
+        ),
+        LocationEdge(
+            src_location_ext_id="loc_wh",
+            dst_location_ext_id="loc_ph",
+            cost=1.0,
+            capacity=1,
+        ),
+    ]
+    return Scenario(
+        organizations=orgs,
+        locations=locs,
+        products=products,
+        batches=batches,
+        packs=packs,
+        location_edges=edges,
+        behavior_by_location={},
+        seed=7,
+    )
+
+
+def test_edge_capacity_is_enforced_per_tick_on_supply_lane() -> None:
+    inp = compile_scenario(_capacity_limited_lane_scenario())
+    wh_loc = inp.location_ext_id.index("loc_wh")
+    ph_loc = inp.location_ext_id.index("loc_ph")
+    inp.location_supply_capacity_per_tick[wh_loc] = 100
+    inp.location_demand_policy_id[ph_loc] = 1
+    inp.location_demand_const_rate[ph_loc] = 10
+    inp.location_demand_poisson_lambda[ph_loc] = 0.0
+    sim = create_native_simulator(inp)
+    sim.run_ticks(8)
+    ticks = list(sim.event_log_ticks())
+    types = list(sim.event_log_types())
+    from_locs = list(sim.event_log_from_locations())
+    to_locs = list(sim.event_log_to_locations())
+    moved_per_tick: dict[int, int] = {}
+    for tick, ev_t, src, dst in zip(ticks, types, from_locs, to_locs):
+        if ev_t != MOVE_U8:
+            continue
+        if src == wh_loc and dst == ph_loc:
+            moved_per_tick[tick] = moved_per_tick.get(tick, 0) + 1
+    assert moved_per_tick
+    assert max(moved_per_tick.values()) <= 1
+
+
+def test_obp_pool_activation_reduces_decommissioned_stock() -> None:
+    inp = compile_scenario(two_markets_demo())
+    obp_loc = inp.location_ext_id.index("loc_obp_de")
+    inp.pack_initial_location_id[:] = obp_loc
+    inp.pack_initial_state[:] = DECOM_U8
+    sim = create_native_simulator(inp)
+    before = list(sim.physical_pack_states()).count(DECOM_U8)
+    sim.run_ticks(3)
+    after = list(sim.physical_pack_states()).count(DECOM_U8)
+    assert after < before

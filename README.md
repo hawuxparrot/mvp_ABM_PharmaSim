@@ -1,32 +1,43 @@
-# TODO 10.05.26
-1. Implement state memory of orders, backlogs, which then inform ordering behavior defined as policy
-2. Brainstorm + Implement multiple different policies, one for `LOCAL_ORG`, `WHOLESALER`, `PRODUCER` each
-3. Test correctness
-### Problem Overview 
-The end goal is to model the pharmaceutical distribution network EU-wide to detect cross-border theft/counterfeiting of pharmaceuticals. 
+# PharmaSim (MVP)
 
-### MVP Definition
-The first step is to provide a proof of concept using synthetic data to fix the general architecture of the project, with 1 EMVO as the central hub for information and multiple agents of types: OBP (On-Board-Partners, here domestic or international manufacturers), WHOLESALER (distributors), LOCAL_ORG (pharmacies, hospitals), and NMVOs.
-We will try to make the synthetic data as compatible/realistic as possible as the format used by the EMVO and NMVOs.
+### Problem overview
 
-We want to combine the ease-of-use and mature library ecosystem of data processing and visualization in Python, while sidestepping the performance issues that Python's interpreted nature and the GIL impose. To do so, we separate the problem into "policy" vs "mechanism", where we define the policy and initial state using python, and leave the execution to custom C++ modules.
+Model EU-wide pharmaceutical distribution to study cross-border theft and counterfeiting, starting from synthetic scenarios compatible in spirit with EMVO/NMVO-style data.
 
-In this MVP we implement a simplified version to showcase this approach, with agent characteristics/functionality.
+### MVP definition
+
+Python defines policy and initial state; a C++ SoA kernel runs the simulation and an append-only event log. One EMVO hub, OBPs, wholesalers, local orgs (pharmacies/hospitals), and NMVOs appear as organization types on locations.
 
 ### Architecture
-Policy -> Compiler -> Engine -> Analytics -> I/O
-1. Policy (Python): initialize scenario, agent behavioral rules
-2. Compiler (Python): validate policy, assign IDs, output engine-ready columns.
-3. Engine (C++): SoA simulation kernel, transition rules, maintain EMVS-style transaction log
-4. Analytics (runtime/simulation.viz.py + Simulator accessors): report builders over event log -> EMVS style transaction + metric reports
-5. I/O:  I/O  
 
-Typically, users author `Scenario` and consume logs/metrics; they should not have to access the engine outside of simple invocations via `python/runtime`.
+Policy → Compiler → Engine → Analytics → I/O
 
-#### End-to-end flow:
-`Scenario` → `compile_scenario` → `create_native_simulator` / `compile_and_create_native_simulator` → `run_ticks` → logs via `simulation_viz` (and `PYTHONPATH=python` / editable install caveat).
+1. **Policy** (`python/policy/`): `Scenario`, locations, edges, packs.
+2. **Compiler** (`python/compiler/`): validate, dense IDs, `EngineInput` columnar payload + route CSR.
+3. **Engine** (`cpp/engine/`): pack/location state, phased `run_ticks`, events.
+4. **Runtime** (`python/runtime/`): `native_bridge`, `simulation_viz`.
+5. **Analytics** (`python/analytics/`), **schemas** (`schemas/`).
 
-#### Simulation Architecture sketch (MVP data flow)
+Users typically compile and run via `python/runtime` without hand-rolling the C++ ABI.
+
+### End-to-end flow
+
+`Scenario` → `compile_scenario` → `create_native_simulator` / `compile_and_create_native_simulator` → `run_ticks` → event log and optional reports via `simulation_viz`.
+
+After changing C++ or the `EngineInput` layout: rebuild the extension (e.g. `scripts/setup.sh` or CMake + `nanobind` target) and reinstall the editable package (`uv pip install -e .`) so tests load a matching `_pharmasim_native`.
+
+### EngineInput and schema
+
+Stable ABI string `engine_input.v5`: keep `python/compiler/types.py` (`ENGINE_INPUT_SCHEMA_VERSION`) and `cpp/engine/enums.hpp` in sync when adding or reordering columns. Bindings must load every new field (`cpp/bindings/`).
+
+### Simulation kernel (current)
+
+- **Static inventory**: fixed `n_packs`; no runtime pack creation.
+- **Per tick** (`Simulator::run_ticks`): (1) location phase — demand policies; (2) supply phase — supply policies and scheduled first hops; (3) shipment phase — due moves along edges (multihop via precomputed route CSR, `edge_lead_time_ticks`); (4) pack behavior — verify / decommission / reactivate probabilities per location. Stochastic per-pack graph walks exist in code but are **not** invoked from this tick loop.
+- **Policies** (column `policy_id` + params): demand `0/1/2` (none, constant rate, Poisson on `location_demand_poisson_lambda`); supply `0/1/2` (none, wholesaler cap toward preferred edge if downstream backlog, OBP pool activation then ship). First-hop moves respect per-edge `edge_capacity` within the tick.
+- **Registry**: mirrored from physical state in v1; not full NMVS/EMVO API fidelity.
+
+Design notes: `simulation_realism.md`.
 
 ```mermaid
 flowchart TB
@@ -37,7 +48,7 @@ flowchart TB
   subgraph kernel [C++_Simulator_run_ticks]
     PHY[Physical_pack_columns]
     REG[Registry_mirror_columns]
-    CSR[Location_out_CSR]
+    CSR[Graph_and_route_CSR]
     RNG[mt19937_64]
     LOG[EventLog_append]
   end
@@ -49,40 +60,35 @@ flowchart TB
   CSR --> PHY
   PHY --> LOG
 ```
-Static EngineInput (no runtime batch/pack creation); 
-per-tick loop: behavior (optional VERIFY / DECOMMISSION / REACTIVATE), movement on a CSR graph, UPLOADED→ACTIVE at wholesaler; 
-registry mirror = physical in v1; not full NMVS/EMVO API fidelity
 
-### Directory Structure
-```python/policy/``` - scenario authoring models and rules (see ``policy/scenarios_large.py`` for multi-market sparse stress scenarios)
-```python/compiler/``` - AoS -> SoA compile pipeline
-```python/runtime/``` - Python-facing wrapper around C++ engine
-```python/analytics/``` - report generation and validation
-```cpp/engine/``` - SoA state, transition logic, simulator loop
-```cpp/bindings/``` - nanobind interface
-```schemas/``` - schema versions and enum docs
-```tests/``` - unit + replay + golden report tests
 
-The python portion is managed by uv
-The C++ portion is managed by CMake
-Nanobind is used to expose cpp modules to python
 
-### Simulation logs and visualization
-The native engine stores an append-only event log and exposes it on ``Simulator`` (see ``runtime/native_bridge.py``). For human-readable tables, CSV/JSONL export, per-tick debug printing, and optional matplotlib plots, use ``python/runtime/simulation_viz.py``:
+### Directory structure
 
-- End of run: ``events_as_records``, ``dump_debug_report_to_string``, ``export_run_report(sim, inp, out_dir)``.
-- During run: ``run_ticks_with_hook(sim, inp, n, on_tick)`` with ``print_tick_debug`` or your own callback (advances one tick at a time).
-- Plots (optional): ``uv sync --extra viz`` or ``pip install matplotlib``, then ``plot_event_timeline`` / ``plot_physical_locations``.
+
+| Path                | Role                                                         |
+| ------------------- | ------------------------------------------------------------ |
+| `python/policy/`    | Scenarios and models (`scenarios_large.py` for stress cases) |
+| `python/compiler/`  | AoS → SoA compile                                            |
+| `python/runtime/`   | Native bridge, `simulation_viz.py`                           |
+| `python/analytics/` | Reports                                                      |
+| `cpp/engine/`       | Kernel                                                       |
+| `cpp/bindings/`     | nanobind module                                              |
+| `schemas/`          | Version and enum docs                                        |
+| `tests/`            | pytest: compiler, validate, dynamics, bridge, viz            |
+
+
+Tooling: **uv** (Python), **CMake** + **Ninja** (C++ / extension).
+
+### Logs and visualization
+
+See `python/runtime/native_bridge.py` and `python/runtime/simulation_viz.py`: `events_as_records`, `export_run_report`, `run_ticks_with_hook`, optional plots (`uv sync --extra viz`).
 
 ### Usage
-Run `scripts/setup.sh` to setup correct python environment + CMake/Ninja
 
-Run `scripts/run_simulation.sh` to run simulation. Parameters are easily modifiable.
+- `scripts/setup.sh` — uv env + CMake build of `_pharmasim_native`
+- `scripts/run_simulation.sh` — example scripted run
+- `uv run pytest` — full test suite (`pyproject.toml` sets `pythonpath` for `python/`)
+- `uv run pytest tests/bench.py --benchmark-only` — benchmarks
 
-Run `uv run pytest` for all tests
-
-Run `uv run pytest tests/bench.py --benchmark-only` to run `pybench` benchmark.
-
-
-
-@Han Wu hanwuh@ethz.ch
+@Han Wu [hanwuh@ethz.ch](mailto:hanwuh@ethz.ch)

@@ -58,6 +58,7 @@ struct EngineInput {
     std::vector<std::int32_t> location_initial_pipeline_outstanding;
     // demand policy params
     std::vector<std::int32_t> location_demand_const_rate;
+    std::vector<float> location_demand_poisson_lambda;
     std::vector<std::int32_t> location_reorder_point_s;
     std::vector<std::int32_t> location_order_up_to_S;
     std::vector<std::int32_t> location_base_stock_level;

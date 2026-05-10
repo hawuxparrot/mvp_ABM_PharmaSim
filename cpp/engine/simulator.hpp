@@ -8,6 +8,7 @@
 #include <cstdint>
 #include <memory>
 #include <random>
+#include <vector>
 
 /// Owns loaded input, mutable state, RNG, and event log. Call run_ticks to advance simulation time.
 class Simulator {
@@ -62,12 +63,17 @@ private:
     void run_pack_behavior_phase(std::uint64_t tick);
 
     void apply_demand_policy(std::uint32_t loc, std::uint64_t tick);
-    void apply_supply_policy(std::uint32_t loc, std::uint64_t tick);
+    void apply_supply_policy(
+        std::uint32_t loc,
+        std::uint64_t tick,
+        std::vector<std::uint32_t>& edge_remaining_capacity
+    );
 
     void schedule_pack_hop(std::uint32_t pack_id, std::uint32_t edge_id, std::uint32_t final_dst, std::uint64_t curr_tick);
     void execute_due_shipments(std::uint64_t tick);
     std::uint32_t lookup_next_edge(std::uint32_t src_loc, std::uint32_t dst_loc) const;
     std::uint32_t pick_pack_for_shipment(std::uint32_t src_loc) const;
+    std::uint32_t pick_pool_pack_for_activation(std::uint32_t src_loc) const;
     void on_pack_arrival(std::uint32_t pack_id, std::uint32_t to_loc, std::uint64_t tick);
 
 

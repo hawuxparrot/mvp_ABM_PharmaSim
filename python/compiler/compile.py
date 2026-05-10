@@ -193,6 +193,7 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     location_initial_backlog = np.zeros(n_loc, dtype=np.int32)
     location_initial_pipeline_outstanding = np.zeros(n_loc, dtype=np.int32)
     location_demand_const_rate = np.zeros(n_loc, dtype=np.int32)
+    location_demand_poisson_lambda = np.zeros(n_loc, dtype=np.float32)
     location_reorder_point_s = np.zeros(n_loc, dtype=np.int32)
     location_order_up_to_S = np.zeros(n_loc, dtype=np.int32)
     location_unfulfilled_unit_penalty = np.zeros(n_loc, dtype=np.float32)
@@ -211,17 +212,26 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         location_decommission_prob[i] = np.float32(beh.decomission_prob)
         location_reactivate_prob[i] = np.float32(beh.reactivate_prob)
     
+    OBP_U8 = int(org_type_u8(OrgType.OBP))
     LOCAL_ORG_U8 = int(org_type_u8(OrgType.LOCAL_ORG))
     WHOLESALER_U8 = int(org_type_u8(OrgType.WHOLESALER))
     for i in range(n_loc):
         org_row = int(location_org_id[i])
         ot = int(org_type[org_row])
         if ot == LOCAL_ORG_U8:
-            location_demand_policy_id[i] = np.uint8(1)
-            location_demand_const_rate[i] = np.int32(1)
+            location_demand_policy_id[i] = np.uint8(2)
+            location_demand_poisson_lambda[i] = np.float32(1.0)
+            location_unfulfilled_unit_penalty[i] = np.float32(0.1)
         elif ot == WHOLESALER_U8:
             location_supply_policy_id[i] = np.uint8(1)
             location_supply_capacity_per_tick[i] = np.uint32(10)
+            start = int(location_out_edge_offset[i])
+            end = int(location_out_edge_offset[i + 1])
+            if start < end:
+                location_preferred_supplier_edge_id[i] = np.uint32(int(location_out_edge_id[start]))
+        elif ot == OBP_U8:
+            location_supply_policy_id[i] = np.uint8(2)
+            location_supply_capacity_per_tick[i] = np.uint32(5)
             start = int(location_out_edge_offset[i])
             end = int(location_out_edge_offset[i + 1])
             if start < end:
@@ -268,6 +278,7 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         location_initial_backlog=location_initial_backlog,
         location_initial_pipeline_outstanding=location_initial_pipeline_outstanding,
         location_demand_const_rate=location_demand_const_rate,
+        location_demand_poisson_lambda=location_demand_poisson_lambda,
         location_reorder_point_s=location_reorder_point_s,
         location_order_up_to_S=location_order_up_to_S,
         location_base_stock_level=location_base_stock_level,

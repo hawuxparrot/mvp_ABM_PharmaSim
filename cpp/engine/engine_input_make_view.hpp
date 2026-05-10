@@ -56,6 +56,7 @@ inline EngineInputView make_view(const EngineInput& in) {
     v.location_initial_pipeline_outstanding = std::span<const std::int32_t>(in.location_initial_pipeline_outstanding.data(), in.location_initial_pipeline_outstanding.size());
     
     v.location_demand_const_rate = std::span<const std::int32_t>(in.location_demand_const_rate.data(), in.location_demand_const_rate.size());
+    v.location_demand_poisson_lambda = std::span<const float>(in.location_demand_poisson_lambda.data(), in.location_demand_poisson_lambda.size());
     v.location_reorder_point_s = std::span<const std::int32_t>(in.location_reorder_point_s.data(), in.location_reorder_point_s.size());
     v.location_order_up_to_S = std::span<const std::int32_t>(in.location_order_up_to_S.data(), in.location_order_up_to_S.size());
     v.location_base_stock_level = std::span<const std::int32_t>(in.location_base_stock_level.data(), in.location_base_stock_level.size());

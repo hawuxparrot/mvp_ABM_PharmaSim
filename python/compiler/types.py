@@ -11,7 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 # ABI version: bump when adding/removing/reordering fields or changing dtypes.
-ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v4"
+ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v5"
 
 
 @dataclass
@@ -91,6 +91,7 @@ class EngineInput:
     location_initial_pipeline_outstanding: NDArray[np.int32]
     # demand policy params
     location_demand_const_rate: NDArray[np.int32]
+    location_demand_poisson_lambda: NDArray[np.float32]
     location_reorder_point_s: NDArray[np.int32]
     location_order_up_to_S: NDArray[np.int32]
     location_base_stock_level: NDArray[np.int32]
@@ -192,6 +193,7 @@ class EngineInput:
         _len("location_initial_backlog", self.location_initial_backlog, self.n_locations)
         _len("location_initial_pipeline_outstanding", self.location_initial_pipeline_outstanding, self.n_locations)
         _len("location_demand_const_rate", self.location_demand_const_rate, self.n_locations)
+        _len("location_demand_poisson_lambda", self.location_demand_poisson_lambda, self.n_locations)
         _len("location_reorder_point_s", self.location_reorder_point_s, self.n_locations)
         _len("location_order_up_to_S", self.location_order_up_to_S, self.n_locations)
         _len("location_base_stock_level", self.location_base_stock_level, self.n_locations)

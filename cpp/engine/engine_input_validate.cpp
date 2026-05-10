@@ -17,7 +17,7 @@ void validate_engine_input_or_throw(const EngineInput& in) {
     auto fail = [](const char* msg) { throw std::invalid_argument(msg); };
 
     if (in.schema_version != ENGINE_INPUT_SCHEMA_VERSION) {
-        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v4)");
+        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v5)");
     }
 
     const auto n_org = static_cast<std::size_t>(in.n_organizations);
@@ -89,7 +89,8 @@ void validate_engine_input_or_throw(const EngineInput& in) {
         || in.location_initial_pipeline_outstanding.size() != n_loc) {
         fail("EngineInput initial aggregate state columns must each have length n_locations");
     }
-    if (in.location_demand_const_rate.size() != n_loc || in.location_reorder_point_s.size() != n_loc
+    if (in.location_demand_const_rate.size() != n_loc || in.location_demand_poisson_lambda.size() != n_loc
+        || in.location_reorder_point_s.size() != n_loc
         || in.location_order_up_to_S.size() != n_loc || in.location_base_stock_level.size() != n_loc) {
         fail("EngineInput demand policy params columns must each have length n_locations");
     }
@@ -226,7 +227,7 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
     auto fail = [](const char* msg) { throw std::invalid_argument(msg);};
 
     if (in.schema_version != ENGINE_INPUT_SCHEMA_VERSION) {
-        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v4)");
+        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v5)");
     }
 
     const auto n_org = static_cast<std::size_t>(in.n_organizations);
@@ -298,7 +299,8 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
         || in.location_initial_pipeline_outstanding.size() != n_loc) {
         fail("EngineInput initial aggregate state columns must each have length n_locations");
     }
-    if (in.location_demand_const_rate.size() != n_loc || in.location_reorder_point_s.size() != n_loc
+    if (in.location_demand_const_rate.size() != n_loc || in.location_demand_poisson_lambda.size() != n_loc
+        || in.location_reorder_point_s.size() != n_loc
         || in.location_order_up_to_S.size() != n_loc || in.location_base_stock_level.size() != n_loc) {
         fail("EngineInput demand policy params columns must each have length n_locations");
     }

@@ -79,6 +79,7 @@ static EngineInput load_engine_input(const nb::object& src) {
     in.location_initial_backlog = load_numpy_1d<std::int32_t>(src, "location_initial_backlog");
     in.location_initial_pipeline_outstanding = load_numpy_1d<std::int32_t>(src, "location_initial_pipeline_outstanding");
     in.location_demand_const_rate = load_numpy_1d<std::int32_t>(src, "location_demand_const_rate");
+    in.location_demand_poisson_lambda = load_numpy_1d<float>(src, "location_demand_poisson_lambda");
     in.location_reorder_point_s = load_numpy_1d<std::int32_t>(src, "location_reorder_point_s");
     in.location_order_up_to_S = load_numpy_1d<std::int32_t>(src, "location_order_up_to_S");
     in.location_base_stock_level = load_numpy_1d<std::int32_t>(src, "location_base_stock_level");
@@ -147,5 +148,21 @@ NB_MODULE(_pharmasim_native, m) {
         .def(
             "physical_pack_market_ids",
             [](const Simulator& s) { return s.state().pack_market_id; }
+        )
+        .def(
+            "location_on_hand",
+            [](const Simulator& s) { return s.state().location_on_hand; }
+        )
+        .def(
+            "location_backlog",
+            [](const Simulator& s) { return s.state().location_backlog; }
+        )
+        .def(
+            "location_pipeline_outstanding",
+            [](const Simulator& s) { return s.state().location_pipeline_outstanding; }
+        )
+        .def(
+            "location_cum_unfulfilled_penalty",
+            [](const Simulator& s) { return s.state().location_cum_unfulfilled_penalty; }
         );
 }

@@ -54,6 +54,7 @@ struct PyEngineInputOwner {
     nb::ndarray<std::int32_t, nb::ndim<1>, nb::c_contig> location_initial_backlog;
     nb::ndarray<std::int32_t, nb::ndim<1>, nb::c_contig> location_initial_pipeline_outstanding;
     nb::ndarray<std::int32_t, nb::ndim<1>, nb::c_contig> location_demand_const_rate;
+    nb::ndarray<float, nb::ndim<1>, nb::c_contig> location_demand_poisson_lambda;
     nb::ndarray<std::int32_t, nb::ndim<1>, nb::c_contig> location_reorder_point_s;
     nb::ndarray<std::int32_t, nb::ndim<1>, nb::c_contig> location_order_up_to_S;
 
@@ -157,6 +158,8 @@ inline std::shared_ptr<PyEngineInputOwner> build_py_engine_input_owner(const nb:
     owner->view.location_initial_pipeline_outstanding = as_span(owner->location_initial_pipeline_outstanding);
     owner->location_demand_const_rate = require_1d_contig<std::int32_t>(py_in, "location_demand_const_rate");
     owner->view.location_demand_const_rate = as_span(owner->location_demand_const_rate);
+    owner->location_demand_poisson_lambda = require_1d_contig<float>(py_in, "location_demand_poisson_lambda");
+    owner->view.location_demand_poisson_lambda = as_span(owner->location_demand_poisson_lambda);
     owner->location_reorder_point_s = require_1d_contig<std::int32_t>(py_in, "location_reorder_point_s");
     owner->view.location_reorder_point_s = as_span(owner->location_reorder_point_s);
     owner->location_order_up_to_S = require_1d_contig<std::int32_t>(py_in, "location_order_up_to_S");

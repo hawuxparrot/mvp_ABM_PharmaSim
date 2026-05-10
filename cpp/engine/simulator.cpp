@@ -238,6 +238,20 @@ std::uint32_t Simulator::pick_pack_for_shipment(std::uint32_t src_loc) const {
     return SimulationState::k_no_pack_id;
 }
 
+std::uint32_t Simulator::pick_pool_pack_for_activation(std::uint32_t src_loc) const {
+    std::uint32_t pid = state_.location_pack_head[static_cast<std::size_t>(src_loc)];
+    while (pid != SimulationState::k_no_pack_id) {
+        const std::size_t pi = static_cast<std::size_t>(pid);
+        const auto st = static_cast<PACK_STATE>(state_.pack_state[pi]);
+        const bool is_pool_pack = (st == PACK_STATE::DECOMISSIONED);
+        const bool reserved = pack_has_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
+        const bool in_transit = pack_has_flag(state_.pack_flags[pi], SimulationState::PackFlag::IN_TRANSIT);
+        if (is_pool_pack && !reserved && !in_transit) return pid;
+        pid = state_.pack_next[pi];
+    }
+    return SimulationState::k_no_pack_id;
+}
+
 void Simulator::schedule_pack_hop(std::uint32_t pack_id, std::uint32_t edge_id, std::uint32_t final_dst, std::uint64_t now_tick) {
     const std::uint64_t due = now_tick + static_cast<std::uint64_t>(
         input_.edge_lead_time_ticks[static_cast<std::size_t>(edge_id)]
@@ -271,6 +285,12 @@ void Simulator::execute_due_shipments(std::uint64_t tick) {
         const std::uint32_t to = input_.edge_dst_location_id[static_cast<std::size_t>(edge_id)];
 
         state_.relink_pack_location(pack_id, from, to);
+        const std::size_t from_i = static_cast<std::size_t>(from);
+        const std::size_t to_i = static_cast<std::size_t>(to);
+        if (state_.location_on_hand[from_i] > 0) {
+            --state_.location_on_hand[from_i];
+        }
+        ++state_.location_on_hand[to_i];
         state_.pack_location_id[pi] = to;
         state_.pack_market_id[pi] = input_.location_market_id[static_cast<std::size_t>(to)];
         events_.push(tick, pack_id, EventType::MOVE, from, to);
@@ -301,14 +321,32 @@ void Simulator::apply_demand_policy(std::uint32_t loc, std::uint64_t /*tick*/) {
     if (pid == 1) {
         const std::int32_t rate = input_.location_demand_const_rate[li];
         if (rate > 0) {
-            state_.location_backlog[li] += static_cast<std::uint32_t>(rate);
+            const auto demand_units = static_cast<std::uint32_t>(rate);
+            state_.location_backlog[li] += demand_units;
+            const double unit_penalty = static_cast<double>(input_.location_unfulfilled_unit_penalty[li]);
+            state_.location_cum_unfulfilled_penalty[li] += unit_penalty * static_cast<double>(demand_units);
+        }
+        return;
+    }
+    if (pid == 2) {
+        const float lambda = input_.location_demand_poisson_lambda[li];
+        if (lambda > 0.0f) {
+            std::poisson_distribution<std::uint32_t> dist(lambda);
+            const std::uint32_t demand_units = dist(rng_);
+            state_.location_backlog[li] += demand_units;
+            const double unit_penalty = static_cast<double>(input_.location_unfulfilled_unit_penalty[li]);
+            state_.location_cum_unfulfilled_penalty[li] += unit_penalty * static_cast<double>(demand_units);
         }
         return;
     }
     throw std::runtime_error("unknown demand policy id");
 }
 
-void Simulator::apply_supply_policy(std::uint32_t loc, std::uint64_t tick) {
+void Simulator::apply_supply_policy(
+    std::uint32_t loc,
+    std::uint64_t tick,
+    std::vector<std::uint32_t>& edge_remaining_capacity
+) {
     const std::size_t li = static_cast<std::size_t>(loc);
     const std::uint8_t pid = input_.location_supply_policy_id[li];
     if (pid == 0) return;
@@ -323,15 +361,51 @@ void Simulator::apply_supply_policy(std::uint32_t loc, std::uint64_t tick) {
             if (state_.location_backlog[dsti] == 0) break;
             const std::uint32_t pack_id = pick_pack_for_shipment(loc);
             if (pack_id == SimulationState::k_no_pack_id) break;
+            const std::uint32_t first_edge = lookup_next_edge(loc, dst);
+            const std::size_t first_edge_i = static_cast<std::size_t>(first_edge);
+            if (edge_remaining_capacity[first_edge_i] == 0) break;
 
             const std::size_t pi = static_cast<std::size_t>(pack_id);
             pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
             pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::IN_TRANSIT);
             state_.pack_route_dst_location_id[pi] = dst;
-
-            const std::uint32_t first_edge = lookup_next_edge(loc, dst);
             schedule_pack_hop(pack_id, first_edge, dst, tick);
+            --edge_remaining_capacity[first_edge_i];
+            ++state_.location_pipeline_outstanding[dsti];
 
+            --cap;
+        }
+        return;
+    }
+    if (pid == 2) {
+        std::uint32_t cap = input_.location_supply_capacity_per_tick[li];
+        const std::uint32_t preferred_edge = input_.location_preferred_supplier_edge_id[li];
+        if (preferred_edge == std::numeric_limits<std::uint32_t>::max()) return;
+        const std::uint32_t dst = input_.edge_dst_location_id[static_cast<std::size_t>(preferred_edge)];
+        while (cap > 0) {
+            bool from_pool = false;
+            std::uint32_t pack_id = pick_pool_pack_for_activation(loc);
+            if (pack_id != SimulationState::k_no_pack_id) {
+                from_pool = true;
+            } else {
+                pack_id = pick_pack_for_shipment(loc);
+            }
+            if (pack_id == SimulationState::k_no_pack_id) break;
+            const std::uint32_t first_edge = lookup_next_edge(loc, dst);
+            const std::size_t first_edge_i = static_cast<std::size_t>(first_edge);
+            if (edge_remaining_capacity[first_edge_i] == 0) break;
+            const std::size_t pi = static_cast<std::size_t>(pack_id);
+            if (from_pool) {
+                state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::UPLOADED);
+            }
+            pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
+            pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::IN_TRANSIT);
+            state_.pack_route_dst_location_id[pi] = dst;
+
+            schedule_pack_hop(pack_id, first_edge, dst, tick);
+            --edge_remaining_capacity[first_edge_i];
+            ++state_.location_pipeline_outstanding[static_cast<std::size_t>(dst)];
+            sync_pack_registry(pack_id);
             --cap;
         }
         return;
@@ -341,6 +415,9 @@ void Simulator::apply_supply_policy(std::uint32_t loc, std::uint64_t tick) {
 
 void Simulator::on_pack_arrival(std::uint32_t /*pack_id*/, std::uint32_t to_loc, std::uint64_t /*tick*/) {
     const std::size_t li = static_cast<std::size_t>(to_loc);
+    if (state_.location_pipeline_outstanding[li] > 0) {
+        --state_.location_pipeline_outstanding[li];
+    }
     const ORG_TYPE ot = static_cast<ORG_TYPE>(state_.location_org_type[li]);
     if (ot == ORG_TYPE::LOCAL_ORG && state_.location_backlog[li] > 0) {
         --state_.location_backlog[li];
@@ -354,8 +431,12 @@ void Simulator::run_location_phase(std::uint64_t tick) {
 }
 
 void Simulator::run_supply_phase(std::uint64_t tick) {
+    std::vector<std::uint32_t> edge_remaining_capacity(
+        input_.edge_capacity.begin(),
+        input_.edge_capacity.end()
+    );
     for (std::uint32_t loc = 0; loc < static_cast<std::uint32_t>(input_.n_locations); ++loc) {
-        apply_supply_policy(loc, tick);
+        apply_supply_policy(loc, tick, edge_remaining_capacity);
     }
 }
 

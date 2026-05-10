@@ -48,6 +48,7 @@ struct EngineInputView {
     std::span<const std::int32_t> location_initial_pipeline_outstanding;
     // demand policy params
     std::span<const std::int32_t> location_demand_const_rate;
+    std::span<const float> location_demand_poisson_lambda;
     std::span<const std::int32_t> location_reorder_point_s;
     std::span<const std::int32_t> location_order_up_to_S;
     std::span<const std::int32_t> location_base_stock_level;

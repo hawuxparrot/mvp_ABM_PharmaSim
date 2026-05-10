@@ -75,6 +75,21 @@ def test_compile_location_behavior_dense() -> None:
     assert float(inp.location_verify_prob[inp.location_ext_id.index("loc_wh_de")]) == pytest.approx(0.2)
 
 
+def test_compile_policy_defaults_balance() -> None:
+    inp = compile_scenario(two_markets_demo())
+    assert inp.location_demand_poisson_lambda.shape == (inp.n_locations,)
+    for loc_id in range(inp.n_locations):
+        org_id = int(inp.location_org_id[loc_id])
+        org_type = decode_org_type_u8(int(inp.org_type[org_id]))
+        if org_type == OrgType.LOCAL_ORG:
+            assert int(inp.location_demand_policy_id[loc_id]) == 2
+            assert float(inp.location_demand_poisson_lambda[loc_id]) > 0.0
+        elif org_type == OrgType.WHOLESALER:
+            assert int(inp.location_supply_policy_id[loc_id]) == 1
+        elif org_type == OrgType.OBP:
+            assert int(inp.location_supply_policy_id[loc_id]) == 2
+
+
 def test_compile_location_graph_columns_and_csr() -> None:
     inp = compile_scenario(two_markets_demo())
     assert inp.n_edges == len(inp.edge_src_location_id)
