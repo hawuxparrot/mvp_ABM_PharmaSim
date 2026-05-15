@@ -223,3 +223,49 @@ def test_obp_pool_activation_reduces_decommissioned_stock() -> None:
     sim.run_ticks(3)
     after = list(sim.physical_pack_states()).count(DECOM_U8)
     assert after < before
+
+
+def test_penalty_uses_end_of_tick_backlog() -> None:
+    inp = compile_scenario(two_markets_demo())
+    inp.location_supply_policy_id[:] = 0
+    inp.location_demand_policy_id[:] = 0
+    inp.location_demand_const_rate[:] = 0
+    inp.location_penalty_policy_id[:] = 0
+    inp.location_unfulfilled_unit_penalty[:] = 0.0
+
+    target = inp.location_ext_id.index("loc_ph_de")
+    inp.location_demand_policy_id[target] = 1
+    inp.location_demand_const_rate[target] = 1
+    inp.location_penalty_policy_id[target] = 1
+    inp.location_unfulfilled_unit_penalty[target] = 2.0
+
+    sim = create_native_simulator(inp)
+    sim.run_ticks(3)
+
+    penalties = list(sim.location_cum_unfulfilled_penalty())
+    backlogs = list(sim.location_backlog())
+    assert backlogs[target] == 3
+    assert penalties[target] == pytest.approx(12.0)
+
+
+def test_wholesaler_policy_id1_uses_order_up_to_inventory_gap() -> None:
+    inp = compile_scenario(_capacity_limited_lane_scenario())
+    wh_loc = inp.location_ext_id.index("loc_wh")
+    inp.location_initial_on_hand[wh_loc] = 25
+    inp.location_order_up_to_S[wh_loc] = 20
+    inp.location_supply_capacity_per_tick[wh_loc] = 100
+
+    sim = create_native_simulator(inp)
+    sim.run_ticks(5)
+
+    ticks = list(sim.event_log_ticks())
+    types = list(sim.event_log_types())
+    from_locs = list(sim.event_log_from_locations())
+    to_locs = list(sim.event_log_to_locations())
+    ph_loc = inp.location_ext_id.index("loc_ph")
+    wh_moves = [
+        (tick, src, dst)
+        for tick, ev_t, src, dst in zip(ticks, types, from_locs, to_locs)
+        if ev_t == MOVE_U8 and src == wh_loc and dst == ph_loc
+    ]
+    assert not wh_moves

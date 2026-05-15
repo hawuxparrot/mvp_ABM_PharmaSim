@@ -323,8 +323,6 @@ void Simulator::apply_demand_policy(std::uint32_t loc, std::uint64_t /*tick*/) {
         if (rate > 0) {
             const auto demand_units = static_cast<std::uint32_t>(rate);
             state_.location_backlog[li] += demand_units;
-            const double unit_penalty = static_cast<double>(input_.location_unfulfilled_unit_penalty[li]);
-            state_.location_cum_unfulfilled_penalty[li] += unit_penalty * static_cast<double>(demand_units);
         }
         return;
     }
@@ -334,8 +332,6 @@ void Simulator::apply_demand_policy(std::uint32_t loc, std::uint64_t /*tick*/) {
             std::poisson_distribution<std::uint32_t> dist(lambda);
             const std::uint32_t demand_units = dist(rng_);
             state_.location_backlog[li] += demand_units;
-            const double unit_penalty = static_cast<double>(input_.location_unfulfilled_unit_penalty[li]);
-            state_.location_cum_unfulfilled_penalty[li] += unit_penalty * static_cast<double>(demand_units);
         }
         return;
     }
@@ -352,13 +348,24 @@ void Simulator::apply_supply_policy(
     if (pid == 0) return;
     if (pid == 1) {
         std::uint32_t cap = input_.location_supply_capacity_per_tick[li];
+        std::int32_t target_S_i32 = input_.location_order_up_to_S[li];
+        if (target_S_i32 <= 0) {
+            target_S_i32 = input_.location_base_stock_level[li];
+        }
+        if (target_S_i32 <= 0) return;
+
+        const auto target_S = static_cast<std::uint32_t>(target_S_i32);
+        const auto on_hand = state_.location_on_hand[li];
+        const auto pipeline = state_.location_pipeline_outstanding[li];
+        const auto inventory_position = on_hand + pipeline;
+        if (inventory_position >= target_S) return;
+        std::uint32_t remaining_to_order = target_S - inventory_position;
         const std::uint32_t preferred_edge = input_.location_preferred_supplier_edge_id[li];
         if (preferred_edge == std::numeric_limits<std::uint32_t>::max()) return;
 
         const std::uint32_t dst = input_.edge_dst_location_id[static_cast<std::size_t>(preferred_edge)];
-        while (cap > 0) {
+        while (cap > 0 && remaining_to_order > 0) {
             const std::size_t dsti = static_cast<std::size_t>(dst);
-            if (state_.location_backlog[dsti] == 0) break;
             const std::uint32_t pack_id = pick_pack_for_shipment(loc);
             if (pack_id == SimulationState::k_no_pack_id) break;
             const std::uint32_t first_edge = lookup_next_edge(loc, dst);
@@ -374,6 +381,7 @@ void Simulator::apply_supply_policy(
             ++state_.location_pipeline_outstanding[dsti];
 
             --cap;
+            --remaining_to_order;
         }
         return;
     }
@@ -454,6 +462,24 @@ void Simulator::run_pack_behavior_phase(std::uint64_t tick) {
     }
 }
 
+void Simulator::apply_end_of_tick_penalty() {
+    const std::size_t n_locations = static_cast<std::size_t>(input_.n_locations);
+    for (std::size_t li = 0; li < n_locations; ++li) {
+        const std::uint8_t pid = input_.location_penalty_policy_id[li];
+        if (pid == 0) continue;
+        if (pid == 1) {
+            const float per_unit = input_.location_unfulfilled_unit_penalty[li];
+            if (per_unit <= 0.0f) continue;
+            const std::uint32_t backlog = state_.location_backlog[li];
+            if (backlog == 0) continue;
+            state_.location_cum_unfulfilled_penalty[li] +=
+                static_cast<double>(per_unit) * static_cast<double>(backlog);
+            continue;
+        }
+        throw std::runtime_error("unknown penalty policy id");
+    }
+}
+
 void Simulator::sync_pack_registry(std::uint32_t pack_id) {
     state_.sync_registry_from_physical(pack_id);
 }
@@ -465,6 +491,7 @@ void Simulator::run_ticks(std::uint64_t n) {
         run_supply_phase(tick);
         run_shipment_phase(tick);
         run_pack_behavior_phase(tick);
+        apply_end_of_tick_penalty();
         ++current_tick_;
     }
 }

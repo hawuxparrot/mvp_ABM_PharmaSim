@@ -17,7 +17,7 @@ void validate_engine_input_or_throw(const EngineInput& in) {
     auto fail = [](const char* msg) { throw std::invalid_argument(msg); };
 
     if (in.schema_version != ENGINE_INPUT_SCHEMA_VERSION) {
-        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v5)");
+        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v6)");
     }
 
     const auto n_org = static_cast<std::size_t>(in.n_organizations);
@@ -97,7 +97,9 @@ void validate_engine_input_or_throw(const EngineInput& in) {
     if (in.location_supply_capacity_per_tick.size() != n_loc || in.location_min_order_interval_ticks.size() != n_loc) {
         fail("EngineInput supply policy params columns must each have length n_locations");
     }
-    if (in.location_unfulfilled_unit_penalty.size() != n_loc || in.location_preferred_supplier_edge_id.size() != n_loc) {
+    if (in.location_penalty_policy_id.size() != n_loc
+        || in.location_unfulfilled_unit_penalty.size() != n_loc
+        || in.location_preferred_supplier_edge_id.size() != n_loc) {
         fail("EngineInput cost, penalty params columns must each have length n_locations");
     }
     if (in.edge_lead_time_ticks.size() != n_edge) {
@@ -227,7 +229,7 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
     auto fail = [](const char* msg) { throw std::invalid_argument(msg);};
 
     if (in.schema_version != ENGINE_INPUT_SCHEMA_VERSION) {
-        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v5)");
+        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v6)");
     }
 
     const auto n_org = static_cast<std::size_t>(in.n_organizations);
@@ -307,7 +309,9 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
     if (in.location_supply_capacity_per_tick.size() != n_loc || in.location_min_order_interval_ticks.size() != n_loc) {
         fail("EngineInput supply policy params columns must each have length n_locations");
     }
-    if (in.location_unfulfilled_unit_penalty.size() != n_loc || in.location_preferred_supplier_edge_id.size() != n_loc) {
+    if (in.location_penalty_policy_id.size() != n_loc
+        || in.location_unfulfilled_unit_penalty.size() != n_loc
+        || in.location_preferred_supplier_edge_id.size() != n_loc) {
         fail("EngineInput cost, penalty params columns must each have length n_locations");
     }
     if (in.edge_lead_time_ticks.size() != n_edge) {

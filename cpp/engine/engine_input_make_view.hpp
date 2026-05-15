@@ -63,6 +63,7 @@ inline EngineInputView make_view(const EngineInput& in) {
     v.location_ewma_alpha = std::span<const float>(in.location_ewma_alpha.data(), in.location_ewma_alpha.size());
     v.location_supply_capacity_per_tick = std::span<const std::uint32_t>(in.location_supply_capacity_per_tick.data(), in.location_supply_capacity_per_tick.size());
     v.location_min_order_interval_ticks = std::span<const std::uint32_t>(in.location_min_order_interval_ticks.data(), in.location_min_order_interval_ticks.size());
+    v.location_penalty_policy_id = std::span<const std::uint8_t>(in.location_penalty_policy_id.data(), in.location_penalty_policy_id.size());
     v.location_unfulfilled_unit_penalty = std::span<const float>(in.location_unfulfilled_unit_penalty.data(), in.location_unfulfilled_unit_penalty.size());
     v.location_preferred_supplier_edge_id = std::span<const std::uint32_t>(in.location_preferred_supplier_edge_id.data(), in.location_preferred_supplier_edge_id.size());
     

@@ -11,7 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 # ABI version: bump when adding/removing/reordering fields or changing dtypes.
-ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v5"
+ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v6"
 
 
 @dataclass
@@ -100,6 +100,7 @@ class EngineInput:
     location_supply_capacity_per_tick: NDArray[np.uint32]
     location_min_order_interval_ticks: NDArray[np.uint32]
     # cost, penalty params
+    location_penalty_policy_id: NDArray[np.uint8]
     location_unfulfilled_unit_penalty: NDArray[np.float32]
     # supplier selection
     location_preferred_supplier_edge_id: NDArray[np.uint32]
@@ -200,6 +201,7 @@ class EngineInput:
         _len("location_ewma_alpha", self.location_ewma_alpha, self.n_locations)
         _len("location_supply_capacity_per_tick", self.location_supply_capacity_per_tick, self.n_locations)
         _len("location_min_order_interval_ticks", self.location_min_order_interval_ticks, self.n_locations)
+        _len("location_penalty_policy_id", self.location_penalty_policy_id, self.n_locations)
         _len("location_unfulfilled_unit_penalty", self.location_unfulfilled_unit_penalty, self.n_locations)
         _len("location_preferred_supplier_edge_id", self.location_preferred_supplier_edge_id, self.n_locations)
         _len("edge_lead_time_ticks", self.edge_lead_time_ticks, self.n_edges)

@@ -202,6 +202,7 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     location_ewma_alpha = np.zeros(n_loc, dtype=np.float32)
     location_supply_capacity_per_tick = np.zeros(n_loc, dtype=np.uint32)
     location_min_order_interval_ticks = np.zeros(n_loc, dtype=np.uint32)
+    location_penalty_policy_id = np.zeros(n_loc, dtype=np.uint8)
     edge_lead_time_ticks = np.zeros(n_edge, dtype=np.uint16)
     for i, loc in enumerate(s.locations):
         beh = s.behavior_by_location.get(loc.ext_id)
@@ -221,10 +222,12 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         if ot == LOCAL_ORG_U8:
             location_demand_policy_id[i] = np.uint8(2)
             location_demand_poisson_lambda[i] = np.float32(1.0)
+            location_penalty_policy_id[i] = np.uint8(1)
             location_unfulfilled_unit_penalty[i] = np.float32(0.1)
         elif ot == WHOLESALER_U8:
             location_supply_policy_id[i] = np.uint8(1)
             location_supply_capacity_per_tick[i] = np.uint32(10)
+            location_order_up_to_S[i] = np.int32(20)
             start = int(location_out_edge_offset[i])
             end = int(location_out_edge_offset[i + 1])
             if start < end:
@@ -285,6 +288,7 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         location_ewma_alpha=location_ewma_alpha,
         location_supply_capacity_per_tick=location_supply_capacity_per_tick,
         location_min_order_interval_ticks=location_min_order_interval_ticks,
+        location_penalty_policy_id=location_penalty_policy_id,
         location_unfulfilled_unit_penalty=location_unfulfilled_unit_penalty,
         location_preferred_supplier_edge_id=location_preferred_supplier_edge_id,
         edge_lead_time_ticks=edge_lead_time_ticks,

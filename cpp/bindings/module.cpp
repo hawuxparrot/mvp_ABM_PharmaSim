@@ -86,6 +86,7 @@ static EngineInput load_engine_input(const nb::object& src) {
     in.location_ewma_alpha = load_numpy_1d<float>(src, "location_ewma_alpha");
     in.location_supply_capacity_per_tick = load_numpy_1d<std::uint32_t>(src, "location_supply_capacity_per_tick");
     in.location_min_order_interval_ticks = load_numpy_1d<std::uint32_t>(src, "location_min_order_interval_ticks");
+    in.location_penalty_policy_id = load_numpy_1d<std::uint8_t>(src, "location_penalty_policy_id");
     in.location_unfulfilled_unit_penalty = load_numpy_1d<float>(src, "location_unfulfilled_unit_penalty");
     in.location_preferred_supplier_edge_id = load_numpy_1d<std::uint32_t>(src, "location_preferred_supplier_edge_id");
     in.edge_lead_time_ticks = load_numpy_1d<std::uint16_t>(src, "edge_lead_time_ticks");

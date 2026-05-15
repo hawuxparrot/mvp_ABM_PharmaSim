@@ -67,6 +67,7 @@ struct EngineInput {
     std::vector<std::uint32_t> location_supply_capacity_per_tick;
     std::vector<std::uint32_t> location_min_order_interval_ticks;
     // cost, penalty params
+    std::vector<std::uint8_t> location_penalty_policy_id;
     std::vector<float> location_unfulfilled_unit_penalty;
     // supplier selection
     std::vector<std::uint32_t> location_preferred_supplier_edge_id;

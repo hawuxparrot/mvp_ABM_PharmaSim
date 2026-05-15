@@ -28,7 +28,7 @@ After changing C++ or the `EngineInput` layout: rebuild the extension (e.g. `scr
 
 ### EngineInput and schema
 
-Stable ABI string `engine_input.v5`: keep `python/compiler/types.py` (`ENGINE_INPUT_SCHEMA_VERSION`) and `cpp/engine/enums.hpp` in sync when adding or reordering columns. Bindings must load every new field (`cpp/bindings/`).
+Stable ABI string `engine_input.v6`: keep `python/compiler/types.py` (`ENGINE_INPUT_SCHEMA_VERSION`) and `cpp/engine/enums.hpp` in sync when adding or reordering columns. Bindings must load every new field (`cpp/bindings/`).
 
 ### Simulation kernel (current)
 
@@ -61,7 +61,8 @@ flowchart TB
   PHY --> LOG
 ```
 
-
+### Next steps:
+We currently essentially 
 
 ### Directory structure
 

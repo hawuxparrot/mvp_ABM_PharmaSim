@@ -62,6 +62,7 @@ struct PyEngineInputOwner {
     nb::ndarray<float, nb::ndim<1>, nb::c_contig> location_ewma_alpha;
     nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> location_supply_capacity_per_tick;
     nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> location_min_order_interval_ticks;
+    nb::ndarray<std::uint8_t, nb::ndim<1>, nb::c_contig> location_penalty_policy_id;
     nb::ndarray<float, nb::ndim<1>, nb::c_contig> location_unfulfilled_unit_penalty;
     nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> location_preferred_supplier_edge_id;
     nb::ndarray<std::uint16_t, nb::ndim<1>, nb::c_contig> edge_lead_time_ticks;
@@ -172,6 +173,8 @@ inline std::shared_ptr<PyEngineInputOwner> build_py_engine_input_owner(const nb:
     owner->view.location_supply_capacity_per_tick = as_span(owner->location_supply_capacity_per_tick);
     owner->location_min_order_interval_ticks = require_1d_contig<std::uint32_t>(py_in, "location_min_order_interval_ticks");
     owner->view.location_min_order_interval_ticks = as_span(owner->location_min_order_interval_ticks);
+    owner->location_penalty_policy_id = require_1d_contig<std::uint8_t>(py_in, "location_penalty_policy_id");
+    owner->view.location_penalty_policy_id = as_span(owner->location_penalty_policy_id);
     owner->location_unfulfilled_unit_penalty = require_1d_contig<float>(py_in, "location_unfulfilled_unit_penalty");
     owner->view.location_unfulfilled_unit_penalty = as_span(owner->location_unfulfilled_unit_penalty);
     owner->location_preferred_supplier_edge_id = require_1d_contig<std::uint32_t>(py_in, "location_preferred_supplier_edge_id");
