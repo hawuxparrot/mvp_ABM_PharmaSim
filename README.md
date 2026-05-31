@@ -62,7 +62,24 @@ flowchart TB
 ```
 
 ### Next steps:
-We currently essentially 
+- Integrate order objects/messages into log; currently order/demand behavior depends only on backlog
+- different order policies by different medicine types -- subsitutability of medicines by `ATC (Anatomical Therapeutic Classification)` (prefix tree data structure)
+- More complex/realistic `WHOLESALER` logic for allocation, fairness
+- More complex/realistic `OBP` production behavior, perhaps with production scheduling
+- More realistic/complex penalty (modular, so can be switched for experimentation)
+- Initial experimentation brainstorming
+- Optimization?
+#### Decided
+- Real actor location data
+  - SPOR (European Medicines Agency)
+- Fraud detection given data visible to NMVOs, EMVO
+- Visualizations
+- --> argue based on plausability of simulation
+- geo-coding Bulgaria OpenStreetMap
+
+
+
+
 
 ### Directory structure
 

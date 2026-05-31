@@ -1,0 +1,12 @@
+   images:
+   - location: "https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-arm64.img"
+     arch: "aarch64"
+
+   cpus: 4
+   memory: "8GiB"
+   disk: "30GiB"
+
+   mounts:
+   - location: "/Users/kureha/Documents/ethz/FS26/ABM for EU Pharmaceutical Distrubution/mvp_ABM_PharmaSim"
+     writable: true
+     mountPoint: "/src"

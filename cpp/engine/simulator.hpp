@@ -40,6 +40,7 @@ private:
     EventLog events_{};
     std::mt19937_64 rng_{};
     std::uniform_real_distribution<float> dist_{}; // [0.0f, 1.0f]
+    std::vector<std::poisson_distribution<std::uint32_t>> poisson_dist_by_loc_{};
     std::uint64_t current_tick_{0};
 
     std::vector<std::uint64_t> ship_due_tick_;

@@ -94,6 +94,13 @@ void Simulator::init(std::shared_ptr<const void> owner, EngineInputView input) {
     owner_ = std::move(owner);
     state_ = SimulationState(input_);
     rng_.seed(static_cast<std::uint64_t>(input_.seed));
+
+    const std::size_t n_locations = static_cast<std::size_t>(input_.n_locations);
+    poisson_dist_by_loc_.resize(n_locations);
+    for (std::size_t i = 0; i < n_locations; ++i) {
+        const float lambda = input_.location_demand_poisson_lambda[i];
+        poisson_dist_by_loc_[i] = std::poisson_distribution<std::uint32_t>(lambda);
+    }
 }
 
 Simulator::Simulator(std::shared_ptr<const void> owner, EngineInputView input) {
@@ -329,8 +336,7 @@ void Simulator::apply_demand_policy(std::uint32_t loc, std::uint64_t /*tick*/) {
     if (pid == 2) {
         const float lambda = input_.location_demand_poisson_lambda[li];
         if (lambda > 0.0f) {
-            std::poisson_distribution<std::uint32_t> dist(lambda);
-            const std::uint32_t demand_units = dist(rng_);
+            const std::uint32_t demand_units = poisson_dist_by_loc_[li](rng_);
             state_.location_backlog[li] += demand_units;
         }
         return;
