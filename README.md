@@ -10,19 +10,28 @@ Python defines policy and initial state; a C++ SoA kernel runs the simulation an
 
 ### Architecture
 
-Policy → Compiler → Engine → Analytics → I/O
+> **Note (2026-06-02):** The `canonical` data pipeline and transaction/experiment scaffolding are currently implemented entirely in Python for fast iteration. These modules may later be partially migrated into the C++ engine if per-tick injection of anomalies or richer event semantics is needed. The native `engine_input.v6` ABI was intentionally left unchanged during this pass to keep risk low.
 
-1. **Policy** (`python/policy/`): `Scenario`, locations, edges, packs.
-2. **Compiler** (`python/compiler/`): validate, dense IDs, `EngineInput` columnar payload + route CSR.
-3. **Engine** (`cpp/engine/`): pack/location state, phased `run_ticks`, events.
-4. **Runtime** (`python/runtime/`): `native_bridge`, `simulation_viz`.
-5. **Analytics** (`python/analytics/`), **schemas** (`schemas/`).
+Data sources → Canonical pipeline → Policy/Scenario → Compiler → Engine → Analytics → I/O
+
+1. **Canonical** (`python/canonical/`): ETL loaders (BG pharmacy registry JSON, EMA SPOR CSV), geocoding with OSM cache, geography-aware routing, Bulgaria scenario assembly, synthetic transaction generation, experiment bundle orchestration. Currently Python-only; may partially migrate to C++ later.
+2. **Policy** (`python/policy/`): `Scenario`, locations, edges, packs, transaction lifecycle contracts (`TransactionIntent`, `TransactionPlan`, `AnomalyLabel`).
+3. **Compiler** (`python/compiler/`): validate, dense IDs, `EngineInput` columnar payload + route CSR.
+4. **Engine** (`cpp/engine/`): pack/location state, phased `run_ticks`, events.
+5. **Runtime** (`python/runtime/`): `native_bridge`, `simulation_viz`.
+6. **Analytics** (`python/analytics/`): anomaly injection (volume spikes, cross-market), baseline detectors (z-score, market mismatch), evaluation metrics (precision/recall/F1).
 
 Users typically compile and run via `python/runtime` without hand-rolling the C++ ABI.
 
 ### End-to-end flow
 
-`Scenario` → `compile_scenario` → `create_native_simulator` / `compile_and_create_native_simulator` → `run_ticks` → event log and optional reports via `simulation_viz`.
+**Data-driven workflow (new):**
+
+`data/data.json` + `data/spor_locations.csv` → `bulgaria_registry_scenario()` / `bulgaria_registry_experiment_bundle()` → `compile_scenario` → `create_native_simulator` → `run_ticks` → event log and reports.
+
+**Synthetic workflow (existing):**
+
+`two_markets_demo()` or `multi_market_sparse_scenario()` → `compile_scenario` → same engine path.
 
 After changing C++ or the `EngineInput` layout: rebuild the extension (e.g. `scripts/setup.sh` or CMake + `nanobind` target) and reinstall the editable package (`uv pip install -e .`) so tests load a matching `_pharmasim_native`.
 
@@ -41,6 +50,16 @@ Design notes: `simulation_realism.md`.
 
 ```mermaid
 flowchart TB
+  subgraph data [Data_sources]
+    BG_REG[BGBulgaria_pharmacy_registry_JSON]
+    SPOR[EMASPOR_locations_CSV]
+  end
+  subgraph canonical [Python_canonical_pipeline]
+    LOAD[Loaders_normalize]
+    GEO[Geocoding_OSM_cache]
+    ROUTE[Routing_graph]
+    TXGEN[Synthetic_transaction_generation]
+  end
   subgraph compile [Python_compiler]
     SC[Scenario]
     EI[EngineInput_SoA]
@@ -52,6 +71,17 @@ flowchart TB
     RNG[mt19937_64]
     LOG[EventLog_append]
   end
+  subgraph analytics [Python_analytics]
+    INJECT[Anomaly_injectors]
+    DETECT[Baseline_detectors]
+    EVAL[Eval_metrics]
+  end
+  BG_REG --> LOAD
+  SPOR --> LOAD
+  LOAD --> GEO
+  GEO --> ROUTE
+  ROUTE --> SC
+  TXGEN --> SC
   SC --> EI
   EI --> PHY
   EI --> CSR
@@ -59,23 +89,30 @@ flowchart TB
   RNG --> PHY
   CSR --> PHY
   PHY --> LOG
+  LOG --> DETECT
+  INJECT --> TXGEN
+  INJECT --> SC
+  DETECT --> EVAL
 ```
 
 ### Next steps:
-- Integrate order objects/messages into log; currently order/demand behavior depends only on backlog
-- different order policies by different medicine types -- subsitutability of medicines by `ATC (Anatomical Therapeutic Classification)` (prefix tree data structure)
+- Enrich event log with transaction/order semantics for richer observability
+- Push anomaly injection into per-tick engine loop (currently pre-computed in Python)
+- Migrate stable canonical pipeline pieces into C++ EngineInput columns if scalability demands it
+- different order policies by different medicine types -- substitutability of medicines by `ATC (Anatomical Therapeutic Classification)` (prefix tree data structure)
 - More complex/realistic `WHOLESALER` logic for allocation, fairness
 - More complex/realistic `OBP` production behavior, perhaps with production scheduling
 - More realistic/complex penalty (modular, so can be switched for experimentation)
-- Initial experimentation brainstorming
-- Optimization?
+- Advanced detector methods beyond z-score / rule baselines
 #### Decided
 - Real actor location data
-  - SPOR (European Medicines Agency)
-- Fraud detection given data visible to NMVOs, EMVO
+  - SPOR (European Medicines Agency) — **implemented** in `python/canonical/loaders.py`
+  - Bulgarian pharmacy registry — **implemented** in `python/canonical/loaders.py`
+- Geocoding via OpenStreetMap — **implemented** with cache in `python/canonical/geocoding.py`
+- Fraud detection given data visible to NMVOs, EMVO — **scaffolded** in `python/analytics/fraud.py`
+- Synthetic transaction lifecycle with anomaly injection — **implemented** in `python/canonical/transactions.py`
 - Visualizations
-- --> argue based on plausability of simulation
-- geo-coding Bulgaria OpenStreetMap
+- --> argue based on plausibility of simulation
 
 
 
@@ -83,17 +120,17 @@ flowchart TB
 
 ### Directory structure
 
-
 | Path                | Role                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| `python/policy/`    | Scenarios and models (`scenarios_large.py` for stress cases) |
+| `python/canonical/` | BG data loaders, OSM geocoding, routing, scenario assembly, synthetic transaction generation, experiment bundles |
+| `python/policy/`    | Scenarios, models, transaction lifecycle contracts (`transactions.py`) |
 | `python/compiler/`  | AoS → SoA compile                                            |
 | `python/runtime/`   | Native bridge, `simulation_viz.py`                           |
-| `python/analytics/` | Reports                                                      |
+| `python/analytics/` | Reports, anomaly injection & detection (`fraud.py`)          |
 | `cpp/engine/`       | Kernel                                                       |
 | `cpp/bindings/`     | nanobind module                                              |
 | `schemas/`          | Version and enum docs                                        |
-| `tests/`            | pytest: compiler, validate, dynamics, bridge, viz            |
+| `tests/`            | pytest: canonical pipeline, transactions, compiler, validate, dynamics, bridge, viz |
 
 
 Tooling: **uv** (Python), **CMake** + **Ninja** (C++ / extension).

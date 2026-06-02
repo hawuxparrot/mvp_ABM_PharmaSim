@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+from canonical.pipeline import BulgariaExperimentBundle, build_bulgaria_experiment_bundle, build_bulgaria_scenario
 from policy.models import (
     Batch,
     Location,
@@ -142,4 +144,71 @@ def two_markets_demo() -> Scenario:
         location_edges=location_edges,
         behavior_by_location=behavior,
         seed=42,
+    )
+
+
+def bulgaria_registry_scenario(
+    *,
+    bg_registry_path: str = "data/data.json",
+    spor_locations_path: str = "data/spor_locations.csv",
+    geocode: bool = False,
+    geocode_cache_path: str | None = None,
+    geocode_max_new_requests: int | None = None,
+    seed: int = 42,
+    packs_per_obp: int = 250,
+    max_locations: int = 350,
+) -> Scenario:
+    """
+    Build a BG scenario from pharmacy registry JSON and SPOR location CSV.
+
+    Geocoding is optional because online OSM requests can be slow/rate-limited.
+    """
+    scenario, _canonical = build_bulgaria_scenario(
+        bg_registry_path=bg_registry_path,
+        spor_locations_path=spor_locations_path,
+        geocode=geocode,
+        geocode_cache_path=geocode_cache_path,
+        geocode_max_new_requests=geocode_max_new_requests,
+        seed=seed,
+        packs_per_obp=packs_per_obp,
+        max_locations=max_locations,
+    )
+    return scenario
+
+
+def bulgaria_registry_experiment_bundle(
+    *,
+    bg_registry_path: str = "data/data.json",
+    spor_locations_path: str = "data/spor_locations.csv",
+    geocode: bool = False,
+    geocode_cache_path: str | None = None,
+    geocode_max_new_requests: int | None = None,
+    seed: int = 42,
+    packs_per_obp: int = 250,
+    max_locations: int = 350,
+    tx_horizon_ticks: int = 30,
+    tx_order_lambda_per_edge: float = 0.6,
+    tx_max_units_per_order: int = 40,
+    inject_volume_spikes: bool = True,
+    inject_cross_market: bool = True,
+) -> BulgariaExperimentBundle:
+    """
+    Build full experiment payload for Phase B workflows.
+
+    Returns scenario + canonical dataset + synthetic transaction plan + anomaly labels.
+    """
+    return build_bulgaria_experiment_bundle(
+        bg_registry_path=bg_registry_path,
+        spor_locations_path=spor_locations_path,
+        geocode=geocode,
+        geocode_cache_path=geocode_cache_path,
+        geocode_max_new_requests=geocode_max_new_requests,
+        seed=seed,
+        packs_per_obp=packs_per_obp,
+        max_locations=max_locations,
+        tx_horizon_ticks=tx_horizon_ticks,
+        tx_order_lambda_per_edge=tx_order_lambda_per_edge,
+        tx_max_units_per_order=tx_max_units_per_order,
+        inject_volume_spikes=inject_volume_spikes,
+        inject_cross_market=inject_cross_market,
     )
