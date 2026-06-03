@@ -1,5 +1,7 @@
 """Compile pipeline: Scenario -> EngineInput."""
 
+from dataclasses import replace
+
 import numpy as np
 import pytest
 
@@ -152,3 +154,56 @@ def test_compile_location_behavior_all_zeros_without_policy() -> None:
     np.testing.assert_array_equal(inp.location_verify_prob, np.array([0.0], dtype=np.float32))
     np.testing.assert_array_equal(inp.location_decommission_prob, np.array([0.0], dtype=np.float32))
     np.testing.assert_array_equal(inp.location_reactivate_prob, np.array([0.0], dtype=np.float32))
+
+
+def test_compile_with_edge_columns_matches_regular_compile() -> None:
+    s = two_markets_demo()
+    loc_ext_to_id = {loc.ext_id: i for i, loc in enumerate(s.locations)}
+    edge_src = np.asarray(
+        [loc_ext_to_id[e.src_location_ext_id] for e in s.location_edges],
+        dtype=np.uint32,
+    )
+    edge_dst = np.asarray(
+        [loc_ext_to_id[e.dst_location_ext_id] for e in s.location_edges],
+        dtype=np.uint32,
+    )
+    edge_cost = np.asarray([float(e.cost) for e in s.location_edges], dtype=np.float32)
+    edge_capacity = np.asarray([int(e.capacity) for e in s.location_edges], dtype=np.uint32)
+
+    regular = compile_scenario(s)
+    no_edge_scenario = replace(s, location_edges=[])
+    precomputed = compile_scenario(
+        no_edge_scenario,
+        edge_src_location_id=edge_src,
+        edge_dst_location_id=edge_dst,
+        edge_cost=edge_cost,
+        edge_capacity=edge_capacity,
+    )
+
+    np.testing.assert_array_equal(regular.edge_src_location_id, precomputed.edge_src_location_id)
+    np.testing.assert_array_equal(regular.edge_dst_location_id, precomputed.edge_dst_location_id)
+    np.testing.assert_array_equal(regular.edge_cost, precomputed.edge_cost)
+    np.testing.assert_array_equal(regular.edge_capacity, precomputed.edge_capacity)
+    np.testing.assert_array_equal(regular.location_out_edge_offset, precomputed.location_out_edge_offset)
+    np.testing.assert_array_equal(regular.location_out_edge_id, precomputed.location_out_edge_id)
+    np.testing.assert_array_equal(regular.location_route_offset, precomputed.location_route_offset)
+    np.testing.assert_array_equal(
+        regular.location_route_dst_location_id,
+        precomputed.location_route_dst_location_id,
+    )
+    np.testing.assert_array_equal(
+        regular.location_route_next_edge_id,
+        precomputed.location_route_next_edge_id,
+    )
+
+
+def test_compile_with_edge_columns_rejects_out_of_range_location_id() -> None:
+    s = replace(two_markets_demo(), location_edges=[])
+    with pytest.raises(ValueError, match="out-of-range location id"):
+        compile_scenario(
+            s,
+            edge_src_location_id=np.asarray([0], dtype=np.uint32),
+            edge_dst_location_id=np.asarray([len(s.locations) + 3], dtype=np.uint32),
+            edge_cost=np.asarray([1.0], dtype=np.float32),
+            edge_capacity=np.asarray([10], dtype=np.uint32),
+        )

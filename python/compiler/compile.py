@@ -84,17 +84,110 @@ def _build_multihop_route(
     )
 
 
-def compile_scenario(scenario: Scenario) -> EngineInput:
-    """
-    Validate *scenario*, assign dense IDs (list order = row id), build columnar :class:`EngineInput`.
+def _empty_edge_columns() -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    return (
+        np.array([], dtype=np.uint32),
+        np.array([], dtype=np.uint32),
+        np.array([], dtype=np.float32),
+        np.array([], dtype=np.uint32),
+    )
 
-    ID policy: for each entity list on :class:`~policy.models.Scenario`, ``row_index`` is the dense
-    id (0 .. n-1). Markets are interned: sorted unique market strings → ``market_id``.
 
-    Location behavior (Option B): always emit dense arrays of length ``n_locations``; rows are
-    zero unless :attr:`~policy.models.Scenario.behavior_by_location` defines a row for that site.
-    """
-    s = validate_scenario(scenario)
+def _edge_columns_from_location_edges(
+    s: Scenario,
+    loc_ext_to_id: dict[str, int],
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    n_edge = len(s.location_edges)
+    if n_edge == 0:
+        return _empty_edge_columns()
+    edge_src_location_id = np.zeros(n_edge, dtype=np.uint32)
+    edge_dst_location_id = np.zeros(n_edge, dtype=np.uint32)
+    edge_cost = np.zeros(n_edge, dtype=np.float32)
+    edge_capacity = np.zeros(n_edge, dtype=np.uint32)
+    for i, edge in enumerate(s.location_edges):
+        edge_src_location_id[i] = loc_ext_to_id[edge.src_location_ext_id]
+        edge_dst_location_id[i] = loc_ext_to_id[edge.dst_location_ext_id]
+        edge_cost[i] = np.float32(edge.cost)
+        edge_capacity[i] = np.uint32(edge.capacity)
+    return edge_src_location_id, edge_dst_location_id, edge_cost, edge_capacity
+
+
+def _coerce_edge_columns(
+    *,
+    n_loc: int,
+    edge_src_location_id: np.ndarray,
+    edge_dst_location_id: np.ndarray,
+    edge_cost: np.ndarray,
+    edge_capacity: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    src = np.asarray(edge_src_location_id, dtype=np.uint32)
+    dst = np.asarray(edge_dst_location_id, dtype=np.uint32)
+    cost = np.asarray(edge_cost, dtype=np.float32)
+    capacity = np.asarray(edge_capacity, dtype=np.uint32)
+
+    if src.ndim != 1 or dst.ndim != 1 or cost.ndim != 1 or capacity.ndim != 1:
+        raise ValueError("edge columns must be 1-D arrays")
+    if not (len(src) == len(dst) == len(cost) == len(capacity)):
+        raise ValueError("edge columns must have equal length")
+    if len(src) > 0:
+        if int(src.max()) >= n_loc or int(dst.max()) >= n_loc:
+            raise ValueError("edge endpoint references out-of-range location id")
+        if np.any(src == dst):
+            raise ValueError("edges may not contain self-loops")
+        if np.any(cost < 0):
+            raise ValueError("edge_cost must be non-negative")
+        if np.any(capacity < 0):
+            raise ValueError("edge_capacity must be non-negative")
+    if not np.all(np.isfinite(cost)):
+        raise ValueError("edge_cost must be finite")
+    return src, dst, cost, capacity
+
+
+def _resolve_edge_columns(
+    s: Scenario,
+    loc_ext_to_id: dict[str, int],
+    *,
+    edge_src_location_id: np.ndarray | None = None,
+    edge_dst_location_id: np.ndarray | None = None,
+    edge_cost: np.ndarray | None = None,
+    edge_capacity: np.ndarray | None = None,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    edge_args = (
+        edge_src_location_id,
+        edge_dst_location_id,
+        edge_cost,
+        edge_capacity,
+    )
+    if any(arg is not None for arg in edge_args):
+        if not all(arg is not None for arg in edge_args):
+            raise ValueError(
+                "edge_src_location_id, edge_dst_location_id, edge_cost, and edge_capacity "
+                "must all be provided together"
+            )
+        if len(s.location_edges) > 0:
+            raise ValueError(
+                "Scenario.location_edges must be empty when supplying edge columns "
+                "to avoid ambiguous graph sources"
+            )
+        assert edge_src_location_id is not None
+        assert edge_dst_location_id is not None
+        assert edge_cost is not None
+        assert edge_capacity is not None
+        return _coerce_edge_columns(
+            n_loc=len(s.locations),
+            edge_src_location_id=edge_src_location_id,
+            edge_dst_location_id=edge_dst_location_id,
+            edge_cost=edge_cost,
+            edge_capacity=edge_capacity,
+        )
+    return _edge_columns_from_location_edges(s, loc_ext_to_id)
+
+
+def _compile_validated(
+    s: Scenario,
+    *,
+    edge_columns: tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray],
+) -> EngineInput:
 
     market_code = _collect_market_codes(s)
     market_str_to_id = {m: i for i, m in enumerate(market_code)}
@@ -110,7 +203,6 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     n_prod = len(s.products)
     n_batch = len(s.batches)
     n_pack = len(s.packs)
-    n_edge = len(s.location_edges)
 
     org_type = np.zeros(n_org, dtype=np.uint8)
     org_ext_id = [o.ext_id for o in s.organizations]
@@ -124,15 +216,8 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         location_org_id[i] = org_ext_to_id[loc.org_ext_id]
         location_market_id[i] = market_str_to_id[loc.market_code]
 
-    edge_src_location_id = np.zeros(n_edge, dtype=np.uint32)
-    edge_dst_location_id = np.zeros(n_edge, dtype=np.uint32)
-    edge_cost = np.zeros(n_edge, dtype=np.float32)
-    edge_capacity = np.zeros(n_edge, dtype=np.uint32)
-    for i, edge in enumerate(s.location_edges):
-        edge_src_location_id[i] = loc_ext_to_id[edge.src_location_ext_id]
-        edge_dst_location_id[i] = loc_ext_to_id[edge.dst_location_ext_id]
-        edge_cost[i] = np.float32(edge.cost)
-        edge_capacity[i] = np.uint32(edge.capacity)
+    edge_src_location_id, edge_dst_location_id, edge_cost, edge_capacity = edge_columns
+    n_edge = len(edge_src_location_id)
 
     out_edges_by_location: list[list[int]] = [[] for _ in range(n_loc)]
     for edge_id in range(n_edge):
@@ -212,7 +297,7 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
         location_verify_prob[i] = np.float32(beh.verify_prob)
         location_decommission_prob[i] = np.float32(beh.decomission_prob)
         location_reactivate_prob[i] = np.float32(beh.reactivate_prob)
-    
+
     OBP_U8 = int(org_type_u8(OrgType.OBP))
     LOCAL_ORG_U8 = int(org_type_u8(OrgType.LOCAL_ORG))
     WHOLESALER_U8 = int(org_type_u8(OrgType.WHOLESALER))
@@ -239,7 +324,6 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
             end = int(location_out_edge_offset[i + 1])
             if start < end:
                 location_preferred_supplier_edge_id[i] = np.uint32(int(location_out_edge_id[start]))
-    
 
     engine_input = EngineInput(
         schema_version=ENGINE_INPUT_SCHEMA_VERSION,
@@ -302,3 +386,37 @@ def compile_scenario(scenario: Scenario) -> EngineInput:
     )
     engine_input.validate_shapes()
     return engine_input
+
+
+def compile_scenario(
+    scenario: Scenario,
+    *,
+    edge_src_location_id: np.ndarray | None = None,
+    edge_dst_location_id: np.ndarray | None = None,
+    edge_cost: np.ndarray | None = None,
+    edge_capacity: np.ndarray | None = None,
+) -> EngineInput:
+    """
+    Validate *scenario*, assign dense IDs (list order = row id), build columnar :class:`EngineInput`.
+
+    Edge graph ingress is always columnar internally. By default, edges are taken from
+    ``scenario.location_edges`` and converted to dense columns. Large builders may pass
+    pre-built edge columns instead (``Scenario.location_edges`` must then be empty).
+
+    ID policy: for each entity list on :class:`~policy.models.Scenario`, ``row_index`` is the dense
+    id (0 .. n-1). Markets are interned: sorted unique market strings → ``market_id``.
+
+    Location behavior (Option B): always emit dense arrays of length ``n_locations``; rows are
+    zero unless :attr:`~policy.models.Scenario.behavior_by_location` defines a row for that site.
+    """
+    s = validate_scenario(scenario)
+    loc_ext_to_id = {loc.ext_id: i for i, loc in enumerate(s.locations)}
+    edge_columns = _resolve_edge_columns(
+        s,
+        loc_ext_to_id,
+        edge_src_location_id=edge_src_location_id,
+        edge_dst_location_id=edge_dst_location_id,
+        edge_cost=edge_cost,
+        edge_capacity=edge_capacity,
+    )
+    return _compile_validated(s, edge_columns=edge_columns)

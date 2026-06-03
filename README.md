@@ -16,7 +16,7 @@ Data sources → Canonical pipeline → Policy/Scenario → Compiler → Engine 
 
 1. **Canonical** (`python/canonical/`): ETL loaders (BG pharmacy registry JSON, EMA SPOR CSV), geocoding with OSM cache, geography-aware routing, Bulgaria scenario assembly, synthetic transaction generation, experiment bundle orchestration. Currently Python-only; may partially migrate to C++ later.
 2. **Policy** (`python/policy/`): `Scenario`, locations, edges, packs, transaction lifecycle contracts (`TransactionIntent`, `TransactionPlan`, `AnomalyLabel`).
-3. **Compiler** (`python/compiler/`): validate, dense IDs, `EngineInput` columnar payload + route CSR.
+3. **Compiler** (`python/compiler/`): validate, dense IDs, `EngineInput` columnar payload + route CSR. Edges are always compiled from dense columns; default ingress converts `scenario.location_edges`, or callers pass optional `edge_*` numpy arrays for large builders.
 4. **Engine** (`cpp/engine/`): pack/location state, phased `run_ticks`, events.
 5. **Runtime** (`python/runtime/`): `native_bridge`, `simulation_viz`.
 6. **Analytics** (`python/analytics/`): anomaly injection (volume spikes, cross-market), baseline detectors (z-score, market mismatch), evaluation metrics (precision/recall/F1).
@@ -31,13 +31,28 @@ Users typically compile and run via `python/runtime` without hand-rolling the C+
 
 **Synthetic workflow (existing):**
 
-`two_markets_demo()` or `multi_market_sparse_scenario()` → `compile_scenario` → same engine path.
+`two_markets_demo()` → `compile_scenario` → same engine path.
+
+**Large synthetic workflow (performance path):**
+
+`multi_market_sparse_scenario_precomputed()` → `compile_scenario(..., edge_src=..., edge_dst=..., edge_cost=..., edge_capacity=...)` → same engine path. Skips building millions of `LocationEdge` Python objects; use for stress-scale graphs.
 
 After changing C++ or the `EngineInput` layout: rebuild the extension (e.g. `scripts/setup.sh` or CMake + `nanobind` target) and reinstall the editable package (`uv pip install -e .`) so tests load a matching `_pharmasim_native`.
 
 ### EngineInput and schema
 
 Stable ABI string `engine_input.v6`: keep `python/compiler/types.py` (`ENGINE_INPUT_SCHEMA_VERSION`) and `cpp/engine/enums.hpp` in sync when adding or reordering columns. Bindings must load every new field (`cpp/bindings/`).
+
+**Compile API:**
+
+Single entry point: `compile_scenario(scenario, *, edge_src_location_id=..., edge_dst_location_id=..., edge_cost=..., edge_capacity=...)`.
+
+| Edge source | How |
+| ----------- | --- |
+| Default | Convert `scenario.location_edges` to columns inside the compiler |
+| Large builders | Pass all four `edge_*` arrays; keep `scenario.location_edges` empty |
+
+Both modes share the same internal columnar compile path (no ABI change).
 
 ### Simulation kernel (current)
 
@@ -98,6 +113,7 @@ flowchart TB
 ### Next steps:
 - Enrich event log with transaction/order semantics for richer observability
 - Push anomaly injection into per-tick engine loop (currently pre-computed in Python)
+- Vectorized pack generation / compiled artifact caching for remaining build-time overhead
 - Migrate stable canonical pipeline pieces into C++ EngineInput columns if scalability demands it
 - different order policies by different medicine types -- substitutability of medicines by `ATC (Anatomical Therapeutic Classification)` (prefix tree data structure)
 - More complex/realistic `WHOLESALER` logic for allocation, fairness
@@ -111,6 +127,7 @@ flowchart TB
 - Geocoding via OpenStreetMap — **implemented** with cache in `python/canonical/geocoding.py`
 - Fraud detection given data visible to NMVOs, EMVO — **scaffolded** in `python/analytics/fraud.py`
 - Synthetic transaction lifecycle with anomaly injection — **implemented** in `python/canonical/transactions.py`
+- Columnar edge compile in single `compile_scenario` API — **implemented** in `python/compiler/compile.py`
 - Visualizations
 - --> argue based on plausibility of simulation
 
@@ -124,7 +141,7 @@ flowchart TB
 | ------------------- | ------------------------------------------------------------ |
 | `python/canonical/` | BG data loaders, OSM geocoding, routing, scenario assembly, synthetic transaction generation, experiment bundles |
 | `python/policy/`    | Scenarios, models, transaction lifecycle contracts (`transactions.py`) |
-| `python/compiler/`  | AoS → SoA compile                                            |
+| `python/compiler/`  | AoS → SoA compile; edges always ingested as dense columns |
 | `python/runtime/`   | Native bridge, `simulation_viz.py`                           |
 | `python/analytics/` | Reports, anomaly injection & detection (`fraud.py`)          |
 | `cpp/engine/`       | Kernel                                                       |
@@ -144,6 +161,40 @@ See `python/runtime/native_bridge.py` and `python/runtime/simulation_viz.py`: `e
 - `scripts/setup.sh` — uv env + CMake build of `_pharmasim_native`
 - `scripts/run_simulation.sh` — example scripted run
 - `uv run pytest` — full test suite (`pyproject.toml` sets `pythonpath` for `python/`)
-- `uv run pytest tests/bench.py --benchmark-only` — benchmarks
+
+### Performance benchmarks
+
+Benchmarks time the full pipeline in four explicit phases that sum to total wall clock:
+
+1. `build_scenario`
+2. `compile_scenario`
+3. `create_simulator`
+4. `run_ticks`
+
+Phase breakdown is printed at the end of the pytest run (`tests/conftest.py`).
+
+```bash
+# Fast sanity (~sub-second)
+PHARMASIM_BENCH_PROFILE=quick uv run pytest tests/bench.py -v
+
+# Bulgaria registry scale
+PHARMASIM_BENCH_PROFILE=bulgaria uv run pytest tests/bench.py -v
+
+# Full stress profile (can take hours; 4M packs by default)
+PHARMASIM_BENCH_PROFILE=stress uv run pytest tests/bench.py -v
+```
+
+Optional env vars:
+
+| Variable | Default | Purpose |
+| -------- | ------- | ------- |
+| `PHARMASIM_BENCH_PROFILE` | `stress` | `quick`, `bulgaria`, or `stress` |
+| `PHARMASIM_BENCH_TICKS` | profile-specific | Tick count for `run_ticks` |
+| `PHARMASIM_BENCH_MARKETS` | `DE,FR,IT,UK` | Stress profile markets |
+| `PHARMASIM_BENCH_LOCATIONS` | `10000` | Locations per market (stress) |
+| `PHARMASIM_BENCH_PACKS` | `1000000` | Packs per market (stress) |
+| `PHARMASIM_BENCH_PRECOMPUTED_EDGES` | `1` | Use precomputed-edge compile path in stress profile; set `0` for legacy list-edge path |
+
+**Build-time note:** scenario construction and compile still dominate wall clock at large scale (especially millions of `Pack` objects and multihop route precompute). Passing `edge_*` columns avoids materializing `LocationEdge` lists; see `changes_31_05.md` §12–§13.
 
 @Han Wu [hanwuh@ethz.ch](mailto:hanwuh@ethz.ch)

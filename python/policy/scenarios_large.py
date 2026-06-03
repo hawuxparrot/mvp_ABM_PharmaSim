@@ -152,7 +152,7 @@ def multi_market_sparse_scenario_precomputed(
     Same scenario as :func:`multi_market_sparse_scenario`, but **without** materializing
     ``list[LocationEdge]``. Returns a scenario with ``location_edges=()`` and columnar
     edge arrays (global dense location indices) suitable for
-    :func:`compiler.compile.compile_scenario_with_precomputed_edges`.
+    :func:`compiler.compile.compile_scenario` with ``edge_*`` keyword arguments.
 
     Intra-market edge pairs are **sorted** by ``(src_local, dst_local)`` for deterministic
     ordering (same as the list-based builder).
