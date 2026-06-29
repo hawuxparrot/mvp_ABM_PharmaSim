@@ -388,6 +388,128 @@ def format_pack_history_text(
     return "\n".join(lines)
 
 
+def plot_location_graph(
+    canonical: Any,
+    scenario: Any,
+    *,
+    ax: Any = None,
+    title: str = "Distribution graph",
+    highlight_location_ext_ids: Iterable[str] | None = None,
+):
+    """Geographic plot of the distribution graph: nodes by org type + supply edges.
+
+    ``canonical`` is a ``CanonicalDataset`` (nodes carry lat/lon); ``scenario`` provides the
+    org type per location and the compiled edges. Optionally highlights flagged locations
+    (e.g. detected fraud sites). Requires matplotlib.
+    """
+    try:
+        import matplotlib.pyplot as plt
+    except ImportError as e:  # pragma: no cover
+        raise ImportError(
+            "plot_location_graph requires matplotlib. Install with: pip install matplotlib"
+        ) from e
+
+    coord_by_node = {
+        n.node_id: (float(n.longitude), float(n.latitude))
+        for n in canonical.nodes
+        if n.latitude is not None and n.longitude is not None
+    }
+
+    def loc_coord(loc_ext_id: str) -> tuple[float, float] | None:
+        node_id = loc_ext_id[len("loc_") :] if loc_ext_id.startswith("loc_") else loc_ext_id
+        return coord_by_node.get(node_id)
+
+    org_type_by_org = {o.ext_id: str(o.org_type) for o in scenario.organizations}
+    type_by_loc = {
+        loc.ext_id: org_type_by_org.get(loc.org_ext_id, "?") for loc in scenario.locations
+    }
+
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(8, 8))
+    else:
+        fig = ax.figure
+
+    # Edges first (under the nodes).
+    for e in scenario.location_edges:
+        a = loc_coord(e.src_location_ext_id)
+        b = loc_coord(e.dst_location_ext_id)
+        if a is None or b is None:
+            continue
+        ax.plot([a[0], b[0]], [a[1], b[1]], linewidth=0.3, alpha=0.35, zorder=1)
+
+    groups = {"OBP": ([], [], 60.0, "*"), "WHOLESALER": ([], [], 18.0, "s"), "LOCAL_ORG": ([], [], 8.0, "o")}
+    for loc in scenario.locations:
+        c = loc_coord(loc.ext_id)
+        if c is None:
+            continue
+        g = type_by_loc.get(loc.ext_id, "LOCAL_ORG")
+        if g not in groups:
+            g = "LOCAL_ORG"
+        groups[g][0].append(c[0])
+        groups[g][1].append(c[1])
+
+    for label, (xs, ys, size, marker) in groups.items():
+        if xs:
+            ax.scatter(xs, ys, s=size, marker=marker, label=f"{label} ({len(xs)})", zorder=2, alpha=0.8)
+
+    if highlight_location_ext_ids:
+        hx, hy = [], []
+        for loc_ext_id in highlight_location_ext_ids:
+            c = loc_coord(loc_ext_id)
+            if c is not None:
+                hx.append(c[0])
+                hy.append(c[1])
+        if hx:
+            ax.scatter(
+                hx, hy, s=160, facecolors="none", edgecolors="red", linewidths=1.8,
+                label="flagged", zorder=3,
+            )
+
+    ax.set_xlabel("longitude")
+    ax.set_ylabel("latitude")
+    ax.set_title(title)
+    ax.legend(loc="best", fontsize="small")
+    fig.tight_layout()
+    return fig, ax
+
+
+def plot_flow_comparison(
+    baseline_records: Sequence[Mapping[str, Any]],
+    perturbed_records: Sequence[Mapping[str, Any]],
+    *,
+    ax: Any = None,
+    title: str = "Baseline vs perturbed event volume",
+):
+    """Grouped bar chart comparing event-type counts between baseline and perturbed runs."""
+    try:
+        import matplotlib.pyplot as plt
+    except ImportError as e:  # pragma: no cover
+        raise ImportError(
+            "plot_flow_comparison requires matplotlib. Install with: pip install matplotlib"
+        ) from e
+
+    base_counts = Counter(str(r["event_type"]) for r in baseline_records)
+    pert_counts = Counter(str(r["event_type"]) for r in perturbed_records)
+    types = sorted(set(base_counts) | set(pert_counts))
+
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(8, 4))
+    else:
+        fig = ax.figure
+
+    x = range(len(types))
+    width = 0.4
+    ax.bar([i - width / 2 for i in x], [base_counts.get(t, 0) for t in types], width, label="baseline")
+    ax.bar([i + width / 2 for i in x], [pert_counts.get(t, 0) for t in types], width, label="perturbed")
+    ax.set_xticks(list(x))
+    ax.set_xticklabels(types, rotation=30, ha="right")
+    ax.set_ylabel("event count")
+    ax.set_title(title)
+    ax.legend()
+    fig.tight_layout()
+    return fig, ax
+
+
 def dump_debug_report_to_string(sim: NativeSimulator, inp: EngineInput) -> str:
     """Full text report suitable for logging at end of run."""
     buf = StringIO()

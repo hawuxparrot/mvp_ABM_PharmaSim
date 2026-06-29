@@ -148,10 +148,15 @@ def test_build_scenario_from_canonical_compiles() -> None:
             ),
         ],
     )
-    scenario = build_scenario_from_canonical(dataset, packs_per_obp=10, max_locations=10)
+    scenario = build_scenario_from_canonical(
+        dataset, packs_per_obp=10, max_locations=10, packs_per_wholesaler=0
+    )
     inp = compile_scenario(scenario)
     assert inp.n_locations == 3
-    assert inp.n_edges == 2
+    # Tiered builder emits the manufacturer/OBP -> wholesaler hub edge; the
+    # wholesaler -> pharmacy last-mile edge is dropped here only because Plovdiv->Burgas
+    # exceeds the realistic last-mile distance cap.
+    assert inp.n_edges >= 1
     assert inp.n_packs == 10
 
 

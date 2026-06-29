@@ -1,6 +1,41 @@
 #include "simulation_state.hpp"
 #include "engine_input_view.hpp"
 
+namespace {
+
+/// Shared per-(location, product) state initialization for both input flavors.
+template <typename InputT>
+void init_location_state(SimulationState& s, const InputT& in) {
+    const std::size_t n_loc = static_cast<std::size_t>(in.n_locations);
+    // Guarantee at least one product slot so the flattened layout (li * n_products + p) is
+    // always valid even for degenerate product-less scenarios.
+    s.n_products = in.n_products > 0 ? in.n_products : 1;
+    const std::size_t n_prod = static_cast<std::size_t>(s.n_products);
+    const std::size_t cells = n_loc * n_prod;
+
+    s.location_on_hand.assign(cells, 0u);
+    s.location_backlog.assign(cells, 0u);
+    s.location_pipeline_outstanding.assign(cells, 0u);
+    s.location_forecast.assign(n_loc, 0.f);
+    s.location_last_order_tick.assign(n_loc, 0ull);
+    s.location_cum_unfulfilled_penalty.assign(n_loc, 0.0);
+
+    // Initial aggregate state is per-location in the ABI; seed it into product slot 0. This
+    // preserves aggregate inventory/backlog semantics (sums over products) while the engine
+    // now tracks the product dimension created by demand/shipments.
+    const auto clamp_u32 = [](std::int32_t v) -> std::uint32_t {
+        return v < 0 ? 0u : static_cast<std::uint32_t>(v);
+    };
+    for (std::size_t li = 0; li < n_loc; ++li) {
+        const std::size_t slot0 = li * n_prod;
+        s.location_on_hand[slot0] = clamp_u32(in.location_initial_on_hand[li]);
+        s.location_backlog[slot0] = clamp_u32(in.location_initial_backlog[li]);
+        s.location_pipeline_outstanding[slot0] = clamp_u32(in.location_initial_pipeline_outstanding[li]);
+    }
+}
+
+}  // namespace
+
 SimulationState::SimulationState(const EngineInputView& in) {
     pack_state.assign(in.pack_initial_state.begin(), in.pack_initial_state.end());
     pack_location_id.assign(in.pack_initial_location_id.begin(), in.pack_initial_location_id.end());
@@ -16,21 +51,7 @@ SimulationState::SimulationState(const EngineInputView& in) {
         location_org_type[static_cast<std::size_t>(loc)] = in.org_type[static_cast<std::size_t>(org_id)];
     }
 
-    location_on_hand.assign(static_cast<std::size_t>(in.n_locations), 0u);
-    location_backlog.assign(static_cast<std::size_t>(in.n_locations), 0u);
-    location_pipeline_outstanding.assign(static_cast<std::size_t>(in.n_locations), 0u);
-    location_forecast.assign(static_cast<std::size_t>(in.n_locations), 0.f);
-    location_last_order_tick.assign(static_cast<std::size_t>(in.n_locations), 0ull);
-    location_cum_unfulfilled_penalty.assign(static_cast<std::size_t>(in.n_locations), 0.0);
-    for (int loc = 0; loc < in.n_locations; ++loc) {
-        const std::size_t li = static_cast<std::size_t>(loc);
-        const auto clamp_u32 = [](std::int32_t v) -> std::uint32_t {
-            return v < 0 ? 0u : static_cast<std::uint32_t>(v);
-        };
-        location_on_hand[li] = clamp_u32(in.location_initial_on_hand[li]);
-        location_backlog[li] = clamp_u32(in.location_initial_backlog[li]);
-        location_pipeline_outstanding[li] = clamp_u32(in.location_initial_pipeline_outstanding[li]);
-    }
+    init_location_state(*this, in);
     rebuild_location_pack_index(static_cast<std::uint32_t>(in.n_locations));
 }
 
@@ -49,21 +70,7 @@ SimulationState::SimulationState(const EngineInput& in) {
         location_org_type[static_cast<std::size_t>(loc)] = in.org_type[static_cast<std::size_t>(org_id)];
     }
 
-    location_on_hand.assign(static_cast<std::size_t>(in.n_locations), 0u);
-    location_backlog.assign(static_cast<std::size_t>(in.n_locations), 0u);
-    location_pipeline_outstanding.assign(static_cast<std::size_t>(in.n_locations), 0u);
-    location_forecast.assign(static_cast<std::size_t>(in.n_locations), 0.f);
-    location_last_order_tick.assign(static_cast<std::size_t>(in.n_locations), 0ull);
-    location_cum_unfulfilled_penalty.assign(static_cast<std::size_t>(in.n_locations), 0.0);
-    for (int loc = 0; loc < in.n_locations; ++loc) {
-        const std::size_t li = static_cast<std::size_t>(loc);
-        const auto clamp_u32 = [](std::int32_t v) -> std::uint32_t {
-            return v < 0 ? 0u : static_cast<std::uint32_t>(v);
-        };
-        location_on_hand[li] = clamp_u32(in.location_initial_on_hand[li]);
-        location_backlog[li] = clamp_u32(in.location_initial_backlog[li]);
-        location_pipeline_outstanding[li] = clamp_u32(in.location_initial_pipeline_outstanding[li]);
-    }
+    init_location_state(*this, in);
     rebuild_location_pack_index(static_cast<std::uint32_t>(in.n_locations));
 }
 

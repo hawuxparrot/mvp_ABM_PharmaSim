@@ -19,6 +19,11 @@ struct EngineInput {
     int n_markets;
     int n_edges;
 
+    // products: per-product demand mix + ATC substitutability CSR (v7)
+    std::vector<float> product_demand_weight;
+    std::vector<std::uint32_t> product_substitute_offset;
+    std::vector<std::uint32_t> product_substitute_id;
+
     std::vector<std::string> market_code;
     std::vector<std::uint8_t> org_type;
     std::vector<std::uint32_t> location_org_id;

@@ -42,6 +42,7 @@ class LocationEdge:
     dst_location_ext_id: str
     cost: float
     capacity: int
+    lead_time_ticks: int = 0      # transit ticks before a shipment arrives (0 = same tick)
 
 @dataclass(frozen=True)
 class ProductCode:
@@ -53,6 +54,9 @@ class ProductCode:
 class Product:
     ext_id: str
     codes: tuple[ProductCode, ...]                           # global trade item number (preferred over PPN/IFA standard according to EMVO website. However may need to be changed)
+    atc_code: str | None = None                              # WHO ATC classification, drives substitutability (e.g. "C10AA05")
+    name: str | None = None
+    pack_size: int | None = None                             # units per pack (dose/form granularity not modeled)
 
 @dataclass(frozen=True)
 class Batch:

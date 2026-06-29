@@ -22,13 +22,44 @@ struct SimulationState {
     /// ``org_type`` of the organization owning each location (by location id).
     std::vector<std::uint8_t> location_org_type;
 
-    // order system
+    /// Number of products; per-(location, product) state is flattened as li * n_products + p.
+    int n_products{0};
+
+    // order system: per-(location, product), flattened row-major (location-major).
     std::vector<std::uint32_t> location_on_hand;                    // on_hand >= 0
     std::vector<std::uint32_t> location_backlog;                    // backlog >= 0
     std::vector<std::uint32_t> location_pipeline_outstanding;       // pipeline_outstanding >= 0
+    // per-location aggregates (do not carry a product dimension)
     std::vector<float> location_forecast;
     std::vector<std::uint64_t> location_last_order_tick;
     std::vector<double> location_cum_unfulfilled_penalty;
+
+    /// Flattened index for per-(location, product) state.
+    [[nodiscard]] std::size_t lp_index(std::uint32_t loc, std::uint32_t product) const noexcept {
+        return static_cast<std::size_t>(loc) * static_cast<std::size_t>(n_products)
+             + static_cast<std::size_t>(product);
+    }
+
+    /// Sum a per-(location, product) vector over products for a single location.
+    [[nodiscard]] std::uint64_t aggregate_for_location(
+        const std::vector<std::uint32_t>& per_product, std::uint32_t loc) const noexcept {
+        std::uint64_t total = 0;
+        const std::size_t base = static_cast<std::size_t>(loc) * static_cast<std::size_t>(n_products);
+        for (int p = 0; p < n_products; ++p) total += per_product[base + static_cast<std::size_t>(p)];
+        return total;
+    }
+
+    /// Build a per-location vector by summing a per-(location, product) vector over products.
+    [[nodiscard]] std::vector<std::uint32_t> aggregate_by_location(
+        const std::vector<std::uint32_t>& per_product) const {
+        const std::size_t n_loc = location_org_type.size();
+        std::vector<std::uint32_t> out(n_loc, 0u);
+        for (std::size_t li = 0; li < n_loc; ++li) {
+            out[li] = static_cast<std::uint32_t>(
+                aggregate_for_location(per_product, static_cast<std::uint32_t>(li)));
+        }
+        return out;
+    }
 
     static constexpr std::uint32_t k_no_pack_id = std::numeric_limits<std::uint32_t>::max();
     static constexpr std::uint32_t k_no_location_id = std::numeric_limits<std::uint32_t>::max();

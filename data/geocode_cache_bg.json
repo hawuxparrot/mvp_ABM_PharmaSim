@@ -1,0 +1,3682 @@
+{
+  "Силистра, Bulgaria": {
+    "latitude": 43.9057061,
+    "longitude": 27.0705496,
+    "confidence": 1.0
+  },
+  "Шумен, Bulgaria": {
+    "latitude": 43.3088188,
+    "longitude": 27.0197261,
+    "confidence": 1.0
+  },
+  "Русе, Bulgaria": {
+    "latitude": 43.8480413,
+    "longitude": 25.9542057,
+    "confidence": 1.0
+  },
+  "Провадия, Bulgaria": {
+    "latitude": 43.1786369,
+    "longitude": 27.4438702,
+    "confidence": 1.0
+  },
+  "Искър, Bulgaria": {
+    "latitude": 43.1140658,
+    "longitude": 23.6926354,
+    "confidence": 1.0
+  },
+  "Първомай, Bulgaria": {
+    "latitude": 42.09946,
+    "longitude": 25.2247171,
+    "confidence": 1.0
+  },
+  "Плиска, Bulgaria": {
+    "latitude": 43.3620649,
+    "longitude": 27.1248256,
+    "confidence": 1.0
+  },
+  "Белене, Bulgaria": {
+    "latitude": 43.6477654,
+    "longitude": 25.1258325,
+    "confidence": 1.0
+  },
+  "Сливен, Bulgaria": {
+    "latitude": 42.64169,
+    "longitude": 26.2634283,
+    "confidence": 1.0
+  },
+  "Полско Косово, Bulgaria": {
+    "latitude": 43.4236453,
+    "longitude": 25.6568059,
+    "confidence": 1.0
+  },
+  "Старо Оряхово, Bulgaria": {
+    "latitude": 42.9906242,
+    "longitude": 27.7954613,
+    "confidence": 1.0
+  },
+  "Пловдив, Bulgaria": {
+    "latitude": 42.1418541,
+    "longitude": 24.7499297,
+    "confidence": 1.0
+  },
+  "Пазарджик, Bulgaria": {
+    "latitude": 42.1486841,
+    "longitude": 24.1531871,
+    "confidence": 1.0
+  },
+  "Ново село, Bulgaria": {
+    "latitude": 42.1946141,
+    "longitude": 22.6794411,
+    "confidence": 1.0
+  },
+  "Криводол, Bulgaria": {
+    "latitude": 43.3675147,
+    "longitude": 23.4751394,
+    "confidence": 1.0
+  },
+  "Велики Преслав, Bulgaria": {
+    "latitude": 43.16084,
+    "longitude": 26.81207,
+    "confidence": 1.0
+  },
+  "Търговище, Bulgaria": {
+    "latitude": 43.2530111,
+    "longitude": 26.4141884,
+    "confidence": 1.0
+  },
+  "Рудозем, Bulgaria": {
+    "latitude": 41.4860848,
+    "longitude": 24.8466756,
+    "confidence": 1.0
+  },
+  "Тополовград, Bulgaria": {
+    "latitude": 42.0847397,
+    "longitude": 26.3320703,
+    "confidence": 1.0
+  },
+  "Етрополе, Bulgaria": {
+    "latitude": 42.8326835,
+    "longitude": 23.9964396,
+    "confidence": 1.0
+  },
+  "Попово, Bulgaria": {
+    "latitude": 43.3481473,
+    "longitude": 26.2271967,
+    "confidence": 1.0
+  },
+  "Дреновец, Bulgaria": {
+    "latitude": 43.6940175,
+    "longitude": 22.9892917,
+    "confidence": 1.0
+  },
+  "София, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Самоков, Bulgaria": {
+    "latitude": 42.3377931,
+    "longitude": 23.5592676,
+    "confidence": 1.0
+  },
+  "Златица, Bulgaria": {
+    "latitude": 42.7116955,
+    "longitude": 24.1389525,
+    "confidence": 1.0
+  },
+  "Пет могили, Bulgaria": {
+    "latitude": 42.31,
+    "longitude": 26.0550899,
+    "confidence": 1.0
+  },
+  "Дойренци, Bulgaria": {
+    "latitude": 43.2332211,
+    "longitude": 24.8327391,
+    "confidence": 1.0
+  },
+  "Смилян, Bulgaria": {
+    "latitude": 41.5072718,
+    "longitude": 24.7287093,
+    "confidence": 1.0
+  },
+  "Бургас, Bulgaria": {
+    "latitude": 42.4936616,
+    "longitude": 27.4721276,
+    "confidence": 1.0
+  },
+  "Крумово, Bulgaria": {
+    "latitude": 42.0673863,
+    "longitude": 24.8547774,
+    "confidence": 1.0
+  },
+  "Плевен, Bulgaria": {
+    "latitude": 43.4809895,
+    "longitude": 24.6060665,
+    "confidence": 1.0
+  },
+  "Разград, Bulgaria": {
+    "latitude": 43.6394793,
+    "longitude": 26.7022408,
+    "confidence": 1.0
+  },
+  "Сандански, Bulgaria": {
+    "latitude": 41.5654156,
+    "longitude": 23.2786429,
+    "confidence": 1.0
+  },
+  "Банкя, Bulgaria": {
+    "latitude": 42.7101251,
+    "longitude": 23.1464966,
+    "confidence": 1.0
+  },
+  "Петрич, Bulgaria": {
+    "latitude": 41.3952948,
+    "longitude": 23.2067832,
+    "confidence": 1.0
+  },
+  "Стрелча, Bulgaria": {
+    "latitude": 42.5067255,
+    "longitude": 24.3191525,
+    "confidence": 1.0
+  },
+  "Семчиново, Bulgaria": {
+    "latitude": 42.17937,
+    "longitude": 24.09231,
+    "confidence": 1.0
+  },
+  "Розино, Bulgaria": {
+    "latitude": 41.4549689,
+    "longitude": 25.9042274,
+    "confidence": 1.0
+  },
+  "Благоевград, Bulgaria": {
+    "latitude": 41.750287,
+    "longitude": 23.4873411,
+    "confidence": 1.0
+  },
+  "Гулянци, Bulgaria": {
+    "latitude": 43.6408554,
+    "longitude": 24.6944025,
+    "confidence": 1.0
+  },
+  "Баня, Bulgaria": {
+    "latitude": 42.54483,
+    "longitude": 24.82972,
+    "confidence": 1.0
+  },
+  "Гоце Делчев, Bulgaria": {
+    "latitude": 41.5733011,
+    "longitude": 23.7281082,
+    "confidence": 1.0
+  },
+  "Перник, Bulgaria": {
+    "latitude": 42.628442,
+    "longitude": 22.8823119,
+    "confidence": 1.0
+  },
+  "Хисаря, Bulgaria": {
+    "latitude": 42.5132789,
+    "longitude": 24.6948452,
+    "confidence": 1.0
+  },
+  "Завет, Bulgaria": {
+    "latitude": 43.7591754,
+    "longitude": 26.6781225,
+    "confidence": 1.0
+  },
+  "Варна, Bulgaria": {
+    "latitude": 43.2073873,
+    "longitude": 27.9166653,
+    "confidence": 1.0
+  },
+  "Козарско, Bulgaria": {
+    "latitude": 42.058125,
+    "longitude": 24.420031,
+    "confidence": 1.0
+  },
+  "Тетевен, Bulgaria": {
+    "latitude": 42.9178262,
+    "longitude": 24.2651138,
+    "confidence": 1.0
+  },
+  "Раднево, Bulgaria": {
+    "latitude": 42.2890477,
+    "longitude": 25.9338724,
+    "confidence": 1.0
+  },
+  "Тъжа, Bulgaria": {
+    "latitude": 42.6558101,
+    "longitude": 25.0845101,
+    "confidence": 1.0
+  },
+  "Априлци, Bulgaria": {
+    "latitude": 42.8407855,
+    "longitude": 24.9134025,
+    "confidence": 1.0
+  },
+  "Стара Загора, Bulgaria": {
+    "latitude": 42.4248111,
+    "longitude": 25.6257479,
+    "confidence": 1.0
+  },
+  "Якоруда, Bulgaria": {
+    "latitude": 42.0172856,
+    "longitude": 23.6677825,
+    "confidence": 1.0
+  },
+  "Крън, Bulgaria": {
+    "latitude": 42.6677735,
+    "longitude": 25.3806846,
+    "confidence": 1.0
+  },
+  "Асеновград, Bulgaria": {
+    "latitude": 42.0073633,
+    "longitude": 24.8762702,
+    "confidence": 1.0
+  },
+  "Шейново, Bulgaria": {
+    "latitude": 42.68538,
+    "longitude": 25.3186601,
+    "confidence": 1.0
+  },
+  "Карлово, Bulgaria": {
+    "latitude": 42.6358156,
+    "longitude": 24.8048226,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Княгиня Мария Луиза 104, София, Bulgaria": {
+    "latitude": 42.6980065,
+    "longitude": 23.3233855,
+    "confidence": 1.0
+  },
+  "Самоводене, Bulgaria": {
+    "latitude": 43.14179,
+    "longitude": 25.6013,
+    "confidence": 1.0
+  },
+  "Севлиево, Bulgaria": {
+    "latitude": 43.0263036,
+    "longitude": 25.1040867,
+    "confidence": 1.0
+  },
+  "Велико Търново, Bulgaria": {
+    "latitude": 43.0820584,
+    "longitude": 25.6321312,
+    "confidence": 1.0
+  },
+  "Обзор, Bulgaria": {
+    "latitude": 42.8205748,
+    "longitude": 27.8794434,
+    "confidence": 1.0
+  },
+  "Димитровград, Bulgaria": {
+    "latitude": 42.0582493,
+    "longitude": 25.5916466,
+    "confidence": 1.0
+  },
+  "Харманли, Bulgaria": {
+    "latitude": 41.9302645,
+    "longitude": 25.9015211,
+    "confidence": 1.0
+  },
+  "Ловеч, Bulgaria": {
+    "latitude": 43.0444495,
+    "longitude": 24.4910249,
+    "confidence": 1.0
+  },
+  "гр. София, кв. Горна баня, ул. Дон 1 А, София, Bulgaria": {
+    "latitude": 42.6756478,
+    "longitude": 23.2343973,
+    "confidence": 1.0
+  },
+  "Лозница, Bulgaria": {
+    "latitude": 43.3706555,
+    "longitude": 26.6020825,
+    "confidence": 1.0
+  },
+  "Горно Сахране, Bulgaria": {
+    "latitude": 42.649735,
+    "longitude": 25.2171533,
+    "confidence": 1.0
+  },
+  "Ямбол, Bulgaria": {
+    "latitude": 42.311889,
+    "longitude": 26.5636852,
+    "confidence": 1.0
+  },
+  "Брезово, Bulgaria": {
+    "latitude": 42.3480115,
+    "longitude": 25.0790305,
+    "confidence": 1.0
+  },
+  "Троян, Bulgaria": {
+    "latitude": 42.8910697,
+    "longitude": 24.7123534,
+    "confidence": 1.0
+  },
+  "Червен бряг, Bulgaria": {
+    "latitude": 43.2789455,
+    "longitude": 24.0824325,
+    "confidence": 1.0
+  },
+  "Главиница, Bulgaria": {
+    "latitude": 43.9118914,
+    "longitude": 26.8342704,
+    "confidence": 1.0
+  },
+  "Пирдоп, Bulgaria": {
+    "latitude": 42.7006838,
+    "longitude": 24.1803328,
+    "confidence": 1.0
+  },
+  "Видин, Bulgaria": {
+    "latitude": 43.9857242,
+    "longitude": 22.8772194,
+    "confidence": 1.0
+  },
+  "Вълчитрън, Bulgaria": {
+    "latitude": 43.3265119,
+    "longitude": 24.8694706,
+    "confidence": 1.0
+  },
+  "Тулово, Bulgaria": {
+    "latitude": 42.573861,
+    "longitude": 25.5459307,
+    "confidence": 1.0
+  },
+  "Хасково, Bulgaria": {
+    "latitude": 41.763101,
+    "longitude": 25.9256255,
+    "confidence": 1.0
+  },
+  "Левски, Bulgaria": {
+    "latitude": 43.3597306,
+    "longitude": 25.1422144,
+    "confidence": 1.0
+  },
+  "Роман, Bulgaria": {
+    "latitude": 43.1463767,
+    "longitude": 23.9254908,
+    "confidence": 1.0
+  },
+  "Дряново, Bulgaria": {
+    "latitude": 42.9735494,
+    "longitude": 25.4723616,
+    "confidence": 1.0
+  },
+  "Рибарица, Bulgaria": {
+    "latitude": 42.84061,
+    "longitude": 24.37079,
+    "confidence": 1.0
+  },
+  "Шабла, Bulgaria": {
+    "latitude": 43.5406619,
+    "longitude": 28.5339137,
+    "confidence": 1.0
+  },
+  "Нова Загора, Bulgaria": {
+    "latitude": 42.4934682,
+    "longitude": 26.0090132,
+    "confidence": 1.0
+  },
+  "Мизия, Bulgaria": {
+    "latitude": 43.689742,
+    "longitude": 23.8536171,
+    "confidence": 1.0
+  },
+  "Враца, Bulgaria": {
+    "latitude": 43.400307,
+    "longitude": 23.716675,
+    "confidence": 1.0
+  },
+  "Габрово, Bulgaria": {
+    "latitude": 42.9638895,
+    "longitude": 25.2119538,
+    "confidence": 1.0
+  },
+  "Хайредин, Bulgaria": {
+    "latitude": 43.6044154,
+    "longitude": 23.6599325,
+    "confidence": 1.0
+  },
+  "Добрич, Bulgaria": {
+    "latitude": 43.6637775,
+    "longitude": 27.9002123,
+    "confidence": 1.0
+  },
+  "Разлог, Bulgaria": {
+    "latitude": 41.8861079,
+    "longitude": 23.4661521,
+    "confidence": 1.0
+  },
+  "Монтана, Bulgaria": {
+    "latitude": 43.4088984,
+    "longitude": 23.2203193,
+    "confidence": 1.0
+  },
+  "Елена, Bulgaria": {
+    "latitude": 42.9298896,
+    "longitude": 25.8773778,
+    "confidence": 1.0
+  },
+  "Кърджали, Bulgaria": {
+    "latitude": 41.56876,
+    "longitude": 25.3948569,
+    "confidence": 1.0
+  },
+  "Пещера, Bulgaria": {
+    "latitude": 42.0336471,
+    "longitude": 24.305207,
+    "confidence": 1.0
+  },
+  "Мездра, Bulgaria": {
+    "latitude": 43.1432643,
+    "longitude": 23.7152641,
+    "confidence": 1.0
+  },
+  "Меричлери, Bulgaria": {
+    "latitude": 42.1344055,
+    "longitude": 25.4979996,
+    "confidence": 1.0
+  },
+  "Приморско, Bulgaria": {
+    "latitude": 42.2698672,
+    "longitude": 27.7506179,
+    "confidence": 1.0
+  },
+  "Орешак, Bulgaria": {
+    "latitude": 42.8876014,
+    "longitude": 24.7674588,
+    "confidence": 1.0
+  },
+  "Козлодуй, Bulgaria": {
+    "latitude": 43.7750934,
+    "longitude": 23.7293313,
+    "confidence": 1.0
+  },
+  "Нареченски бани, Bulgaria": {
+    "latitude": 41.8984759,
+    "longitude": 24.7480559,
+    "confidence": 1.0
+  },
+  "Долни Дъбник, Bulgaria": {
+    "latitude": 43.4080277,
+    "longitude": 24.4415622,
+    "confidence": 1.0
+  },
+  "Елешница, Bulgaria": {
+    "latitude": 41.3685301,
+    "longitude": 23.1421201,
+    "confidence": 1.0
+  },
+  "Черноморец, Bulgaria": {
+    "latitude": 42.4438501,
+    "longitude": 27.63823,
+    "confidence": 1.0
+  },
+  "Ценово, Bulgaria": {
+    "latitude": 43.5775668,
+    "longitude": 25.6024829,
+    "confidence": 1.0
+  },
+  "Панагюрище, Bulgaria": {
+    "latitude": 42.5043065,
+    "longitude": 24.1888411,
+    "confidence": 1.0
+  },
+  "Крумовград, Bulgaria": {
+    "latitude": 41.4731094,
+    "longitude": 25.6546299,
+    "confidence": 1.0
+  },
+  "Водица, Bulgaria": {
+    "latitude": 43.35628,
+    "longitude": 26.05251,
+    "confidence": 1.0
+  },
+  "Труд, Bulgaria": {
+    "latitude": 42.23172,
+    "longitude": 24.72969,
+    "confidence": 1.0
+  },
+  "Костенец, Bulgaria": {
+    "latitude": 42.3076287,
+    "longitude": 23.8588278,
+    "confidence": 1.0
+  },
+  "Кричим, Bulgaria": {
+    "latitude": 42.0422788,
+    "longitude": 24.4702714,
+    "confidence": 1.0
+  },
+  "Чипровци, Bulgaria": {
+    "latitude": 43.3843795,
+    "longitude": 22.8807639,
+    "confidence": 1.0
+  },
+  "Гърмен, Bulgaria": {
+    "latitude": 41.6744205,
+    "longitude": 23.8195096,
+    "confidence": 1.0
+  },
+  "Буковлък, Bulgaria": {
+    "latitude": 43.4457214,
+    "longitude": 24.6142886,
+    "confidence": 1.0
+  },
+  "Мало Конаре, Bulgaria": {
+    "latitude": 42.19773,
+    "longitude": 24.43319,
+    "confidence": 1.0
+  },
+  "Гривица, Bulgaria": {
+    "latitude": 43.4124757,
+    "longitude": 24.7012174,
+    "confidence": 1.0
+  },
+  "Радомир, Bulgaria": {
+    "latitude": 42.54616,
+    "longitude": 22.96291,
+    "confidence": 1.0
+  },
+  "Айтос, Bulgaria": {
+    "latitude": 42.7018865,
+    "longitude": 27.2520386,
+    "confidence": 1.0
+  },
+  "Банско, Bulgaria": {
+    "latitude": 41.8344086,
+    "longitude": 23.4841698,
+    "confidence": 1.0
+  },
+  "Годеч, Bulgaria": {
+    "latitude": 43.0157976,
+    "longitude": 23.0470159,
+    "confidence": 1.0
+  },
+  "Никопол, Bulgaria": {
+    "latitude": 43.7070803,
+    "longitude": 24.8996563,
+    "confidence": 1.0
+  },
+  "Китен, Bulgaria": {
+    "latitude": 42.23584,
+    "longitude": 27.77419,
+    "confidence": 1.0
+  },
+  "Горна Оряховица, Bulgaria": {
+    "latitude": 43.1222791,
+    "longitude": 25.6887918,
+    "confidence": 1.0
+  },
+  "Бобов дол, Bulgaria": {
+    "latitude": 42.3662276,
+    "longitude": 23.0073636,
+    "confidence": 1.0
+  },
+  "Драгоман, Bulgaria": {
+    "latitude": 42.9218621,
+    "longitude": 22.93018,
+    "confidence": 1.0
+  },
+  "Крупник, Bulgaria": {
+    "latitude": 41.8470663,
+    "longitude": 23.1218421,
+    "confidence": 1.0
+  },
+  "Калояново, Bulgaria": {
+    "latitude": 42.6596701,
+    "longitude": 26.4625299,
+    "confidence": 1.0
+  },
+  "Камено, Bulgaria": {
+    "latitude": 42.5711572,
+    "longitude": 27.2910461,
+    "confidence": 1.0
+  },
+  "Крушовица, Bulgaria": {
+    "latitude": 42.5616298,
+    "longitude": 23.6380606,
+    "confidence": 1.0
+  },
+  "Царев брод, Bulgaria": {
+    "latitude": 43.33014,
+    "longitude": 27.01416,
+    "confidence": 1.0
+  },
+  "Килифарево, Bulgaria": {
+    "latitude": 42.9932207,
+    "longitude": 25.6211255,
+    "confidence": 1.0
+  },
+  "Свиленград, Bulgaria": {
+    "latitude": 41.7681668,
+    "longitude": 26.1978704,
+    "confidence": 1.0
+  },
+  "Садовец, Bulgaria": {
+    "latitude": 43.30649,
+    "longitude": 24.351,
+    "confidence": 1.0
+  },
+  "Кермен, Bulgaria": {
+    "latitude": 42.5056243,
+    "longitude": 26.2560569,
+    "confidence": 1.0
+  },
+  "Ябланица, Bulgaria": {
+    "latitude": 43.0250359,
+    "longitude": 24.1005871,
+    "confidence": 1.0
+  },
+  "Девин, Bulgaria": {
+    "latitude": 41.7433556,
+    "longitude": 24.3984625,
+    "confidence": 1.0
+  },
+  "Скравена, Bulgaria": {
+    "latitude": 42.9517131,
+    "longitude": 23.7686707,
+    "confidence": 1.0
+  },
+  "Дупница, Bulgaria": {
+    "latitude": 42.2628362,
+    "longitude": 23.1143551,
+    "confidence": 1.0
+  },
+  "Чакаларово, Bulgaria": {
+    "latitude": 41.2987456,
+    "longitude": 25.3060846,
+    "confidence": 1.0
+  },
+  "Велинград, Bulgaria": {
+    "latitude": 42.0283589,
+    "longitude": 23.9944408,
+    "confidence": 1.0
+  },
+  "Ихтиман, Bulgaria": {
+    "latitude": 42.4384955,
+    "longitude": 23.8143825,
+    "confidence": 1.0
+  },
+  "Катунци, Bulgaria": {
+    "latitude": 41.4435645,
+    "longitude": 23.4308403,
+    "confidence": 1.0
+  },
+  "Николаево, Bulgaria": {
+    "latitude": 42.6289156,
+    "longitude": 25.7914125,
+    "confidence": 1.0
+  },
+  "Своге, Bulgaria": {
+    "latitude": 42.9597341,
+    "longitude": 23.3482324,
+    "confidence": 1.0
+  },
+  "Кюстендил, Bulgaria": {
+    "latitude": 42.3349427,
+    "longitude": 22.8884116,
+    "confidence": 1.0
+  },
+  "Чирпан, Bulgaria": {
+    "latitude": 42.199981,
+    "longitude": 25.3256972,
+    "confidence": 1.0
+  },
+  "Глоджево, Bulgaria": {
+    "latitude": 43.73436,
+    "longitude": 26.38961,
+    "confidence": 1.0
+  },
+  "Генерал Инзово, Bulgaria": {
+    "latitude": 42.31996,
+    "longitude": 26.4343699,
+    "confidence": 1.0
+  },
+  "Бяла Слатина, Bulgaria": {
+    "latitude": 43.4697446,
+    "longitude": 23.9450995,
+    "confidence": 1.0
+  },
+  "Дебрен, Bulgaria": {
+    "latitude": 41.58061,
+    "longitude": 23.82212,
+    "confidence": 1.0
+  },
+  "Казанлък, Bulgaria": {
+    "latitude": 42.6191296,
+    "longitude": 25.3933333,
+    "confidence": 1.0
+  },
+  "Бяла, Bulgaria": {
+    "latitude": 43.4593631,
+    "longitude": 25.7365619,
+    "confidence": 1.0
+  },
+  "Царацово, Bulgaria": {
+    "latitude": 42.2005976,
+    "longitude": 24.6875409,
+    "confidence": 1.0
+  },
+  "Кардам, Bulgaria": {
+    "latitude": 43.7546011,
+    "longitude": 28.1057178,
+    "confidence": 1.0
+  },
+  "Ботевград, Bulgaria": {
+    "latitude": 42.9078544,
+    "longitude": 23.7929451,
+    "confidence": 1.0
+  },
+  "Средец, Bulgaria": {
+    "latitude": 42.3458456,
+    "longitude": 27.1808724,
+    "confidence": 1.0
+  },
+  "Панчарево, Bulgaria": {
+    "latitude": 42.5944337,
+    "longitude": 23.4054539,
+    "confidence": 1.0
+  },
+  "Оряхово, Bulgaria": {
+    "latitude": 43.7346254,
+    "longitude": 23.9591325,
+    "confidence": 1.0
+  },
+  "Неделино, Bulgaria": {
+    "latitude": 41.4563356,
+    "longitude": 25.0785825,
+    "confidence": 1.0
+  },
+  "Смолян, Bulgaria": {
+    "latitude": 41.624097,
+    "longitude": 24.5913304,
+    "confidence": 1.0
+  },
+  "Мененкьово, Bulgaria": {
+    "latitude": 42.22983,
+    "longitude": 24.05506,
+    "confidence": 1.0
+  },
+  "Кубрат, Bulgaria": {
+    "latitude": 43.7967009,
+    "longitude": 26.5006777,
+    "confidence": 1.0
+  },
+  "Градина, Bulgaria": {
+    "latitude": 42.1474353,
+    "longitude": 25.2042089,
+    "confidence": 1.0
+  },
+  "Бреница, Bulgaria": {
+    "latitude": 43.89027,
+    "longitude": 26.61586,
+    "confidence": 1.0
+  },
+  "Сатовча, Bulgaria": {
+    "latitude": 41.587265,
+    "longitude": 24.0226179,
+    "confidence": 1.0
+  },
+  "Копривщица, Bulgaria": {
+    "latitude": 42.6375324,
+    "longitude": 24.3577991,
+    "confidence": 1.0
+  },
+  "Кресна, Bulgaria": {
+    "latitude": 41.7225603,
+    "longitude": 23.1633544,
+    "confidence": 1.0
+  },
+  "Две могили, Bulgaria": {
+    "latitude": 43.59094,
+    "longitude": 25.86909,
+    "confidence": 1.0
+  },
+  "Берковица, Bulgaria": {
+    "latitude": 43.2373155,
+    "longitude": 23.1288525,
+    "confidence": 1.0
+  },
+  "Сливница, Bulgaria": {
+    "latitude": 42.8517828,
+    "longitude": 23.0380281,
+    "confidence": 1.0
+  },
+  "Лом, Bulgaria": {
+    "latitude": 43.8201697,
+    "longitude": 23.2386638,
+    "confidence": 1.0
+  },
+  "Белоградчик, Bulgaria": {
+    "latitude": 43.6266828,
+    "longitude": 22.6861167,
+    "confidence": 1.0
+  },
+  "Кочериново, Bulgaria": {
+    "latitude": 42.0859637,
+    "longitude": 23.0581308,
+    "confidence": 1.0
+  },
+  "Сопот, Bulgaria": {
+    "latitude": 42.6543846,
+    "longitude": 24.7554866,
+    "confidence": 1.0
+  },
+  "Просеник, Bulgaria": {
+    "latitude": 42.7991899,
+    "longitude": 27.4495245,
+    "confidence": 1.0
+  },
+  "Брегово, Bulgaria": {
+    "latitude": 44.1518851,
+    "longitude": 22.6386293,
+    "confidence": 1.0
+  },
+  "Мадан, Bulgaria": {
+    "latitude": 41.4985656,
+    "longitude": 24.9393625,
+    "confidence": 1.0
+  },
+  "Елин Пелин, Bulgaria": {
+    "latitude": 42.6691132,
+    "longitude": 23.6021426,
+    "confidence": 1.0
+  },
+  "Гложене, Bulgaria": {
+    "latitude": 42.9858046,
+    "longitude": 24.1872397,
+    "confidence": 1.0
+  },
+  "Златоград, Bulgaria": {
+    "latitude": 41.3809141,
+    "longitude": 25.0950002,
+    "confidence": 1.0
+  },
+  "Зимница, Bulgaria": {
+    "latitude": 43.8647,
+    "longitude": 27.61871,
+    "confidence": 1.0
+  },
+  "Суворово, Bulgaria": {
+    "latitude": 43.3290499,
+    "longitude": 27.5907042,
+    "confidence": 1.0
+  },
+  "Луковит, Bulgaria": {
+    "latitude": 43.2064255,
+    "longitude": 24.1619125,
+    "confidence": 1.0
+  },
+  "Карнобат, Bulgaria": {
+    "latitude": 42.6498554,
+    "longitude": 26.9823125,
+    "confidence": 1.0
+  },
+  "Ръжево Конаре, Bulgaria": {
+    "latitude": 42.3425132,
+    "longitude": 24.8066827,
+    "confidence": 1.0
+  },
+  "Литаково, Bulgaria": {
+    "latitude": 42.9514929,
+    "longitude": 23.6794469,
+    "confidence": 1.0
+  },
+  "Дълго поле, Bulgaria": {
+    "latitude": 43.69548,
+    "longitude": 22.77816,
+    "confidence": 1.0
+  },
+  "Огняново, Bulgaria": {
+    "latitude": 42.1476091,
+    "longitude": 24.4138327,
+    "confidence": 1.0
+  },
+  "Несебър, Bulgaria": {
+    "latitude": 42.6607865,
+    "longitude": 27.7167464,
+    "confidence": 1.0
+  },
+  "Брезница, Bulgaria": {
+    "latitude": 41.67391,
+    "longitude": 23.66243,
+    "confidence": 1.0
+  },
+  "Черноочене, Bulgaria": {
+    "latitude": 41.7624239,
+    "longitude": 25.3488528,
+    "confidence": 1.0
+  },
+  "Ардино, Bulgaria": {
+    "latitude": 41.5809659,
+    "longitude": 25.1338545,
+    "confidence": 1.0
+  },
+  "Кнежа, Bulgaria": {
+    "latitude": 43.4990084,
+    "longitude": 24.0745138,
+    "confidence": 1.0
+  },
+  "Ветово, Bulgaria": {
+    "latitude": 43.7042823,
+    "longitude": 26.2636455,
+    "confidence": 1.0
+  },
+  "Елхово, Bulgaria": {
+    "latitude": 42.17235,
+    "longitude": 26.567632,
+    "confidence": 1.0
+  },
+  "Каравелово, Bulgaria": {
+    "latitude": 42.3093223,
+    "longitude": 26.6283385,
+    "confidence": 1.0
+  },
+  "Кочан, Bulgaria": {
+    "latitude": 41.5871143,
+    "longitude": 24.0278263,
+    "confidence": 1.0
+  },
+  "Трудовец, Bulgaria": {
+    "latitude": 42.9162049,
+    "longitude": 23.8414217,
+    "confidence": 1.0
+  },
+  "Тутракан, Bulgaria": {
+    "latitude": 44.04596,
+    "longitude": 26.6162765,
+    "confidence": 1.0
+  },
+  "Свищов, Bulgaria": {
+    "latitude": 43.6158817,
+    "longitude": 25.3509536,
+    "confidence": 1.0
+  },
+  "Устина, Bulgaria": {
+    "latitude": 42.0415693,
+    "longitude": 24.5222786,
+    "confidence": 1.0
+  },
+  "Созопол, Bulgaria": {
+    "latitude": 42.4181556,
+    "longitude": 27.6943124,
+    "confidence": 1.0
+  },
+  "Ветрен, Bulgaria": {
+    "latitude": 42.2797101,
+    "longitude": 24.0481267,
+    "confidence": 1.0
+  },
+  "Радиево, Bulgaria": {
+    "latitude": 42.0980901,
+    "longitude": 25.6225401,
+    "confidence": 1.0
+  },
+  "Септември, Bulgaria": {
+    "latitude": 42.219533,
+    "longitude": 24.1228361,
+    "confidence": 1.0
+  },
+  "Казичене, Bulgaria": {
+    "latitude": 42.6615301,
+    "longitude": 23.4621214,
+    "confidence": 1.0
+  },
+  "Баните, Bulgaria": {
+    "latitude": 41.6164267,
+    "longitude": 25.0051984,
+    "confidence": 1.0
+  },
+  "Момчилград, Bulgaria": {
+    "latitude": 41.5262935,
+    "longitude": 25.410891,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Сливница 309, София, Bulgaria": {
+    "latitude": 42.705854,
+    "longitude": 23.3036113,
+    "confidence": 1.0
+  },
+  "Манолско Конаре, Bulgaria": {
+    "latitude": 42.20696,
+    "longitude": 24.951,
+    "confidence": 1.0
+  },
+  "Мартен, Bulgaria": {
+    "latitude": 43.91718,
+    "longitude": 26.08118,
+    "confidence": 1.0
+  },
+  "Долна баня, Bulgaria": {
+    "latitude": 42.3108246,
+    "longitude": 23.7645019,
+    "confidence": 1.0
+  },
+  "Първенец, Bulgaria": {
+    "latitude": 42.0744512,
+    "longitude": 24.6629878,
+    "confidence": 1.0
+  },
+  "Равда, Bulgaria": {
+    "latitude": 42.6445091,
+    "longitude": 27.6783594,
+    "confidence": 1.0
+  },
+  "Павликени, Bulgaria": {
+    "latitude": 43.2379033,
+    "longitude": 25.3069689,
+    "confidence": 1.0
+  },
+  "Градец, Bulgaria": {
+    "latitude": 44.0298882,
+    "longitude": 22.752853,
+    "confidence": 1.0
+  },
+  "Нови Искър, Bulgaria": {
+    "latitude": 42.8143844,
+    "longitude": 23.3582609,
+    "confidence": 1.0
+  },
+  "Брацигово, Bulgaria": {
+    "latitude": 42.027104,
+    "longitude": 24.368903,
+    "confidence": 1.0
+  },
+  "Ивайло, Bulgaria": {
+    "latitude": 42.2244095,
+    "longitude": 24.325874,
+    "confidence": 1.0
+  },
+  "Енина, Bulgaria": {
+    "latitude": 42.66877,
+    "longitude": 25.40891,
+    "confidence": 1.0
+  },
+  "Симитли, Bulgaria": {
+    "latitude": 41.8933839,
+    "longitude": 23.108109,
+    "confidence": 1.0
+  },
+  "Синитово, Bulgaria": {
+    "latitude": 42.1487215,
+    "longitude": 24.3756085,
+    "confidence": 1.0
+  },
+  "Балчик, Bulgaria": {
+    "latitude": 43.4049361,
+    "longitude": 28.1681094,
+    "confidence": 1.0
+  },
+  "Гълъбово, Bulgaria": {
+    "latitude": 42.1390164,
+    "longitude": 25.867346,
+    "confidence": 1.0
+  },
+  "Долна Митрополия, Bulgaria": {
+    "latitude": 43.4672884,
+    "longitude": 24.526065,
+    "confidence": 1.0
+  },
+  "Белозем, Bulgaria": {
+    "latitude": 42.19516,
+    "longitude": 25.04426,
+    "confidence": 1.0
+  },
+  "Трявна, Bulgaria": {
+    "latitude": 42.8674135,
+    "longitude": 25.4924992,
+    "confidence": 1.0
+  },
+  "Планиница, Bulgaria": {
+    "latitude": 42.8913565,
+    "longitude": 27.155938,
+    "confidence": 1.0
+  },
+  "Брест, Bulgaria": {
+    "latitude": 42.4623382,
+    "longitude": 22.6046218,
+    "confidence": 1.0
+  },
+  "Нова махала, Bulgaria": {
+    "latitude": 42.6209458,
+    "longitude": 25.7733062,
+    "confidence": 1.0
+  },
+  "Болярово, Bulgaria": {
+    "latitude": 42.1490851,
+    "longitude": 26.811463,
+    "confidence": 1.0
+  },
+  "Кирково, Bulgaria": {
+    "latitude": 41.341861,
+    "longitude": 25.3082204,
+    "confidence": 1.0
+  },
+  "Гиген, Bulgaria": {
+    "latitude": 43.697339,
+    "longitude": 24.4822176,
+    "confidence": 1.0
+  },
+  "Котел, Bulgaria": {
+    "latitude": 42.8873776,
+    "longitude": 26.4491598,
+    "confidence": 1.0
+  },
+  "Калипетрово, Bulgaria": {
+    "latitude": 44.0794,
+    "longitude": 27.23676,
+    "confidence": 1.0
+  },
+  "Нови пазар, Bulgaria": {
+    "latitude": 43.3472116,
+    "longitude": 27.1956421,
+    "confidence": 1.0
+  },
+  "Плачковци, Bulgaria": {
+    "latitude": 42.8240207,
+    "longitude": 25.4832748,
+    "confidence": 1.0
+  },
+  "Каварна, Bulgaria": {
+    "latitude": 43.4332836,
+    "longitude": 28.3390066,
+    "confidence": 1.0
+  },
+  "Поморие, Bulgaria": {
+    "latitude": 42.5684133,
+    "longitude": 27.6167754,
+    "confidence": 1.0
+  },
+  "Абланица, Bulgaria": {
+    "latitude": 43.03793,
+    "longitude": 24.69137,
+    "confidence": 1.0
+  },
+  "Исперих, Bulgaria": {
+    "latitude": 43.7168724,
+    "longitude": 26.8301419,
+    "confidence": 1.0
+  },
+  "Стралджа, Bulgaria": {
+    "latitude": 42.6002084,
+    "longitude": 26.6916416,
+    "confidence": 1.0
+  },
+  "Омуртаг, Bulgaria": {
+    "latitude": 43.1085755,
+    "longitude": 26.4174525,
+    "confidence": 1.0
+  },
+  "Карапелит, Bulgaria": {
+    "latitude": 43.64827,
+    "longitude": 27.56729,
+    "confidence": 1.0
+  },
+  "Лозенец, Bulgaria": {
+    "latitude": 42.6597151,
+    "longitude": 23.3250228,
+    "confidence": 1.0
+  },
+  "Върбица, Bulgaria": {
+    "latitude": 42.9937354,
+    "longitude": 26.6698426,
+    "confidence": 1.0
+  },
+  "Вълкосел, Bulgaria": {
+    "latitude": 41.52894,
+    "longitude": 23.98532,
+    "confidence": 1.0
+  },
+  "Ивайловград, Bulgaria": {
+    "latitude": 41.5258135,
+    "longitude": 26.1234902,
+    "confidence": 1.0
+  },
+  "с. Козарско, област Пазарджик, ул. 27-ма No 6, Козарско, Bulgaria": {
+    "latitude": 42.0580095,
+    "longitude": 24.4198333,
+    "confidence": 1.0
+  },
+  "Ракитово, Bulgaria": {
+    "latitude": 41.9911914,
+    "longitude": 24.0876515,
+    "confidence": 1.0
+  },
+  "Свети Влас, Bulgaria": {
+    "latitude": 42.7138408,
+    "longitude": 27.7588044,
+    "confidence": 1.0
+  },
+  "Костандово, Bulgaria": {
+    "latitude": 42.0262455,
+    "longitude": 24.1074225,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Мадрид No 26, София, Bulgaria": {
+    "latitude": 42.6963889,
+    "longitude": 23.348451,
+    "confidence": 1.0
+  },
+  "Стамболийски, Bulgaria": {
+    "latitude": 42.1363756,
+    "longitude": 24.5376825,
+    "confidence": 1.0
+  },
+  "Варвара, Bulgaria": {
+    "latitude": 42.1206546,
+    "longitude": 27.9007424,
+    "confidence": 1.0
+  },
+  "Лясковец, Bulgaria": {
+    "latitude": 43.1078855,
+    "longitude": 25.7143725,
+    "confidence": 1.0
+  },
+  "Твърдица, Bulgaria": {
+    "latitude": 42.7014434,
+    "longitude": 25.8979171,
+    "confidence": 1.0
+  },
+  "Дебелец, Bulgaria": {
+    "latitude": 43.0431077,
+    "longitude": 25.6238483,
+    "confidence": 1.0
+  },
+  "Люляково, Bulgaria": {
+    "latitude": 41.73579,
+    "longitude": 25.44676,
+    "confidence": 1.0
+  },
+  "Калофер, Bulgaria": {
+    "latitude": 42.6122664,
+    "longitude": 24.9737862,
+    "confidence": 1.0
+  },
+  "Перущица, Bulgaria": {
+    "latitude": 42.055641,
+    "longitude": 24.5451798,
+    "confidence": 1.0
+  },
+  "Съединение, Bulgaria": {
+    "latitude": 42.2692356,
+    "longitude": 24.5426125,
+    "confidence": 1.0
+  },
+  "Копринка, Bulgaria": {
+    "latitude": 42.62942,
+    "longitude": 25.3375401,
+    "confidence": 1.0
+  },
+  "Житница, Bulgaria": {
+    "latitude": 43.734818,
+    "longitude": 27.6386111,
+    "confidence": 1.0
+  },
+  "Девня, Bulgaria": {
+    "latitude": 43.2184213,
+    "longitude": 27.5564948,
+    "confidence": 1.0
+  },
+  "гр. Карлово, пл. 20-ти юли No 14, Карлово, Bulgaria": {
+    "latitude": 42.6942539,
+    "longitude": 24.4499704,
+    "confidence": 1.0
+  },
+  "Сунгурларе, Bulgaria": {
+    "latitude": 42.7631059,
+    "longitude": 26.7772625,
+    "confidence": 1.0
+  },
+  "Обнова, Bulgaria": {
+    "latitude": 43.4396631,
+    "longitude": 24.9894761,
+    "confidence": 1.0
+  },
+  "Чешнегирово, Bulgaria": {
+    "latitude": 42.12478,
+    "longitude": 24.97302,
+    "confidence": 1.0
+  },
+  "Струмяни, Bulgaria": {
+    "latitude": 41.6211275,
+    "longitude": 23.0910138,
+    "confidence": 1.0
+  },
+  "Джебел, Bulgaria": {
+    "latitude": 41.4974456,
+    "longitude": 25.3021325,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Г. М. Димитров No 16, София, Bulgaria": {
+    "latitude": 42.6643635,
+    "longitude": 23.358162,
+    "confidence": 1.0
+  },
+  "Вълчи дол, Bulgaria": {
+    "latitude": 43.4071616,
+    "longitude": 27.5549924,
+    "confidence": 1.0
+  },
+  "Борино, Bulgaria": {
+    "latitude": 41.634477,
+    "longitude": 24.3379536,
+    "confidence": 1.0
+  },
+  "Строево, Bulgaria": {
+    "latitude": 42.2367026,
+    "longitude": 24.6840828,
+    "confidence": 1.0
+  },
+  "Куклен, Bulgaria": {
+    "latitude": 42.0337809,
+    "longitude": 24.7878207,
+    "confidence": 1.0
+  },
+  "Стамболово, Bulgaria": {
+    "latitude": 41.7779838,
+    "longitude": 25.6441229,
+    "confidence": 1.0
+  },
+  "Стряма, Bulgaria": {
+    "latitude": 42.5970131,
+    "longitude": 24.7345679,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Черни Връх No 77, София, Bulgaria": {
+    "latitude": 42.6581136,
+    "longitude": 23.3149052,
+    "confidence": 1.0
+  },
+  "Мъглиж, Bulgaria": {
+    "latitude": 42.6057776,
+    "longitude": 25.5460156,
+    "confidence": 1.0
+  },
+  "Браниполе, Bulgaria": {
+    "latitude": 42.0782466,
+    "longitude": 24.7549767,
+    "confidence": 1.0
+  },
+  "Бенковски, Bulgaria": {
+    "latitude": 41.37797,
+    "longitude": 25.25901,
+    "confidence": 1.0
+  },
+  "Долни чифлик, Bulgaria": {
+    "latitude": 42.9925676,
+    "longitude": 27.7187564,
+    "confidence": 1.0
+  },
+  "Любимец, Bulgaria": {
+    "latitude": 41.8441605,
+    "longitude": 26.0820928,
+    "confidence": 1.0
+  },
+  "Ягодово, Bulgaria": {
+    "latitude": 42.1097528,
+    "longitude": 24.8491089,
+    "confidence": 1.0
+  },
+  "Генерал Тошево, Bulgaria": {
+    "latitude": 43.7001477,
+    "longitude": 28.0362083,
+    "confidence": 1.0
+  },
+  "Чепеларе, Bulgaria": {
+    "latitude": 41.7256563,
+    "longitude": 24.6853052,
+    "confidence": 1.0
+  },
+  "Батак, Bulgaria": {
+    "latitude": 41.9429717,
+    "longitude": 24.218337,
+    "confidence": 1.0
+  },
+  "Раковски, Bulgaria": {
+    "latitude": 42.2873179,
+    "longitude": 24.9659552,
+    "confidence": 1.0
+  },
+  "Цар Калоян, Bulgaria": {
+    "latitude": 43.6065651,
+    "longitude": 26.2412415,
+    "confidence": 1.0
+  },
+  "Приселци, Bulgaria": {
+    "latitude": 43.1100401,
+    "longitude": 27.8279588,
+    "confidence": 1.0
+  },
+  "Славяново, Bulgaria": {
+    "latitude": 43.4647245,
+    "longitude": 24.8710214,
+    "confidence": 1.0
+  },
+  "гр. София, ж.к. Младост 1, бл. 50-А 1, София, Bulgaria": {
+    "latitude": 42.6543849,
+    "longitude": 23.3720676,
+    "confidence": 1.0
+  },
+  "Краище, Bulgaria": {
+    "latitude": 43.85058,
+    "longitude": 27.98139,
+    "confidence": 1.0
+  },
+  "Български извор, Bulgaria": {
+    "latitude": 43.0354315,
+    "longitude": 24.2863261,
+    "confidence": 1.0
+  },
+  "Исперихово, Bulgaria": {
+    "latitude": 42.08375,
+    "longitude": 24.42877,
+    "confidence": 1.0
+  },
+  "Добромир, Bulgaria": {
+    "latitude": 42.95116,
+    "longitude": 27.2899699,
+    "confidence": 1.0
+  },
+  "гр. Сливен, ул. Мур No 2, Сливен, Bulgaria": {
+    "latitude": 42.8794144,
+    "longitude": 26.2160753,
+    "confidence": 1.0
+  },
+  "Ясенково, Bulgaria": {
+    "latitude": 43.54656,
+    "longitude": 26.83584,
+    "confidence": 1.0
+  },
+  "Сърница, Bulgaria": {
+    "latitude": 41.7384034,
+    "longitude": 24.024161,
+    "confidence": 1.0
+  },
+  "Калековец, Bulgaria": {
+    "latitude": 42.2390296,
+    "longitude": 24.8202476,
+    "confidence": 1.0
+  },
+  "Тодор Икономово, Bulgaria": {
+    "latitude": 43.6343966,
+    "longitude": 27.1574625,
+    "confidence": 1.0
+  },
+  "Синеморец, Bulgaria": {
+    "latitude": 42.06105,
+    "longitude": 27.97615,
+    "confidence": 1.0
+  },
+  "Садово, Bulgaria": {
+    "latitude": 42.1342256,
+    "longitude": 24.9374825,
+    "confidence": 1.0
+  },
+  "Костинброд, Bulgaria": {
+    "latitude": 42.8131989,
+    "longitude": 23.2156511,
+    "confidence": 1.0
+  },
+  "Граф Игнатиево, Bulgaria": {
+    "latitude": 42.27975,
+    "longitude": 24.74334,
+    "confidence": 1.0
+  },
+  "Мирково, Bulgaria": {
+    "latitude": 42.6922885,
+    "longitude": 23.990058,
+    "confidence": 1.0
+  },
+  "Угърчин, Bulgaria": {
+    "latitude": 43.0960171,
+    "longitude": 24.4209919,
+    "confidence": 1.0
+  },
+  "Кърналово, Bulgaria": {
+    "latitude": 41.4653399,
+    "longitude": 23.2221599,
+    "confidence": 1.0
+  },
+  "Вълчедръм, Bulgaria": {
+    "latitude": 43.6900754,
+    "longitude": 23.4426025,
+    "confidence": 1.0
+  },
+  "Златарица, Bulgaria": {
+    "latitude": 43.0455003,
+    "longitude": 25.8908187,
+    "confidence": 1.0
+  },
+  "Дългопол, Bulgaria": {
+    "latitude": 43.0526157,
+    "longitude": 27.3460079,
+    "confidence": 1.0
+  },
+  "Белово, Bulgaria": {
+    "latitude": 42.2125836,
+    "longitude": 24.0186657,
+    "confidence": 1.0
+  },
+  "Малко Търново, Bulgaria": {
+    "latitude": 41.9803021,
+    "longitude": 27.5244404,
+    "confidence": 1.0
+  },
+  "Дулово, Bulgaria": {
+    "latitude": 43.8213154,
+    "longitude": 27.1399325,
+    "confidence": 1.0
+  },
+  "Дянково, Bulgaria": {
+    "latitude": 43.62372,
+    "longitude": 26.5938,
+    "confidence": 1.0
+  },
+  "Калугерово, Bulgaria": {
+    "latitude": 42.0906445,
+    "longitude": 25.8674952,
+    "confidence": 1.0
+  },
+  "Айдемир, Bulgaria": {
+    "latitude": 44.09725,
+    "longitude": 27.16762,
+    "confidence": 1.0
+  },
+  "Тервел, Bulgaria": {
+    "latitude": 43.7480676,
+    "longitude": 27.4058887,
+    "confidence": 1.0
+  },
+  "Белащица, Bulgaria": {
+    "latitude": 42.0658019,
+    "longitude": 24.7455856,
+    "confidence": 1.0
+  },
+  "Априлово, Bulgaria": {
+    "latitude": 43.2607464,
+    "longitude": 26.2798914,
+    "confidence": 1.0
+  },
+  "гр. Велико Търново, ул. Ниш No 1, Велико Търново, Bulgaria": {
+    "latitude": 43.6117089,
+    "longitude": 25.3680189,
+    "confidence": 1.0
+  },
+  "Пордим, Bulgaria": {
+    "latitude": 43.3770806,
+    "longitude": 24.8469941,
+    "confidence": 1.0
+  },
+  "Драгиново, Bulgaria": {
+    "latitude": 42.0678645,
+    "longitude": 24.012817,
+    "confidence": 1.0
+  },
+  "Врачеш, Bulgaria": {
+    "latitude": 42.8913956,
+    "longitude": 23.746976,
+    "confidence": 1.0
+  },
+  "Кърнаре, Bulgaria": {
+    "latitude": 42.7012252,
+    "longitude": 24.6320111,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Гоце Делчев No 16, София, Bulgaria": {
+    "latitude": 42.6725847,
+    "longitude": 23.293767,
+    "confidence": 1.0
+  },
+  "Чорбаджийско, Bulgaria": {
+    "latitude": 41.371578,
+    "longitude": 25.4052667,
+    "confidence": 1.0
+  },
+  "Смирненски, Bulgaria": {
+    "latitude": 43.62948,
+    "longitude": 23.03179,
+    "confidence": 1.0
+  },
+  "Симеоновград, Bulgaria": {
+    "latitude": 42.0337777,
+    "longitude": 25.8316217,
+    "confidence": 1.0
+  },
+  "Доспат, Bulgaria": {
+    "latitude": 41.6483558,
+    "longitude": 24.1593256,
+    "confidence": 1.0
+  },
+  "Крепост, Bulgaria": {
+    "latitude": 42.00783,
+    "longitude": 25.59332,
+    "confidence": 1.0
+  },
+  "Полски Тръмбеш, Bulgaria": {
+    "latitude": 43.3698211,
+    "longitude": 25.6358862,
+    "confidence": 1.0
+  },
+  "Руен, Bulgaria": {
+    "latitude": 42.8681725,
+    "longitude": 27.2721754,
+    "confidence": 1.0
+  },
+  "Белица, Bulgaria": {
+    "latitude": 41.9510591,
+    "longitude": 23.5592025,
+    "confidence": 1.0
+  },
+  "Рогош, Bulgaria": {
+    "latitude": 42.17739,
+    "longitude": 24.86298,
+    "confidence": 1.0
+  },
+  "Божурище, Bulgaria": {
+    "latitude": 42.7637383,
+    "longitude": 23.1967627,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Мадрид No 40, София, Bulgaria": {
+    "latitude": 42.6963889,
+    "longitude": 23.348451,
+    "confidence": 1.0
+  },
+  "Стражица, Bulgaria": {
+    "latitude": 43.2277591,
+    "longitude": 25.9605434,
+    "confidence": 1.0
+  },
+  "Павел баня, Bulgaria": {
+    "latitude": 42.5941448,
+    "longitude": 25.2059267,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Прага No 40, София, Bulgaria": {
+    "latitude": 42.6884647,
+    "longitude": 23.3128465,
+    "confidence": 1.0
+  },
+  "Опака, Bulgaria": {
+    "latitude": 43.4453541,
+    "longitude": 26.1693758,
+    "confidence": 1.0
+  },
+  "Оброчище, Bulgaria": {
+    "latitude": 43.40331,
+    "longitude": 28.04623,
+    "confidence": 1.0
+  },
+  "Хитрино, Bulgaria": {
+    "latitude": 43.4249455,
+    "longitude": 26.9168625,
+    "confidence": 1.0
+  },
+  "Говедаре, Bulgaria": {
+    "latitude": 42.1498533,
+    "longitude": 24.4976388,
+    "confidence": 1.0
+  },
+  "гр. София, район Красно село, бул. Гоце Делчев No 46, София, Bulgaria": {
+    "latitude": 42.6725847,
+    "longitude": 23.293767,
+    "confidence": 1.0
+  },
+  "Кула, Bulgaria": {
+    "latitude": 43.8874059,
+    "longitude": 22.5203916,
+    "confidence": 1.0
+  },
+  "Борово, Bulgaria": {
+    "latitude": 43.4883438,
+    "longitude": 25.8089088,
+    "confidence": 1.0
+  },
+  "Аксаково, Bulgaria": {
+    "latitude": 43.2586259,
+    "longitude": 27.8173611,
+    "confidence": 1.0
+  },
+  "Рила, Bulgaria": {
+    "latitude": 42.18,
+    "longitude": 23.58535,
+    "confidence": 1.0
+  },
+  "Горна Малина, Bulgaria": {
+    "latitude": 42.6939963,
+    "longitude": 23.7059625,
+    "confidence": 1.0
+  },
+  "Радилово, Bulgaria": {
+    "latitude": 42.07993,
+    "longitude": 24.3092,
+    "confidence": 1.0
+  },
+  "Тополи, Bulgaria": {
+    "latitude": 43.2164126,
+    "longitude": 27.8212023,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Акад. Иван Гешов No15, София, Bulgaria": {
+    "latitude": 42.6801054,
+    "longitude": 23.302488,
+    "confidence": 1.0
+  },
+  "Езерово, Bulgaria": {
+    "latitude": 42.017027,
+    "longitude": 25.2961377,
+    "confidence": 1.0
+  },
+  "Ябланово, Bulgaria": {
+    "latitude": 42.9861699,
+    "longitude": 26.5493401,
+    "confidence": 1.0
+  },
+  "Боянци, Bulgaria": {
+    "latitude": 42.0403299,
+    "longitude": 24.9439001,
+    "confidence": 1.0
+  },
+  "Нови хан, Bulgaria": {
+    "latitude": 42.6057156,
+    "longitude": 23.5960002,
+    "confidence": 1.0
+  },
+  "Самуил, Bulgaria": {
+    "latitude": 43.5580192,
+    "longitude": 26.7392237,
+    "confidence": 1.0
+  },
+  "Чепинци, Bulgaria": {
+    "latitude": 42.7585157,
+    "longitude": 23.4259689,
+    "confidence": 1.0
+  },
+  "Костиево, Bulgaria": {
+    "latitude": 42.1795,
+    "longitude": 24.62219,
+    "confidence": 1.0
+  },
+  "Крушовене, Bulgaria": {
+    "latitude": 43.64638,
+    "longitude": 24.39821,
+    "confidence": 1.0
+  },
+  "Ставерци, Bulgaria": {
+    "latitude": 43.5723408,
+    "longitude": 24.2808614,
+    "confidence": 1.0
+  },
+  "Сърнево, Bulgaria": {
+    "latitude": 42.4748,
+    "longitude": 27.0932499,
+    "confidence": 1.0
+  },
+  "Овощник, Bulgaria": {
+    "latitude": 42.5767858,
+    "longitude": 25.4469133,
+    "confidence": 1.0
+  },
+  "Борован, Bulgaria": {
+    "latitude": 43.446358,
+    "longitude": 23.7354316,
+    "confidence": 1.0
+  },
+  "Камен, Bulgaria": {
+    "latitude": 43.71724,
+    "longitude": 27.71175,
+    "confidence": 1.0
+  },
+  "Сливо поле, Bulgaria": {
+    "latitude": 43.9438354,
+    "longitude": 26.2060525,
+    "confidence": 1.0
+  },
+  "Кранево, Bulgaria": {
+    "latitude": 43.3440334,
+    "longitude": 28.0611858,
+    "confidence": 1.0
+  },
+  "Царимир, Bulgaria": {
+    "latitude": 42.3227,
+    "longitude": 24.67244,
+    "confidence": 1.0
+  },
+  "Бъзовец, Bulgaria": {
+    "latitude": 43.5048927,
+    "longitude": 25.8809761,
+    "confidence": 1.0
+  },
+  "Бял извор, Bulgaria": {
+    "latitude": 41.5456137,
+    "longitude": 25.0735745,
+    "confidence": 1.0
+  },
+  "Войводиново, Bulgaria": {
+    "latitude": 42.20031,
+    "longitude": 24.79548,
+    "confidence": 1.0
+  },
+  "Хаджидимово, Bulgaria": {
+    "latitude": 41.5167556,
+    "longitude": 23.8536925,
+    "confidence": 1.0
+  },
+  "Бойчиновци, Bulgaria": {
+    "latitude": 43.4711262,
+    "longitude": 23.3324399,
+    "confidence": 1.0
+  },
+  "гр. София, бул. България No 69, София, Bulgaria": {
+    "latitude": 42.6792938,
+    "longitude": 23.3011089,
+    "confidence": 1.0
+  },
+  "Ново Делчево, Bulgaria": {
+    "latitude": 41.50559,
+    "longitude": 23.28451,
+    "confidence": 1.0
+  },
+  "Гълъбец, Bulgaria": {
+    "latitude": 41.8435101,
+    "longitude": 25.4396801,
+    "confidence": 1.0
+  },
+  "Антон, Bulgaria": {
+    "latitude": 42.7347445,
+    "longitude": 24.302594,
+    "confidence": 1.0
+  },
+  "Долни Луковит, Bulgaria": {
+    "latitude": 43.51481,
+    "longitude": 24.21277,
+    "confidence": 1.0
+  },
+  "Габаре, Bulgaria": {
+    "latitude": 43.30881,
+    "longitude": 23.91391,
+    "confidence": 1.0
+  },
+  "Торос, Bulgaria": {
+    "latitude": 43.0967069,
+    "longitude": 24.2782711,
+    "confidence": 1.0
+  },
+  "Търнава, Bulgaria": {
+    "latitude": 42.47274,
+    "longitude": 26.68238,
+    "confidence": 1.0
+  },
+  "Оризово, Bulgaria": {
+    "latitude": 42.20632,
+    "longitude": 25.1659701,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Скобелев No 39, София, Bulgaria": {
+    "latitude": 42.6866623,
+    "longitude": 23.3202078,
+    "confidence": 1.0
+  },
+  "Никола Козлево, Bulgaria": {
+    "latitude": 43.5496713,
+    "longitude": 27.254793,
+    "confidence": 1.0
+  },
+  "Богутево, Bulgaria": {
+    "latitude": 41.75862,
+    "longitude": 24.71759,
+    "confidence": 1.0
+  },
+  "Правец, Bulgaria": {
+    "latitude": 42.8956755,
+    "longitude": 23.9148925,
+    "confidence": 1.0
+  },
+  "Яна, Bulgaria": {
+    "latitude": 42.7309314,
+    "longitude": 23.5579248,
+    "confidence": 1.0
+  },
+  "гр. София, Иван Денкоглу No 34, София, Bulgaria": {
+    "latitude": 42.694175,
+    "longitude": 23.3182263,
+    "confidence": 1.0
+  },
+  "Челопеч, Bulgaria": {
+    "latitude": 42.7065,
+    "longitude": 24.077356,
+    "confidence": 1.0
+  },
+  "Белоградец, Bulgaria": {
+    "latitude": 43.35156,
+    "longitude": 27.33323,
+    "confidence": 1.0
+  },
+  "Николово, Bulgaria": {
+    "latitude": 41.8264526,
+    "longitude": 25.4091412,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Мадрид No 13, София, Bulgaria": {
+    "latitude": 42.6963889,
+    "longitude": 23.348451,
+    "confidence": 1.0
+  },
+  "Софрониево, Bulgaria": {
+    "latitude": 43.63119,
+    "longitude": 23.78371,
+    "confidence": 1.0
+  },
+  "Златитрап, Bulgaria": {
+    "latitude": 42.1155757,
+    "longitude": 24.6388585,
+    "confidence": 1.0
+  },
+  "Ветрен дол, Bulgaria": {
+    "latitude": 42.15787,
+    "longitude": 24.15076,
+    "confidence": 1.0
+  },
+  "Бързия, Bulgaria": {
+    "latitude": 43.2002436,
+    "longitude": 23.1620236,
+    "confidence": 1.0
+  },
+  "Карлуково, Bulgaria": {
+    "latitude": 43.1652693,
+    "longitude": 24.0659425,
+    "confidence": 1.0
+  },
+  "Ахтопол, Bulgaria": {
+    "latitude": 42.0995866,
+    "longitude": 27.9434142,
+    "confidence": 1.0
+  },
+  "Койнаре, Bulgaria": {
+    "latitude": 43.3609505,
+    "longitude": 24.1443086,
+    "confidence": 1.0
+  },
+  "Братя Даскалови, Bulgaria": {
+    "latitude": 42.2958483,
+    "longitude": 25.212775,
+    "confidence": 1.0
+  },
+  "Мрамор, Bulgaria": {
+    "latitude": 42.7859277,
+    "longitude": 23.2738228,
+    "confidence": 1.0
+  },
+  "Скутаре, Bulgaria": {
+    "latitude": 42.18434,
+    "longitude": 24.84136,
+    "confidence": 1.0
+  },
+  "Вършец, Bulgaria": {
+    "latitude": 43.199245,
+    "longitude": 23.2893966,
+    "confidence": 1.0
+  },
+  "Венец, Bulgaria": {
+    "latitude": 42.6407899,
+    "longitude": 26.80357,
+    "confidence": 1.0
+  },
+  "Царево, Bulgaria": {
+    "latitude": 42.1702827,
+    "longitude": 27.8482856,
+    "confidence": 1.0
+  },
+  "Долна Оряховица, Bulgaria": {
+    "latitude": 43.1598318,
+    "longitude": 25.7407514,
+    "confidence": 1.0
+  },
+  "Бутан, Bulgaria": {
+    "latitude": 43.6484,
+    "longitude": 23.74882,
+    "confidence": 1.0
+  },
+  "Брестник, Bulgaria": {
+    "latitude": 42.0542981,
+    "longitude": 24.76641,
+    "confidence": 1.0
+  },
+  "Марково, Bulgaria": {
+    "latitude": 42.0682027,
+    "longitude": 24.7007256,
+    "confidence": 1.0
+  },
+  "Земен, Bulgaria": {
+    "latitude": 42.4798619,
+    "longitude": 22.7503014,
+    "confidence": 1.0
+  },
+  "Искрец, Bulgaria": {
+    "latitude": 42.9869388,
+    "longitude": 23.2523047,
+    "confidence": 1.0
+  },
+  "Бухово, Bulgaria": {
+    "latitude": 42.7647891,
+    "longitude": 23.5665131,
+    "confidence": 1.0
+  },
+  "Йоаким Груево, Bulgaria": {
+    "latitude": 42.1195645,
+    "longitude": 24.5659424,
+    "confidence": 1.0
+  },
+  "Гроздьово, Bulgaria": {
+    "latitude": 43.028867,
+    "longitude": 27.5411099,
+    "confidence": 1.0
+  },
+  "Иваново, Bulgaria": {
+    "latitude": 41.5323393,
+    "longitude": 23.068433,
+    "confidence": 1.0
+  },
+  "Слащен, Bulgaria": {
+    "latitude": 41.4972348,
+    "longitude": 24.0199307,
+    "confidence": 1.0
+  },
+  "Стефан Караджа, Bulgaria": {
+    "latitude": 43.62008,
+    "longitude": 27.8774,
+    "confidence": 1.0
+  },
+  "Ахелой, Bulgaria": {
+    "latitude": 42.6486312,
+    "longitude": 27.6477519,
+    "confidence": 1.0
+  },
+  "Богомилово, Bulgaria": {
+    "latitude": 42.3868599,
+    "longitude": 25.55757,
+    "confidence": 1.0
+  },
+  "Карабунар, Bulgaria": {
+    "latitude": 42.26584,
+    "longitude": 24.17509,
+    "confidence": 1.0
+  },
+  "Лехчево, Bulgaria": {
+    "latitude": 43.5318356,
+    "longitude": 23.5309884,
+    "confidence": 1.0
+  },
+  "Белослав, Bulgaria": {
+    "latitude": 43.1905492,
+    "longitude": 27.7048397,
+    "confidence": 1.0
+  },
+  "Хърлец, Bulgaria": {
+    "latitude": 43.7099287,
+    "longitude": 23.8222814,
+    "confidence": 1.0
+  },
+  "Брезник, Bulgaria": {
+    "latitude": 42.7397669,
+    "longitude": 22.9103497,
+    "confidence": 1.0
+  },
+  "Поповица, Bulgaria": {
+    "latitude": 42.13757,
+    "longitude": 25.0607935,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Скобелев No 79, София, Bulgaria": {
+    "latitude": 42.6866623,
+    "longitude": 23.3202078,
+    "confidence": 1.0
+  },
+  "Маджарово, Bulgaria": {
+    "latitude": 41.6336488,
+    "longitude": 25.860336,
+    "confidence": 1.0
+  },
+  "гр. Варна, район Приморски, ул. Мир No 8, Варна, Bulgaria": {
+    "latitude": 43.2061152,
+    "longitude": 27.9267052,
+    "confidence": 1.0
+  },
+  "Добринище, Bulgaria": {
+    "latitude": 41.8210798,
+    "longitude": 23.5629827,
+    "confidence": 1.0
+  },
+  "Лозен, Bulgaria": {
+    "latitude": 42.6018838,
+    "longitude": 23.4872037,
+    "confidence": 1.0
+  },
+  "Герман, Bulgaria": {
+    "latitude": 42.6117101,
+    "longitude": 23.4127002,
+    "confidence": 1.0
+  },
+  "Болярци, Bulgaria": {
+    "latitude": 41.70331,
+    "longitude": 25.45397,
+    "confidence": 1.0
+  },
+  "Ресен, Bulgaria": {
+    "latitude": 43.20084,
+    "longitude": 25.54946,
+    "confidence": 1.0
+  },
+  "Медовец, Bulgaria": {
+    "latitude": 43.006028,
+    "longitude": 27.136091,
+    "confidence": 1.0
+  },
+  "Кайнарджа, Bulgaria": {
+    "latitude": 43.9922854,
+    "longitude": 27.5076325,
+    "confidence": 1.0
+  },
+  "Каспичан, Bulgaria": {
+    "latitude": 43.3141455,
+    "longitude": 27.1612625,
+    "confidence": 1.0
+  },
+  "Бобошево, Bulgaria": {
+    "latitude": 42.1527179,
+    "longitude": 23.0000878,
+    "confidence": 1.0
+  },
+  "Трън, Bulgaria": {
+    "latitude": 42.8354054,
+    "longitude": 22.6517667,
+    "confidence": 1.0
+  },
+  "Тетово, Bulgaria": {
+    "latitude": 43.81693,
+    "longitude": 26.28902,
+    "confidence": 1.0
+  },
+  "Маноле, Bulgaria": {
+    "latitude": 42.18859,
+    "longitude": 24.93435,
+    "confidence": 1.0
+  },
+  "Бяла река, Bulgaria": {
+    "latitude": 41.4928553,
+    "longitude": 24.8165364,
+    "confidence": 1.0
+  },
+  "Корница, Bulgaria": {
+    "latitude": 41.6406704,
+    "longitude": 23.6766489,
+    "confidence": 1.0
+  },
+  "Каблешково, Bulgaria": {
+    "latitude": 42.6598371,
+    "longitude": 27.5648758,
+    "confidence": 1.0
+  },
+  "Гурково, Bulgaria": {
+    "latitude": 42.6577054,
+    "longitude": 25.7932924,
+    "confidence": 1.0
+  },
+  "Световрачене, Bulgaria": {
+    "latitude": 42.7836705,
+    "longitude": 23.3897256,
+    "confidence": 1.0
+  },
+  "Сапарева баня, Bulgaria": {
+    "latitude": 42.2889464,
+    "longitude": 23.2634537,
+    "confidence": 1.0
+  },
+  "Каолиново, Bulgaria": {
+    "latitude": 43.6205554,
+    "longitude": 27.1070625,
+    "confidence": 1.0
+  },
+  "Смядово, Bulgaria": {
+    "latitude": 43.0662446,
+    "longitude": 27.0204063,
+    "confidence": 1.0
+  },
+  "гр. Варна, ул. Три уши No 11, Варна, Bulgaria": {
+    "latitude": 43.2000525,
+    "longitude": 27.9140939,
+    "confidence": 1.0
+  },
+  "Плоски, Bulgaria": {
+    "latitude": 41.64559,
+    "longitude": 23.26808,
+    "confidence": 1.0
+  },
+  "Хвойна, Bulgaria": {
+    "latitude": 41.8719203,
+    "longitude": 24.685877,
+    "confidence": 1.0
+  },
+  "Партизани, Bulgaria": {
+    "latitude": 43.0096236,
+    "longitude": 27.250011,
+    "confidence": 1.0
+  },
+  "Червена вода, Bulgaria": {
+    "latitude": 43.8063979,
+    "longitude": 26.1019627,
+    "confidence": 1.0
+  },
+  "Драгичево, Bulgaria": {
+    "latitude": 42.6100058,
+    "longitude": 23.1495113,
+    "confidence": 1.0
+  },
+  "Игнатиево, Bulgaria": {
+    "latitude": 43.2495548,
+    "longitude": 27.7747311,
+    "confidence": 1.0
+  },
+  "Света Петка, Bulgaria": {
+    "latitude": 42.03895,
+    "longitude": 23.87546,
+    "confidence": 1.0
+  },
+  "Лъки, Bulgaria": {
+    "latitude": 41.8332197,
+    "longitude": 24.829587,
+    "confidence": 1.0
+  },
+  "гр. Гоце Делчев, бул. Гоце Делчев No 10, Гоце Делчев, Bulgaria": {
+    "latitude": 42.6725847,
+    "longitude": 23.293767,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Витоша No 60, София, Bulgaria": {
+    "latitude": 42.6941163,
+    "longitude": 23.3203753,
+    "confidence": 1.0
+  },
+  "Равногор, Bulgaria": {
+    "latitude": 41.94964,
+    "longitude": 24.3683,
+    "confidence": 1.0
+  },
+  "Братаница, Bulgaria": {
+    "latitude": 42.16508,
+    "longitude": 24.21634,
+    "confidence": 1.0
+  },
+  "Селановци, Bulgaria": {
+    "latitude": 43.6749726,
+    "longitude": 24.0074899,
+    "confidence": 1.0
+  },
+  "Цалапица, Bulgaria": {
+    "latitude": 42.1827791,
+    "longitude": 24.5696221,
+    "confidence": 1.0
+  },
+  "Рударци, Bulgaria": {
+    "latitude": 42.5840225,
+    "longitude": 23.1611746,
+    "confidence": 1.0
+  },
+  "Петърч, Bulgaria": {
+    "latitude": 42.8446876,
+    "longitude": 23.1468556,
+    "confidence": 1.0
+  },
+  "гр. Пловдив, бул. Марица No 25, Пловдив, Bulgaria": {
+    "latitude": 42.1528097,
+    "longitude": 24.7298001,
+    "confidence": 1.0
+  },
+  "Долно Дряново, Bulgaria": {
+    "latitude": 41.58692,
+    "longitude": 23.89803,
+    "confidence": 1.0
+  },
+  "Дъбница, Bulgaria": {
+    "latitude": 41.5708695,
+    "longitude": 23.8359619,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Гоце Делчев No 43, София, Bulgaria": {
+    "latitude": 42.6725847,
+    "longitude": 23.293767,
+    "confidence": 1.0
+  },
+  "Бузовград, Bulgaria": {
+    "latitude": 42.5812739,
+    "longitude": 25.3704254,
+    "confidence": 1.0
+  },
+  "Брестовица, Bulgaria": {
+    "latitude": 42.0765436,
+    "longitude": 24.5961256,
+    "confidence": 1.0
+  },
+  "бул. Христо Ботев No 72, Пазарджик, Bulgaria": {
+    "latitude": 42.2033796,
+    "longitude": 24.3320565,
+    "confidence": 1.0
+  },
+  "Забърдо, Bulgaria": {
+    "latitude": 41.78454,
+    "longitude": 24.59159,
+    "confidence": 1.0
+  },
+  "Ясен, Bulgaria": {
+    "latitude": 43.4265336,
+    "longitude": 24.522568,
+    "confidence": 1.0
+  },
+  "Старцево, Bulgaria": {
+    "latitude": 41.43118,
+    "longitude": 25.05065,
+    "confidence": 1.0
+  },
+  "Кулата, Bulgaria": {
+    "latitude": 41.3884801,
+    "longitude": 23.3655799,
+    "confidence": 1.0
+  },
+  "Кърланово, Bulgaria": {
+    "latitude": 41.5443833,
+    "longitude": 23.4170148,
+    "confidence": 1.0
+  },
+  "Катуница, Bulgaria": {
+    "latitude": 42.10019,
+    "longitude": 24.86895,
+    "confidence": 1.0
+  },
+  "Тополово, Bulgaria": {
+    "latitude": 41.901013,
+    "longitude": 25.0055595,
+    "confidence": 1.0
+  },
+  "Минерални бани, Bulgaria": {
+    "latitude": 41.935149,
+    "longitude": 25.3494329,
+    "confidence": 1.0
+  },
+  "Александрово, Bulgaria": {
+    "latitude": 43.2275779,
+    "longitude": 26.4248588,
+    "confidence": 1.0
+  },
+  "Фотиново, Bulgaria": {
+    "latitude": 41.3718798,
+    "longitude": 25.3417882,
+    "confidence": 1.0
+  },
+  "Железница, Bulgaria": {
+    "latitude": 42.5337763,
+    "longitude": 23.3662545,
+    "confidence": 1.0
+  },
+  "Лъжница, Bulgaria": {
+    "latitude": 41.61846,
+    "longitude": 23.67741,
+    "confidence": 1.0
+  },
+  "Летница, Bulgaria": {
+    "latitude": 43.3058111,
+    "longitude": 25.0540972,
+    "confidence": 1.0
+  },
+  "гр. София, бул. Прага No 24, София, Bulgaria": {
+    "latitude": 42.6884647,
+    "longitude": 23.3128465,
+    "confidence": 1.0
+  },
+  "Медковец, Bulgaria": {
+    "latitude": 43.649215,
+    "longitude": 23.1876353,
+    "confidence": 1.0
+  },
+  "Звъничево, Bulgaria": {
+    "latitude": 42.1903511,
+    "longitude": 24.2492061,
+    "confidence": 1.0
+  },
+  "Гълъбовци, Bulgaria": {
+    "latitude": 42.8105627,
+    "longitude": 23.0075412,
+    "confidence": 1.0
+  },
+  "Ясеновец, Bulgaria": {
+    "latitude": 43.57326,
+    "longitude": 26.6247,
+    "confidence": 1.0
+  },
+  "Тръстеник, Bulgaria": {
+    "latitude": 43.5210502,
+    "longitude": 24.4694122,
+    "confidence": 1.0
+  },
+  "Ягода, Bulgaria": {
+    "latitude": 42.5432913,
+    "longitude": 25.5763626,
+    "confidence": 1.0
+  },
+  "Куртово Конаре, Bulgaria": {
+    "latitude": 42.09208,
+    "longitude": 24.50168,
+    "confidence": 1.0
+  },
+  "гр. Враца, бул. 2-ри юни No 154, Враца, Bulgaria": {
+    "latitude": 43.2357222,
+    "longitude": 23.568297,
+    "confidence": 1.0
+  },
+  "Трънак, Bulgaria": {
+    "latitude": 42.94356,
+    "longitude": 27.2101499,
+    "confidence": 1.0
+  },
+  "Опан, Bulgaria": {
+    "latitude": 42.1756295,
+    "longitude": 25.688984,
+    "confidence": 1.0
+  },
+  "Невестино, Bulgaria": {
+    "latitude": 41.66996,
+    "longitude": 25.37423,
+    "confidence": 1.0
+  },
+  "Sofia, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Shose Bankya 7, Sofia, 1331, Bulgaria": {
+    "latitude": 42.7114452,
+    "longitude": 23.1767758,
+    "confidence": 1.0
+  },
+  "Gara Iskar, Sofia, 1528, Bulgaria": {
+    "latitude": 42.6631695,
+    "longitude": 23.4156322,
+    "confidence": 1.0
+  },
+  "Byala Slatina, Bulgaria": {
+    "latitude": 43.4697446,
+    "longitude": 23.9450995,
+    "confidence": 1.0
+  },
+  "Floor 1, Sofia, 1164, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Varna, Bulgaria": {
+    "latitude": 43.2073873,
+    "longitude": 27.9166653,
+    "confidence": 1.0
+  },
+  "Pernik, Bulgaria": {
+    "latitude": 42.628442,
+    "longitude": 22.8823119,
+    "confidence": 1.0
+  },
+  "Pirdop, Bulgaria": {
+    "latitude": 42.7006838,
+    "longitude": 24.1803328,
+    "confidence": 1.0
+  },
+  "Vratsa, Bulgaria": {
+    "latitude": 43.400307,
+    "longitude": 23.716675,
+    "confidence": 1.0
+  },
+  "Lovech, Bulgaria": {
+    "latitude": 43.0444495,
+    "longitude": 24.4910249,
+    "confidence": 1.0
+  },
+  "Sofiya, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Sandanski, Bulgaria": {
+    "latitude": 41.5654156,
+    "longitude": 23.2786429,
+    "confidence": 1.0
+  },
+  "Floor 1, Sofia, 1505, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Plovdiv, Bulgaria": {
+    "latitude": 42.1418541,
+    "longitude": 24.7499297,
+    "confidence": 1.0
+  },
+  "Ravno Pole, Bulgaria": {
+    "latitude": 42.6676028,
+    "longitude": 23.526208,
+    "confidence": 1.0
+  },
+  "Krayrechna Street 1, Troyan, 5600, Bulgaria": {
+    "latitude": 42.8991683,
+    "longitude": 24.7151689,
+    "confidence": 1.0
+  },
+  "Stara Zagora, Bulgaria": {
+    "latitude": 42.4248111,
+    "longitude": 25.6257479,
+    "confidence": 1.0
+  },
+  "Blagoevgrad, Bulgaria": {
+    "latitude": 41.750287,
+    "longitude": 23.4873411,
+    "confidence": 1.0
+  },
+  "Burgas, Bulgaria": {
+    "latitude": 42.4936616,
+    "longitude": 27.4721276,
+    "confidence": 1.0
+  },
+  "Veliko Tirnovo, Bulgaria": {
+    "latitude": 43.2152049,
+    "longitude": 25.6122126,
+    "confidence": 1.0
+  },
+  "Lozenets, Sofia, 1407, Bulgaria": {
+    "latitude": 42.6597151,
+    "longitude": 23.3250228,
+    "confidence": 1.0
+  },
+  "115M Tsarigradsko Shose Blvd, Sofia, 1784, Bulgaria": {
+    "latitude": 42.6597577,
+    "longitude": 23.382842,
+    "confidence": 1.0
+  },
+  "James Bourchier Blvd 71, Sofia, 1407, Bulgaria": {
+    "latitude": 42.6711936,
+    "longitude": 23.317856,
+    "confidence": 1.0
+  },
+  "Gorna Oryahovitsa, Bulgaria": {
+    "latitude": 43.1222791,
+    "longitude": 25.6887918,
+    "confidence": 1.0
+  },
+  "Bul.Rozhen 16, Sofia, 1220, Bulgaria": {
+    "latitude": 42.7332883,
+    "longitude": 23.313852,
+    "confidence": 1.0
+  },
+  "Botevgrad, Bulgaria": {
+    "latitude": 42.9078544,
+    "longitude": 23.7929451,
+    "confidence": 1.0
+  },
+  "Kriva Reka, Sofiya, 1606, Bulgaria": {
+    "latitude": 42.6872181,
+    "longitude": 23.3051545,
+    "confidence": 1.0
+  },
+  "Peshtera, Bulgaria": {
+    "latitude": 42.0336471,
+    "longitude": 24.305207,
+    "confidence": 1.0
+  },
+  "Business Center Serdika, Sofia, 1330, Bulgaria": {
+    "latitude": 42.690817,
+    "longitude": 23.2941705,
+    "confidence": 1.0
+  },
+  "Razlog, Bulgaria": {
+    "latitude": 41.8861079,
+    "longitude": 23.4661521,
+    "confidence": 1.0
+  },
+  "Herakovo, Sofia, 2211, Bulgaria": {
+    "latitude": 42.7810735,
+    "longitude": 23.1139964,
+    "confidence": 1.0
+  },
+  "Vaksevo, Nevestino, 2590, Bulgaria": {
+    "latitude": 42.16126,
+    "longitude": 22.85845,
+    "confidence": 1.0
+  },
+  "Gorublyane, Bulgaria": {
+    "latitude": 42.6301693,
+    "longitude": 23.4085821,
+    "confidence": 1.0
+  },
+  "Iskar, Sofia, 1582, Bulgaria": {
+    "latitude": 42.6620679,
+    "longitude": 23.4159824,
+    "confidence": 1.0
+  },
+  "Ul. Hristo Botev 27a, Plovdiv, 4003, Bulgaria": {
+    "latitude": 41.8940493,
+    "longitude": 25.0621094,
+    "confidence": 1.0
+  },
+  "Topoli, Bulgaria": {
+    "latitude": 43.2093003,
+    "longitude": 27.8173013,
+    "confidence": 1.0
+  },
+  "Shumen, Bulgaria": {
+    "latitude": 43.3088188,
+    "longitude": 27.0197261,
+    "confidence": 1.0
+  },
+  "Tsar Samuil 111, Sofia, 1000, Bulgaria": {
+    "latitude": 42.7004486,
+    "longitude": 23.3186479,
+    "confidence": 1.0
+  },
+  "Pleven, Bulgaria": {
+    "latitude": 43.4809895,
+    "longitude": 24.6060665,
+    "confidence": 1.0
+  },
+  "Zavet, Bulgaria": {
+    "latitude": 43.7591754,
+    "longitude": 26.6781225,
+    "confidence": 1.0
+  },
+  "Veliko Tarnovo, Bulgaria": {
+    "latitude": 43.0820584,
+    "longitude": 25.6321312,
+    "confidence": 1.0
+  },
+  "Kalugerovo Village, Pazardzhik, 4462, Bulgaria": {
+    "latitude": 42.32575,
+    "longitude": 24.1651,
+    "confidence": 1.0
+  },
+  "Boyana, Bulgaria": {
+    "latitude": 42.6462136,
+    "longitude": 23.2667486,
+    "confidence": 1.0
+  },
+  "Saedinenie, Bulgaria": {
+    "latitude": 42.2692356,
+    "longitude": 24.5426125,
+    "confidence": 1.0
+  },
+  "Kv.studentski Grad 103, Sofia, 1734, Bulgaria": {
+    "latitude": 42.6340931,
+    "longitude": 23.3480004,
+    "confidence": 1.0
+  },
+  "Marikostinovo, Bulgaria": {
+    "latitude": 41.4319501,
+    "longitude": 23.33902,
+    "confidence": 1.0
+  },
+  "Zh.K. Krasno Selo, Sofia, 1680, Bulgaria": {
+    "latitude": 42.6736589,
+    "longitude": 23.2825005,
+    "confidence": 1.0
+  },
+  "Bul. Tutrakan 71, Ruse, 7000, Bulgaria": {
+    "latitude": 43.863889,
+    "longitude": 25.9823903,
+    "confidence": 1.0
+  },
+  "V, Sofiya, 1360, Bulgaria": {
+    "latitude": 42.7138274,
+    "longitude": 23.3195029,
+    "confidence": 1.0
+  },
+  "Zh K Krasna Polyana 329a, Sofia, 1330, Bulgaria": {
+    "latitude": 42.6924677,
+    "longitude": 23.2825468,
+    "confidence": 1.0
+  },
+  "Dimitrovgrad, Bulgaria": {
+    "latitude": 42.0582493,
+    "longitude": 25.5916466,
+    "confidence": 1.0
+  },
+  "Akad Ivan Geshov Blvd 2e, Sofia, 1330, Bulgaria": {
+    "latitude": 42.6851734,
+    "longitude": 23.3014707,
+    "confidence": 1.0
+  },
+  "Petrich, Bulgaria": {
+    "latitude": 41.3952948,
+    "longitude": 23.2067832,
+    "confidence": 1.0
+  },
+  "Pobeda Street 33, Sapareva Banya, 2650, Bulgaria": {
+    "latitude": 42.2888121,
+    "longitude": 23.271702,
+    "confidence": 1.0
+  },
+  "Pavlovo, Sofia, 1612, Bulgaria": {
+    "latitude": 42.6677646,
+    "longitude": 23.265769,
+    "confidence": 1.0
+  },
+  "Lom, Bulgaria": {
+    "latitude": 43.8201697,
+    "longitude": 23.2386638,
+    "confidence": 1.0
+  },
+  "Razgrad, Bulgaria": {
+    "latitude": 43.6394793,
+    "longitude": 26.7022408,
+    "confidence": 1.0
+  },
+  "District Sredec, Sofia, 1142, Bulgaria": {
+    "latitude": 42.6962264,
+    "longitude": 23.3251335,
+    "confidence": 1.0
+  },
+  "Lakatnik, Bulgaria": {
+    "latitude": 43.0531788,
+    "longitude": 23.4088836,
+    "confidence": 1.0
+  },
+  "Krasno Selo, Sofia, 1612, Bulgaria": {
+    "latitude": 42.6810597,
+    "longitude": 23.2877979,
+    "confidence": 1.0
+  },
+  "Kazichene, Bulgaria": {
+    "latitude": 42.6615301,
+    "longitude": 23.4621214,
+    "confidence": 1.0
+  },
+  "Serdika District, Sofia, 1225, Bulgaria": {
+    "latitude": 42.6792938,
+    "longitude": 23.3011089,
+    "confidence": 1.0
+  },
+  "Krakov Str 10, Varna, 9023, Bulgaria": {
+    "latitude": 43.2318376,
+    "longitude": 27.8657572,
+    "confidence": 1.0
+  },
+  "Devnya, Bulgaria": {
+    "latitude": 43.2184213,
+    "longitude": 27.5564948,
+    "confidence": 1.0
+  },
+  "Zh.k. Manastirski Livadi, Sofia, 1680, Bulgaria": {
+    "latitude": 42.6640603,
+    "longitude": 23.2887209,
+    "confidence": 1.0
+  },
+  "Zh. K. Krasna Polyana, Sofia, 1330, Bulgaria": {
+    "latitude": 42.690614,
+    "longitude": 23.2783036,
+    "confidence": 1.0
+  },
+  "Yambol, Bulgaria": {
+    "latitude": 42.311889,
+    "longitude": 26.5636852,
+    "confidence": 1.0
+  },
+  "Kv. Lyulin H, Sofia, 1335, Bulgaria": {
+    "latitude": 42.7198967,
+    "longitude": 23.2216398,
+    "confidence": 1.0
+  },
+  "Bozhurishte, Bulgaria": {
+    "latitude": 42.7637383,
+    "longitude": 23.1967627,
+    "confidence": 1.0
+  },
+  "Severna Street 1, Pleven, 5800, Bulgaria": {
+    "latitude": 43.4313471,
+    "longitude": 24.5999539,
+    "confidence": 1.0
+  },
+  "Industrial Zone North, Burgas, 8000, Bulgaria": {
+    "latitude": 42.522059,
+    "longitude": 27.4329075,
+    "confidence": 1.0
+  },
+  "Ruse, Bulgaria": {
+    "latitude": 43.8480413,
+    "longitude": 25.9542057,
+    "confidence": 1.0
+  },
+  "Dobromirka, Bulgaria": {
+    "latitude": 43.08024,
+    "longitude": 25.25841,
+    "confidence": 1.0
+  },
+  "Parvomay, Bulgaria": {
+    "latitude": 42.09946,
+    "longitude": 25.2247171,
+    "confidence": 1.0
+  },
+  "Village Lozen, Sofia, 1151, Bulgaria": {
+    "latitude": 42.5996262,
+    "longitude": 23.4992058,
+    "confidence": 1.0
+  },
+  "Belozem, Bulgaria": {
+    "latitude": 42.19516,
+    "longitude": 25.04426,
+    "confidence": 1.0
+  },
+  "Business Park, Sofia, 1766, Bulgaria": {
+    "latitude": 42.6288008,
+    "longitude": 23.3734489,
+    "confidence": 1.0
+  },
+  "2nd Floor, Sofia, 1606, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "St. Zagora, Bulgaria": {
+    "latitude": 42.3748942,
+    "longitude": 25.6563091,
+    "confidence": 1.0
+  },
+  "Hristo Smirnenski Str 1, Varna, 9010, Bulgaria": {
+    "latitude": 43.2279449,
+    "longitude": 27.9025592,
+    "confidence": 1.0
+  },
+  "Sliven, Bulgaria": {
+    "latitude": 42.64169,
+    "longitude": 26.2634283,
+    "confidence": 1.0
+  },
+  "Hristo Smirnenski St 1, Varna, 9010, Bulgaria": {
+    "latitude": 43.2279449,
+    "longitude": 27.9025592,
+    "confidence": 1.0
+  },
+  "Ljulin, Sofia, 1360, Bulgaria": {
+    "latitude": 42.7215077,
+    "longitude": 23.2358382,
+    "confidence": 1.0
+  },
+  "Gabrovo, Bulgaria": {
+    "latitude": 42.9638895,
+    "longitude": 25.2119538,
+    "confidence": 1.0
+  },
+  "3rd Floor, Sofia, 1303, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Caracovo, Bulgaria": {
+    "latitude": 42.2005976,
+    "longitude": 24.6875409,
+    "confidence": 1.0
+  },
+  "Building 1, Sofia, 1137, Bulgaria": {
+    "latitude": 42.6721031,
+    "longitude": 23.3956727,
+    "confidence": 1.0
+  },
+  "Mladost, Sofia, 1750, Bulgaria": {
+    "latitude": 42.6474955,
+    "longitude": 23.382051,
+    "confidence": 1.0
+  },
+  "Vitosha, Sofia, 1404, Bulgaria": {
+    "latitude": 42.6468281,
+    "longitude": 23.3292104,
+    "confidence": 1.0
+  },
+  "Kv Krasno Selo, Sofia, 1680, Bulgaria": {
+    "latitude": 42.6710532,
+    "longitude": 23.2875428,
+    "confidence": 1.0
+  },
+  "Lozenets, Sofia, 1680, Bulgaria": {
+    "latitude": 42.6597151,
+    "longitude": 23.3250228,
+    "confidence": 1.0
+  },
+  "Lozenets, Sofia, 1164, Bulgaria": {
+    "latitude": 42.6597151,
+    "longitude": 23.3250228,
+    "confidence": 1.0
+  },
+  "Georgi Benkovski Street 18-20, Pleven, 5803, Bulgaria": {
+    "latitude": 43.4110923,
+    "longitude": 24.6225762,
+    "confidence": 1.0
+  },
+  "Vitosha, Sofia, 1618, Bulgaria": {
+    "latitude": 42.6167377,
+    "longitude": 23.2742293,
+    "confidence": 1.0
+  },
+  "Aheloy, Bulgaria": {
+    "latitude": 42.6486312,
+    "longitude": 27.6477519,
+    "confidence": 1.0
+  },
+  "Botevgrad, Sofia, 2160, Bulgaria": {
+    "latitude": 42.9078544,
+    "longitude": 23.7929451,
+    "confidence": 1.0
+  },
+  "Zlatitsa, Bulgaria": {
+    "latitude": 42.7116955,
+    "longitude": 24.1389525,
+    "confidence": 1.0
+  },
+  "Dragoman, Bulgaria": {
+    "latitude": 42.9218621,
+    "longitude": 22.93018,
+    "confidence": 1.0
+  },
+  "Bakston, Sofia, 1618, Bulgaria": {
+    "latitude": 42.6654864,
+    "longitude": 23.269969,
+    "confidence": 1.0
+  },
+  "Bourgas, Bulgaria": {
+    "latitude": 42.4936616,
+    "longitude": 27.4721276,
+    "confidence": 1.0
+  },
+  "Akademik Mihail Arnaudov Str 3, Ruse, 7004, Bulgaria": {
+    "latitude": 43.8563,
+    "longitude": 25.9844659,
+    "confidence": 1.0
+  },
+  "Asparuhovo, Varna, 9000, Bulgaria": {
+    "latitude": 43.180493,
+    "longitude": 27.8970978,
+    "confidence": 1.0
+  },
+  "Vazrajdane, Sofia, 1303, Bulgaria": {
+    "latitude": 42.6980415,
+    "longitude": 23.3092346,
+    "confidence": 1.0
+  },
+  "Dobrich, Bulgaria": {
+    "latitude": 43.6637775,
+    "longitude": 27.9002123,
+    "confidence": 1.0
+  },
+  "Studentski Grad District, Sofia, 1700, Bulgaria": {
+    "latitude": 42.6497858,
+    "longitude": 23.3421767,
+    "confidence": 1.0
+  },
+  "Krasna Polyana District, Sofia, 1330, Bulgaria": {
+    "latitude": 42.6911281,
+    "longitude": 23.2791705,
+    "confidence": 1.0
+  },
+  "Bul. Vitosha 1 A, Sofia, 1000, Bulgaria": {
+    "latitude": 42.6953549,
+    "longitude": 23.3213468,
+    "confidence": 1.0
+  },
+  "Bul Madrid 11, Sofia, 1505, Bulgaria": {
+    "latitude": 42.6963889,
+    "longitude": 23.348451,
+    "confidence": 1.0
+  },
+  "Straldzha, Bulgaria": {
+    "latitude": 42.6002084,
+    "longitude": 26.6916416,
+    "confidence": 1.0
+  },
+  "Dimitar Blagoev Str 3, Brezovo, 4160, Bulgaria": {
+    "latitude": 42.3378021,
+    "longitude": 25.0800177,
+    "confidence": 1.0
+  },
+  "Tutrakan Blvd 71, Ruse, 7003, Bulgaria": {
+    "latitude": 43.8666343,
+    "longitude": 25.9879041,
+    "confidence": 1.0
+  },
+  "Vrazhdebna, Bulgaria": {
+    "latitude": 42.7100916,
+    "longitude": 23.4076453,
+    "confidence": 1.0
+  },
+  "Pl.Pozitano 147, Sofia, 1000, Bulgaria": {
+    "latitude": 42.6960195,
+    "longitude": 23.3178286,
+    "confidence": 1.0
+  },
+  "Ovcha Kupel, Sofiya, 1632, Bulgaria": {
+    "latitude": 42.6778469,
+    "longitude": 23.2622161,
+    "confidence": 1.0
+  },
+  "Ilinden, Sofia, 1303, Bulgaria": {
+    "latitude": 42.7042529,
+    "longitude": 23.2892053,
+    "confidence": 1.0
+  },
+  "Bul. Tsarigradsko Shose 53, Plovdiv, 4006, Bulgaria": {
+    "latitude": 42.1481761,
+    "longitude": 24.7915554,
+    "confidence": 1.0
+  },
+  "Studentski Grad, Sofia, 1700, Bulgaria": {
+    "latitude": 42.6513461,
+    "longitude": 23.347883,
+    "confidence": 1.0
+  },
+  "Suhata Reka, Sofia, 1517, Bulgaria": {
+    "latitude": 42.7009705,
+    "longitude": 23.3643576,
+    "confidence": 1.0
+  },
+  "Bul. Peshtersko Shose 32, Plovdiv, 4002, Bulgaria": {
+    "latitude": 42.1373406,
+    "longitude": 24.7176916,
+    "confidence": 1.0
+  },
+  "Kv Trebich, Sofia, 1298, Bulgaria": {
+    "latitude": 42.7752712,
+    "longitude": 23.3153743,
+    "confidence": 1.0
+  },
+  "Moderno Predgradie, Sofia, 1360, Bulgaria": {
+    "latitude": 42.7247622,
+    "longitude": 23.277341,
+    "confidence": 1.0
+  },
+  "Bul.Slivnitsa 578, Sofia, 1331, Bulgaria": {
+    "latitude": 42.7175504,
+    "longitude": 23.2788177,
+    "confidence": 1.0
+  },
+  "District Krasno Selo, Sofia, 1404, Bulgaria": {
+    "latitude": 42.6792938,
+    "longitude": 23.3011089,
+    "confidence": 1.0
+  },
+  "Bul.Prof. Tsvetan Lazarov 18, Sofia, 1574, Bulgaria": {
+    "latitude": 42.6772375,
+    "longitude": 23.3790319,
+    "confidence": 1.0
+  },
+  "Odrin Str. 2, Bourgas, 8000, Bulgaria": {
+    "latitude": 42.5046292,
+    "longitude": 27.4629037,
+    "confidence": 1.0
+  },
+  "District Lozenets, Sofia, 1700, Bulgaria": {
+    "latitude": 42.662273,
+    "longitude": 23.31855,
+    "confidence": 1.0
+  },
+  "Kv.Lyulin H 10, Sofia, 1335, Bulgaria": {
+    "latitude": 42.7198967,
+    "longitude": 23.2216398,
+    "confidence": 1.0
+  },
+  "Bul. Aleksandar Malinov 78, Sofia, 1712, Bulgaria": {
+    "latitude": 42.6360681,
+    "longitude": 23.3698263,
+    "confidence": 1.0
+  },
+  "Chintulovo, Bulgaria": {
+    "latitude": 42.64847,
+    "longitude": 26.23482,
+    "confidence": 1.0
+  },
+  "Bul.Ovcha Kupel 2, Sofia, 1618, Bulgaria": {
+    "latitude": 42.6735449,
+    "longitude": 23.2708145,
+    "confidence": 1.0
+  },
+  "Vrata, Bulgaria": {
+    "latitude": 43.2028209,
+    "longitude": 23.548027,
+    "confidence": 1.0
+  },
+  "Business Center Serdika, Sofia, 1612, Bulgaria": {
+    "latitude": 42.690817,
+    "longitude": 23.2941705,
+    "confidence": 1.0
+  },
+  "Npz Voenna Rampa, Sofia, 1220, Bulgaria": {
+    "latitude": 42.7311986,
+    "longitude": 23.3279253,
+    "confidence": 1.0
+  },
+  "1st Floor, Rouse, 7000, Bulgaria": {
+    "latitude": 43.8480413,
+    "longitude": 25.9542057,
+    "confidence": 1.0
+  },
+  "Bul.Patriarh Evtimiy 57, Sofia, 1463, Bulgaria": {
+    "latitude": 42.6890103,
+    "longitude": 23.3170578,
+    "confidence": 1.0
+  },
+  "Bistritsa, Bulgaria": {
+    "latitude": 42.5861626,
+    "longitude": 23.3601017,
+    "confidence": 1.0
+  },
+  "Bul.Prof. Tsvetan Lazarov 2, Sofia, 1592, Bulgaria": {
+    "latitude": 42.6782927,
+    "longitude": 23.3782285,
+    "confidence": 1.0
+  },
+  "1st Floor, Sofia, 1618, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Kv.Manastirski Livadi 38, Sofia, 1404, Bulgaria": {
+    "latitude": 42.6616709,
+    "longitude": 23.2795633,
+    "confidence": 1.0
+  },
+  "Tsar Boris III Obedinitel Blvd 126, Plovdiv, 4000, Bulgaria": {
+    "latitude": 42.1441767,
+    "longitude": 24.7514083,
+    "confidence": 1.0
+  },
+  "Pancharevo District, Sofia, 1000, Bulgaria": {
+    "latitude": 42.5944337,
+    "longitude": 23.4054539,
+    "confidence": 1.0
+  },
+  "Krasno Selo District, Sofia, 1612, Bulgaria": {
+    "latitude": 42.6810597,
+    "longitude": 23.2877979,
+    "confidence": 1.0
+  },
+  "Mladost 1 District, Sofia, 1784, Bulgaria": {
+    "latitude": 42.6543849,
+    "longitude": 23.3720676,
+    "confidence": 1.0
+  },
+  "Zona B-18 Bl 3, Sofia, 1517, Bulgaria": {
+    "latitude": 42.7058025,
+    "longitude": 23.3035832,
+    "confidence": 1.0
+  },
+  "Konstantin Fotinov Str 1, Burgas, 8000, Bulgaria": {
+    "latitude": 42.4941716,
+    "longitude": 27.4749911,
+    "confidence": 1.0
+  },
+  "Svetovrachane, Bulgaria": {
+    "latitude": 42.7823478,
+    "longitude": 23.3876077,
+    "confidence": 1.0
+  },
+  "Vedrare, Bulgaria": {
+    "latitude": 42.5710537,
+    "longitude": 24.8758427,
+    "confidence": 1.0
+  },
+  "Marino Pole, Bulgaria": {
+    "latitude": 41.412684,
+    "longitude": 23.349222,
+    "confidence": 1.0
+  },
+  "Haskovo, Bulgaria": {
+    "latitude": 41.763101,
+    "longitude": 25.9256255,
+    "confidence": 1.0
+  },
+  "Kyustendil, Bulgaria": {
+    "latitude": 42.3349427,
+    "longitude": 22.8884116,
+    "confidence": 1.0
+  },
+  "Krasno Selo, Sofiya, 1606, Bulgaria": {
+    "latitude": 42.6736589,
+    "longitude": 23.2825005,
+    "confidence": 1.0
+  },
+  "Montana, Bulgaria": {
+    "latitude": 43.4088984,
+    "longitude": 23.2203193,
+    "confidence": 1.0
+  },
+  "Targovishte, Bulgaria": {
+    "latitude": 43.2530111,
+    "longitude": 26.4141884,
+    "confidence": 1.0
+  },
+  "Bulgarian Aviation Street 1, Pleven, 5800, Bulgaria": {
+    "latitude": 43.4238921,
+    "longitude": 24.6086487,
+    "confidence": 1.0
+  },
+  "Nezavisimost Street 2, Ruse, 7002, Bulgaria": {
+    "latitude": 43.8572647,
+    "longitude": 25.960608,
+    "confidence": 1.0
+  },
+  "Vidin, Bulgaria": {
+    "latitude": 43.9857242,
+    "longitude": 22.8772194,
+    "confidence": 1.0
+  },
+  "Blaga Vest Street 3, Sofia, 1330, Bulgaria": {
+    "latitude": 42.6885376,
+    "longitude": 23.2760845,
+    "confidence": 1.0
+  },
+  "Botevgradsko Shose Blvd 228, Sofia, 1839, Bulgaria": {
+    "latitude": 42.7049269,
+    "longitude": 23.3988888,
+    "confidence": 1.0
+  },
+  "Belasita Str 1, Vratsa, 3000, Bulgaria": {
+    "latitude": 43.7710362,
+    "longitude": 23.7372884,
+    "confidence": 1.0
+  },
+  "P. O. Box 38, Sofia, 1113, Bulgaria": {
+    "latitude": 42.6792938,
+    "longitude": 23.3011089,
+    "confidence": 1.0
+  },
+  "Ring Tower, Sofia, 1766, Bulgaria": {
+    "latitude": 42.6251834,
+    "longitude": 23.373258,
+    "confidence": 1.0
+  },
+  "Pazardzhik, Bulgaria": {
+    "latitude": 42.1486841,
+    "longitude": 24.1531871,
+    "confidence": 1.0
+  },
+  "Lyulin 6, Sofiya, 1336, Bulgaria": {
+    "latitude": 42.7116178,
+    "longitude": 23.2526458,
+    "confidence": 1.0
+  },
+  "Floor 5, Ruse, 7000, Bulgaria": {
+    "latitude": 43.8480413,
+    "longitude": 25.9542057,
+    "confidence": 1.0
+  },
+  "Trud, Bulgaria": {
+    "latitude": 42.23172,
+    "longitude": 24.72969,
+    "confidence": 1.0
+  },
+  "Troyan, Bulgaria": {
+    "latitude": 42.8910697,
+    "longitude": 24.7123534,
+    "confidence": 1.0
+  },
+  "Dupnitsa, Bulgaria": {
+    "latitude": 42.2628362,
+    "longitude": 23.1143551,
+    "confidence": 1.0
+  },
+  "Kozloduy, Bulgaria": {
+    "latitude": 43.7750934,
+    "longitude": 23.7293313,
+    "confidence": 1.0
+  },
+  "Lyulin, Sofia, 1335, Bulgaria": {
+    "latitude": 42.7181255,
+    "longitude": 23.2543959,
+    "confidence": 1.0
+  },
+  "Panagyurishte, Bulgaria": {
+    "latitude": 42.5043065,
+    "longitude": 24.1888411,
+    "confidence": 1.0
+  },
+  "1st Floor, Pleven, 5801, Bulgaria": {
+    "latitude": 43.409022,
+    "longitude": 24.6180123,
+    "confidence": 1.0
+  },
+  "Slatina, Sofiya, 1111, Bulgaria": {
+    "latitude": 42.6809193,
+    "longitude": 23.3713059,
+    "confidence": 1.0
+  },
+  "Pushkin Str. 2, Sliven, 8800, Bulgaria": {
+    "latitude": 42.6780589,
+    "longitude": 26.3338812,
+    "confidence": 1.0
+  },
+  "Bl 56, Sofia, 1172, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Izgrev, Sofia, 1172, Bulgaria": {
+    "latitude": 42.6693195,
+    "longitude": 23.3480022,
+    "confidence": 1.0
+  },
+  "Triaditsa, Bulgaria": {
+    "latitude": 42.6988168,
+    "longitude": 23.3239138,
+    "confidence": 1.0
+  },
+  "Sevlievo, Bulgaria": {
+    "latitude": 43.0263036,
+    "longitude": 25.1040867,
+    "confidence": 1.0
+  },
+  "Branipole, Bulgaria": {
+    "latitude": 42.0782466,
+    "longitude": 24.7549767,
+    "confidence": 1.0
+  },
+  "Byala, Bulgaria": {
+    "latitude": 43.4593631,
+    "longitude": 25.7365619,
+    "confidence": 1.0
+  },
+  "Sveta Gora, Veliko Tarnovo, 5000, Bulgaria": {
+    "latitude": 43.0773266,
+    "longitude": 25.6518851,
+    "confidence": 1.0
+  },
+  "2nd Floor, Sofiya, 1000, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Petar Protich Str 4, Sofia, 1784, Bulgaria": {
+    "latitude": 42.6622279,
+    "longitude": 23.3796817,
+    "confidence": 1.0
+  },
+  "Silistra, Bulgaria": {
+    "latitude": 43.9057061,
+    "longitude": 27.0705496,
+    "confidence": 1.0
+  },
+  "Stamboliyski, Bulgaria": {
+    "latitude": 42.1363756,
+    "longitude": 24.5376825,
+    "confidence": 1.0
+  },
+  "Doganovo, Bulgaria": {
+    "latitude": 42.63526,
+    "longitude": 23.68539,
+    "confidence": 1.0
+  },
+  "3rd Floor, Plovdiv, 4004, Bulgaria": {
+    "latitude": 42.1418541,
+    "longitude": 24.7499297,
+    "confidence": 1.0
+  },
+  "Golo Bardo, Pernik, 2300, Bulgaria": {
+    "latitude": 42.5941533,
+    "longitude": 22.9563468,
+    "confidence": 1.0
+  },
+  "4th Floor, Plovdiv, 4000, Bulgaria": {
+    "latitude": 42.1418541,
+    "longitude": 24.7499297,
+    "confidence": 1.0
+  },
+  "Tsarev Brod, Bulgaria": {
+    "latitude": 43.33014,
+    "longitude": 27.01416,
+    "confidence": 1.0
+  },
+  "Serdika, Sofiya, 1202, Bulgaria": {
+    "latitude": 42.6980284,
+    "longitude": 23.3203473,
+    "confidence": 1.0
+  },
+  "Bulgaria Blvd 61, Fl 2 Fl 1 Fl 3, Plovdiv, 4000, Bulgaria": {
+    "latitude": 42.1588911,
+    "longitude": 24.7386253,
+    "confidence": 1.0
+  },
+  "Samokov, Bulgaria": {
+    "latitude": 42.3377931,
+    "longitude": 23.5592676,
+    "confidence": 1.0
+  },
+  "Gotse Delchev, Bulgaria": {
+    "latitude": 41.5733011,
+    "longitude": 23.7281082,
+    "confidence": 1.0
+  },
+  "Slaveykov Str 4, Kozloduy, 3320, Bulgaria": {
+    "latitude": 43.7780748,
+    "longitude": 23.7240233,
+    "confidence": 1.0
+  },
+  "Bl. 33, Sofia, 1000, Bulgaria": {
+    "latitude": 42.6884309,
+    "longitude": 23.2471438,
+    "confidence": 1.0
+  },
+  "Tarnicheni, Bulgaria": {
+    "latitude": 42.618913,
+    "longitude": 25.1138582,
+    "confidence": 1.0
+  },
+  "Gurkovo, Bulgaria": {
+    "latitude": 42.6577054,
+    "longitude": 25.7932924,
+    "confidence": 1.0
+  },
+  "Elin Pelin, Bulgaria": {
+    "latitude": 42.6691132,
+    "longitude": 23.6021426,
+    "confidence": 1.0
+  },
+  "Bratya Buxton Blvd 88, Sofia, 1618, Bulgaria": {
+    "latitude": 42.6602977,
+    "longitude": 23.2729859,
+    "confidence": 1.0
+  },
+  "Samuil, Bulgaria": {
+    "latitude": 43.5580192,
+    "longitude": 26.7392237,
+    "confidence": 1.0
+  },
+  "Iskar, Sofia, 1000, Bulgaria": {
+    "latitude": 42.6620679,
+    "longitude": 23.4159824,
+    "confidence": 1.0
+  },
+  "Mladost 1 Bl 7, Sofia, 1750, Bulgaria": {
+    "latitude": 42.6581809,
+    "longitude": 23.3796594,
+    "confidence": 1.0
+  },
+  "Triaditsa, Sofia, 1632, Bulgaria": {
+    "latitude": 42.6990073,
+    "longitude": 23.3229156,
+    "confidence": 1.0
+  },
+  "Okolovrasten Pat 454 A, Sofia, 1532, Bulgaria": {
+    "latitude": 42.6603871,
+    "longitude": 23.4567541,
+    "confidence": 1.0
+  },
+  "Diana No 175, Yambol, 8600, Bulgaria": {
+    "latitude": 42.4952286,
+    "longitude": 26.497192,
+    "confidence": 1.0
+  },
+  "Bul Hristo Smirnenski N 3, Varna, 9000, Bulgaria": {
+    "latitude": 43.2266579,
+    "longitude": 27.9107868,
+    "confidence": 1.0
+  },
+  "Floor 2, Plovdiv, 4002, Bulgaria": {
+    "latitude": 42.1418541,
+    "longitude": 24.7499297,
+    "confidence": 1.0
+  },
+  "Bulgaria House 49 B Blvd Bulgaria, Sofia, 1404, Bulgaria": {
+    "latitude": 42.66687,
+    "longitude": 23.2900135,
+    "confidence": 1.0
+  },
+  "Smolyan, Bulgaria": {
+    "latitude": 41.624097,
+    "longitude": 24.5913304,
+    "confidence": 1.0
+  },
+  "Bl 214 Fl 6 Ap. 40, Sofia, 1799, Bulgaria": {
+    "latitude": 42.6792938,
+    "longitude": 23.3011089,
+    "confidence": 1.0
+  },
+  "Blaga Vest Str 3, Sofia, 1303, Bulgaria": {
+    "latitude": 42.6884228,
+    "longitude": 23.2763635,
+    "confidence": 1.0
+  },
+  "4th Floor, Sofiya, 1000, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Mladost, Sofiya, 1784, Bulgaria": {
+    "latitude": 42.6529948,
+    "longitude": 23.3733445,
+    "confidence": 1.0
+  },
+  "Ruen, Bulgaria": {
+    "latitude": 42.8681725,
+    "longitude": 27.2721754,
+    "confidence": 1.0
+  },
+  "Velingrad, Bulgaria": {
+    "latitude": 42.0283589,
+    "longitude": 23.9944408,
+    "confidence": 1.0
+  },
+  "Zdrave Str 2, Sofia, 1000, Bulgaria": {
+    "latitude": 42.6838809,
+    "longitude": 23.3136505,
+    "confidence": 1.0
+  },
+  "48 Sitnyakovo Blvd, Sofia, 1505, Bulgaria": {
+    "latitude": 42.6916209,
+    "longitude": 23.3535868,
+    "confidence": 1.0
+  },
+  "Dragovitsa Str 9, Sofia, 1000, Bulgaria": {
+    "latitude": 42.6959288,
+    "longitude": 23.3541803,
+    "confidence": 1.0
+  },
+  "Breznik, Bulgaria": {
+    "latitude": 42.7397669,
+    "longitude": 22.9103497,
+    "confidence": 1.0
+  },
+  "Traykovo, Bulgaria": {
+    "latitude": 43.749176,
+    "longitude": 23.2055414,
+    "confidence": 1.0
+  },
+  "Rudozem, Bulgaria": {
+    "latitude": 41.4860848,
+    "longitude": 24.8466756,
+    "confidence": 1.0
+  },
+  "Dalga Laka 32, Veliko Tarnovo, 5000, Bulgaria": {
+    "latitude": 43.0607281,
+    "longitude": 25.6175325,
+    "confidence": 1.0
+  },
+  "Str. Ul. Ami Bue 27-29, Sofia, 1612, Bulgaria": {
+    "latitude": 42.6792938,
+    "longitude": 23.3011089,
+    "confidence": 1.0
+  },
+  "Konstantin Pomyanov Str 1, Sofia, 1415, Bulgaria": {
+    "latitude": 42.6364151,
+    "longitude": 23.3146126,
+    "confidence": 1.0
+  },
+  "Blaga Vest Str. 3, Sofia, 1330, Bulgaria": {
+    "latitude": 42.689083,
+    "longitude": 23.2744606,
+    "confidence": 1.0
+  },
+  "Pavlikeni, Bulgaria": {
+    "latitude": 43.2379033,
+    "longitude": 25.3069689,
+    "confidence": 1.0
+  },
+  "Pavel Banya, Bulgaria": {
+    "latitude": 42.5941448,
+    "longitude": 25.2059267,
+    "confidence": 1.0
+  },
+  "Village Rozino, Karlovo, 4340, Bulgaria": {
+    "latitude": 42.7131901,
+    "longitude": 24.5466101,
+    "confidence": 1.0
+  },
+  "Musachevo, Bulgaria": {
+    "latitude": 42.6814819,
+    "longitude": 23.5682277,
+    "confidence": 1.0
+  },
+  "6th Floor, Sofia, 1463, Bulgaria": {
+    "latitude": 42.6977028,
+    "longitude": 23.3217359,
+    "confidence": 1.0
+  },
+  "Olimpi Panov 17, Slivnitsa, 2200, Bulgaria": {
+    "latitude": 42.8557273,
+    "longitude": 23.0305682,
+    "confidence": 1.0
+  },
+  "Pomorie, Bulgaria": {
+    "latitude": 42.5684133,
+    "longitude": 27.6167754,
+    "confidence": 1.0
+  },
+  "Bansko, Bulgaria": {
+    "latitude": 41.8344086,
+    "longitude": 23.4841698,
+    "confidence": 1.0
+  },
+  "Слънчев бряг, Bulgaria": {
+    "latitude": 42.6892559,
+    "longitude": 27.7060843,
+    "confidence": 1.0
+  },
+  "Златни пясъци, Bulgaria": {
+    "latitude": 43.2854751,
+    "longitude": 28.0440486,
+    "confidence": 1.0
+  },
+  "Св. Св. Константин и Елена, Bulgaria": {
+    "latitude": 43.2330874,
+    "longitude": 28.0110003,
+    "confidence": 1.0
+  },
+  "Албена, Bulgaria": {
+    "latitude": 43.3677592,
+    "longitude": 28.0771827,
+    "confidence": 1.0
+  },
+  "Kardzhali, Bulgaria": {
+    "latitude": 41.56876,
+    "longitude": 25.3948569,
+    "confidence": 1.0
+  }
+}

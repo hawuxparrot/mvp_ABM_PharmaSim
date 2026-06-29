@@ -1,9 +1,13 @@
 from __future__ import annotations
 
+from collections import defaultdict
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
+from typing import Any
 
 import numpy as np
 
+from compiler.types import EngineInput
 from policy.transactions import (
     AnomalyLabel,
     AnomalyType,
@@ -177,6 +181,170 @@ def detect_cross_market(
             if t.src_market_code != t.dst_market_code:
                 out[t.tx_id] = 1.0
     return out
+
+
+# ---------------------------------------------------------------------------
+# Engine event-log detectors (operate on the real ground-truth simulation log)
+# ---------------------------------------------------------------------------
+
+EventRecords = Sequence[Mapping[str, Any]]
+
+
+def _location_org_types(inp: EngineInput) -> np.ndarray:
+    return np.asarray(inp.org_type)[np.asarray(inp.location_org_id)]
+
+
+def _zscore_flags(
+    counts: dict[str, float], *, z_threshold: float
+) -> dict[str, float]:
+    if not counts:
+        return {}
+    vals = np.asarray(list(counts.values()), dtype=float)
+    mu = float(vals.mean())
+    sigma = float(vals.std())
+    if sigma <= 1e-9:
+        return {}
+    return {
+        k: (v - mu) / sigma
+        for k, v in counts.items()
+        if (v - mu) / sigma >= z_threshold
+    }
+
+
+def detect_volume_anomalies(
+    records: EventRecords,
+    inp: EngineInput,
+    *,
+    z_threshold: float = 3.0,
+) -> dict[str, float]:
+    """Flag locations whose total MOVE throughput (in + out) is a statistical outlier.
+
+    Catches volume spikes and counterfeit injection, both of which surge the number of
+    shipments through the affected nodes. Returns ``{location_ext_id: zscore}``.
+    """
+    throughput: dict[str, float] = defaultdict(float)
+    for r in records:
+        if r["event_type"] != "MOVE":
+            continue
+        src = r.get("from_location")
+        dst = r.get("to_location")
+        if src and src != "—":
+            throughput[src] += 1.0
+        if dst and dst != "—":
+            throughput[dst] += 1.0
+    return _zscore_flags(dict(throughput), z_threshold=z_threshold)
+
+
+def _move_throughput(
+    records: EventRecords, *, direction: str = "both"
+) -> dict[str, float]:
+    throughput: dict[str, float] = defaultdict(float)
+    for r in records:
+        if r["event_type"] != "MOVE":
+            continue
+        if direction in ("both", "out"):
+            src = r.get("from_location")
+            if src and src != "—":
+                throughput[src] += 1.0
+        if direction in ("both", "in"):
+            dst = r.get("to_location")
+            if dst and dst != "—":
+                throughput[dst] += 1.0
+    return dict(throughput)
+
+
+def detect_volume_change(
+    perturbed_records: EventRecords,
+    baseline_records: EventRecords,
+    inp: EngineInput,
+    *,
+    z_threshold: float = 3.0,
+    direction: str = "out",
+) -> dict[str, float]:
+    """Flag locations whose MOVE throughput jumps versus a baseline run.
+
+    A volume spike (or counterfeit injection) is a *change* in a node's traffic, not its
+    absolute level -- structural hubs always carry the most traffic. Comparing against the
+    baseline isolates the perturbed nodes. ``direction='out'`` (default) targets the surge
+    *source* (where extra stock is injected and pushed downstream), avoiding flagging the
+    downstream sinks the surge flows into. Returns ``{location_ext_id: zscore_of_delta}``.
+    """
+    tput_p = _move_throughput(perturbed_records, direction=direction)
+    tput_b = _move_throughput(baseline_records, direction=direction)
+    deltas = {
+        loc: tput_p.get(loc, 0.0) - tput_b.get(loc, 0.0)
+        for loc in set(tput_p) | set(tput_b)
+    }
+    return _zscore_flags(deltas, z_threshold=z_threshold)
+
+
+def detect_cross_market_moves(
+    records: EventRecords,
+    inp: EngineInput,
+) -> dict[str, float]:
+    """Flag destination locations receiving packs whose origin market differs from the
+    destination market (smuggling / cross-border diversion). Returns counts per location."""
+    flagged: dict[str, float] = defaultdict(float)
+    loc_market = np.asarray(inp.location_market_id)
+    pack_origin = np.asarray(inp.pack_initial_market_id)
+    for r in records:
+        if r["event_type"] != "MOVE":
+            continue
+        to_id = r.get("to_location_id")
+        pid = r.get("pack_id")
+        if to_id is None or pid is None:
+            continue
+        if int(pack_origin[pid]) != int(loc_market[to_id]):
+            flagged[r["to_location"]] += 1.0
+    return dict(flagged)
+
+
+def detect_theft(
+    records: EventRecords,
+    inp: EngineInput,
+) -> dict[str, float]:
+    """Flag shrinkage: DECOMMISSION events at supply nodes (wholesalers/OBP), which in a
+    healthy chain only decommission (dispense) at terminals. Returns counts per location."""
+    from policy.models import OrgType
+    from compiler.enums import org_type_u8
+
+    supply = {int(org_type_u8(OrgType.WHOLESALER)), int(org_type_u8(OrgType.OBP))}
+    org_t = _location_org_types(inp)
+    flagged: dict[str, float] = defaultdict(float)
+    for r in records:
+        if r["event_type"] != "DECOMMISSION":
+            continue
+        loc_id = r.get("from_location_id")
+        if loc_id is None:
+            continue
+        if int(org_t[loc_id]) in supply:
+            flagged[r["from_location"]] += 1.0
+    return dict(flagged)
+
+
+def evaluate_detection(
+    predicted_ids: set[str],
+    truth_ids: set[str],
+) -> DetectionMetrics:
+    """Score a set of predicted location ext-ids against ground-truth location ext-ids."""
+    tp = len(predicted_ids & truth_ids)
+    fp = len(predicted_ids - truth_ids)
+    fn = len(truth_ids - predicted_ids)
+    precision = float(tp / (tp + fp)) if tp + fp > 0 else 0.0
+    recall = float(tp / (tp + fn)) if tp + fn > 0 else 0.0
+    f1 = (
+        float(2 * precision * recall / (precision + recall))
+        if precision + recall > 0
+        else 0.0
+    )
+    return DetectionMetrics(
+        true_positives=tp,
+        false_positives=fp,
+        false_negatives=fn,
+        precision=precision,
+        recall=recall,
+        f1=f1,
+    )
 
 
 def evaluate_detector(

@@ -17,7 +17,7 @@ void validate_engine_input_or_throw(const EngineInput& in) {
     auto fail = [](const char* msg) { throw std::invalid_argument(msg); };
 
     if (in.schema_version != ENGINE_INPUT_SCHEMA_VERSION) {
-        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v6)");
+        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v7)");
     }
 
     const auto n_org = static_cast<std::size_t>(in.n_organizations);
@@ -34,6 +34,37 @@ void validate_engine_input_or_throw(const EngineInput& in) {
 
     if (in.market_code.size() != n_mkt) {
         fail("EngineInput.market_code length must match n_markets");
+    }
+
+    const auto n_prod_sz = static_cast<std::size_t>(in.n_products);
+    if (in.product_demand_weight.size() != n_prod_sz) {
+        fail("EngineInput.product_demand_weight length must match n_products");
+    }
+    if (in.product_substitute_offset.size() != n_prod_sz + 1) {
+        fail("EngineInput.product_substitute_offset length must be n_products + 1");
+    }
+    {
+        const auto& sub_off = in.product_substitute_offset;
+        const auto& sub_id = in.product_substitute_id;
+        if (sub_off.empty()) {
+            fail("EngineInput.product_substitute_offset must not be empty");
+        }
+        if (sub_off.front() != 0) {
+            fail("EngineInput.product_substitute_offset[0] must be 0");
+        }
+        if (static_cast<std::size_t>(sub_off.back()) != sub_id.size()) {
+            fail("EngineInput.product_substitute_offset.back() must equal product_substitute_id.size()");
+        }
+        for (std::size_t i = 1; i < sub_off.size(); ++i) {
+            if (sub_off[i] < sub_off[i - 1]) {
+                fail("EngineInput.product_substitute_offset must be non-decreasing");
+            }
+        }
+        for (std::size_t i = 0; i < sub_id.size(); ++i) {
+            if (static_cast<std::size_t>(sub_id[i]) >= n_prod_sz) {
+                fail("EngineInput.product_substitute_id entries must be < n_products");
+            }
+        }
     }
     if (in.org_type.size() != n_org) {
         fail("EngineInput.org_type length must match n_organizations");
@@ -229,7 +260,7 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
     auto fail = [](const char* msg) { throw std::invalid_argument(msg);};
 
     if (in.schema_version != ENGINE_INPUT_SCHEMA_VERSION) {
-        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v6)");
+        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v7)");
     }
 
     const auto n_org = static_cast<std::size_t>(in.n_organizations);
@@ -246,6 +277,37 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
 
     if (in.market_code.size() != n_mkt) {
         fail("EngineInput.market_code length must match n_markets");
+    }
+
+    const auto n_prod_sz = static_cast<std::size_t>(in.n_products);
+    if (in.product_demand_weight.size() != n_prod_sz) {
+        fail("EngineInput.product_demand_weight length must match n_products");
+    }
+    if (in.product_substitute_offset.size() != n_prod_sz + 1) {
+        fail("EngineInput.product_substitute_offset length must be n_products + 1");
+    }
+    {
+        const auto& sub_off = in.product_substitute_offset;
+        const auto& sub_id = in.product_substitute_id;
+        if (sub_off.empty()) {
+            fail("EngineInput.product_substitute_offset must not be empty");
+        }
+        if (sub_off.front() != 0) {
+            fail("EngineInput.product_substitute_offset[0] must be 0");
+        }
+        if (static_cast<std::size_t>(sub_off.back()) != sub_id.size()) {
+            fail("EngineInput.product_substitute_offset.back() must equal product_substitute_id.size()");
+        }
+        for (std::size_t i = 1; i < sub_off.size(); ++i) {
+            if (sub_off[i] < sub_off[i - 1]) {
+                fail("EngineInput.product_substitute_offset must be non-decreasing");
+            }
+        }
+        for (std::size_t i = 0; i < sub_id.size(); ++i) {
+            if (static_cast<std::size_t>(sub_id[i]) >= n_prod_sz) {
+                fail("EngineInput.product_substitute_id entries must be < n_products");
+            }
+        }
     }
     if (in.org_type.size() != n_org) {
         fail("EngineInput.org_type length must match n_organizations");

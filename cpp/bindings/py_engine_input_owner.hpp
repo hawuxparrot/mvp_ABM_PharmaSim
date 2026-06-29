@@ -20,6 +20,10 @@ namespace nb = nanobind;
 struct PyEngineInputOwner {
     nb::object py_engine_input;  // increments ref count so corresponding dataclass stays alive
 
+    nb::ndarray<float, nb::ndim<1>, nb::c_contig> product_demand_weight;
+    nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> product_substitute_offset;
+    nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> product_substitute_id;
+
     nb::ndarray<std::uint8_t, nb::ndim<1>, nb::c_contig> org_type;
 
     nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> location_org_id;
@@ -102,6 +106,12 @@ inline std::shared_ptr<PyEngineInputOwner> build_py_engine_input_owner(const nb:
     owner->view.n_markets        = nb::cast<int>(py_in.attr("n_markets"));
     owner->view.n_edges          = nb::cast<int>(py_in.attr("n_edges"));
     // numeric ndarrays
+    owner->product_demand_weight = require_1d_contig<float>(py_in, "product_demand_weight");
+    owner->view.product_demand_weight = as_span(owner->product_demand_weight);
+    owner->product_substitute_offset = require_1d_contig<std::uint32_t>(py_in, "product_substitute_offset");
+    owner->view.product_substitute_offset = as_span(owner->product_substitute_offset);
+    owner->product_substitute_id = require_1d_contig<std::uint32_t>(py_in, "product_substitute_id");
+    owner->view.product_substitute_id = as_span(owner->product_substitute_id);
     owner->org_type = require_1d_contig<std::uint8_t>(py_in, "org_type");
     owner->view.org_type = as_span(owner->org_type);
     owner->location_org_id = require_1d_contig<std::uint32_t>(py_in, "location_org_id");

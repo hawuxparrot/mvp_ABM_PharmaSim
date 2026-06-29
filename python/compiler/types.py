@@ -11,7 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 # ABI version: bump when adding/removing/reordering fields or changing dtypes.
-ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v6"
+ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v7"
 
 
 @dataclass
@@ -62,6 +62,14 @@ class EngineInput:
     edge_capacity: NDArray[np.uint32]
     # order transport
     edge_lead_time_ticks: NDArray[np.uint16]
+
+    # products: per-product demand mix + ATC substitutability CSR (v7).
+    # product_demand_weight[p] is the relative share of location demand drawn for product p.
+    product_demand_weight: NDArray[np.float32]
+    # product_substitute_id[offset[p]:offset[p+1]] are substitute product ids for p (self excluded),
+    # ordered by preference; consulted on per-product stockout during fulfillment.
+    product_substitute_offset: NDArray[np.uint32]
+    product_substitute_id: NDArray[np.uint32]
 
     # batches + CSR for variable-length intended markets
     batch_product_id: NDArray[np.uint32]
@@ -147,6 +155,18 @@ class EngineInput:
         _len("pack_initial_location_id", self.pack_initial_location_id, self.n_packs)
         _len("pack_initial_market_id", self.pack_initial_market_id, self.n_packs)
         _len("pack_initial_state", self.pack_initial_state, self.n_packs)
+
+        _len("product_demand_weight", self.product_demand_weight, self.n_products)
+        _len("product_substitute_offset", self.product_substitute_offset, self.n_products + 1)
+        sub_off = self.product_substitute_offset
+        if sub_off[0] != 0 or sub_off[-1] != len(self.product_substitute_id):
+            raise ValueError(
+                "product_substitute_offset must start at 0 and end at len(product_substitute_id)"
+            )
+        if not np.all(sub_off[:-1] <= sub_off[1:]):
+            raise ValueError("product_substitute_offset must be non-decreasing")
+        if len(self.product_substitute_id) > 0 and np.max(self.product_substitute_id) >= self.n_products:
+            raise ValueError("product_substitute_id entries must be < n_products")
 
         if len(self.market_code) != self.n_markets:
             raise ValueError("market_code length must match n_markets")

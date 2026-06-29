@@ -64,8 +64,14 @@ private:
     void run_pack_behavior_phase(std::uint64_t tick);
     void apply_end_of_tick_penalty();
 
+    void add_product_demand(std::uint32_t loc, std::uint32_t demand_units);
     void apply_demand_policy(std::uint32_t loc, std::uint64_t tick);
     void apply_supply_policy(
+        std::uint32_t loc,
+        std::uint64_t tick,
+        std::vector<std::uint32_t>& edge_remaining_capacity
+    );
+    void push_fanout(
         std::uint32_t loc,
         std::uint64_t tick,
         std::vector<std::uint32_t>& edge_remaining_capacity

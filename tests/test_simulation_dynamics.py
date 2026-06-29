@@ -32,6 +32,7 @@ from runtime.native_bridge import (
     compile_and_create_native_simulator,
     create_native_simulator,
 )
+from runtime.simulation_viz import events_as_records
 
 DECOM_U8 = PACK_STATE_TO_U8[PackState.DECOMISSIONED]
 MOVE_U8 = 3
@@ -85,17 +86,9 @@ def test_some_moves_occur_on_two_markets_demo() -> None:
 
 
 def test_cross_market_pack_market_ids_possible() -> None:
-    """Graph includes DE→FR path; long runs should place packs in more than one market column."""
+    """Graph includes a DE OBP -> FR wholesaler lane; multi-edge fan-out should naturally
+    push stock down it (no manual preferred-edge steering), placing packs in the FR market."""
     inp = compile_scenario(two_markets_demo())
-    obp_loc = inp.location_ext_id.index("loc_obp_de")
-    wh_fr_loc = inp.location_ext_id.index("loc_wh_fr")
-    for edge_id in range(inp.n_edges):
-        if (
-            int(inp.edge_src_location_id[edge_id]) == obp_loc
-            and int(inp.edge_dst_location_id[edge_id]) == wh_fr_loc
-        ):
-            inp.location_preferred_supplier_edge_id[obp_loc] = edge_id
-            break
     sim = create_native_simulator(inp)
     sim.run_ticks(800)
     markets = set(sim.physical_pack_market_ids())
@@ -246,6 +239,177 @@ def test_penalty_uses_end_of_tick_backlog() -> None:
     backlogs = list(sim.location_backlog())
     assert backlogs[target] == 3
     assert penalties[target] == pytest.approx(12.0)
+
+
+def _two_product_substitution_scenario() -> Scenario:
+    """Wholesaler stocked only with product B; pharmacy demands product A (an ATC substitute).
+
+    A is atorvastatin (C10AA05), B is simvastatin (C10AA01): same ATC4 subgroup (C10AA), so the
+    engine may use arriving B packs to satisfy unmet A demand (substitution-on-stockout).
+    """
+    orgs = [
+        Organization(ext_id="obp", org_type=OrgType.OBP),
+        Organization(ext_id="wh", org_type=OrgType.WHOLESALER),
+        Organization(ext_id="ph", org_type=OrgType.LOCAL_ORG),
+    ]
+    locs = [
+        Location(ext_id="loc_obp", org_ext_id="obp", market_code="DE", postal_code="10000"),
+        Location(ext_id="loc_wh", org_ext_id="wh", market_code="DE", postal_code="20000"),
+        Location(ext_id="loc_ph", org_ext_id="ph", market_code="DE", postal_code="30000"),
+    ]
+    products = [
+        Product(
+            ext_id="A",
+            codes=(ProductCode(ProductCodeScheme.GTIN, "00000000000001", True),),
+            atc_code="C10AA05",
+        ),
+        Product(
+            ext_id="B",
+            codes=(ProductCode(ProductCodeScheme.GTIN, "00000000000002", True),),
+            atc_code="C10AA01",
+        ),
+    ]
+    batches = [
+        Batch(ext_id="batchB", product_ext_id="B", manufacturer_org_ext_id="obp", intended_markets=("DE",)),
+    ]
+    packs = [
+        Pack(
+            ext_id=f"pack_{i}",
+            product_ext_id="B",
+            batch_ext_id="batchB",
+            serial=f"SN{i:06d}",
+            initial_market_code="DE",
+            initial_location_ext_id="loc_wh",
+            initial_state=PackState.ACTIVE,
+        )
+        for i in range(40)
+    ]
+    edges = [
+        LocationEdge("loc_obp", "loc_wh", cost=1.0, capacity=50),
+        LocationEdge("loc_wh", "loc_ph", cost=1.0, capacity=50),
+    ]
+    return Scenario(
+        organizations=orgs,
+        locations=locs,
+        products=products,
+        batches=batches,
+        packs=packs,
+        location_edges=edges,
+        behavior_by_location={},
+        seed=11,
+    )
+
+
+def _configure_substitution_demand(inp) -> tuple[int, int]:
+    """Force constant product-A demand at the pharmacy and a push wholesaler. Returns (ph, A)."""
+    n_loc = inp.n_locations
+    for i in range(n_loc):
+        inp.location_demand_policy_id[i] = 0
+        inp.location_supply_policy_id[i] = 0
+        inp.location_penalty_policy_id[i] = 0
+    ph = inp.location_ext_id.index("loc_ph")
+    wh = inp.location_ext_id.index("loc_wh")
+    # All demand goes to product A (index 0); pharmacy accrues a steady A backlog.
+    inp.product_demand_weight[:] = 0.0
+    inp.product_demand_weight[0] = 1.0
+    inp.location_demand_policy_id[ph] = 1
+    inp.location_demand_const_rate[ph] = 2
+    inp.location_demand_poisson_lambda[ph] = 0.0
+    # Wholesaler pushes its (product-B) stock downstream to the pharmacy.
+    inp.location_supply_policy_id[wh] = 2
+    inp.location_supply_capacity_per_tick[wh] = 50
+    return ph, 0
+
+
+def _fanout_hub_scenario() -> Scenario:
+    """One OBP hub feeding three wholesalers; tests that push fan-out spreads flow."""
+    orgs = [Organization(ext_id="obp", org_type=OrgType.OBP)]
+    locs = [Location(ext_id="loc_obp", org_ext_id="obp", market_code="DE", postal_code="10000")]
+    for i in range(3):
+        orgs.append(Organization(ext_id=f"wh{i}", org_type=OrgType.WHOLESALER))
+        locs.append(
+            Location(ext_id=f"loc_wh{i}", org_ext_id=f"wh{i}", market_code="DE", postal_code=f"2000{i}")
+        )
+    products = [
+        Product(ext_id="prod", codes=(ProductCode(ProductCodeScheme.GTIN, "01234567890123", True),))
+    ]
+    batches = [Batch(ext_id="b", product_ext_id="prod", manufacturer_org_ext_id="obp", intended_markets=("DE",))]
+    packs = [
+        Pack(
+            ext_id=f"pack_{i}",
+            product_ext_id="prod",
+            batch_ext_id="b",
+            serial=f"SN{i:06d}",
+            initial_market_code="DE",
+            initial_location_ext_id="loc_obp",
+            initial_state=PackState.ACTIVE,
+        )
+        for i in range(60)
+    ]
+    edges = [
+        LocationEdge("loc_obp", f"loc_wh{i}", cost=1.0, capacity=20) for i in range(3)
+    ]
+    return Scenario(
+        organizations=orgs,
+        locations=locs,
+        products=products,
+        batches=batches,
+        packs=packs,
+        location_edges=edges,
+        behavior_by_location={},
+        seed=5,
+    )
+
+
+def test_push_fanout_spreads_across_downstream_neighbors() -> None:
+    inp = compile_scenario(_fanout_hub_scenario())
+    obp = inp.location_ext_id.index("loc_obp")
+    inp.location_supply_policy_id[obp] = 2
+    inp.location_supply_capacity_per_tick[obp] = 6
+    sim = create_native_simulator(inp)
+    sim.run_ticks(10)
+    dests = {
+        r["to_location_id"]
+        for r in events_as_records(sim, inp)
+        if r["event_type"] == "MOVE" and r["to_location_id"] is not None
+    }
+    wh_ids = {inp.location_ext_id.index(f"loc_wh{i}") for i in range(3)}
+    # Fan-out must reach all three wholesalers, not funnel into a single preferred lane.
+    assert wh_ids <= dests
+
+
+def test_v7_per_product_state_shapes() -> None:
+    inp = compile_scenario(two_markets_demo())
+    sim = create_native_simulator(inp)
+    assert sim.n_products() == inp.n_products
+    by_prod = list(sim.location_backlog_by_product())
+    assert len(by_prod) == inp.n_locations * inp.n_products
+    # Aggregate accessor sums the per-product layout.
+    agg = list(sim.location_backlog())
+    assert len(agg) == inp.n_locations
+
+
+def test_v7_substitution_on_stockout_reduces_backlog() -> None:
+    inp = compile_scenario(_two_product_substitution_scenario())
+    ph, prod_a = _configure_substitution_demand(inp)
+    sim = create_native_simulator(inp)
+    sim.run_ticks(40)
+    n_prod = inp.n_products
+    backlog_a_with_sub = list(sim.location_backlog_by_product())[ph * n_prod + prod_a]
+
+    # Control: disable substitution (empty substitute CSR). Now arriving B packs cannot
+    # satisfy A demand, so A's backlog must be strictly larger.
+    inp2 = compile_scenario(_two_product_substitution_scenario())
+    _configure_substitution_demand(inp2)
+    import numpy as np
+
+    inp2.product_substitute_offset = np.zeros(inp2.n_products + 1, dtype=np.uint32)
+    inp2.product_substitute_id = np.array([], dtype=np.uint32)
+    sim2 = create_native_simulator(inp2)
+    sim2.run_ticks(40)
+    backlog_a_no_sub = list(sim2.location_backlog_by_product())[ph * n_prod + prod_a]
+
+    assert backlog_a_no_sub > backlog_a_with_sub
 
 
 def test_wholesaler_policy_id1_uses_order_up_to_inventory_gap() -> None:

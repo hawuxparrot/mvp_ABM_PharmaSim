@@ -1,0 +1,17 @@
+product_id,name,atc_code,gtin,ppn,pack_size,intended_markets
+prod_atorvastatin_20,Atorvastatin 20mg,C10AA05,03400900000017,110375286414,30,BG
+prod_atorvastatin_40,Atorvastatin 40mg,C10AA05,03400900000024,110375286421,30,BG
+prod_simvastatin_20,Simvastatin 20mg,C10AA01,03400900000031,110375286438,28,BG
+prod_rosuvastatin_10,Rosuvastatin 10mg,C10AA07,03400900000048,110375286445,30,BG
+prod_amoxicillin_500,Amoxicillin 500mg,J01CA04,03400900000055,110375286452,16,BG
+prod_amoxiclav_875,Amoxicillin-Clavulanate 875mg,J01CR02,03400900000062,110375286469,14,BG
+prod_azithromycin_500,Azithromycin 500mg,J01FA10,03400900000079,110375286476,3,BG
+prod_ibuprofen_400,Ibuprofen 400mg,M01AE01,03400900000086,110375286483,30,BG
+prod_naproxen_250,Naproxen 250mg,M01AE02,03400900000093,110375286490,20,BG
+prod_diclofenac_50,Diclofenac 50mg,M01AB05,03400900000109,110375286506,20,BG
+prod_metformin_850,Metformin 850mg,A10BA02,03400900000116,110375286513,60,BG
+prod_omeprazole_20,Omeprazole 20mg,A02BC01,03400900000123,110375286520,28,BG
+prod_pantoprazole_40,Pantoprazole 40mg,A02BC02,03400900000130,110375286537,28,BG
+prod_salbutamol_inh,Salbutamol Inhaler 100mcg,R03AC02,03400900000147,110375286544,1,BG
+prod_insulin_glargine,Insulin Glargine 100U/ml,A10AE04,03400900000154,110375286551,5,BG
+prod_paracetamol_500,Paracetamol 500mg,N02BE01,03400900000161,110375286568,20,BG

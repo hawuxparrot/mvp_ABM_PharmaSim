@@ -1,0 +1,8402 @@
+[
+  {
+    "pack_id": 0,
+    "pack_ext_id": "pack_bg_1",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 1,
+    "pack_ext_id": "pack_bg_2",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 2,
+    "pack_ext_id": "pack_bg_3",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 3,
+    "pack_ext_id": "pack_bg_4",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 4,
+    "pack_ext_id": "pack_bg_5",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 5,
+    "pack_ext_id": "pack_bg_6",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 6,
+    "pack_ext_id": "pack_bg_7",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 7,
+    "pack_ext_id": "pack_bg_8",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 8,
+    "pack_ext_id": "pack_bg_9",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 9,
+    "pack_ext_id": "pack_bg_10",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 10,
+    "pack_ext_id": "pack_bg_11",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 11,
+    "pack_ext_id": "pack_bg_12",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 12,
+    "pack_ext_id": "pack_bg_13",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 13,
+    "pack_ext_id": "pack_bg_14",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 14,
+    "pack_ext_id": "pack_bg_15",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 15,
+    "pack_ext_id": "pack_bg_16",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 16,
+    "pack_ext_id": "pack_bg_17",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 17,
+    "pack_ext_id": "pack_bg_18",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 18,
+    "pack_ext_id": "pack_bg_19",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 19,
+    "pack_ext_id": "pack_bg_20",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 20,
+    "pack_ext_id": "pack_bg_21",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 21,
+    "pack_ext_id": "pack_bg_22",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 22,
+    "pack_ext_id": "pack_bg_23",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 23,
+    "pack_ext_id": "pack_bg_24",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 24,
+    "pack_ext_id": "pack_bg_25",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 25,
+    "pack_ext_id": "pack_bg_26",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 26,
+    "pack_ext_id": "pack_bg_27",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 27,
+    "pack_ext_id": "pack_bg_28",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 28,
+    "pack_ext_id": "pack_bg_29",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 29,
+    "pack_ext_id": "pack_bg_30",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 30,
+    "pack_ext_id": "pack_bg_31",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 31,
+    "pack_ext_id": "pack_bg_32",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 32,
+    "pack_ext_id": "pack_bg_33",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 33,
+    "pack_ext_id": "pack_bg_34",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 34,
+    "pack_ext_id": "pack_bg_35",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 35,
+    "pack_ext_id": "pack_bg_36",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 36,
+    "pack_ext_id": "pack_bg_37",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 37,
+    "pack_ext_id": "pack_bg_38",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 38,
+    "pack_ext_id": "pack_bg_39",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 39,
+    "pack_ext_id": "pack_bg_40",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 40,
+    "pack_ext_id": "pack_bg_41",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 41,
+    "pack_ext_id": "pack_bg_42",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 42,
+    "pack_ext_id": "pack_bg_43",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 43,
+    "pack_ext_id": "pack_bg_44",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 44,
+    "pack_ext_id": "pack_bg_45",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 45,
+    "pack_ext_id": "pack_bg_46",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 46,
+    "pack_ext_id": "pack_bg_47",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 47,
+    "pack_ext_id": "pack_bg_48",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 48,
+    "pack_ext_id": "pack_bg_49",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 49,
+    "pack_ext_id": "pack_bg_50",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 50,
+    "pack_ext_id": "pack_bg_51",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 51,
+    "pack_ext_id": "pack_bg_52",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 52,
+    "pack_ext_id": "pack_bg_53",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 53,
+    "pack_ext_id": "pack_bg_54",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 54,
+    "pack_ext_id": "pack_bg_55",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 55,
+    "pack_ext_id": "pack_bg_56",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 56,
+    "pack_ext_id": "pack_bg_57",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 57,
+    "pack_ext_id": "pack_bg_58",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 58,
+    "pack_ext_id": "pack_bg_59",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 59,
+    "pack_ext_id": "pack_bg_60",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 60,
+    "pack_ext_id": "pack_bg_61",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 61,
+    "pack_ext_id": "pack_bg_62",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 62,
+    "pack_ext_id": "pack_bg_63",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 63,
+    "pack_ext_id": "pack_bg_64",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 64,
+    "pack_ext_id": "pack_bg_65",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 65,
+    "pack_ext_id": "pack_bg_66",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 66,
+    "pack_ext_id": "pack_bg_67",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 67,
+    "pack_ext_id": "pack_bg_68",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 68,
+    "pack_ext_id": "pack_bg_69",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 69,
+    "pack_ext_id": "pack_bg_70",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 70,
+    "pack_ext_id": "pack_bg_71",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 71,
+    "pack_ext_id": "pack_bg_72",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 72,
+    "pack_ext_id": "pack_bg_73",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 73,
+    "pack_ext_id": "pack_bg_74",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 74,
+    "pack_ext_id": "pack_bg_75",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 75,
+    "pack_ext_id": "pack_bg_76",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 76,
+    "pack_ext_id": "pack_bg_77",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 77,
+    "pack_ext_id": "pack_bg_78",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 78,
+    "pack_ext_id": "pack_bg_79",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 79,
+    "pack_ext_id": "pack_bg_80",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 80,
+    "pack_ext_id": "pack_bg_81",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 81,
+    "pack_ext_id": "pack_bg_82",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 82,
+    "pack_ext_id": "pack_bg_83",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 83,
+    "pack_ext_id": "pack_bg_84",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 84,
+    "pack_ext_id": "pack_bg_85",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 85,
+    "pack_ext_id": "pack_bg_86",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 86,
+    "pack_ext_id": "pack_bg_87",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 87,
+    "pack_ext_id": "pack_bg_88",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 88,
+    "pack_ext_id": "pack_bg_89",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 89,
+    "pack_ext_id": "pack_bg_90",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 90,
+    "pack_ext_id": "pack_bg_91",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 91,
+    "pack_ext_id": "pack_bg_92",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 92,
+    "pack_ext_id": "pack_bg_93",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 93,
+    "pack_ext_id": "pack_bg_94",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 94,
+    "pack_ext_id": "pack_bg_95",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 95,
+    "pack_ext_id": "pack_bg_96",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 96,
+    "pack_ext_id": "pack_bg_97",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 97,
+    "pack_ext_id": "pack_bg_98",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 98,
+    "pack_ext_id": "pack_bg_99",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 99,
+    "pack_ext_id": "pack_bg_100",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 100,
+    "pack_ext_id": "pack_bg_101",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 101,
+    "pack_ext_id": "pack_bg_102",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 102,
+    "pack_ext_id": "pack_bg_103",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 103,
+    "pack_ext_id": "pack_bg_104",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 104,
+    "pack_ext_id": "pack_bg_105",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 105,
+    "pack_ext_id": "pack_bg_106",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 106,
+    "pack_ext_id": "pack_bg_107",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 107,
+    "pack_ext_id": "pack_bg_108",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 108,
+    "pack_ext_id": "pack_bg_109",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 109,
+    "pack_ext_id": "pack_bg_110",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 110,
+    "pack_ext_id": "pack_bg_111",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 111,
+    "pack_ext_id": "pack_bg_112",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 112,
+    "pack_ext_id": "pack_bg_113",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 113,
+    "pack_ext_id": "pack_bg_114",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 114,
+    "pack_ext_id": "pack_bg_115",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 115,
+    "pack_ext_id": "pack_bg_116",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 116,
+    "pack_ext_id": "pack_bg_117",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 117,
+    "pack_ext_id": "pack_bg_118",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 118,
+    "pack_ext_id": "pack_bg_119",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 119,
+    "pack_ext_id": "pack_bg_120",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 120,
+    "pack_ext_id": "pack_bg_121",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 121,
+    "pack_ext_id": "pack_bg_122",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 122,
+    "pack_ext_id": "pack_bg_123",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 123,
+    "pack_ext_id": "pack_bg_124",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 124,
+    "pack_ext_id": "pack_bg_125",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 125,
+    "pack_ext_id": "pack_bg_126",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 126,
+    "pack_ext_id": "pack_bg_127",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 127,
+    "pack_ext_id": "pack_bg_128",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 128,
+    "pack_ext_id": "pack_bg_129",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 129,
+    "pack_ext_id": "pack_bg_130",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 130,
+    "pack_ext_id": "pack_bg_131",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 131,
+    "pack_ext_id": "pack_bg_132",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 132,
+    "pack_ext_id": "pack_bg_133",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 133,
+    "pack_ext_id": "pack_bg_134",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 134,
+    "pack_ext_id": "pack_bg_135",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 135,
+    "pack_ext_id": "pack_bg_136",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 136,
+    "pack_ext_id": "pack_bg_137",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 137,
+    "pack_ext_id": "pack_bg_138",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 138,
+    "pack_ext_id": "pack_bg_139",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 139,
+    "pack_ext_id": "pack_bg_140",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 140,
+    "pack_ext_id": "pack_bg_141",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 141,
+    "pack_ext_id": "pack_bg_142",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 142,
+    "pack_ext_id": "pack_bg_143",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 143,
+    "pack_ext_id": "pack_bg_144",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 144,
+    "pack_ext_id": "pack_bg_145",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 145,
+    "pack_ext_id": "pack_bg_146",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 146,
+    "pack_ext_id": "pack_bg_147",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 147,
+    "pack_ext_id": "pack_bg_148",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 148,
+    "pack_ext_id": "pack_bg_149",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 149,
+    "pack_ext_id": "pack_bg_150",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 150,
+    "pack_ext_id": "pack_bg_151",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 151,
+    "pack_ext_id": "pack_bg_152",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 152,
+    "pack_ext_id": "pack_bg_153",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 153,
+    "pack_ext_id": "pack_bg_154",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 154,
+    "pack_ext_id": "pack_bg_155",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 155,
+    "pack_ext_id": "pack_bg_156",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 156,
+    "pack_ext_id": "pack_bg_157",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 157,
+    "pack_ext_id": "pack_bg_158",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 158,
+    "pack_ext_id": "pack_bg_159",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 159,
+    "pack_ext_id": "pack_bg_160",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 160,
+    "pack_ext_id": "pack_bg_161",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 161,
+    "pack_ext_id": "pack_bg_162",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 162,
+    "pack_ext_id": "pack_bg_163",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 163,
+    "pack_ext_id": "pack_bg_164",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 164,
+    "pack_ext_id": "pack_bg_165",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 165,
+    "pack_ext_id": "pack_bg_166",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 166,
+    "pack_ext_id": "pack_bg_167",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 167,
+    "pack_ext_id": "pack_bg_168",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 168,
+    "pack_ext_id": "pack_bg_169",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 169,
+    "pack_ext_id": "pack_bg_170",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 170,
+    "pack_ext_id": "pack_bg_171",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 171,
+    "pack_ext_id": "pack_bg_172",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 172,
+    "pack_ext_id": "pack_bg_173",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 173,
+    "pack_ext_id": "pack_bg_174",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 174,
+    "pack_ext_id": "pack_bg_175",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 175,
+    "pack_ext_id": "pack_bg_176",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 176,
+    "pack_ext_id": "pack_bg_177",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 177,
+    "pack_ext_id": "pack_bg_178",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 178,
+    "pack_ext_id": "pack_bg_179",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 179,
+    "pack_ext_id": "pack_bg_180",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 180,
+    "pack_ext_id": "pack_bg_181",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 181,
+    "pack_ext_id": "pack_bg_182",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 182,
+    "pack_ext_id": "pack_bg_183",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 183,
+    "pack_ext_id": "pack_bg_184",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 184,
+    "pack_ext_id": "pack_bg_185",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 185,
+    "pack_ext_id": "pack_bg_186",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 186,
+    "pack_ext_id": "pack_bg_187",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 187,
+    "pack_ext_id": "pack_bg_188",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 188,
+    "pack_ext_id": "pack_bg_189",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 189,
+    "pack_ext_id": "pack_bg_190",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 190,
+    "pack_ext_id": "pack_bg_191",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 191,
+    "pack_ext_id": "pack_bg_192",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 192,
+    "pack_ext_id": "pack_bg_193",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 193,
+    "pack_ext_id": "pack_bg_194",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 194,
+    "pack_ext_id": "pack_bg_195",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 195,
+    "pack_ext_id": "pack_bg_196",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 196,
+    "pack_ext_id": "pack_bg_197",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 197,
+    "pack_ext_id": "pack_bg_198",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 198,
+    "pack_ext_id": "pack_bg_199",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 199,
+    "pack_ext_id": "pack_bg_200",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 200,
+    "pack_ext_id": "pack_bg_201",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 201,
+    "pack_ext_id": "pack_bg_202",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 202,
+    "pack_ext_id": "pack_bg_203",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 203,
+    "pack_ext_id": "pack_bg_204",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 204,
+    "pack_ext_id": "pack_bg_205",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 205,
+    "pack_ext_id": "pack_bg_206",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 206,
+    "pack_ext_id": "pack_bg_207",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 207,
+    "pack_ext_id": "pack_bg_208",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 208,
+    "pack_ext_id": "pack_bg_209",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 209,
+    "pack_ext_id": "pack_bg_210",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 210,
+    "pack_ext_id": "pack_bg_211",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 211,
+    "pack_ext_id": "pack_bg_212",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 212,
+    "pack_ext_id": "pack_bg_213",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 213,
+    "pack_ext_id": "pack_bg_214",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 214,
+    "pack_ext_id": "pack_bg_215",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 215,
+    "pack_ext_id": "pack_bg_216",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 216,
+    "pack_ext_id": "pack_bg_217",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 217,
+    "pack_ext_id": "pack_bg_218",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 218,
+    "pack_ext_id": "pack_bg_219",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 219,
+    "pack_ext_id": "pack_bg_220",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 220,
+    "pack_ext_id": "pack_bg_221",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 221,
+    "pack_ext_id": "pack_bg_222",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 222,
+    "pack_ext_id": "pack_bg_223",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 223,
+    "pack_ext_id": "pack_bg_224",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 224,
+    "pack_ext_id": "pack_bg_225",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 225,
+    "pack_ext_id": "pack_bg_226",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 226,
+    "pack_ext_id": "pack_bg_227",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 227,
+    "pack_ext_id": "pack_bg_228",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 228,
+    "pack_ext_id": "pack_bg_229",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 229,
+    "pack_ext_id": "pack_bg_230",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 230,
+    "pack_ext_id": "pack_bg_231",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 231,
+    "pack_ext_id": "pack_bg_232",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 232,
+    "pack_ext_id": "pack_bg_233",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 233,
+    "pack_ext_id": "pack_bg_234",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 234,
+    "pack_ext_id": "pack_bg_235",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 235,
+    "pack_ext_id": "pack_bg_236",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 236,
+    "pack_ext_id": "pack_bg_237",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 237,
+    "pack_ext_id": "pack_bg_238",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 238,
+    "pack_ext_id": "pack_bg_239",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 239,
+    "pack_ext_id": "pack_bg_240",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 240,
+    "pack_ext_id": "pack_bg_241",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 241,
+    "pack_ext_id": "pack_bg_242",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 242,
+    "pack_ext_id": "pack_bg_243",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 243,
+    "pack_ext_id": "pack_bg_244",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 244,
+    "pack_ext_id": "pack_bg_245",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 245,
+    "pack_ext_id": "pack_bg_246",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 246,
+    "pack_ext_id": "pack_bg_247",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 247,
+    "pack_ext_id": "pack_bg_248",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 248,
+    "pack_ext_id": "pack_bg_249",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 249,
+    "pack_ext_id": "pack_bg_250",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 250,
+    "pack_ext_id": "pack_bg_251",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 251,
+    "pack_ext_id": "pack_bg_252",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 252,
+    "pack_ext_id": "pack_bg_253",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 253,
+    "pack_ext_id": "pack_bg_254",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 254,
+    "pack_ext_id": "pack_bg_255",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 255,
+    "pack_ext_id": "pack_bg_256",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 256,
+    "pack_ext_id": "pack_bg_257",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 257,
+    "pack_ext_id": "pack_bg_258",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 258,
+    "pack_ext_id": "pack_bg_259",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 259,
+    "pack_ext_id": "pack_bg_260",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 260,
+    "pack_ext_id": "pack_bg_261",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 261,
+    "pack_ext_id": "pack_bg_262",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 262,
+    "pack_ext_id": "pack_bg_263",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 263,
+    "pack_ext_id": "pack_bg_264",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 264,
+    "pack_ext_id": "pack_bg_265",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 265,
+    "pack_ext_id": "pack_bg_266",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 266,
+    "pack_ext_id": "pack_bg_267",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 267,
+    "pack_ext_id": "pack_bg_268",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 268,
+    "pack_ext_id": "pack_bg_269",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 269,
+    "pack_ext_id": "pack_bg_270",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 270,
+    "pack_ext_id": "pack_bg_271",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 271,
+    "pack_ext_id": "pack_bg_272",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 272,
+    "pack_ext_id": "pack_bg_273",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 273,
+    "pack_ext_id": "pack_bg_274",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 274,
+    "pack_ext_id": "pack_bg_275",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 275,
+    "pack_ext_id": "pack_bg_276",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 276,
+    "pack_ext_id": "pack_bg_277",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 277,
+    "pack_ext_id": "pack_bg_278",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 278,
+    "pack_ext_id": "pack_bg_279",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 279,
+    "pack_ext_id": "pack_bg_280",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 280,
+    "pack_ext_id": "pack_bg_281",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 281,
+    "pack_ext_id": "pack_bg_282",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 282,
+    "pack_ext_id": "pack_bg_283",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 283,
+    "pack_ext_id": "pack_bg_284",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 284,
+    "pack_ext_id": "pack_bg_285",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 285,
+    "pack_ext_id": "pack_bg_286",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 286,
+    "pack_ext_id": "pack_bg_287",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 287,
+    "pack_ext_id": "pack_bg_288",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 288,
+    "pack_ext_id": "pack_bg_289",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 289,
+    "pack_ext_id": "pack_bg_290",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 290,
+    "pack_ext_id": "pack_bg_291",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 291,
+    "pack_ext_id": "pack_bg_292",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 292,
+    "pack_ext_id": "pack_bg_293",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 293,
+    "pack_ext_id": "pack_bg_294",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 294,
+    "pack_ext_id": "pack_bg_295",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 295,
+    "pack_ext_id": "pack_bg_296",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 296,
+    "pack_ext_id": "pack_bg_297",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 297,
+    "pack_ext_id": "pack_bg_298",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 298,
+    "pack_ext_id": "pack_bg_299",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 299,
+    "pack_ext_id": "pack_bg_300",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 300,
+    "pack_ext_id": "pack_bg_301",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 301,
+    "pack_ext_id": "pack_bg_302",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 302,
+    "pack_ext_id": "pack_bg_303",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 303,
+    "pack_ext_id": "pack_bg_304",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 304,
+    "pack_ext_id": "pack_bg_305",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 305,
+    "pack_ext_id": "pack_bg_306",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 306,
+    "pack_ext_id": "pack_bg_307",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 307,
+    "pack_ext_id": "pack_bg_308",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 308,
+    "pack_ext_id": "pack_bg_309",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 309,
+    "pack_ext_id": "pack_bg_310",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 310,
+    "pack_ext_id": "pack_bg_311",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 311,
+    "pack_ext_id": "pack_bg_312",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 312,
+    "pack_ext_id": "pack_bg_313",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 313,
+    "pack_ext_id": "pack_bg_314",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 314,
+    "pack_ext_id": "pack_bg_315",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 315,
+    "pack_ext_id": "pack_bg_316",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 316,
+    "pack_ext_id": "pack_bg_317",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 317,
+    "pack_ext_id": "pack_bg_318",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 318,
+    "pack_ext_id": "pack_bg_319",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 319,
+    "pack_ext_id": "pack_bg_320",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 320,
+    "pack_ext_id": "pack_bg_321",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 321,
+    "pack_ext_id": "pack_bg_322",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 322,
+    "pack_ext_id": "pack_bg_323",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 323,
+    "pack_ext_id": "pack_bg_324",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 324,
+    "pack_ext_id": "pack_bg_325",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 325,
+    "pack_ext_id": "pack_bg_326",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 326,
+    "pack_ext_id": "pack_bg_327",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 327,
+    "pack_ext_id": "pack_bg_328",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 328,
+    "pack_ext_id": "pack_bg_329",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 329,
+    "pack_ext_id": "pack_bg_330",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 330,
+    "pack_ext_id": "pack_bg_331",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 331,
+    "pack_ext_id": "pack_bg_332",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 332,
+    "pack_ext_id": "pack_bg_333",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 333,
+    "pack_ext_id": "pack_bg_334",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 334,
+    "pack_ext_id": "pack_bg_335",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 335,
+    "pack_ext_id": "pack_bg_336",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 336,
+    "pack_ext_id": "pack_bg_337",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 337,
+    "pack_ext_id": "pack_bg_338",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 338,
+    "pack_ext_id": "pack_bg_339",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 339,
+    "pack_ext_id": "pack_bg_340",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 340,
+    "pack_ext_id": "pack_bg_341",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 341,
+    "pack_ext_id": "pack_bg_342",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 342,
+    "pack_ext_id": "pack_bg_343",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 343,
+    "pack_ext_id": "pack_bg_344",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 344,
+    "pack_ext_id": "pack_bg_345",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 345,
+    "pack_ext_id": "pack_bg_346",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 346,
+    "pack_ext_id": "pack_bg_347",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 347,
+    "pack_ext_id": "pack_bg_348",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 348,
+    "pack_ext_id": "pack_bg_349",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 349,
+    "pack_ext_id": "pack_bg_350",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 350,
+    "pack_ext_id": "pack_bg_351",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 351,
+    "pack_ext_id": "pack_bg_352",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 352,
+    "pack_ext_id": "pack_bg_353",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 353,
+    "pack_ext_id": "pack_bg_354",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 354,
+    "pack_ext_id": "pack_bg_355",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 355,
+    "pack_ext_id": "pack_bg_356",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 356,
+    "pack_ext_id": "pack_bg_357",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 357,
+    "pack_ext_id": "pack_bg_358",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 358,
+    "pack_ext_id": "pack_bg_359",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 359,
+    "pack_ext_id": "pack_bg_360",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 360,
+    "pack_ext_id": "pack_bg_361",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 361,
+    "pack_ext_id": "pack_bg_362",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 362,
+    "pack_ext_id": "pack_bg_363",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 363,
+    "pack_ext_id": "pack_bg_364",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 364,
+    "pack_ext_id": "pack_bg_365",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 365,
+    "pack_ext_id": "pack_bg_366",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 366,
+    "pack_ext_id": "pack_bg_367",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 367,
+    "pack_ext_id": "pack_bg_368",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 368,
+    "pack_ext_id": "pack_bg_369",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 369,
+    "pack_ext_id": "pack_bg_370",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 370,
+    "pack_ext_id": "pack_bg_371",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 371,
+    "pack_ext_id": "pack_bg_372",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 30,
+    "location_ext_id": "loc_bg-reg-0802000266",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 372,
+    "pack_ext_id": "pack_bg_373",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 373,
+    "pack_ext_id": "pack_bg_374",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 374,
+    "pack_ext_id": "pack_bg_375",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 375,
+    "pack_ext_id": "pack_bg_376",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 376,
+    "pack_ext_id": "pack_bg_377",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 377,
+    "pack_ext_id": "pack_bg_378",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 378,
+    "pack_ext_id": "pack_bg_379",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 379,
+    "pack_ext_id": "pack_bg_380",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 380,
+    "pack_ext_id": "pack_bg_381",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 381,
+    "pack_ext_id": "pack_bg_382",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 382,
+    "pack_ext_id": "pack_bg_383",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 383,
+    "pack_ext_id": "pack_bg_384",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 384,
+    "pack_ext_id": "pack_bg_385",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 385,
+    "pack_ext_id": "pack_bg_386",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 386,
+    "pack_ext_id": "pack_bg_387",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 387,
+    "pack_ext_id": "pack_bg_388",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 388,
+    "pack_ext_id": "pack_bg_389",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 389,
+    "pack_ext_id": "pack_bg_390",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 390,
+    "pack_ext_id": "pack_bg_391",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 391,
+    "pack_ext_id": "pack_bg_392",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 392,
+    "pack_ext_id": "pack_bg_393",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 393,
+    "pack_ext_id": "pack_bg_394",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 394,
+    "pack_ext_id": "pack_bg_395",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 395,
+    "pack_ext_id": "pack_bg_396",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 396,
+    "pack_ext_id": "pack_bg_397",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 397,
+    "pack_ext_id": "pack_bg_398",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 398,
+    "pack_ext_id": "pack_bg_399",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 399,
+    "pack_ext_id": "pack_bg_400",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 400,
+    "pack_ext_id": "pack_bg_401",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 401,
+    "pack_ext_id": "pack_bg_402",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 402,
+    "pack_ext_id": "pack_bg_403",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 403,
+    "pack_ext_id": "pack_bg_404",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 404,
+    "pack_ext_id": "pack_bg_405",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 405,
+    "pack_ext_id": "pack_bg_406",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 406,
+    "pack_ext_id": "pack_bg_407",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 407,
+    "pack_ext_id": "pack_bg_408",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 36,
+    "location_ext_id": "loc_bg-reg-0302000049",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 408,
+    "pack_ext_id": "pack_bg_409",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 409,
+    "pack_ext_id": "pack_bg_410",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 410,
+    "pack_ext_id": "pack_bg_411",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 411,
+    "pack_ext_id": "pack_bg_412",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 412,
+    "pack_ext_id": "pack_bg_413",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 413,
+    "pack_ext_id": "pack_bg_414",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 414,
+    "pack_ext_id": "pack_bg_415",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 415,
+    "pack_ext_id": "pack_bg_416",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 416,
+    "pack_ext_id": "pack_bg_417",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 417,
+    "pack_ext_id": "pack_bg_418",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 418,
+    "pack_ext_id": "pack_bg_419",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 419,
+    "pack_ext_id": "pack_bg_420",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 42,
+    "location_ext_id": "loc_bg-reg-1602000119",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 420,
+    "pack_ext_id": "pack_bg_421",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 421,
+    "pack_ext_id": "pack_bg_422",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 422,
+    "pack_ext_id": "pack_bg_423",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 423,
+    "pack_ext_id": "pack_bg_424",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 424,
+    "pack_ext_id": "pack_bg_425",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 425,
+    "pack_ext_id": "pack_bg_426",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 426,
+    "pack_ext_id": "pack_bg_427",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 427,
+    "pack_ext_id": "pack_bg_428",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 428,
+    "pack_ext_id": "pack_bg_429",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 429,
+    "pack_ext_id": "pack_bg_430",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 430,
+    "pack_ext_id": "pack_bg_431",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 431,
+    "pack_ext_id": "pack_bg_432",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 48,
+    "location_ext_id": "loc_bg-reg-1602002731",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 432,
+    "pack_ext_id": "pack_bg_433",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 433,
+    "pack_ext_id": "pack_bg_434",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 434,
+    "pack_ext_id": "pack_bg_435",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 435,
+    "pack_ext_id": "pack_bg_436",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 436,
+    "pack_ext_id": "pack_bg_437",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 437,
+    "pack_ext_id": "pack_bg_438",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 438,
+    "pack_ext_id": "pack_bg_439",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 439,
+    "pack_ext_id": "pack_bg_440",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 440,
+    "pack_ext_id": "pack_bg_441",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 441,
+    "pack_ext_id": "pack_bg_442",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 442,
+    "pack_ext_id": "pack_bg_443",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 443,
+    "pack_ext_id": "pack_bg_444",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 54,
+    "location_ext_id": "loc_bg-reg-2402000062",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 444,
+    "pack_ext_id": "pack_bg_445",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 445,
+    "pack_ext_id": "pack_bg_446",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 446,
+    "pack_ext_id": "pack_bg_447",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 447,
+    "pack_ext_id": "pack_bg_448",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 448,
+    "pack_ext_id": "pack_bg_449",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 449,
+    "pack_ext_id": "pack_bg_450",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 450,
+    "pack_ext_id": "pack_bg_451",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 451,
+    "pack_ext_id": "pack_bg_452",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 452,
+    "pack_ext_id": "pack_bg_453",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 453,
+    "pack_ext_id": "pack_bg_454",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 454,
+    "pack_ext_id": "pack_bg_455",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 455,
+    "pack_ext_id": "pack_bg_456",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 59,
+    "location_ext_id": "loc_bg-reg-1102000236",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 456,
+    "pack_ext_id": "pack_bg_457",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 457,
+    "pack_ext_id": "pack_bg_458",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 458,
+    "pack_ext_id": "pack_bg_459",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 459,
+    "pack_ext_id": "pack_bg_460",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 460,
+    "pack_ext_id": "pack_bg_461",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 461,
+    "pack_ext_id": "pack_bg_462",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 462,
+    "pack_ext_id": "pack_bg_463",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 463,
+    "pack_ext_id": "pack_bg_464",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 464,
+    "pack_ext_id": "pack_bg_465",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 465,
+    "pack_ext_id": "pack_bg_466",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 466,
+    "pack_ext_id": "pack_bg_467",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 467,
+    "pack_ext_id": "pack_bg_468",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 65,
+    "location_ext_id": "loc_spor-LOC-100085437",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 468,
+    "pack_ext_id": "pack_bg_469",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 469,
+    "pack_ext_id": "pack_bg_470",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 470,
+    "pack_ext_id": "pack_bg_471",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 471,
+    "pack_ext_id": "pack_bg_472",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 472,
+    "pack_ext_id": "pack_bg_473",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 473,
+    "pack_ext_id": "pack_bg_474",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 474,
+    "pack_ext_id": "pack_bg_475",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 475,
+    "pack_ext_id": "pack_bg_476",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 476,
+    "pack_ext_id": "pack_bg_477",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 477,
+    "pack_ext_id": "pack_bg_478",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 478,
+    "pack_ext_id": "pack_bg_479",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 479,
+    "pack_ext_id": "pack_bg_480",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 66,
+    "location_ext_id": "loc_bg-reg-0502000029",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 480,
+    "pack_ext_id": "pack_bg_481",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 481,
+    "pack_ext_id": "pack_bg_482",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 482,
+    "pack_ext_id": "pack_bg_483",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 483,
+    "pack_ext_id": "pack_bg_484",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 484,
+    "pack_ext_id": "pack_bg_485",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 485,
+    "pack_ext_id": "pack_bg_486",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 486,
+    "pack_ext_id": "pack_bg_487",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 487,
+    "pack_ext_id": "pack_bg_488",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 488,
+    "pack_ext_id": "pack_bg_489",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 489,
+    "pack_ext_id": "pack_bg_490",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 490,
+    "pack_ext_id": "pack_bg_491",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 491,
+    "pack_ext_id": "pack_bg_492",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 492,
+    "pack_ext_id": "pack_bg_493",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 493,
+    "pack_ext_id": "pack_bg_494",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 494,
+    "pack_ext_id": "pack_bg_495",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 495,
+    "pack_ext_id": "pack_bg_496",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 496,
+    "pack_ext_id": "pack_bg_497",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 497,
+    "pack_ext_id": "pack_bg_498",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 498,
+    "pack_ext_id": "pack_bg_499",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 499,
+    "pack_ext_id": "pack_bg_500",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 500,
+    "pack_ext_id": "pack_bg_501",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 501,
+    "pack_ext_id": "pack_bg_502",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 502,
+    "pack_ext_id": "pack_bg_503",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 503,
+    "pack_ext_id": "pack_bg_504",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 72,
+    "location_ext_id": "loc_bg-reg-1202000260",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 504,
+    "pack_ext_id": "pack_bg_505",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 505,
+    "pack_ext_id": "pack_bg_506",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 506,
+    "pack_ext_id": "pack_bg_507",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 507,
+    "pack_ext_id": "pack_bg_508",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 508,
+    "pack_ext_id": "pack_bg_509",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 509,
+    "pack_ext_id": "pack_bg_510",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 510,
+    "pack_ext_id": "pack_bg_511",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 511,
+    "pack_ext_id": "pack_bg_512",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 512,
+    "pack_ext_id": "pack_bg_513",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 513,
+    "pack_ext_id": "pack_bg_514",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 514,
+    "pack_ext_id": "pack_bg_515",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 515,
+    "pack_ext_id": "pack_bg_516",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 78,
+    "location_ext_id": "loc_bg-reg-2802000311",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 516,
+    "pack_ext_id": "pack_bg_517",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 517,
+    "pack_ext_id": "pack_bg_518",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 518,
+    "pack_ext_id": "pack_bg_519",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 519,
+    "pack_ext_id": "pack_bg_520",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 520,
+    "pack_ext_id": "pack_bg_521",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 521,
+    "pack_ext_id": "pack_bg_522",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 522,
+    "pack_ext_id": "pack_bg_523",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 523,
+    "pack_ext_id": "pack_bg_524",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 524,
+    "pack_ext_id": "pack_bg_525",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 525,
+    "pack_ext_id": "pack_bg_526",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 526,
+    "pack_ext_id": "pack_bg_527",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 527,
+    "pack_ext_id": "pack_bg_528",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 84,
+    "location_ext_id": "loc_spor-LOC-100089533",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 528,
+    "pack_ext_id": "pack_bg_529",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 529,
+    "pack_ext_id": "pack_bg_530",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 530,
+    "pack_ext_id": "pack_bg_531",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 531,
+    "pack_ext_id": "pack_bg_532",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 532,
+    "pack_ext_id": "pack_bg_533",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 533,
+    "pack_ext_id": "pack_bg_534",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 534,
+    "pack_ext_id": "pack_bg_535",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 535,
+    "pack_ext_id": "pack_bg_536",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 536,
+    "pack_ext_id": "pack_bg_537",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 537,
+    "pack_ext_id": "pack_bg_538",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 538,
+    "pack_ext_id": "pack_bg_539",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 539,
+    "pack_ext_id": "pack_bg_540",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 89,
+    "location_ext_id": "loc_bg-reg-0202002360",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 540,
+    "pack_ext_id": "pack_bg_541",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 541,
+    "pack_ext_id": "pack_bg_542",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 542,
+    "pack_ext_id": "pack_bg_543",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 543,
+    "pack_ext_id": "pack_bg_544",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 544,
+    "pack_ext_id": "pack_bg_545",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 545,
+    "pack_ext_id": "pack_bg_546",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 546,
+    "pack_ext_id": "pack_bg_547",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 547,
+    "pack_ext_id": "pack_bg_548",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 548,
+    "pack_ext_id": "pack_bg_549",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 549,
+    "pack_ext_id": "pack_bg_550",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 550,
+    "pack_ext_id": "pack_bg_551",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 551,
+    "pack_ext_id": "pack_bg_552",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 95,
+    "location_ext_id": "loc_spor-LOC-100070128",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 552,
+    "pack_ext_id": "pack_bg_553",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 553,
+    "pack_ext_id": "pack_bg_554",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 554,
+    "pack_ext_id": "pack_bg_555",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 555,
+    "pack_ext_id": "pack_bg_556",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 556,
+    "pack_ext_id": "pack_bg_557",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 557,
+    "pack_ext_id": "pack_bg_558",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 558,
+    "pack_ext_id": "pack_bg_559",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 559,
+    "pack_ext_id": "pack_bg_560",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 560,
+    "pack_ext_id": "pack_bg_561",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 561,
+    "pack_ext_id": "pack_bg_562",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 562,
+    "pack_ext_id": "pack_bg_563",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 563,
+    "pack_ext_id": "pack_bg_564",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 564,
+    "pack_ext_id": "pack_bg_565",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 565,
+    "pack_ext_id": "pack_bg_566",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 566,
+    "pack_ext_id": "pack_bg_567",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 567,
+    "pack_ext_id": "pack_bg_568",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 568,
+    "pack_ext_id": "pack_bg_569",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 569,
+    "pack_ext_id": "pack_bg_570",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 570,
+    "pack_ext_id": "pack_bg_571",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 571,
+    "pack_ext_id": "pack_bg_572",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 572,
+    "pack_ext_id": "pack_bg_573",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 573,
+    "pack_ext_id": "pack_bg_574",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 574,
+    "pack_ext_id": "pack_bg_575",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 575,
+    "pack_ext_id": "pack_bg_576",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 101,
+    "location_ext_id": "loc_spor-LOC-100088320",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 576,
+    "pack_ext_id": "pack_bg_577",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 577,
+    "pack_ext_id": "pack_bg_578",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 578,
+    "pack_ext_id": "pack_bg_579",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 579,
+    "pack_ext_id": "pack_bg_580",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 580,
+    "pack_ext_id": "pack_bg_581",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 581,
+    "pack_ext_id": "pack_bg_582",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 582,
+    "pack_ext_id": "pack_bg_583",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 583,
+    "pack_ext_id": "pack_bg_584",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 584,
+    "pack_ext_id": "pack_bg_585",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 585,
+    "pack_ext_id": "pack_bg_586",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 586,
+    "pack_ext_id": "pack_bg_587",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 587,
+    "pack_ext_id": "pack_bg_588",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 102,
+    "location_ext_id": "loc_spor-LOC-100080594",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 588,
+    "pack_ext_id": "pack_bg_589",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 589,
+    "pack_ext_id": "pack_bg_590",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 590,
+    "pack_ext_id": "pack_bg_591",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 591,
+    "pack_ext_id": "pack_bg_592",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 592,
+    "pack_ext_id": "pack_bg_593",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 593,
+    "pack_ext_id": "pack_bg_594",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 594,
+    "pack_ext_id": "pack_bg_595",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 595,
+    "pack_ext_id": "pack_bg_596",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 596,
+    "pack_ext_id": "pack_bg_597",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 597,
+    "pack_ext_id": "pack_bg_598",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 598,
+    "pack_ext_id": "pack_bg_599",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 599,
+    "pack_ext_id": "pack_bg_600",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 105,
+    "location_ext_id": "loc_spor-LOC-100095013",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 600,
+    "pack_ext_id": "pack_bg_601",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 601,
+    "pack_ext_id": "pack_bg_602",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 602,
+    "pack_ext_id": "pack_bg_603",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 603,
+    "pack_ext_id": "pack_bg_604",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 604,
+    "pack_ext_id": "pack_bg_605",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 605,
+    "pack_ext_id": "pack_bg_606",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 606,
+    "pack_ext_id": "pack_bg_607",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 607,
+    "pack_ext_id": "pack_bg_608",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 608,
+    "pack_ext_id": "pack_bg_609",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 609,
+    "pack_ext_id": "pack_bg_610",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 610,
+    "pack_ext_id": "pack_bg_611",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 611,
+    "pack_ext_id": "pack_bg_612",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 612,
+    "pack_ext_id": "pack_bg_613",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 613,
+    "pack_ext_id": "pack_bg_614",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 614,
+    "pack_ext_id": "pack_bg_615",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 615,
+    "pack_ext_id": "pack_bg_616",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 616,
+    "pack_ext_id": "pack_bg_617",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 617,
+    "pack_ext_id": "pack_bg_618",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 618,
+    "pack_ext_id": "pack_bg_619",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 619,
+    "pack_ext_id": "pack_bg_620",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 620,
+    "pack_ext_id": "pack_bg_621",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 621,
+    "pack_ext_id": "pack_bg_622",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 622,
+    "pack_ext_id": "pack_bg_623",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 623,
+    "pack_ext_id": "pack_bg_624",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 624,
+    "pack_ext_id": "pack_bg_625",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 625,
+    "pack_ext_id": "pack_bg_626",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 626,
+    "pack_ext_id": "pack_bg_627",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 627,
+    "pack_ext_id": "pack_bg_628",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 628,
+    "pack_ext_id": "pack_bg_629",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 629,
+    "pack_ext_id": "pack_bg_630",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 630,
+    "pack_ext_id": "pack_bg_631",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 631,
+    "pack_ext_id": "pack_bg_632",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 632,
+    "pack_ext_id": "pack_bg_633",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 633,
+    "pack_ext_id": "pack_bg_634",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 634,
+    "pack_ext_id": "pack_bg_635",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 635,
+    "pack_ext_id": "pack_bg_636",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 636,
+    "pack_ext_id": "pack_bg_637",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 637,
+    "pack_ext_id": "pack_bg_638",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 638,
+    "pack_ext_id": "pack_bg_639",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 639,
+    "pack_ext_id": "pack_bg_640",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 640,
+    "pack_ext_id": "pack_bg_641",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 641,
+    "pack_ext_id": "pack_bg_642",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 642,
+    "pack_ext_id": "pack_bg_643",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 643,
+    "pack_ext_id": "pack_bg_644",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 644,
+    "pack_ext_id": "pack_bg_645",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 645,
+    "pack_ext_id": "pack_bg_646",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 646,
+    "pack_ext_id": "pack_bg_647",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 647,
+    "pack_ext_id": "pack_bg_648",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 110,
+    "location_ext_id": "loc_bg-reg-0102000036",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 648,
+    "pack_ext_id": "pack_bg_649",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 649,
+    "pack_ext_id": "pack_bg_650",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 650,
+    "pack_ext_id": "pack_bg_651",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 651,
+    "pack_ext_id": "pack_bg_652",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 652,
+    "pack_ext_id": "pack_bg_653",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 653,
+    "pack_ext_id": "pack_bg_654",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 654,
+    "pack_ext_id": "pack_bg_655",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 655,
+    "pack_ext_id": "pack_bg_656",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 656,
+    "pack_ext_id": "pack_bg_657",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 657,
+    "pack_ext_id": "pack_bg_658",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 658,
+    "pack_ext_id": "pack_bg_659",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 659,
+    "pack_ext_id": "pack_bg_660",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 124,
+    "location_ext_id": "loc_bg-reg-0102000058",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 660,
+    "pack_ext_id": "pack_bg_661",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 661,
+    "pack_ext_id": "pack_bg_662",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 662,
+    "pack_ext_id": "pack_bg_663",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 663,
+    "pack_ext_id": "pack_bg_664",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 664,
+    "pack_ext_id": "pack_bg_665",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 665,
+    "pack_ext_id": "pack_bg_666",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 666,
+    "pack_ext_id": "pack_bg_667",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 667,
+    "pack_ext_id": "pack_bg_668",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 668,
+    "pack_ext_id": "pack_bg_669",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 669,
+    "pack_ext_id": "pack_bg_670",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 670,
+    "pack_ext_id": "pack_bg_671",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 671,
+    "pack_ext_id": "pack_bg_672",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 123,
+    "location_ext_id": "loc_bg-reg-0102000025",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 672,
+    "pack_ext_id": "pack_bg_673",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 673,
+    "pack_ext_id": "pack_bg_674",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 674,
+    "pack_ext_id": "pack_bg_675",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 675,
+    "pack_ext_id": "pack_bg_676",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 676,
+    "pack_ext_id": "pack_bg_677",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 677,
+    "pack_ext_id": "pack_bg_678",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 678,
+    "pack_ext_id": "pack_bg_679",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 679,
+    "pack_ext_id": "pack_bg_680",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 680,
+    "pack_ext_id": "pack_bg_681",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 681,
+    "pack_ext_id": "pack_bg_682",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 682,
+    "pack_ext_id": "pack_bg_683",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 683,
+    "pack_ext_id": "pack_bg_684",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 186,
+    "location_ext_id": "loc_bg-reg-0102000814",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 684,
+    "pack_ext_id": "pack_bg_685",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 685,
+    "pack_ext_id": "pack_bg_686",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 686,
+    "pack_ext_id": "pack_bg_687",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 687,
+    "pack_ext_id": "pack_bg_688",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 688,
+    "pack_ext_id": "pack_bg_689",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 689,
+    "pack_ext_id": "pack_bg_690",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 690,
+    "pack_ext_id": "pack_bg_691",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 691,
+    "pack_ext_id": "pack_bg_692",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 692,
+    "pack_ext_id": "pack_bg_693",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 693,
+    "pack_ext_id": "pack_bg_694",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 694,
+    "pack_ext_id": "pack_bg_695",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 695,
+    "pack_ext_id": "pack_bg_696",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 696,
+    "pack_ext_id": "pack_bg_697",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 697,
+    "pack_ext_id": "pack_bg_698",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 698,
+    "pack_ext_id": "pack_bg_699",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 699,
+    "pack_ext_id": "pack_bg_700",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 700,
+    "pack_ext_id": "pack_bg_701",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 701,
+    "pack_ext_id": "pack_bg_702",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 702,
+    "pack_ext_id": "pack_bg_703",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 703,
+    "pack_ext_id": "pack_bg_704",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 704,
+    "pack_ext_id": "pack_bg_705",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 705,
+    "pack_ext_id": "pack_bg_706",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 706,
+    "pack_ext_id": "pack_bg_707",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 707,
+    "pack_ext_id": "pack_bg_708",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 708,
+    "pack_ext_id": "pack_bg_709",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 709,
+    "pack_ext_id": "pack_bg_710",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 710,
+    "pack_ext_id": "pack_bg_711",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 711,
+    "pack_ext_id": "pack_bg_712",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 712,
+    "pack_ext_id": "pack_bg_713",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 713,
+    "pack_ext_id": "pack_bg_714",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 714,
+    "pack_ext_id": "pack_bg_715",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 715,
+    "pack_ext_id": "pack_bg_716",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 716,
+    "pack_ext_id": "pack_bg_717",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 717,
+    "pack_ext_id": "pack_bg_718",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 718,
+    "pack_ext_id": "pack_bg_719",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 719,
+    "pack_ext_id": "pack_bg_720",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 720,
+    "pack_ext_id": "pack_bg_721",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 721,
+    "pack_ext_id": "pack_bg_722",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 722,
+    "pack_ext_id": "pack_bg_723",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 723,
+    "pack_ext_id": "pack_bg_724",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 724,
+    "pack_ext_id": "pack_bg_725",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 725,
+    "pack_ext_id": "pack_bg_726",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 726,
+    "pack_ext_id": "pack_bg_727",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 727,
+    "pack_ext_id": "pack_bg_728",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 728,
+    "pack_ext_id": "pack_bg_729",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 729,
+    "pack_ext_id": "pack_bg_730",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 730,
+    "pack_ext_id": "pack_bg_731",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 731,
+    "pack_ext_id": "pack_bg_732",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 184,
+    "location_ext_id": "loc_bg-reg-0102000792",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 732,
+    "pack_ext_id": "pack_bg_733",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 733,
+    "pack_ext_id": "pack_bg_734",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 734,
+    "pack_ext_id": "pack_bg_735",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 735,
+    "pack_ext_id": "pack_bg_736",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 736,
+    "pack_ext_id": "pack_bg_737",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 737,
+    "pack_ext_id": "pack_bg_738",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 738,
+    "pack_ext_id": "pack_bg_739",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 739,
+    "pack_ext_id": "pack_bg_740",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 740,
+    "pack_ext_id": "pack_bg_741",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 741,
+    "pack_ext_id": "pack_bg_742",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 742,
+    "pack_ext_id": "pack_bg_743",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 743,
+    "pack_ext_id": "pack_bg_744",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 328,
+    "location_ext_id": "loc_bg-reg-0202000737",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 744,
+    "pack_ext_id": "pack_bg_745",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 745,
+    "pack_ext_id": "pack_bg_746",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 746,
+    "pack_ext_id": "pack_bg_747",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 747,
+    "pack_ext_id": "pack_bg_748",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 748,
+    "pack_ext_id": "pack_bg_749",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 749,
+    "pack_ext_id": "pack_bg_750",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 750,
+    "pack_ext_id": "pack_bg_751",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 751,
+    "pack_ext_id": "pack_bg_752",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 752,
+    "pack_ext_id": "pack_bg_753",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 753,
+    "pack_ext_id": "pack_bg_754",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 754,
+    "pack_ext_id": "pack_bg_755",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 755,
+    "pack_ext_id": "pack_bg_756",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 756,
+    "pack_ext_id": "pack_bg_757",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 757,
+    "pack_ext_id": "pack_bg_758",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 758,
+    "pack_ext_id": "pack_bg_759",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 759,
+    "pack_ext_id": "pack_bg_760",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 760,
+    "pack_ext_id": "pack_bg_761",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 761,
+    "pack_ext_id": "pack_bg_762",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 762,
+    "pack_ext_id": "pack_bg_763",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 763,
+    "pack_ext_id": "pack_bg_764",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 764,
+    "pack_ext_id": "pack_bg_765",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 765,
+    "pack_ext_id": "pack_bg_766",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 766,
+    "pack_ext_id": "pack_bg_767",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 767,
+    "pack_ext_id": "pack_bg_768",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 768,
+    "pack_ext_id": "pack_bg_769",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 769,
+    "pack_ext_id": "pack_bg_770",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 770,
+    "pack_ext_id": "pack_bg_771",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 771,
+    "pack_ext_id": "pack_bg_772",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 772,
+    "pack_ext_id": "pack_bg_773",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 773,
+    "pack_ext_id": "pack_bg_774",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 774,
+    "pack_ext_id": "pack_bg_775",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 775,
+    "pack_ext_id": "pack_bg_776",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 776,
+    "pack_ext_id": "pack_bg_777",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 777,
+    "pack_ext_id": "pack_bg_778",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 778,
+    "pack_ext_id": "pack_bg_779",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 779,
+    "pack_ext_id": "pack_bg_780",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 780,
+    "pack_ext_id": "pack_bg_781",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 781,
+    "pack_ext_id": "pack_bg_782",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 782,
+    "pack_ext_id": "pack_bg_783",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 783,
+    "pack_ext_id": "pack_bg_784",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 784,
+    "pack_ext_id": "pack_bg_785",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 785,
+    "pack_ext_id": "pack_bg_786",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 786,
+    "pack_ext_id": "pack_bg_787",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 787,
+    "pack_ext_id": "pack_bg_788",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 788,
+    "pack_ext_id": "pack_bg_789",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 789,
+    "pack_ext_id": "pack_bg_790",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 790,
+    "pack_ext_id": "pack_bg_791",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 791,
+    "pack_ext_id": "pack_bg_792",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 792,
+    "pack_ext_id": "pack_bg_793",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 793,
+    "pack_ext_id": "pack_bg_794",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 794,
+    "pack_ext_id": "pack_bg_795",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 795,
+    "pack_ext_id": "pack_bg_796",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 796,
+    "pack_ext_id": "pack_bg_797",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 797,
+    "pack_ext_id": "pack_bg_798",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 798,
+    "pack_ext_id": "pack_bg_799",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 799,
+    "pack_ext_id": "pack_bg_800",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 800,
+    "pack_ext_id": "pack_bg_801",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 801,
+    "pack_ext_id": "pack_bg_802",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 802,
+    "pack_ext_id": "pack_bg_803",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 803,
+    "pack_ext_id": "pack_bg_804",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 297,
+    "location_ext_id": "loc_bg-reg-0202000359",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 804,
+    "pack_ext_id": "pack_bg_805",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 805,
+    "pack_ext_id": "pack_bg_806",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 806,
+    "pack_ext_id": "pack_bg_807",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 807,
+    "pack_ext_id": "pack_bg_808",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 808,
+    "pack_ext_id": "pack_bg_809",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 809,
+    "pack_ext_id": "pack_bg_810",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 810,
+    "pack_ext_id": "pack_bg_811",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 811,
+    "pack_ext_id": "pack_bg_812",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 812,
+    "pack_ext_id": "pack_bg_813",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 813,
+    "pack_ext_id": "pack_bg_814",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 814,
+    "pack_ext_id": "pack_bg_815",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 815,
+    "pack_ext_id": "pack_bg_816",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 816,
+    "pack_ext_id": "pack_bg_817",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 817,
+    "pack_ext_id": "pack_bg_818",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 818,
+    "pack_ext_id": "pack_bg_819",
+    "state_u8": 1,
+    "state": "ACTIVE",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 819,
+    "pack_ext_id": "pack_bg_820",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 820,
+    "pack_ext_id": "pack_bg_821",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 821,
+    "pack_ext_id": "pack_bg_822",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 822,
+    "pack_ext_id": "pack_bg_823",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 823,
+    "pack_ext_id": "pack_bg_824",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 824,
+    "pack_ext_id": "pack_bg_825",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 825,
+    "pack_ext_id": "pack_bg_826",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 826,
+    "pack_ext_id": "pack_bg_827",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 827,
+    "pack_ext_id": "pack_bg_828",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 272,
+    "location_ext_id": "loc_bg-reg-0202000026",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 828,
+    "pack_ext_id": "pack_bg_829",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 829,
+    "pack_ext_id": "pack_bg_830",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 830,
+    "pack_ext_id": "pack_bg_831",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 831,
+    "pack_ext_id": "pack_bg_832",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 832,
+    "pack_ext_id": "pack_bg_833",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 833,
+    "pack_ext_id": "pack_bg_834",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 834,
+    "pack_ext_id": "pack_bg_835",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 835,
+    "pack_ext_id": "pack_bg_836",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 836,
+    "pack_ext_id": "pack_bg_837",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 837,
+    "pack_ext_id": "pack_bg_838",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 838,
+    "pack_ext_id": "pack_bg_839",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  },
+  {
+    "pack_id": 839,
+    "pack_ext_id": "pack_bg_840",
+    "state_u8": 2,
+    "state": "DECOMISSIONED",
+    "location_id": 273,
+    "location_ext_id": "loc_bg-reg-0202000037",
+    "market_id": 0,
+    "market_code": "BG"
+  }
+]

@@ -11,6 +11,11 @@ struct EngineInputView {
     std::int64_t seed;
     int n_organizations{}, n_locations{}, n_products{}, n_batches{}, n_packs{}, n_markets{}, n_edges{};
 
+    // products: per-product demand mix + ATC substitutability CSR (v7)
+    std::span<const float> product_demand_weight;
+    std::span<const std::uint32_t> product_substitute_offset;
+    std::span<const std::uint32_t> product_substitute_id;
+
     // numeric columns: non-owning
     std::span<const std::uint8_t> org_type;
 

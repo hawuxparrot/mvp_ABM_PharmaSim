@@ -4,10 +4,12 @@
 #include "engine_input_make_view.hpp"
 #include "enums.hpp"
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
 #include <memory>
 #include <random>
+#include <vector>
 
 #include <limits>
 #include <stdexcept>
@@ -292,12 +294,13 @@ void Simulator::execute_due_shipments(std::uint64_t tick) {
         const std::uint32_t to = input_.edge_dst_location_id[static_cast<std::size_t>(edge_id)];
 
         state_.relink_pack_location(pack_id, from, to);
-        const std::size_t from_i = static_cast<std::size_t>(from);
-        const std::size_t to_i = static_cast<std::size_t>(to);
-        if (state_.location_on_hand[from_i] > 0) {
-            --state_.location_on_hand[from_i];
+        const std::uint32_t prod = input_.pack_product_id[pi];
+        const std::size_t from_slot = state_.lp_index(from, prod);
+        const std::size_t to_slot = state_.lp_index(to, prod);
+        if (state_.location_on_hand[from_slot] > 0) {
+            --state_.location_on_hand[from_slot];
         }
-        ++state_.location_on_hand[to_i];
+        ++state_.location_on_hand[to_slot];
         state_.pack_location_id[pi] = to;
         state_.pack_market_id[pi] = input_.location_market_id[static_cast<std::size_t>(to)];
         events_.push(tick, pack_id, EventType::MOVE, from, to);
@@ -321,6 +324,35 @@ void Simulator::execute_due_shipments(std::uint64_t tick) {
     ship_final_dst_loc_.resize(write);
 }
 
+void Simulator::add_product_demand(std::uint32_t loc, std::uint32_t demand_units) {
+    if (demand_units == 0) return;
+    const int n_prod = state_.n_products;
+    if (n_prod <= 1) {
+        state_.location_backlog[state_.lp_index(loc, 0)] += demand_units;
+        return;
+    }
+    // Deterministic proportional split across products by demand weight (no RNG draws, so the
+    // engine's random stream -- movement/decommission/poisson -- is unaffected by the product
+    // dimension). The integer remainder is handed out low-index first.
+    double total_w = 0.0;
+    for (int p = 0; p < n_prod; ++p) total_w += input_.product_demand_weight[static_cast<std::size_t>(p)];
+    std::uint32_t remaining = demand_units;
+    if (total_w > 0.0) {
+        for (int p = 0; p < n_prod; ++p) {
+            const double w = input_.product_demand_weight[static_cast<std::size_t>(p)];
+            const auto share = static_cast<std::uint32_t>(
+                static_cast<double>(demand_units) * w / total_w);
+            if (share > 0) {
+                state_.location_backlog[state_.lp_index(loc, static_cast<std::uint32_t>(p))] += share;
+                remaining -= share;
+            }
+        }
+    }
+    for (int p = 0; remaining > 0; p = (p + 1) % n_prod, --remaining) {
+        state_.location_backlog[state_.lp_index(loc, static_cast<std::uint32_t>(p))] += 1u;
+    }
+}
+
 void Simulator::apply_demand_policy(std::uint32_t loc, std::uint64_t /*tick*/) {
     const std::size_t li = static_cast<std::size_t>(loc);
     const std::uint8_t pid = input_.location_demand_policy_id[li];
@@ -328,8 +360,7 @@ void Simulator::apply_demand_policy(std::uint32_t loc, std::uint64_t /*tick*/) {
     if (pid == 1) {
         const std::int32_t rate = input_.location_demand_const_rate[li];
         if (rate > 0) {
-            const auto demand_units = static_cast<std::uint32_t>(rate);
-            state_.location_backlog[li] += demand_units;
+            add_product_demand(loc, static_cast<std::uint32_t>(rate));
         }
         return;
     }
@@ -337,7 +368,7 @@ void Simulator::apply_demand_policy(std::uint32_t loc, std::uint64_t /*tick*/) {
         const float lambda = input_.location_demand_poisson_lambda[li];
         if (lambda > 0.0f) {
             const std::uint32_t demand_units = poisson_dist_by_loc_[li](rng_);
-            state_.location_backlog[li] += demand_units;
+            add_product_demand(loc, demand_units);
         }
         return;
     }
@@ -360,18 +391,19 @@ void Simulator::apply_supply_policy(
         }
         if (target_S_i32 <= 0) return;
 
-        const auto target_S = static_cast<std::uint32_t>(target_S_i32);
-        const auto on_hand = state_.location_on_hand[li];
-        const auto pipeline = state_.location_pipeline_outstanding[li];
+        const auto target_S = static_cast<std::uint64_t>(target_S_i32);
+        // Inventory position aggregates over products: the (s,S) policy decides reorder volume
+        // at the location level; the product mix is determined by which packs are picked.
+        const auto on_hand = state_.aggregate_for_location(state_.location_on_hand, loc);
+        const auto pipeline = state_.aggregate_for_location(state_.location_pipeline_outstanding, loc);
         const auto inventory_position = on_hand + pipeline;
         if (inventory_position >= target_S) return;
-        std::uint32_t remaining_to_order = target_S - inventory_position;
+        std::uint64_t remaining_to_order = target_S - inventory_position;
         const std::uint32_t preferred_edge = input_.location_preferred_supplier_edge_id[li];
         if (preferred_edge == std::numeric_limits<std::uint32_t>::max()) return;
 
         const std::uint32_t dst = input_.edge_dst_location_id[static_cast<std::size_t>(preferred_edge)];
         while (cap > 0 && remaining_to_order > 0) {
-            const std::size_t dsti = static_cast<std::size_t>(dst);
             const std::uint32_t pack_id = pick_pack_for_shipment(loc);
             if (pack_id == SimulationState::k_no_pack_id) break;
             const std::uint32_t first_edge = lookup_next_edge(loc, dst);
@@ -379,12 +411,13 @@ void Simulator::apply_supply_policy(
             if (edge_remaining_capacity[first_edge_i] == 0) break;
 
             const std::size_t pi = static_cast<std::size_t>(pack_id);
+            const std::uint32_t prod = input_.pack_product_id[pi];
             pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
             pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::IN_TRANSIT);
             state_.pack_route_dst_location_id[pi] = dst;
             schedule_pack_hop(pack_id, first_edge, dst, tick);
             --edge_remaining_capacity[first_edge_i];
-            ++state_.location_pipeline_outstanding[dsti];
+            ++state_.location_pipeline_outstanding[state_.lp_index(dst, prod)];
 
             --cap;
             --remaining_to_order;
@@ -392,49 +425,118 @@ void Simulator::apply_supply_policy(
         return;
     }
     if (pid == 2) {
-        std::uint32_t cap = input_.location_supply_capacity_per_tick[li];
-        const std::uint32_t preferred_edge = input_.location_preferred_supplier_edge_id[li];
-        if (preferred_edge == std::numeric_limits<std::uint32_t>::max()) return;
-        const std::uint32_t dst = input_.edge_dst_location_id[static_cast<std::size_t>(preferred_edge)];
-        while (cap > 0) {
-            bool from_pool = false;
-            std::uint32_t pack_id = pick_pool_pack_for_activation(loc);
-            if (pack_id != SimulationState::k_no_pack_id) {
-                from_pool = true;
-            } else {
-                pack_id = pick_pack_for_shipment(loc);
-            }
-            if (pack_id == SimulationState::k_no_pack_id) break;
-            const std::uint32_t first_edge = lookup_next_edge(loc, dst);
-            const std::size_t first_edge_i = static_cast<std::size_t>(first_edge);
-            if (edge_remaining_capacity[first_edge_i] == 0) break;
-            const std::size_t pi = static_cast<std::size_t>(pack_id);
-            if (from_pool) {
-                state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::UPLOADED);
-            }
-            pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
-            pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::IN_TRANSIT);
-            state_.pack_route_dst_location_id[pi] = dst;
-
-            schedule_pack_hop(pack_id, first_edge, dst, tick);
-            --edge_remaining_capacity[first_edge_i];
-            ++state_.location_pipeline_outstanding[static_cast<std::size_t>(dst)];
-            sync_pack_registry(pack_id);
-            --cap;
-        }
+        push_fanout(loc, tick, edge_remaining_capacity);
         return;
     }
     throw std::runtime_error("unknown supply policy id");
 }
 
-void Simulator::on_pack_arrival(std::uint32_t /*pack_id*/, std::uint32_t to_loc, std::uint64_t /*tick*/) {
-    const std::size_t li = static_cast<std::size_t>(to_loc);
-    if (state_.location_pipeline_outstanding[li] > 0) {
-        --state_.location_pipeline_outstanding[li];
+void Simulator::push_fanout(
+    std::uint32_t loc,
+    std::uint64_t tick,
+    std::vector<std::uint32_t>& edge_remaining_capacity
+) {
+    const std::size_t li = static_cast<std::size_t>(loc);
+    const std::uint32_t cap = input_.location_supply_capacity_per_tick[li];
+    if (cap == 0) return;
+
+    // Gather outgoing edges with gravity weights (capacity / (1 + cost)): high-capacity,
+    // low-cost lanes carry proportionally more flow. Multi-edge fan-out replaces the old
+    // single preferred-supplier lane, so flow naturally spreads across downstream neighbors
+    // (removing the single-chain artifact) instead of funneling through one edge.
+    const std::uint32_t beg = input_.location_out_edge_offset[li];
+    const std::uint32_t end = input_.location_out_edge_offset[li + 1];
+    if (beg >= end) return;
+
+    struct OutEdge { float weight; std::uint32_t edge_id; };
+    std::vector<OutEdge> edges;
+    edges.reserve(static_cast<std::size_t>(end - beg));
+    for (std::uint32_t i = beg; i < end; ++i) {
+        const std::uint32_t eid = input_.location_out_edge_id[static_cast<std::size_t>(i)];
+        const float cost = input_.edge_cost[static_cast<std::size_t>(eid)];
+        const std::uint32_t ecap = input_.edge_capacity[static_cast<std::size_t>(eid)];
+        edges.push_back(OutEdge{static_cast<float>(ecap) / (1.0f + cost), eid});
     }
+    // Deterministic ordering: heaviest lane first, ties broken by edge id.
+    std::sort(edges.begin(), edges.end(), [](const OutEdge& a, const OutEdge& b) {
+        if (a.weight != b.weight) return a.weight > b.weight;
+        return a.edge_id < b.edge_id;
+    });
+
+    // Interleave the per-tick capacity across the weight-sorted lanes (one pack per lane,
+    // cycling): the heaviest lane is served first each round, but every lane gets a share even
+    // when only a few packs are available -- so flow genuinely fans out across downstream
+    // neighbors rather than funneling into the single dominant lane.
+    const std::size_t m = edges.size();
+    std::uint32_t remaining = cap;
+    std::size_t idx = 0;
+    std::size_t consecutive_full = 0;
+    while (remaining > 0 && consecutive_full < m) {
+        const std::uint32_t edge_id = edges[idx].edge_id;
+        const std::size_t edge_i = static_cast<std::size_t>(edge_id);
+        if (edge_remaining_capacity[edge_i] == 0) {
+            idx = (idx + 1) % m;
+            ++consecutive_full;
+            continue;
+        }
+        bool from_pool = false;
+        std::uint32_t pack_id = pick_pool_pack_for_activation(loc);
+        if (pack_id != SimulationState::k_no_pack_id) {
+            from_pool = true;
+        } else {
+            pack_id = pick_pack_for_shipment(loc);
+        }
+        if (pack_id == SimulationState::k_no_pack_id) return;  // no shippable stock left
+
+        const std::uint32_t dst = input_.edge_dst_location_id[edge_i];
+        const std::size_t pi = static_cast<std::size_t>(pack_id);
+        if (from_pool) {
+            state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::UPLOADED);
+        }
+        const std::uint32_t prod = input_.pack_product_id[pi];
+        pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
+        pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::IN_TRANSIT);
+        state_.pack_route_dst_location_id[pi] = dst;
+
+        schedule_pack_hop(pack_id, edge_id, dst, tick);
+        --edge_remaining_capacity[edge_i];
+        ++state_.location_pipeline_outstanding[state_.lp_index(dst, prod)];
+        sync_pack_registry(pack_id);
+
+        --remaining;
+        consecutive_full = 0;
+        idx = (idx + 1) % m;
+    }
+}
+
+void Simulator::on_pack_arrival(std::uint32_t pack_id, std::uint32_t to_loc, std::uint64_t /*tick*/) {
+    const std::size_t li = static_cast<std::size_t>(to_loc);
+    const std::size_t pi = static_cast<std::size_t>(pack_id);
+    const std::uint32_t prod = input_.pack_product_id[pi];
+
+    const std::size_t prod_slot = state_.lp_index(to_loc, prod);
+    if (state_.location_pipeline_outstanding[prod_slot] > 0) {
+        --state_.location_pipeline_outstanding[prod_slot];
+    }
+
     const ORG_TYPE ot = static_cast<ORG_TYPE>(state_.location_org_type[li]);
-    if (ot == ORG_TYPE::LOCAL_ORG && state_.location_backlog[li] > 0) {
-        --state_.location_backlog[li];
+    if (ot != ORG_TYPE::LOCAL_ORG) return;
+
+    // Product-aware fulfillment: satisfy this product's backlog first; on stockout, consult
+    // the ATC substitute list (substitution-on-stockout) before giving up.
+    if (state_.location_backlog[prod_slot] > 0) {
+        --state_.location_backlog[prod_slot];
+        return;
+    }
+    const std::size_t beg = input_.product_substitute_offset[static_cast<std::size_t>(prod)];
+    const std::size_t end = input_.product_substitute_offset[static_cast<std::size_t>(prod) + 1];
+    for (std::size_t k = beg; k < end; ++k) {
+        const std::uint32_t sub = input_.product_substitute_id[k];
+        const std::size_t sub_slot = state_.lp_index(to_loc, sub);
+        if (state_.location_backlog[sub_slot] > 0) {
+            --state_.location_backlog[sub_slot];
+            return;
+        }
     }
 }
 
@@ -476,7 +578,9 @@ void Simulator::apply_end_of_tick_penalty() {
         if (pid == 1) {
             const float per_unit = input_.location_unfulfilled_unit_penalty[li];
             if (per_unit <= 0.0f) continue;
-            const std::uint32_t backlog = state_.location_backlog[li];
+            // Penalty is charged on total unmet demand at the location (all products).
+            const std::uint64_t backlog = state_.aggregate_for_location(
+                state_.location_backlog, static_cast<std::uint32_t>(li));
             if (backlog == 0) continue;
             state_.location_cum_unfulfilled_penalty[li] +=
                 static_cast<double>(per_unit) * static_cast<double>(backlog);

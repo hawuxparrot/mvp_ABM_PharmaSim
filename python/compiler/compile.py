@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import numpy as np
-import heapq
-import math
+from scipy.sparse import csr_matrix
+from scipy.sparse.csgraph import dijkstra
 
 from compiler.enums import org_type_u8, pack_state_u8
 from compiler.types import ENGINE_INPUT_SCHEMA_VERSION, EngineInput
@@ -28,59 +28,100 @@ def _build_multihop_route(
     n_edge: int,
     edge_src_location_id: np.ndarray,
     edge_dst_location_id: np.ndarray,
-    edge_cost: np.ndarray
+    edge_cost: np.ndarray,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    # adjacency: src -> list[(dst, edge_id, weight)]
-    adj: list[list[tuple[int, int, float]]] = [[] for _ in range(n_loc)]
-    for edge_id in range(len(edge_src_location_id)):
-        src_id = int(edge_src_location_id[edge_id])
-        dst_id = int(edge_dst_location_id[edge_id])
-        cost = float(edge_cost[edge_id])
-        adj[src_id].append((dst_id, edge_id, cost))
+    """Per-source first-hop routing CSR via C-level all-sources Dijkstra.
 
+    For every location ``s`` and reachable destination ``t`` we emit the id of the first
+    edge on a shortest path ``s -> t`` (multihop is resolved hop-by-hop by the engine via
+    ``lookup_next_edge``). Destinations are emitted in ascending id order per source so the
+    layout matches the previous pure-Python implementation.
+
+    Performance: shortest paths run inside ``scipy.sparse.csgraph`` (compiled), and we only
+    run them from nodes that actually have outgoing edges (supply hubs/wholesalers). Pure
+    sinks (pharmacies/hospitals) get empty route ranges, cutting the source count from
+    ``n_loc`` to ``n_supply``.
+    """
     off = np.zeros(n_loc + 1, dtype=np.uint32)
-    flat_dst: list[int] = []
-    flat_next_edge: list[int] = []
+    empty = np.array([], dtype=np.uint32)
+    if n_edge == 0 or n_loc == 0:
+        return off, empty.copy(), empty.copy()
 
-    for src in range(n_loc):
-        dist = [math.inf] * n_loc
-        parent = [-1] * n_loc   # prev node
-        parent_edge = [-1] * n_loc   # edge used to arrive at curr node
-        dist[src] = 0.0
-        pq: list[tuple[float, int]] = [(0.0, src)]
-        while pq:
-            d, u = heapq.heappop(pq)
-            if d > dist[u]:
-                continue
-            for v, eid, weight in adj[u]:
-                if dist[v] > dist[u] + weight:
-                    dist[v] = dist[u] + weight
-                    parent[v] = u
-                    parent_edge[v] = eid
-                    heapq.heappush(pq, (dist[v], v))
-        # emit routes for reachable dst != src
-        for dst in range(n_loc):
-            if dst == src or not math.isfinite(dist[dst]):
-                continue
-            # walk back dst->src and recover first edge out of src
-            cur = dst
-            first_edge = -1
-            while parent[cur] != -1:
-                e = parent_edge[cur]
-                p = parent[cur]
-                first_edge = e
-                cur = p
-                if cur == src:
-                    break
-            if cur != src or first_edge < 0:
-                continue
-            flat_dst.append(dst)
-            flat_next_edge.append(first_edge)
-        off[src + 1] = len(flat_dst)
+    src = np.asarray(edge_src_location_id, dtype=np.int64)
+    dst = np.asarray(edge_dst_location_id, dtype=np.int64)
+    cost = np.asarray(edge_cost, dtype=np.float64)
+
+    # Dijkstra needs strictly positive weights to relax correctly; clamp zero/negative.
+    weights = np.where(cost > 0.0, cost, 1e-6)
+    graph = csr_matrix((weights, (src, dst)), shape=(n_loc, n_loc))
+
+    # First-hop edge id for each (src, immediate-neighbor) pair, choosing the cheapest
+    # parallel edge so the recovered hop matches the weight Dijkstra used.
+    first_edge_of: dict[tuple[int, int], tuple[int, float]] = {}
+    for eid in range(n_edge):
+        key = (int(src[eid]), int(dst[eid]))
+        c = float(cost[eid])
+        cur = first_edge_of.get(key)
+        if cur is None or c < cur[1]:
+            first_edge_of[key] = (eid, c)
+
+    sources = np.unique(src)
+    dist, pred = dijkstra(
+        graph, directed=True, indices=sources, return_predecessors=True
+    )
+    src_row = {int(s): i for i, s in enumerate(sources)}
+
+    flat_dst: list[int] = []
+    flat_next: list[int] = []
+    for s in range(n_loc):
+        row = src_row.get(s)
+        if row is not None:
+            d_row = dist[row]
+            p_row = pred[row]
+            # Resolve first hop for every reachable node, processing in increasing
+            # distance so first_hop[pred[t]] is already known (memoized shortest-path tree).
+            order = np.argsort(d_row, kind="stable")
+            first_hop = np.full(n_loc, -1, dtype=np.int64)
+            for t in order:
+                t = int(t)
+                if t == s or not np.isfinite(d_row[t]):
+                    continue
+                p = int(p_row[t])
+                if p == s:
+                    first_hop[t] = t
+                elif p >= 0 and first_hop[p] >= 0:
+                    first_hop[t] = first_hop[p]
+                else:
+                    # Ordering gap (e.g. equal-distance ties): recover by walking back.
+                    cur = t
+                    fh = -1
+                    while True:
+                        pc = int(p_row[cur])
+                        if pc == s:
+                            fh = cur
+                            break
+                        if pc < 0:
+                            break
+                        cur = pc
+                    if fh < 0:
+                        continue
+                    first_hop[t] = fh
+            # Emit in ascending destination id for a stable, matching CSR layout.
+            for t in range(n_loc):
+                fh = int(first_hop[t])
+                if fh < 0:
+                    continue
+                edge = first_edge_of.get((s, fh))
+                if edge is None:
+                    continue
+                flat_dst.append(t)
+                flat_next.append(edge[0])
+        off[s + 1] = len(flat_dst)
+
     return (
         off,
         np.array(flat_dst, dtype=np.uint32),
-        np.array(flat_next_edge, dtype=np.uint32),
+        np.array(flat_next, dtype=np.uint32),
     )
 
 

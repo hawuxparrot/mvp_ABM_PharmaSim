@@ -58,10 +58,12 @@ def build_canonical_dataset(
             provider=NominatimGeocoder(),
             cache=JsonGeocodeCache(cache_path),
         )
+        cache = JsonGeocodeCache(cache_path)
         merged, unresolved = geocode_nodes(
             merged,
             geocoder,
             max_new_requests=geocode_max_new_requests,
+            cache_for_offline=cache,
         )
 
     edges = build_routing_edges(merged)
@@ -89,6 +91,8 @@ def build_bulgaria_scenario(
     seed: int = 42,
     packs_per_obp: int = 250,
     max_locations: int = 350,
+    n_obp_hubs: int = 4,
+    packs_per_wholesaler: int = 12,
 ) -> tuple[Scenario, CanonicalDataset]:
     canonical = build_canonical_dataset(
         bg_registry_path=bg_registry_path,
@@ -102,6 +106,8 @@ def build_bulgaria_scenario(
         seed=seed,
         packs_per_obp=packs_per_obp,
         max_locations=max_locations,
+        n_obp_hubs=n_obp_hubs,
+        packs_per_wholesaler=packs_per_wholesaler,
     )
     return scenario, canonical
 

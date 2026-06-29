@@ -110,8 +110,52 @@ flowchart TB
   DETECT --> EVAL
 ```
 
+### End-to-end Bulgaria fraud/smuggling loop
+
+A single reproducible loop now ties the data pipeline, the C++ engine, and detection
+together so anomalies appear in the **real engine event log** (not a parallel synthetic
+plan) and detectors are scored on that log:
+
+```
+data (BG registry + SPOR)
+  -> batch geocode cache            scripts/geocode_bg.py  (resumable, OSM + city fallback)
+  -> connectivity-first scenario    python/canonical/scenario_builder.py
+  -> compile + calibrate            python/runtime/experiments.py  (push policies)
+  -> baseline run_ticks             ground-truth event log
+  -> perturbation (Python driver)   python/policy/perturbations.py  -> perturbed EngineInput + labels
+  -> perturbed run_ticks            observable event log
+  -> log detectors + scoring        python/analytics/{fraud,experiment}.py
+```
+
+Run it:
+
+```bash
+# one-time, resumable; populates data/geocode_cache_bg.json
+uv run python scripts/geocode_bg.py
+
+# build -> compile -> simulate -> export ground-truth log + map plot
+TICKS=300 ./scripts/run_bulgaria.sh
+
+# one-call baseline-vs-perturbed experiment (precision/recall/F1 vs labels)
+uv run python -c "from analytics.experiment import run_fraud_experiment; \
+from policy.perturbations import PerturbationSpec, PerturbationType as T; \
+r=run_fraud_experiment(PerturbationSpec(ptype=T.SMUGGLING)); print(r.metrics)"
+```
+
+Perturbation types (`PerturbationType`): `VOLUME_SPIKE`, `SMUGGLING` (cross-market
+diversion), `THEFT` (distributor shrinkage), `COUNTERFEIT` (cloned-serial injection). Each
+rewrites calibrated engine parameters and emits ground-truth `PerturbationLabel`s; the
+matching log detector recovers the injected sites. Map + baseline-vs-perturbed flow plots
+live in `python/runtime/simulation_viz.py` (`plot_location_graph`, `plot_flow_comparison`).
+
+> Engine-fit notes: the supply phase ships along each node's single *preferred* edge, so the
+> calibration disperses import hubs geographically and stocks every wholesaler to get broad,
+> realistic OBP -> wholesaler -> pharmacy coverage; routing precompute now uses
+> `scipy.sparse.csgraph` (compile time dropped from the former bottleneck to a few ms).
+
 ### Next steps:
 - Enrich event log with transaction/order semantics for richer observability
+- Per-node fan-out distribution (engine currently ships along a single preferred edge)
 - Push anomaly injection into per-tick engine loop (currently pre-computed in Python)
 - Vectorized pack generation / compiled artifact caching for remaining build-time overhead
 - Migrate stable canonical pipeline pieces into C++ EngineInput columns if scalability demands it
@@ -124,11 +168,14 @@ flowchart TB
 - Real actor location data
   - SPOR (European Medicines Agency) — **implemented** in `python/canonical/loaders.py`
   - Bulgarian pharmacy registry — **implemented** in `python/canonical/loaders.py`
-- Geocoding via OpenStreetMap — **implemented** with cache in `python/canonical/geocoding.py`
-- Fraud detection given data visible to NMVOs, EMVO — **scaffolded** in `python/analytics/fraud.py`
+- Geocoding via OpenStreetMap — **implemented** with cache + resumable batch CLI (`scripts/geocode_bg.py`) and city-centroid fallback in `python/canonical/geocoding.py`
+- Connectivity-first scenario build (no more 0-edge trim) — **implemented** in `python/canonical/scenario_builder.py`
+- Fast `scipy.sparse.csgraph` route precompute — **implemented** in `python/compiler/compile.py`
+- Fraud as a Python policy-driver on the real engine log — **implemented** in `python/policy/perturbations.py`
+- Log-based detectors + precision/recall/F1 scoring + one-call experiment — **implemented** in `python/analytics/{fraud,experiment}.py`
 - Synthetic transaction lifecycle with anomaly injection — **implemented** in `python/canonical/transactions.py`
 - Columnar edge compile in single `compile_scenario` API — **implemented** in `python/compiler/compile.py`
-- Visualizations
+- Visualizations: geographic graph + baseline-vs-perturbed flow — **implemented** in `python/runtime/simulation_viz.py`
 - --> argue based on plausibility of simulation
 
 

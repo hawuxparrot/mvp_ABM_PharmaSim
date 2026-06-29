@@ -46,6 +46,10 @@ static EngineInput load_engine_input(const nb::object& src) {
     in.n_markets = nb::cast<int>(src.attr("n_markets"));
     in.n_edges = nb::cast<int>(src.attr("n_edges"));
 
+    in.product_demand_weight = load_numpy_1d<float>(src, "product_demand_weight");
+    in.product_substitute_offset = load_numpy_1d<std::uint32_t>(src, "product_substitute_offset");
+    in.product_substitute_id = load_numpy_1d<std::uint32_t>(src, "product_substitute_id");
+
     in.market_code = nb::cast<std::vector<std::string>>(src.attr("market_code"));
 
     in.org_type = load_numpy_1d<std::uint8_t>(src, "org_type");
@@ -151,15 +155,33 @@ NB_MODULE(_pharmasim_native, m) {
             [](const Simulator& s) { return s.state().pack_market_id; }
         )
         .def(
+            "n_products",
+            [](const Simulator& s) { return s.state().n_products; }
+        )
+        // Per-location aggregates (summed over products) -- stable API across the v7 bump.
+        .def(
             "location_on_hand",
-            [](const Simulator& s) { return s.state().location_on_hand; }
+            [](const Simulator& s) { return s.state().aggregate_by_location(s.state().location_on_hand); }
         )
         .def(
             "location_backlog",
-            [](const Simulator& s) { return s.state().location_backlog; }
+            [](const Simulator& s) { return s.state().aggregate_by_location(s.state().location_backlog); }
         )
         .def(
             "location_pipeline_outstanding",
+            [](const Simulator& s) { return s.state().aggregate_by_location(s.state().location_pipeline_outstanding); }
+        )
+        // Per-(location, product) state, flattened as li * n_products + p.
+        .def(
+            "location_on_hand_by_product",
+            [](const Simulator& s) { return s.state().location_on_hand; }
+        )
+        .def(
+            "location_backlog_by_product",
+            [](const Simulator& s) { return s.state().location_backlog; }
+        )
+        .def(
+            "location_pipeline_outstanding_by_product",
             [](const Simulator& s) { return s.state().location_pipeline_outstanding; }
         )
         .def(
