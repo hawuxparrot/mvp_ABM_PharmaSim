@@ -46,11 +46,13 @@ struct PyEngineInputOwner {
     nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> pack_initial_location_id;
     nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> pack_initial_market_id;
     nb::ndarray<std::uint8_t, nb::ndim<1>, nb::c_contig> pack_initial_state;
+    nb::ndarray<std::uint32_t, nb::ndim<1>, nb::c_contig> pack_serial_id;
 
     nb::ndarray<std::uint8_t, nb::ndim<1>, nb::c_contig> location_has_behavior;
     nb::ndarray<float, nb::ndim<1>, nb::c_contig> location_verify_prob;
     nb::ndarray<float, nb::ndim<1>, nb::c_contig> location_decommission_prob;
     nb::ndarray<float, nb::ndim<1>, nb::c_contig> location_reactivate_prob;
+    nb::ndarray<std::uint8_t, nb::ndim<1>, nb::c_contig> location_decommission_reason_id;
 
     nb::ndarray<std::uint8_t, nb::ndim<1>, nb::c_contig> location_demand_policy_id;
     nb::ndarray<std::uint8_t, nb::ndim<1>, nb::c_contig> location_supply_policy_id;
@@ -105,6 +107,8 @@ inline std::shared_ptr<PyEngineInputOwner> build_py_engine_input_owner(const nb:
     owner->view.n_packs          = nb::cast<int>(py_in.attr("n_packs"));
     owner->view.n_markets        = nb::cast<int>(py_in.attr("n_markets"));
     owner->view.n_edges          = nb::cast<int>(py_in.attr("n_edges"));
+    owner->view.n_serials        = nb::cast<int>(py_in.attr("n_serials"));
+    owner->view.reactivation_window_ticks = nb::cast<int>(py_in.attr("reactivation_window_ticks"));
     // numeric ndarrays
     owner->product_demand_weight = require_1d_contig<float>(py_in, "product_demand_weight");
     owner->view.product_demand_weight = as_span(owner->product_demand_weight);
@@ -148,6 +152,8 @@ inline std::shared_ptr<PyEngineInputOwner> build_py_engine_input_owner(const nb:
     owner->view.pack_initial_market_id = as_span(owner->pack_initial_market_id);
     owner->pack_initial_state = require_1d_contig<std::uint8_t>(py_in, "pack_initial_state");
     owner->view.pack_initial_state = as_span(owner->pack_initial_state);
+    owner->pack_serial_id = require_1d_contig<std::uint32_t>(py_in, "pack_serial_id");
+    owner->view.pack_serial_id = as_span(owner->pack_serial_id);
     owner->location_has_behavior = require_1d_contig<std::uint8_t>(py_in, "location_has_behavior");
     owner->view.location_has_behavior = as_span(owner->location_has_behavior);
     owner->location_verify_prob = require_1d_contig<float>(py_in, "location_verify_prob");
@@ -156,6 +162,8 @@ inline std::shared_ptr<PyEngineInputOwner> build_py_engine_input_owner(const nb:
     owner->view.location_decommission_prob = as_span(owner->location_decommission_prob);
     owner->location_reactivate_prob = require_1d_contig<float>(py_in, "location_reactivate_prob");
     owner->view.location_reactivate_prob = as_span(owner->location_reactivate_prob);
+    owner->location_decommission_reason_id = require_1d_contig<std::uint8_t>(py_in, "location_decommission_reason_id");
+    owner->view.location_decommission_reason_id = as_span(owner->location_decommission_reason_id);
     // order/supply policy
     owner->location_demand_policy_id = require_1d_contig<std::uint8_t>(py_in, "location_demand_policy_id");
     owner->view.location_demand_policy_id = as_span(owner->location_demand_policy_id);

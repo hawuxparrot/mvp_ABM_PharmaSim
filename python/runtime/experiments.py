@@ -33,6 +33,34 @@ def location_org_types(inp: EngineInput) -> np.ndarray:
     return np.asarray(inp.org_type)[np.asarray(inp.location_org_id)]
 
 
+def apply_product_demand_weights(
+    inp: EngineInput,
+    scenario: Scenario,
+    *,
+    weight_by_atc_prefix: dict[str, float],
+    default_weight: float = 1.0,
+) -> EngineInput:
+    """Reweight per-product demand share by ATC prefix, in place.
+
+    The compiler emits a uniform ``product_demand_weight``; this lets a scenario express
+    therapeutic-class demand skew (e.g. statins move far more volume than a niche antibiotic)
+    by matching each product's ATC code against ``weight_by_atc_prefix`` (longest prefix wins).
+    Products without a matching prefix get ``default_weight``. Returns ``inp``.
+    """
+    weights = np.asarray(inp.product_demand_weight)
+    for p_id, product in enumerate(scenario.products):
+        atc = (product.atc_code or "").strip().upper()
+        best_prefix = ""
+        best_weight = default_weight
+        for prefix, w in weight_by_atc_prefix.items():
+            up = prefix.strip().upper()
+            if atc.startswith(up) and len(up) > len(best_prefix):
+                best_prefix = up
+                best_weight = w
+        weights[p_id] = np.float32(best_weight)
+    return inp
+
+
 def calibrate_supply_policies(
     inp: EngineInput,
     *,

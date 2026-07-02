@@ -13,8 +13,8 @@ from typing import Any
 
 from analytics.fraud import (
     DetectionMetrics,
-    detect_cross_market_moves,
-    detect_theft,
+    detect_alert_locations,
+    detect_decommission_reason,
     detect_volume_change,
     evaluate_detection,
 )
@@ -48,14 +48,18 @@ def _detect_for(
     *,
     z_threshold: float,
 ) -> dict[str, float]:
-    if spec.ptype in (PerturbationType.VOLUME_SPIKE, PerturbationType.COUNTERFEIT):
+    # EMVS-native detectors read the engine's typed alert / reason stream. VOLUME_SPIKE is the
+    # one non-alert case (a legitimate surge), so it stays a transaction-volume differential.
+    if spec.ptype == PerturbationType.VOLUME_SPIKE:
         return detect_volume_change(
             perturbed_records, baseline_records, inp, z_threshold=z_threshold
         )
+    if spec.ptype == PerturbationType.COUNTERFEIT:
+        return detect_alert_locations(perturbed_records, "UNKNOWN_SERIAL")
     if spec.ptype == PerturbationType.SMUGGLING:
-        return detect_cross_market_moves(perturbed_records, inp)
+        return detect_alert_locations(perturbed_records, "OUT_OF_MARKET")
     if spec.ptype == PerturbationType.THEFT:
-        return detect_theft(perturbed_records, inp)
+        return detect_decommission_reason(perturbed_records, "STOLEN")
     raise ValueError(f"no detector mapped for {spec.ptype!r}")
 
 

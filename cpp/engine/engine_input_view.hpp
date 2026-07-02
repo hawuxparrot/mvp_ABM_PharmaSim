@@ -10,6 +10,7 @@ struct EngineInputView {
     std::string schema_version;
     std::int64_t seed;
     int n_organizations{}, n_locations{}, n_products{}, n_batches{}, n_packs{}, n_markets{}, n_edges{};
+    int n_serials{}, reactivation_window_ticks{};
 
     // products: per-product demand mix + ATC substitutability CSR (v7)
     std::span<const float> product_demand_weight;
@@ -39,11 +40,13 @@ struct EngineInputView {
     std::span<const std::uint32_t> pack_initial_location_id;
     std::span<const std::uint32_t> pack_initial_market_id;
     std::span<const std::uint8_t> pack_initial_state;
+    std::span<const std::uint32_t> pack_serial_id;
 
     std::span<const std::uint8_t> location_has_behavior;
     std::span<const float> location_verify_prob;
     std::span<const float> location_decommission_prob;
     std::span<const float> location_reactivate_prob;
+    std::span<const std::uint8_t> location_decommission_reason_id;
     // location order/supply policy
     std::span<const std::uint8_t> location_demand_policy_id;
     std::span<const std::uint8_t> location_supply_policy_id;

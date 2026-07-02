@@ -322,6 +322,54 @@ def detect_theft(
     return dict(flagged)
 
 
+# ---------------------------------------------------------------------------
+# EMVS alert-stream detectors: read the engine's typed alerts, not volume diffs.
+# ---------------------------------------------------------------------------
+
+
+def detect_alert_locations(
+    records: EventRecords,
+    alert_code: str,
+    *,
+    min_count: int = 1,
+) -> dict[str, float]:
+    """Flag locations that raised at least ``min_count`` ALERTs of ``alert_code``.
+
+    This is the EMVS-native detector: rather than inferring fraud from shipment volume, it reads
+    the typed alerts the national verification system produced (e.g. ``OUT_OF_MARKET`` for
+    smuggling, ``UNKNOWN_SERIAL`` for counterfeits). Returns ``{location_ext_id: alert_count}``.
+    """
+    flagged: dict[str, float] = defaultdict(float)
+    for r in records:
+        if r.get("event_type") != "ALERT" or r.get("alert_code") != alert_code:
+            continue
+        loc = r.get("from_location")
+        if loc and loc != "—":
+            flagged[loc] += 1.0
+    return {loc: c for loc, c in flagged.items() if c >= min_count}
+
+
+def detect_decommission_reason(
+    records: EventRecords,
+    reason: str,
+    *,
+    min_count: int = 1,
+) -> dict[str, float]:
+    """Flag locations that decommissioned packs with a specific EMVS reason (e.g. ``STOLEN``).
+
+    Theft surfaces as reason-coded decommissions a legitimate node would not emit. Returns
+    ``{location_ext_id: decommission_count}``.
+    """
+    flagged: dict[str, float] = defaultdict(float)
+    for r in records:
+        if r.get("event_type") != "DECOMMISSION" or r.get("decommission_reason") != reason:
+            continue
+        loc = r.get("from_location")
+        if loc and loc != "—":
+            flagged[loc] += 1.0
+    return {loc: c for loc, c in flagged.items() if c >= min_count}
+
+
 def evaluate_detection(
     predicted_ids: set[str],
     truth_ids: set[str],

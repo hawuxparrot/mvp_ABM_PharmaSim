@@ -6,10 +6,19 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import dijkstra
 
-from compiler.enums import org_type_u8, pack_state_u8
+from canonical.substitutability import SubstitutabilityIndex
+from compiler.enums import decommission_reason_u8, org_type_u8, pack_state_u8
 from compiler.types import ENGINE_INPUT_SCHEMA_VERSION, EngineInput
 from compiler.validate import validate_scenario
-from policy.models import OrgType, Scenario
+from policy.models import DecommissionReason, OrgType, Scenario
+
+# ATC cutoff for substitution-on-stockout: level 4 (chemical subgroup) approximates clinical
+# interchangeability (e.g. all statins in C10AA), which is the granularity the engine consumes.
+_SUBSTITUTION_ATC_LEVEL = 4
+
+# EMVS reactivation window: a decommissioned pack can be reverted to Active within this many
+# ticks (FMD allows 10 days). Treating one tick ~ one day.
+_REACTIVATION_WINDOW_TICKS = 10
 
 
 def _collect_market_codes(s: Scenario) -> list[str]:
@@ -309,10 +318,27 @@ def _compile_validated(
         pack_initial_state[i] = pack_state_u8(p.initial_state)
         pack_serial.append(p.serial)
 
+    # EMVS serial identity: intern serial strings to dense ids. Distinct packs sharing a serial
+    # collapse to the same id, which is how the engine detects clones (DUPLICATE_SERIAL).
+    serial_to_id: dict[str, int] = {}
+    pack_serial_id = np.zeros(n_pack, dtype=np.uint32)
+    for i, serial in enumerate(pack_serial):
+        sid = serial_to_id.get(serial)
+        if sid is None:
+            sid = len(serial_to_id)
+            serial_to_id[serial] = sid
+        pack_serial_id[i] = np.uint32(sid)
+    n_serials = len(serial_to_id)
+
     location_has_behavior = np.zeros(n_loc, dtype=np.uint8)
     location_verify_prob = np.zeros(n_loc, dtype=np.float32)
     location_decommission_prob = np.zeros(n_loc, dtype=np.float32)
     location_reactivate_prob = np.zeros(n_loc, dtype=np.float32)
+    # Default decommission reason is DISPENSED (normal point-of-dispense outcome); fraud drivers
+    # override specific sites (e.g. STOLEN at a distributor) post-compile.
+    location_decommission_reason_id = np.full(
+        n_loc, decommission_reason_u8(DecommissionReason.DISPENSED), dtype=np.uint8
+    )
     location_demand_policy_id = np.zeros(n_loc, dtype=np.uint8)
     location_supply_policy_id = np.zeros(n_loc, dtype=np.uint8)
     location_initial_on_hand = np.zeros(n_loc, dtype=np.int32)
@@ -366,6 +392,20 @@ def _compile_validated(
             if start < end:
                 location_preferred_supplier_edge_id[i] = np.uint32(int(location_out_edge_id[start]))
 
+    # products: uniform demand mix by default (callers may reweight post-compile, e.g.
+    # runtime.experiments.apply_product_demand_weights), plus an ATC-derived substitute CSR
+    # consumed by the engine's substitution-on-stockout path.
+    product_demand_weight = np.ones(n_prod, dtype=np.float32)
+    sub_index = SubstitutabilityIndex(s.products, default_level=_SUBSTITUTION_ATC_LEVEL)
+    sub_offsets: list[int] = [0]
+    sub_flat: list[int] = []
+    for p in s.products:
+        for sid in sub_index.substitutes(p.ext_id, level=_SUBSTITUTION_ATC_LEVEL):
+            sub_flat.append(product_ext_to_id[sid])
+        sub_offsets.append(len(sub_flat))
+    product_substitute_offset = np.array(sub_offsets, dtype=np.uint32)
+    product_substitute_id = np.array(sub_flat, dtype=np.uint32)
+
     engine_input = EngineInput(
         schema_version=ENGINE_INPUT_SCHEMA_VERSION,
         seed=s.seed,
@@ -376,7 +416,12 @@ def _compile_validated(
         n_packs=n_pack,
         n_markets=n_markets,
         n_edges=n_edge,
+        n_serials=n_serials,
+        reactivation_window_ticks=_REACTIVATION_WINDOW_TICKS,
         market_code=market_code,
+        product_demand_weight=product_demand_weight,
+        product_substitute_offset=product_substitute_offset,
+        product_substitute_id=product_substitute_id,
         org_type=org_type,
         location_org_id=location_org_id,
         location_market_id=location_market_id,
@@ -396,10 +441,12 @@ def _compile_validated(
         pack_initial_market_id=pack_initial_market_id,
         pack_initial_state=pack_initial_state,
         pack_serial=pack_serial,
+        pack_serial_id=pack_serial_id,
         location_has_behavior=location_has_behavior,
         location_verify_prob=location_verify_prob,
         location_decommission_prob=location_decommission_prob,
         location_reactivate_prob=location_reactivate_prob,
+        location_decommission_reason_id=location_decommission_reason_id,
         location_demand_policy_id=location_demand_policy_id,
         location_supply_policy_id=location_supply_policy_id,
         location_initial_on_hand=location_initial_on_hand,

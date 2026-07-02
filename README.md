@@ -57,9 +57,14 @@ Both modes share the same internal columnar compile path (no ABI change).
 ### Simulation kernel (current)
 
 - **Static inventory**: fixed `n_packs`; no runtime pack creation.
-- **Per tick** (`Simulator::run_ticks`): (1) location phase — demand policies; (2) supply phase — supply policies and scheduled first hops; (3) shipment phase — due moves along edges (multihop via precomputed route CSR, `edge_lead_time_ticks`); (4) pack behavior — verify / decommission / reactivate probabilities per location. Stochastic per-pack graph walks exist in code but are **not** invoked from this tick loop.
+- **Per tick** (`Simulator::run_ticks`): (1) location phase — demand policies; (2) supply phase — supply policies and scheduled first hops; (3) shipment phase — due moves along edges (multihop via precomputed route CSR, `edge_lead_time_ticks`); (4) pack behavior — EMVS verify / decommission / reactivate transactions per location. (The legacy stochastic per-pack random walk has been removed; there is one engine, one tick loop.)
 - **Policies** (column `policy_id` + params): demand `0/1/2` (none, constant rate, Poisson on `location_demand_poisson_lambda`); supply `0/1/2` (none, wholesaler cap toward preferred edge if downstream backlog, OBP pool activation then ship). First-hop moves respect per-edge `edge_capacity` within the tick.
-- **Registry**: mirrored from physical state in v1; not full NMVS/EMVO API fidelity.
+- **EMVS / NMVS registry** (`engine_input.v8`): the registry is a real national verification system, keyed by **serial**, updated *only* by transactions (so it can diverge from physical reality — the point of the model):
+  - **VERIFY** queries the scan location's national NMVS and raises typed alerts: `UNKNOWN_SERIAL` (serial in no NMVS), `OUT_OF_MARKET` (serial not provisioned to this market — parallel trade), `ALREADY_DECOMMISSIONED` (serial already retired), `DUPLICATE_SERIAL` (>1 physical pack on one serial — a clone).
+  - **DECOMMISSION** retires the serial with a `DECOMMISSION_REASON` (Dispensed/Stolen/Exported/Destroyed/Sampled/Locked/Recalled) and opens the FMD reactivation window (`reactivation_window_ticks`).
+  - **REACTIVATE** is accepted only within that window, else rejected.
+  - Alerts and reasons land in the `EventLog` (`event_detail` + `event_market_id`, `EventType::ALERT`); `registry_matches_physical()` is a genuine ground-truth consistency check (false under clones/unreported shrinkage).
+- **Fraud → alerts → detection**: perturbations (`python/policy/perturbations.py`) drive *real* EMVS violations — COUNTERFEIT injects fabricated-serial packs (`UNKNOWN_SERIAL`), SMUGGLING diverts a node into a foreign market (`OUT_OF_MARKET`), THEFT emits `STOLEN`-coded decommissions; VOLUME_SPIKE stays a legitimate transaction-volume surge. Python detectors (`python/analytics/fraud.py`) read the alert/reason stream rather than diffing volumes.
 
 Design notes: `simulation_realism.md`.
 
@@ -81,10 +86,10 @@ flowchart TB
   end
   subgraph kernel [C++_Simulator_run_ticks]
     PHY[Physical_pack_columns]
-    REG[Registry_mirror_columns]
+    REG[Per_serial_NMVS_registry]
     CSR[Graph_and_route_CSR]
     RNG[mt19937_64]
-    LOG[EventLog_append]
+    LOG[EventLog_with_alerts]
   end
   subgraph analytics [Python_analytics]
     INJECT[Anomaly_injectors]

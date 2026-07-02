@@ -1,9 +1,12 @@
 from .fraud import (
     DetectionMetrics,
+    detect_alert_locations,
     detect_cross_market,
     detect_cross_market_moves,
+    detect_decommission_reason,
     detect_theft,
     detect_volume_anomalies,
+    detect_volume_change,
     detect_volume_spikes,
     evaluate_detection,
     evaluate_detector,
@@ -20,7 +23,11 @@ __all__ = [
     "evaluate_detector",
     # engine event-log detectors
     "detect_volume_anomalies",
+    "detect_volume_change",
     "detect_cross_market_moves",
     "detect_theft",
+    # EMVS alert-stream detectors
+    "detect_alert_locations",
+    "detect_decommission_reason",
     "evaluate_detection",
 ]

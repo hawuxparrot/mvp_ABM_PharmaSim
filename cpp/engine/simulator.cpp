@@ -16,26 +16,6 @@
 
 namespace {
 
-constexpr float k_move_probability = 0.25f;
-
-inline std::uint64_t prob_to_threshold(double p) {
-    if (!(p > 0.0)) return 0.0;
-    if (p >= 1.0) return std::numeric_limits<std::uint64_t>::max();
-
-    const auto space = (static_cast<unsigned __int128>(1) << 64);
-    auto t = static_cast<unsigned __int128>(static_cast<long double>(p) * static_cast<long double>(space));
-    if (t >= space) {
-        return std::numeric_limits<std::uint64_t>::max();
-    }
-    return static_cast<std::uint64_t>(t);
-}
-
-const std::uint64_t k_move_threshold = prob_to_threshold(static_cast<double>(k_move_probability));
-
-bool is_terminal_org_for_movement(ORG_TYPE ot) {
-    return ot == ORG_TYPE::LOCAL_ORG || ot == ORG_TYPE::NMVO || ot == ORG_TYPE::EMVO;
-}
-
 inline std::uint8_t pack_flag_mask(SimulationState::PackFlag flag) {
     return static_cast<std::uint8_t>(flag);
 }
@@ -50,42 +30,6 @@ inline void pack_set_flag(std::uint8_t& flags, SimulationState::PackFlag flag) {
 
 inline void pack_clear_flag(std::uint8_t& flags, SimulationState::PackFlag flag) {
     flags = static_cast<std::uint8_t>(flags & static_cast<std::uint8_t>(~pack_flag_mask(flag)));
-}
-
-/// Picks an outgoing edge id from ``src_loc`` using weights ``capacity / (1 + cost)``.
-/// Precondition: ``src_loc`` has at least one outgoing edge.
-std::uint32_t pick_outgoing_edge(const EngineInputView& in, std::uint32_t src_loc, std::mt19937_64& rng) {
-    const std::size_t sl = static_cast<std::size_t>(src_loc);
-    const std::uint32_t beg = in.location_out_edge_offset[sl];
-    const std::uint32_t end = in.location_out_edge_offset[sl + 1];
-
-    float total_w = 0.f;
-    for (std::uint32_t i = beg; i < end; ++i) {
-        const std::uint32_t eid = in.location_out_edge_id[static_cast<std::size_t>(i)];
-        const float cost = in.edge_cost[static_cast<std::size_t>(eid)];
-        const std::uint32_t cap = in.edge_capacity[static_cast<std::size_t>(eid)];
-        total_w += static_cast<float>(cap) / (1.0f + cost);
-    }
-
-    if (total_w <= 0.f) {
-        std::uniform_int_distribution<std::uint32_t> dist(0, end - beg - 1);
-        const std::uint32_t slot = beg + dist(rng);
-        return in.location_out_edge_id[static_cast<std::size_t>(slot)];
-    }
-
-    std::uniform_real_distribution<float> u(0.0f, total_w);
-    float r = u(rng);
-    for (std::uint32_t i = beg; i < end; ++i) {
-        const std::uint32_t eid = in.location_out_edge_id[static_cast<std::size_t>(i)];
-        const float cost = in.edge_cost[static_cast<std::size_t>(eid)];
-        const std::uint32_t cap = in.edge_capacity[static_cast<std::size_t>(eid)];
-        const float w = static_cast<float>(cap) / (1.0f + cost);
-        r -= w;
-        if (r <= 0.f) {
-            return eid;
-        }
-    }
-    return in.location_out_edge_id[static_cast<std::size_t>(end - 1)];
 }
 
 } // namespace
@@ -124,102 +68,123 @@ bool Simulator::bernoulli(float p) {
 
 bool Simulator::registry_matches_physical() const noexcept {
     const SimulationState& s = state_;
+    // A pack is "live" physically (uploaded or active) iff its serial's NMVS record is live. This
+    // diverges under fraud -- e.g. a clone still physically live after the NMVS retired its serial
+    // -- so a false result is itself a ground-truth signal.
     for (std::size_t i = 0; i < s.pack_state.size(); ++i) {
-        if (s.registry_pack_state[i] != s.pack_state[i]) {
-            return false;
-        }
-        if (s.registry_pack_location_id[i] != s.pack_location_id[i]) {
-            return false;
-        }
-        if (s.registry_pack_market_id[i] != s.pack_market_id[i]) {
+        const std::uint32_t serial = input_.pack_serial_id[i];
+        const bool physical_inactive =
+            static_cast<PACK_STATE>(s.pack_state[i]) == PACK_STATE::DECOMISSIONED;
+        const bool registry_inactive =
+            static_cast<PACK_STATE>(s.registry_serial_state[static_cast<std::size_t>(serial)])
+            == PACK_STATE::DECOMISSIONED;
+        if (physical_inactive != registry_inactive) {
             return false;
         }
     }
     return true;
 }
 
-void Simulator::process_pack_tick(std::uint32_t pack_id, std::uint64_t tick) {
-    const std::size_t pi = static_cast<std::size_t>(pack_id);
-    const std::uint32_t loc = state_.pack_location_id[pi];
-    
-    apply_location_behavior(pack_id, loc, tick);
-    attempt_movement(pack_id, loc);
-    sync_pack_registry(pack_id);
-}
-
 void Simulator::apply_location_behavior(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick) {
     const std::size_t pi = static_cast<std::size_t>(pack_id);
     const std::size_t li = static_cast<std::size_t>(loc);
-    
+
     if (input_.location_has_behavior[li] == 0) return;
 
     const float vp = input_.location_verify_prob[li];
     const float dp = input_.location_decommission_prob[li];
     const float rp = input_.location_reactivate_prob[li];
 
+    // A scan first verifies against the NMVS (read), then optionally decommissions/reactivates
+    // (write). RNG draw order is fixed (verify, then one state-dependent draw) so the stream is
+    // unchanged vs the pre-EMVS kernel for non-fraud scenarios.
     if (bernoulli(vp)) {
-        events_.push(tick, pack_id, EventType::VERIFY, loc, k_event_no_location);
+        run_verify_transaction(pack_id, loc, tick);
     }
-    
+
     const auto st = static_cast<PACK_STATE>(state_.pack_state[pi]);
     if (st == PACK_STATE::ACTIVE) {
         if (bernoulli(dp)) {
-            state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::DECOMISSIONED);
-            events_.push(tick, pack_id, EventType::DECOMMISSION, loc, k_event_no_location);
-            sync_pack_registry(pack_id);
+            run_decommission_transaction(pack_id, loc, tick);
         }
     } else if (st == PACK_STATE::DECOMISSIONED) {
         if (bernoulli(rp)) {
-            state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
-            events_.push(tick, pack_id, EventType::REACTIVATE, loc, k_event_no_location);
-            sync_pack_registry(pack_id);
+            run_reactivate_transaction(pack_id, loc, tick);
         }
     }
 }
 
-bool Simulator::has_outgoing_edge(std::uint32_t loc) const {
-    const std::size_t li = static_cast<std::size_t>(loc);
-    const std::uint32_t beg = input_.location_out_edge_offset[li];
-    const std::uint32_t end = input_.location_out_edge_offset[li + 1];
-    return beg < end;
-}
-
-bool Simulator::attempt_movement(std::uint32_t pack_id, std::uint32_t loc) {
+void Simulator::run_verify_transaction(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick) {
     const std::size_t pi = static_cast<std::size_t>(pack_id);
-    const std::size_t li = static_cast<std::size_t>(loc);
+    const std::uint32_t serial = input_.pack_serial_id[pi];
+    const std::size_t si = static_cast<std::size_t>(serial);
+    // The scan hits the national NMVS of the location's market.
+    const std::uint32_t market = input_.location_market_id[static_cast<std::size_t>(loc)];
 
-    const auto st = static_cast<PACK_STATE>(state_.pack_state[pi]);
-    const bool movable_state = (st == PACK_STATE::UPLOADED || st == PACK_STATE::ACTIVE);  // Assume only uploaded and active packs can move, may not be the case for fraud detection
-    const ORG_TYPE org_at_loc = static_cast<ORG_TYPE>(state_.location_org_type[li]);
-    
-    if (!movable_state || is_terminal_org_for_movement(org_at_loc) || (rng_() >= k_move_threshold) || !has_outgoing_edge(loc)) {
-        return false;
+    events_.push(tick, pack_id, EventType::VERIFY, loc, k_event_no_location,
+                 k_event_no_detail, market);
+
+    auto alert = [&](ALERT_CODE code) {
+        events_.push(tick, pack_id, EventType::ALERT, loc, k_event_no_location,
+                     static_cast<std::uint8_t>(code), market);
+    };
+
+    // Provisioning: serial unknown to any NMVS, or known but not in *this* market (parallel trade).
+    if (state_.serial_markets[si].empty()) {
+        alert(ALERT_CODE::UNKNOWN_SERIAL);
+    } else if (!state_.serial_market_is_provisioned(serial, market)) {
+        alert(ALERT_CODE::OUT_OF_MARKET);
     }
-
-    move_pack(pack_id, loc, current_tick_);
-    sync_pack_registry(pack_id);
-    return true;
-}
-
-void Simulator::move_pack(std::uint32_t pack_id, std::uint32_t from_loc, std::uint64_t tick) {
-    const std::size_t pi = static_cast<std::size_t>(pack_id);
-    const std::uint32_t edge_id = pick_outgoing_edge(input_, from_loc, rng_);
-    const std::uint32_t dst = input_.edge_dst_location_id[static_cast<std::size_t>(edge_id)];
-    
-    state_.pack_location_id[pi] = dst;
-    state_.pack_market_id[pi] = input_.location_market_id[static_cast<std::size_t>(dst)];
-    events_.push(tick, pack_id, EventType::MOVE, from_loc, dst);
-    
-    apply_post_movement_transition(pack_id, dst);
-}
-
-void Simulator::apply_post_movement_transition(std::uint32_t pack_id, std::uint32_t to_loc) {
-    const std::size_t pi = static_cast<std::size_t>(pack_id);
-    const ORG_TYPE org_at_dst = static_cast<ORG_TYPE>(state_.location_org_type[static_cast<std::size_t>(to_loc)]);
-
-    if (static_cast<PACK_STATE>(state_.pack_state[pi]) == PACK_STATE::UPLOADED && org_at_dst == ORG_TYPE::WHOLESALER) {
-        state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
+    // Status: the serial was already retired in the NMVS (e.g. a clone scanned post-dispense).
+    if (static_cast<PACK_STATE>(state_.registry_serial_state[si]) == PACK_STATE::DECOMISSIONED) {
+        alert(ALERT_CODE::ALREADY_DECOMMISSIONED);
     }
+    // Identity: more than one physical pack carries this serial -> a clone exists.
+    if (state_.serial_pack_count[si] > 1u) {
+        alert(ALERT_CODE::DUPLICATE_SERIAL);
+    }
+}
+
+void Simulator::run_decommission_transaction(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick) {
+    const std::size_t pi = static_cast<std::size_t>(pack_id);
+    const std::uint32_t serial = input_.pack_serial_id[pi];
+    const std::size_t si = static_cast<std::size_t>(serial);
+    const std::uint32_t market = input_.location_market_id[static_cast<std::size_t>(loc)];
+    const std::uint8_t reason = input_.location_decommission_reason_id[static_cast<std::size_t>(loc)];
+
+    // Physical: the pack is dispensed/removed regardless of NMVS state.
+    state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::DECOMISSIONED);
+    events_.push(tick, pack_id, EventType::DECOMMISSION, loc, k_event_no_location, reason, market);
+
+    if (static_cast<PACK_STATE>(state_.registry_serial_state[si]) == PACK_STATE::DECOMISSIONED) {
+        // Decommissioning a serial the NMVS already retired (double dispense / clone).
+        events_.push(tick, pack_id, EventType::ALERT, loc, k_event_no_location,
+                     static_cast<std::uint8_t>(ALERT_CODE::ALREADY_DECOMMISSIONED), market);
+        return;
+    }
+    state_.registry_serial_state[si] = static_cast<std::uint8_t>(PACK_STATE::DECOMISSIONED);
+    state_.registry_serial_reason[si] = reason;
+    state_.registry_serial_deadline_tick[si] =
+        tick + static_cast<std::uint64_t>(input_.reactivation_window_ticks);
+}
+
+void Simulator::run_reactivate_transaction(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick) {
+    const std::size_t pi = static_cast<std::size_t>(pack_id);
+    const std::uint32_t serial = input_.pack_serial_id[pi];
+    const std::size_t si = static_cast<std::size_t>(serial);
+    const std::uint32_t market = input_.location_market_id[static_cast<std::size_t>(loc)];
+
+    // EMVS only permits reversal within the reactivation window.
+    const bool reversible =
+        static_cast<PACK_STATE>(state_.registry_serial_state[si]) == PACK_STATE::DECOMISSIONED
+        && tick <= state_.registry_serial_deadline_tick[si];
+    if (!reversible) {
+        return;  // rejected; no state change
+    }
+    state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
+    state_.registry_serial_state[si] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
+    events_.push(tick, pack_id, EventType::REACTIVATE, loc, k_event_no_location,
+                 k_event_no_detail, market);
 }
 
 std::uint32_t Simulator::lookup_next_edge(std::uint32_t src_loc, std::uint32_t dst_loc) const {
@@ -314,8 +279,6 @@ void Simulator::execute_due_shipments(std::uint64_t tick) {
             const std::uint32_t next_edge = lookup_next_edge(to, final_dst);
             schedule_pack_hop(pack_id, next_edge, final_dst, tick);
         }
-
-        sync_pack_registry(pack_id);
     }
 
     ship_due_tick_.resize(write);
@@ -491,7 +454,11 @@ void Simulator::push_fanout(
         const std::uint32_t dst = input_.edge_dst_location_id[edge_i];
         const std::size_t pi = static_cast<std::size_t>(pack_id);
         if (from_pool) {
+            // Reusing a decommissioned pool slot as fresh upstream stock re-provisions the
+            // serial in the NMVS (a new upload), so the registry record returns to live too.
             state_.pack_state[pi] = static_cast<std::uint8_t>(PACK_STATE::UPLOADED);
+            state_.registry_serial_state[static_cast<std::size_t>(input_.pack_serial_id[pi])] =
+                static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
         }
         const std::uint32_t prod = input_.pack_product_id[pi];
         pack_set_flag(state_.pack_flags[pi], SimulationState::PackFlag::RESERVED);
@@ -501,7 +468,6 @@ void Simulator::push_fanout(
         schedule_pack_hop(pack_id, edge_id, dst, tick);
         --edge_remaining_capacity[edge_i];
         ++state_.location_pipeline_outstanding[state_.lp_index(dst, prod)];
-        sync_pack_registry(pack_id);
 
         --remaining;
         consecutive_full = 0;
@@ -566,7 +532,6 @@ void Simulator::run_pack_behavior_phase(std::uint64_t tick) {
         const std::size_t pi = static_cast<std::size_t>(pack_id);
         const std::uint32_t loc = state_.pack_location_id[pi];
         apply_location_behavior(pack_id, loc, tick);
-        sync_pack_registry(pack_id);
     }
 }
 
@@ -588,10 +553,6 @@ void Simulator::apply_end_of_tick_penalty() {
         }
         throw std::runtime_error("unknown penalty policy id");
     }
-}
-
-void Simulator::sync_pack_registry(std::uint32_t pack_id) {
-    state_.sync_registry_from_physical(pack_id);
 }
 
 void Simulator::run_ticks(std::uint64_t n) {

@@ -1,7 +1,50 @@
 #include "simulation_state.hpp"
 #include "engine_input_view.hpp"
+#include "enums.hpp"
+
+#include <algorithm>
 
 namespace {
+
+/// Build the per-serial NMVS records from the initial pack table + batch provisioning.
+///
+/// The manufacturer "upload" is modelled as: every serial present in the pack table is provisioned
+/// to the intended markets of its batch, and starts Active (uploaded/active packs). Two physical
+/// packs that share a serial id increment the same ``serial_pack_count`` -- the clone signal.
+template <typename InputT>
+void init_serial_registry(SimulationState& s, const InputT& in) {
+    const auto n_serials = static_cast<std::size_t>(in.n_serials);
+    s.registry_serial_state.assign(n_serials, static_cast<std::uint8_t>(PACK_STATE::DECOMISSIONED));
+    s.registry_serial_reason.assign(n_serials, static_cast<std::uint8_t>(DECOMMISSION_REASON::DISPENSED));
+    s.registry_serial_deadline_tick.assign(n_serials, 0ull);
+    s.serial_pack_count.assign(n_serials, 0u);
+    s.serial_markets.assign(n_serials, {});
+
+    const std::size_t n_pack = static_cast<std::size_t>(in.n_packs);
+    for (std::size_t i = 0; i < n_pack; ++i) {
+        const std::uint32_t serial = in.pack_serial_id[i];
+        const std::size_t si = static_cast<std::size_t>(serial);
+        s.serial_pack_count[si] += 1u;
+
+        // A serial provisioned by any uploaded/active pack is Active in the NMVS.
+        const auto pst = static_cast<PACK_STATE>(in.pack_initial_state[i]);
+        if (pst == PACK_STATE::UPLOADED || pst == PACK_STATE::ACTIVE) {
+            s.registry_serial_state[si] = static_cast<std::uint8_t>(PACK_STATE::ACTIVE);
+        }
+
+        // Provision the serial to its batch's intended markets.
+        const std::uint32_t batch = in.pack_batch_id[i];
+        const std::size_t beg = in.batch_intended_market_offset[static_cast<std::size_t>(batch)];
+        const std::size_t end = in.batch_intended_market_offset[static_cast<std::size_t>(batch) + 1];
+        for (std::size_t k = beg; k < end; ++k) {
+            const std::uint32_t m = in.batch_intended_market_id[k];
+            auto& markets = s.serial_markets[si];
+            if (std::find(markets.begin(), markets.end(), m) == markets.end()) {
+                markets.push_back(m);
+            }
+        }
+    }
+}
 
 /// Shared per-(location, product) state initialization for both input flavors.
 template <typename InputT>
@@ -41,9 +84,7 @@ SimulationState::SimulationState(const EngineInputView& in) {
     pack_location_id.assign(in.pack_initial_location_id.begin(), in.pack_initial_location_id.end());
     pack_market_id.assign(in.pack_initial_market_id.begin(), in.pack_initial_market_id.end());
 
-    registry_pack_state = pack_state;
-    registry_pack_location_id = pack_location_id;
-    registry_pack_market_id = pack_market_id;
+    init_serial_registry(*this, in);
 
     location_org_type.resize(static_cast<std::size_t>(in.n_locations));
     for (int loc = 0; loc < in.n_locations; ++loc) {
@@ -60,9 +101,7 @@ SimulationState::SimulationState(const EngineInput& in) {
     pack_location_id.assign(in.pack_initial_location_id.begin(), in.pack_initial_location_id.end());
     pack_market_id.assign(in.pack_initial_market_id.begin(), in.pack_initial_market_id.end());
 
-    registry_pack_state = pack_state;
-    registry_pack_location_id = pack_location_id;
-    registry_pack_market_id = pack_market_id;
+    init_serial_registry(*this, in);
 
     location_org_type.resize(static_cast<std::size_t>(in.n_locations));
     for (int loc = 0; loc < in.n_locations; ++loc) {
@@ -74,11 +113,10 @@ SimulationState::SimulationState(const EngineInput& in) {
     rebuild_location_pack_index(static_cast<std::uint32_t>(in.n_locations));
 }
 
-void SimulationState::sync_registry_from_physical(const std::uint32_t pack_index) {
-    const std::size_t i = static_cast<std::size_t>(pack_index);
-    registry_pack_state[i] = pack_state[i];
-    registry_pack_location_id[i] = pack_location_id[i];
-    registry_pack_market_id[i] = pack_market_id[i];
+bool SimulationState::serial_market_is_provisioned(
+    std::uint32_t serial_id, std::uint32_t market_id) const {
+    const auto& markets = serial_markets[static_cast<std::size_t>(serial_id)];
+    return std::find(markets.begin(), markets.end(), market_id) != markets.end();
 }
 
 void SimulationState::rebuild_location_pack_index(std::uint32_t n_locations) {

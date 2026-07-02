@@ -23,11 +23,16 @@ from io import StringIO
 from pathlib import Path
 from typing import Any, Protocol, TextIO
 
-from compiler.enums import U8_TO_PACK_STATE
+from compiler.enums import (
+    U8_TO_ALERT_CODE,
+    U8_TO_DECOMMISSION_REASON,
+    U8_TO_PACK_STATE,
+)
 from compiler.types import EngineInput
 
-# Match C++ k_event_no_location / UINT32_MAX
+# Match C++ k_event_no_location / k_event_no_market / UINT32_MAX
 NO_LOCATION: int = 2**32 - 1
+NO_MARKET: int = 2**32 - 1
 
 EVENT_TYPE_NAMES: dict[int, str] = {
     0: "VERIFY",
@@ -35,7 +40,12 @@ EVENT_TYPE_NAMES: dict[int, str] = {
     2: "REACTIVATE",
     3: "MOVE",
     4: "REGISTRY_SYNC",
+    5: "ALERT",
 }
+
+# event_type_u8 values whose event_detail column carries meaning.
+_DECOMMISSION_U8 = 1
+_ALERT_U8 = 5
 
 
 class NativeSimulator(Protocol):
@@ -46,6 +56,8 @@ class NativeSimulator(Protocol):
     def event_log_types(self) -> Sequence[int]: ...
     def event_log_from_locations(self) -> Sequence[int]: ...
     def event_log_to_locations(self) -> Sequence[int]: ...
+    def event_log_details(self) -> Sequence[int]: ...
+    def event_log_market_ids(self) -> Sequence[int]: ...
     def physical_pack_states(self) -> Sequence[int]: ...
     def physical_pack_location_ids(self) -> Sequence[int]: ...
     def physical_pack_market_ids(self) -> Sequence[int]: ...
@@ -79,32 +91,60 @@ def _event_name(code: int) -> str:
     return EVENT_TYPE_NAMES.get(code, f"TYPE_{code}")
 
 
+def _detail_label(event_type_u8: int, detail_u8: int) -> str | None:
+    """Decode the overloaded ``event_detail`` column by event type."""
+    if event_type_u8 == _DECOMMISSION_U8:
+        reason = U8_TO_DECOMMISSION_REASON.get(detail_u8)
+        return str(reason) if reason is not None else None
+    if event_type_u8 == _ALERT_U8:
+        code = U8_TO_ALERT_CODE.get(detail_u8)
+        return str(code) if code is not None else None
+    return None
+
+
 def events_as_records(sim: NativeSimulator, inp: EngineInput) -> list[dict[str, Any]]:
-    """One dict per event row (aligned with C++ :class:`EventLog`)."""
+    """One dict per event row (aligned with C++ :class:`EventLog`).
+
+    EMVS columns: ``alert_code`` is set on ALERT rows, ``decommission_reason`` on DECOMMISSION
+    rows, ``market_id``/``market`` give the national NMVS the transaction hit.
+    """
     ticks = list(sim.event_log_ticks())
     pack_ids = list(sim.event_log_pack_ids())
     types = list(sim.event_log_types())
     from_locs = list(sim.event_log_from_locations())
     to_locs = list(sim.event_log_to_locations())
+    details = list(sim.event_log_details())
+    markets = list(sim.event_log_market_ids())
     n = len(ticks)
-    if not (len(pack_ids) == len(types) == len(from_locs) == len(to_locs) == n):
+    if not (
+        len(pack_ids) == len(types) == len(from_locs) == len(to_locs)
+        == len(details) == len(markets) == n
+    ):
         raise RuntimeError("event log columns have mismatched lengths")
     rows: list[dict[str, Any]] = []
     for i in range(n):
         pid = int(pack_ids[i])
         fl = int(from_locs[i])
         tl = int(to_locs[i])
+        et_u8 = int(types[i])
+        detail_u8 = int(details[i])
+        mkt = int(markets[i])
+        detail = _detail_label(et_u8, detail_u8)
         rows.append(
             {
                 "tick": int(ticks[i]),
                 "pack_id": pid,
                 "pack_ext_id": _pack_label(inp, pid),
-                "event_type": _event_name(int(types[i])),
-                "event_type_u8": int(types[i]),
+                "event_type": _event_name(et_u8),
+                "event_type_u8": et_u8,
                 "from_location_id": fl if fl != NO_LOCATION else None,
                 "to_location_id": tl if tl != NO_LOCATION else None,
                 "from_location": _loc_label(inp, fl),
                 "to_location": _loc_label(inp, tl),
+                "market_id": mkt if mkt != NO_MARKET else None,
+                "market": _market_label(inp, mkt) if mkt != NO_MARKET else None,
+                "alert_code": detail if et_u8 == _ALERT_U8 else None,
+                "decommission_reason": detail if et_u8 == _DECOMMISSION_U8 else None,
             }
         )
     return rows

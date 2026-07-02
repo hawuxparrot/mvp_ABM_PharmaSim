@@ -9,15 +9,21 @@
 
 /// Mutable per-pack state for the simulation kernel (SoA). Initialized from ``EngineInput`` pack columns.
 struct SimulationState {
-    /// Physical ground truth (authoritative for the MVP kernel).
+    /// Physical ground truth: where each pack actually is and its real lifecycle state.
     std::vector<std::uint8_t> pack_state;
     std::vector<std::uint32_t> pack_location_id;
     std::vector<std::uint32_t> pack_market_id;
 
-    /// NMVO/EMVO registry mirror (v1: identical copy each step; later decoupled).
-    std::vector<std::uint8_t> registry_pack_state;
-    std::vector<std::uint32_t> registry_pack_location_id;
-    std::vector<std::uint32_t> registry_pack_market_id;
+    /// National verification system (NMVS) records, keyed by *serial* (one logical record per
+    /// serial, so two physical packs sharing a serial collapse here -- that is how clones are
+    /// detected). Updated only by verify/decommission/reactivate transactions, never by movement,
+    /// so it can genuinely diverge from physical reality (e.g. an active clone whose serial the
+    /// NMVS already retired).
+    std::vector<std::uint8_t> registry_serial_state;             // PACK_STATE per serial id
+    std::vector<std::uint8_t> registry_serial_reason;            // DECOMMISSION_REASON when inactive
+    std::vector<std::uint64_t> registry_serial_deadline_tick;    // reactivation allowed while tick <= deadline
+    std::vector<std::uint32_t> serial_pack_count;               // # physical packs sharing each serial (>1 = clones)
+    std::vector<std::vector<std::uint32_t>> serial_markets;     // markets each serial is provisioned to (from batches)
 
     /// ``org_type`` of the organization owning each location (by location id).
     std::vector<std::uint8_t> location_org_type;
@@ -86,5 +92,7 @@ struct SimulationState {
 
     explicit SimulationState(const EngineInputView& in);
 
-    void sync_registry_from_physical(std::uint32_t pack_index);
+    /// True iff every pack's physical state agrees with its serial's NMVS record. Diverges under
+    /// fraud (clones, unreported theft), which is the point: it is a ground-truth consistency check.
+    [[nodiscard]] bool serial_market_is_provisioned(std::uint32_t serial_id, std::uint32_t market_id) const;
 };

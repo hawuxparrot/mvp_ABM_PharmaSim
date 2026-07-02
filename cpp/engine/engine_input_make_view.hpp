@@ -19,6 +19,8 @@ inline EngineInputView make_view(const EngineInput& in) {
     v.n_packs           = in.n_packs;
     v.n_markets         = in.n_markets;
     v.n_edges           = in.n_edges;
+    v.n_serials         = in.n_serials;
+    v.reactivation_window_ticks = in.reactivation_window_ticks;
 
     // numeric spans: point into std::vector
     v.org_type = std::span<const std::uint8_t>(in.org_type.data(), in.org_type.size());
@@ -43,11 +45,13 @@ inline EngineInputView make_view(const EngineInput& in) {
     v.pack_initial_location_id = std::span<const std::uint32_t>(in.pack_initial_location_id.data(), in.pack_initial_location_id.size());
     v.pack_initial_market_id = std::span<const std::uint32_t>(in.pack_initial_market_id.data(), in.pack_initial_market_id.size());
     v.pack_initial_state = std::span<const std::uint8_t>(in.pack_initial_state.data(), in.pack_initial_state.size());
+    v.pack_serial_id = std::span<const std::uint32_t>(in.pack_serial_id.data(), in.pack_serial_id.size());
 
     v.location_has_behavior = std::span<const std::uint8_t>(in.location_has_behavior.data(), in.location_has_behavior.size());
     v.location_verify_prob = std::span<const float>(in.location_verify_prob.data(), in.location_verify_prob.size());
     v.location_decommission_prob = std::span<const float>(in.location_decommission_prob.data(), in.location_decommission_prob.size());
     v.location_reactivate_prob = std::span<const float>(in.location_reactivate_prob.data(), in.location_reactivate_prob.size());
+    v.location_decommission_reason_id = std::span<const std::uint8_t>(in.location_decommission_reason_id.data(), in.location_decommission_reason_id.size());
 
     v.location_demand_policy_id = std::span<const std::uint8_t>(in.location_demand_policy_id.data(), in.location_demand_policy_id.size());
     v.location_supply_policy_id = std::span<const std::uint8_t>(in.location_supply_policy_id.data(), in.location_supply_policy_id.size());

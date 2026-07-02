@@ -17,7 +17,7 @@ void validate_engine_input_or_throw(const EngineInput& in) {
     auto fail = [](const char* msg) { throw std::invalid_argument(msg); };
 
     if (in.schema_version != ENGINE_INPUT_SCHEMA_VERSION) {
-        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v7)");
+        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v8)");
     }
 
     const auto n_org = static_cast<std::size_t>(in.n_organizations);
@@ -28,7 +28,8 @@ void validate_engine_input_or_throw(const EngineInput& in) {
     const auto n_edge = static_cast<std::size_t>(in.n_edges);
 
     if (in.n_organizations < 0 || in.n_locations < 0 || in.n_products < 0 || in.n_batches < 0
-        || in.n_packs < 0 || in.n_markets < 0 || in.n_edges < 0) {
+        || in.n_packs < 0 || in.n_markets < 0 || in.n_edges < 0
+        || in.n_serials < 0 || in.reactivation_window_ticks < 0) {
         fail("EngineInput n_* counts must be non-negative");
     }
 
@@ -90,8 +91,17 @@ void validate_engine_input_or_throw(const EngineInput& in) {
     }
     if (in.pack_product_id.size() != n_pack || in.pack_batch_id.size() != n_pack
         || in.pack_initial_location_id.size() != n_pack || in.pack_initial_market_id.size() != n_pack
-        || in.pack_initial_state.size() != n_pack || in.pack_serial.size() != n_pack) {
+        || in.pack_initial_state.size() != n_pack || in.pack_serial.size() != n_pack
+        || in.pack_serial_id.size() != n_pack) {
         fail("EngineInput pack columns length must match n_packs");
+    }
+    {
+        const auto n_serial_sz = static_cast<std::size_t>(in.n_serials);
+        for (std::size_t i = 0; i < in.pack_serial_id.size(); ++i) {
+            if (static_cast<std::size_t>(in.pack_serial_id[i]) >= n_serial_sz) {
+                fail("EngineInput.pack_serial_id entries must be < n_serials");
+            }
+        }
     }
 
     if (!in.org_ext_id.empty() && in.org_ext_id.size() != n_org) {
@@ -109,7 +119,8 @@ void validate_engine_input_or_throw(const EngineInput& in) {
 
     if (in.location_has_behavior.size() != n_loc || in.location_verify_prob.size() != n_loc
         || in.location_decommission_prob.size() != n_loc
-        || in.location_reactivate_prob.size() != n_loc) {
+        || in.location_reactivate_prob.size() != n_loc
+        || in.location_decommission_reason_id.size() != n_loc) {
         fail("EngineInput location behavior columns must each have length n_locations");
     }
 
@@ -260,7 +271,7 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
     auto fail = [](const char* msg) { throw std::invalid_argument(msg);};
 
     if (in.schema_version != ENGINE_INPUT_SCHEMA_VERSION) {
-        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v7)");
+        fail("EngineInput.schema_version must match ENGINE_INPUT_SCHEMA_VERSION (engine_input.v8)");
     }
 
     const auto n_org = static_cast<std::size_t>(in.n_organizations);
@@ -271,7 +282,8 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
     const auto n_edge = static_cast<std::size_t>(in.n_edges);
 
     if (in.n_organizations < 0 || in.n_locations < 0 || in.n_products < 0 || in.n_batches < 0
-        || in.n_packs < 0 || in.n_markets < 0 || in.n_edges < 0) {
+        || in.n_packs < 0 || in.n_markets < 0 || in.n_edges < 0
+        || in.n_serials < 0 || in.reactivation_window_ticks < 0) {
         fail("EngineInput n_* counts must be non-negative");
     }
 
@@ -333,8 +345,17 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
     }
     if (in.pack_product_id.size() != n_pack || in.pack_batch_id.size() != n_pack
         || in.pack_initial_location_id.size() != n_pack || in.pack_initial_market_id.size() != n_pack
-        || in.pack_initial_state.size() != n_pack || in.pack_serial.size() != n_pack) {
+        || in.pack_initial_state.size() != n_pack || in.pack_serial.size() != n_pack
+        || in.pack_serial_id.size() != n_pack) {
         fail("EngineInput pack columns length must match n_packs");
+    }
+    {
+        const auto n_serial_sz = static_cast<std::size_t>(in.n_serials);
+        for (std::size_t i = 0; i < in.pack_serial_id.size(); ++i) {
+            if (static_cast<std::size_t>(in.pack_serial_id[i]) >= n_serial_sz) {
+                fail("EngineInput.pack_serial_id entries must be < n_serials");
+            }
+        }
     }
 
     if (!in.org_ext_id.empty() && in.org_ext_id.size() != n_org) {
@@ -352,7 +373,8 @@ void validate_engine_input_or_throw(const EngineInputView& in) {
 
     if (in.location_has_behavior.size() != n_loc || in.location_verify_prob.size() != n_loc
         || in.location_decommission_prob.size() != n_loc
-        || in.location_reactivate_prob.size() != n_loc) {
+        || in.location_reactivate_prob.size() != n_loc
+        || in.location_decommission_reason_id.size() != n_loc) {
         fail("EngineInput location behavior columns must each have length n_locations");
     }
 

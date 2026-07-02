@@ -11,7 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 # ABI version: bump when adding/removing/reordering fields or changing dtypes.
-ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v7"
+ENGINE_INPUT_SCHEMA_VERSION: str = "engine_input.v8"
 
 
 @dataclass
@@ -41,6 +41,10 @@ class EngineInput:
     n_packs: int
     n_markets: int
     n_edges: int
+    # EMVS: number of distinct interned serials (pack_serial_id entries are < n_serials).
+    n_serials: int
+    # EMVS: ticks a decommissioned pack may still be reactivated (FMD 10-day reversal window).
+    reactivation_window_ticks: int
 
     # markets: market_id is row index into market_code
     market_code: list[str]
@@ -84,12 +88,18 @@ class EngineInput:
     pack_initial_market_id: NDArray[np.uint32]
     pack_initial_state: NDArray[np.uint8] # PackState encoded as uint8.
     pack_serial: list[str] # optional parallel ext_id strings (debug / round-trip); empty = omit
+    # EMVS: interned serial id per pack (< n_serials). Two packs sharing an id are clones --
+    # the engine flags a DUPLICATE_SERIAL alert when both are simultaneously active.
+    pack_serial_id: NDArray[np.uint32]
 
     # Location behavior (Option B): always length n_locations; zeros when no policy for that row/scenario.
     location_has_behavior: NDArray[np.uint8]
     location_verify_prob: NDArray[np.float32]
     location_decommission_prob: NDArray[np.float32]
     location_reactivate_prob: NDArray[np.float32]
+    # EMVS: DecommissionReason (uint8) a site stamps when it decommissions a pack
+    # (terminals -> DISPENSED; a thief node -> STOLEN, etc.).
+    location_decommission_reason_id: NDArray[np.uint8]
     # location order/supply policy
     location_demand_policy_id: NDArray[np.uint8]
     location_supply_policy_id: NDArray[np.uint8]
@@ -155,6 +165,13 @@ class EngineInput:
         _len("pack_initial_location_id", self.pack_initial_location_id, self.n_packs)
         _len("pack_initial_market_id", self.pack_initial_market_id, self.n_packs)
         _len("pack_initial_state", self.pack_initial_state, self.n_packs)
+        _len("pack_serial_id", self.pack_serial_id, self.n_packs)
+        if self.n_serials < 0:
+            raise ValueError("n_serials must be non-negative")
+        if len(self.pack_serial_id) > 0 and np.max(self.pack_serial_id) >= self.n_serials:
+            raise ValueError("pack_serial_id entries must be < n_serials")
+        if self.reactivation_window_ticks < 0:
+            raise ValueError("reactivation_window_ticks must be non-negative")
 
         _len("product_demand_weight", self.product_demand_weight, self.n_products)
         _len("product_substitute_offset", self.product_substitute_offset, self.n_products + 1)
@@ -208,6 +225,7 @@ class EngineInput:
         _len("location_verify_prob", self.location_verify_prob, self.n_locations)
         _len("location_decommission_prob", self.location_decommission_prob, self.n_locations)
         _len("location_reactivate_prob", self.location_reactivate_prob, self.n_locations)
+        _len("location_decommission_reason_id", self.location_decommission_reason_id, self.n_locations)
         _len("location_demand_policy_id", self.location_demand_policy_id, self.n_locations)
         _len("location_supply_policy_id", self.location_supply_policy_id, self.n_locations)
         _len("location_initial_on_hand", self.location_initial_on_hand, self.n_locations)

@@ -22,6 +22,33 @@ class ProductCodeScheme(StrEnum):
     GTIN = "GTIN"
     PPN = "PPN"
 
+class DecommissionReason(StrEnum):
+    """EMVS decommission status reasons (FMD Art. 40 set, pragmatic subset).
+
+    A pack leaves the Active state for one of these reasons; ``DISPENSED`` is the normal
+    point-of-dispense outcome at a pharmacy/hospital, the rest model loss/diversion/recall.
+    """
+    DISPENSED = "DISPENSED"
+    STOLEN = "STOLEN"
+    EXPORTED = "EXPORTED"
+    DESTROYED = "DESTROYED"
+    SAMPLED = "SAMPLED"
+    LOCKED = "LOCKED"
+    RECALLED = "RECALLED"
+
+class AlertCode(StrEnum):
+    """EMVS verification alerts raised by the national system on a rule violation.
+
+    Maps to the EMVO alert space: UNKNOWN_SERIAL ~ A2 (serial not in repository),
+    ALREADY_DECOMMISSIONED ~ A7 (pack already inactive), DUPLICATE_SERIAL (same serial
+    active in >1 physical pack = clone), OUT_OF_MARKET (scanned in an NMVS the pack was
+    never provisioned to = parallel trade / smuggling).
+    """
+    UNKNOWN_SERIAL = "UNKNOWN_SERIAL"
+    OUT_OF_MARKET = "OUT_OF_MARKET"
+    ALREADY_DECOMMISSIONED = "ALREADY_DECOMMISSIONED"
+    DUPLICATE_SERIAL = "DUPLICATE_SERIAL"
+
 @dataclass(frozen=True)
 class Organization:
     ext_id: str                         # external organization id

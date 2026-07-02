@@ -15,14 +15,15 @@ from enum import StrEnum
 
 import numpy as np
 
-from compiler.enums import org_type_u8, pack_state_u8
+from compiler.enums import decommission_reason_u8, org_type_u8, pack_state_u8
 from compiler.types import EngineInput
-from policy.models import OrgType, PackState
+from policy.models import DecommissionReason, OrgType, PackState
 
 WHOLESALER_U8 = int(org_type_u8(OrgType.WHOLESALER))
 OBP_U8 = int(org_type_u8(OrgType.OBP))
 LOCAL_ORG_U8 = int(org_type_u8(OrgType.LOCAL_ORG))
 ACTIVE_U8 = pack_state_u8(PackState.ACTIVE)
+STOLEN_U8 = decommission_reason_u8(DecommissionReason.STOLEN)
 
 
 class PerturbationType(StrEnum):
@@ -138,18 +139,50 @@ def _ensure_market(inp: EngineInput, code: str) -> int:
     return inp.n_markets - 1
 
 
+def _append_counterfeit_batch(inp: EngineInput) -> int:
+    """Append a batch provisioned to *no* market, returning its id.
+
+    Counterfeit packs reference this batch so their (fresh) serials are unknown to every NMVS,
+    which is exactly what makes the engine raise ``UNKNOWN_SERIAL`` when they are scanned.
+    """
+    product_id = int(inp.pack_product_id[0]) if inp.n_packs > 0 else 0
+    manufacturer = int(inp.batch_manufacturer_org_id[0]) if inp.n_batches > 0 else 0
+    batch_id = inp.n_batches
+    inp.batch_product_id = np.concatenate(
+        [inp.batch_product_id, np.array([product_id], dtype=np.uint32)]
+    )
+    inp.batch_manufacturer_org_id = np.concatenate(
+        [inp.batch_manufacturer_org_id, np.array([manufacturer], dtype=np.uint32)]
+    )
+    # Empty intended-market range: new offset repeats the previous last offset.
+    last_off = int(inp.batch_intended_market_offset[-1])
+    inp.batch_intended_market_offset = np.concatenate(
+        [inp.batch_intended_market_offset, np.array([last_off], dtype=np.uint32)]
+    )
+    if inp.batch_ext_id:
+        inp.batch_ext_id = list(inp.batch_ext_id) + [f"counterfeit_batch_{batch_id}"]
+    inp.n_batches = batch_id + 1
+    return batch_id
+
+
 def _inject_packs(
     inp: EngineInput,
     loc: int,
     count: int,
     *,
-    clone_serials: bool,
     serial_prefix: str,
+    batch_id: int | None = None,
 ) -> None:
+    """Append ``count`` Active packs at ``loc``, each with a fresh interned serial id.
+
+    ``batch_id`` selects provisioning: the genuine batch 0 makes them look legitimate (volume
+    surge), a counterfeit batch (no markets) makes their serials unknown to the NMVS.
+    """
     if count <= 0:
         return
     product_id = int(inp.pack_product_id[0]) if inp.n_packs > 0 else 0
-    batch_id = int(inp.pack_batch_id[0]) if inp.n_packs > 0 else 0
+    if batch_id is None:
+        batch_id = int(inp.pack_batch_id[0]) if inp.n_packs > 0 else 0
     market_id = int(inp.location_market_id[loc])
 
     new_product = np.full(count, product_id, dtype=np.uint32)
@@ -159,24 +192,22 @@ def _inject_packs(
     new_state = np.full(count, ACTIVE_U8, dtype=np.uint8)
 
     base = inp.n_packs
-    serials: list[str] = []
-    ext_ids: list[str] = []
-    for k in range(count):
-        if clone_serials and inp.pack_serial:
-            serials.append(inp.pack_serial[k % len(inp.pack_serial)])
-        else:
-            serials.append(f"{serial_prefix}{base + k:09d}")
-        ext_ids.append(f"{serial_prefix.lower()}pack_{base + k}")
+    serial_base = inp.n_serials
+    new_serial_id = np.arange(serial_base, serial_base + count, dtype=np.uint32)
+    serials = [f"{serial_prefix}{base + k:09d}" for k in range(count)]
+    ext_ids = [f"{serial_prefix.lower()}pack_{base + k}" for k in range(count)]
 
     inp.pack_product_id = np.concatenate([inp.pack_product_id, new_product])
     inp.pack_batch_id = np.concatenate([inp.pack_batch_id, new_batch])
     inp.pack_initial_location_id = np.concatenate([inp.pack_initial_location_id, new_loc])
     inp.pack_initial_market_id = np.concatenate([inp.pack_initial_market_id, new_market])
     inp.pack_initial_state = np.concatenate([inp.pack_initial_state, new_state])
+    inp.pack_serial_id = np.concatenate([inp.pack_serial_id, new_serial_id])
     inp.pack_serial = list(inp.pack_serial) + serials
     if inp.pack_ext_id:
         inp.pack_ext_id = list(inp.pack_ext_id) + ext_ids
     inp.n_packs = base + count
+    inp.n_serials = serial_base + count
 
 
 def apply_perturbation(
@@ -193,12 +224,12 @@ def apply_perturbation(
             out.location_supply_capacity_per_tick[loc] = np.uint32(
                 max(base_cap + 1, int(round(max(1, base_cap) * spec.intensity)))
             )
-            # Extra stock so the higher capacity has packs to push (a genuine surge).
+            # Extra (legitimate) stock so the higher capacity has packs to push: a genuine
+            # volume surge, not an EMVS rule violation -- detected by transaction volume.
             _inject_packs(
                 out,
                 loc,
                 int(round(8 * spec.intensity)),
-                clone_serials=False,
                 serial_prefix="VS",
             )
             labels.append(
@@ -211,21 +242,32 @@ def apply_perturbation(
             )
 
     elif spec.ptype == PerturbationType.COUNTERFEIT:
-        targets = _select_targets(out, spec, WHOLESALER_U8, require_out_edge=True)
+        # Counterfeits surface where they are dispensed. Target terminals (pharmacies/hospitals)
+        # -- they verify (have behavior) and are sinks, so the fake packs do not propagate and
+        # the UNKNOWN_SERIAL alerts localize to the injection site.
+        targets = _select_targets(out, spec, LOCAL_ORG_U8, require_out_edge=False)
+        if not targets:
+            targets = _select_targets(out, spec, WHOLESALER_U8, require_out_edge=True)
+        cf_batch = _append_counterfeit_batch(out) if targets else 0
         for loc in targets:
+            # Guarantee the fakes get scanned at the target.
+            out.location_has_behavior[loc] = np.uint8(1)
+            out.location_verify_prob[loc] = np.float32(
+                max(float(out.location_verify_prob[loc]), 0.5)
+            )
             _inject_packs(
                 out,
                 loc,
                 int(round(10 * spec.intensity)),
-                clone_serials=True,
                 serial_prefix="CF",
+                batch_id=cf_batch,
             )
             labels.append(
                 PerturbationLabel(
                     location_ext_id=_loc_label(out, loc),
                     location_id=loc,
                     ptype=spec.ptype,
-                    reason="Injected cloned-serial packs entering distribution",
+                    reason="Injected fabricated-serial packs (unknown to the NMVS)",
                 )
             )
 
@@ -233,14 +275,17 @@ def apply_perturbation(
         targets = _select_targets(out, spec, WHOLESALER_U8, require_out_edge=True)
         prob = float(min(0.95, max(0.05, spec.intensity / 10.0)))
         for loc in targets:
+            # Distributor decommissions stock it should be shipping, stamping the EMVS STOLEN
+            # reason -- a reason-coded decommission a legitimate distributor never emits.
             out.location_has_behavior[loc] = np.uint8(1)
             out.location_decommission_prob[loc] = np.float32(prob)
+            out.location_decommission_reason_id[loc] = STOLEN_U8
             labels.append(
                 PerturbationLabel(
                     location_ext_id=_loc_label(out, loc),
                     location_id=loc,
                     ptype=spec.ptype,
-                    reason="Abnormal decommission/shrinkage at a distributor",
+                    reason="Abnormal STOLEN decommission/shrinkage at a distributor",
                     metadata={"decommission_prob": f"{prob:.3f}"},
                 )
             )
@@ -262,6 +307,12 @@ def apply_perturbation(
             )
         for loc in targets:
             out.location_market_id[loc] = np.uint32(foreign_id)
+            # Make sure the diverted node scans, so packs provisioned elsewhere raise
+            # OUT_OF_MARKET when verified in the foreign NMVS.
+            out.location_has_behavior[loc] = np.uint8(1)
+            out.location_verify_prob[loc] = np.float32(
+                max(float(out.location_verify_prob[loc]), 0.5)
+            )
             labels.append(
                 PerturbationLabel(
                     location_ext_id=_loc_label(out, loc),

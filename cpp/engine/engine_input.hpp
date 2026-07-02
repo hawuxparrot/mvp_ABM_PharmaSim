@@ -18,6 +18,8 @@ struct EngineInput {
     int n_packs;
     int n_markets;
     int n_edges;
+    int n_serials;
+    int reactivation_window_ticks;
 
     // products: per-product demand mix + ATC substitutability CSR (v7)
     std::vector<float> product_demand_weight;
@@ -49,11 +51,13 @@ struct EngineInput {
     std::vector<std::uint32_t> pack_initial_market_id;
     std::vector<std::uint8_t> pack_initial_state;
     std::vector<std::string> pack_serial;
+    std::vector<std::uint32_t> pack_serial_id;
 
     std::vector<std::uint8_t> location_has_behavior;
     std::vector<float> location_verify_prob;
     std::vector<float> location_decommission_prob;
     std::vector<float> location_reactivate_prob;
+    std::vector<std::uint8_t> location_decommission_reason_id;
     // location order/supply policy
     std::vector<std::uint8_t> location_demand_policy_id;
     std::vector<std::uint8_t> location_supply_policy_id;

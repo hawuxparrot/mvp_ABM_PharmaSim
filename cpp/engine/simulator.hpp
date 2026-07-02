@@ -50,13 +50,11 @@ private:
 
    
 
-    void process_pack_tick(std::uint32_t pack_id, std::uint64_t tick);
     void apply_location_behavior(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick);
-    bool attempt_movement(std::uint32_t pack_id, std::uint32_t loc);
-    bool has_outgoing_edge(std::uint32_t loc) const;
-    void move_pack(std::uint32_t pack_id, std::uint32_t from_loc, std::uint64_t tick);
-    void apply_post_movement_transition(std::uint32_t pack_id, std::uint32_t to_loc);
-    void sync_pack_registry(std::uint32_t pack_id);
+    // EMVS transactions against the national verification system (NMVS).
+    void run_verify_transaction(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick);
+    void run_decommission_transaction(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick);
+    void run_reactivate_transaction(std::uint32_t pack_id, std::uint32_t loc, std::uint64_t tick);
 
     void run_location_phase(std::uint64_t tick);
     void run_supply_phase(std::uint64_t tick);

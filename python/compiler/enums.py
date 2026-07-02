@@ -10,17 +10,23 @@ from __future__ import annotations
 
 import numpy as np
 
-from policy.models import OrgType, PackState
+from policy.models import AlertCode, DecommissionReason, OrgType, PackState
 
 __all__ = [
     "ORG_TYPE_TO_U8",
     "U8_TO_ORG_TYPE",
     "PACK_STATE_TO_U8",
     "U8_TO_PACK_STATE",
+    "DECOMMISSION_REASON_TO_U8",
+    "U8_TO_DECOMMISSION_REASON",
+    "ALERT_CODE_TO_U8",
+    "U8_TO_ALERT_CODE",
     "org_type_u8",
     "pack_state_u8",
+    "decommission_reason_u8",
     "decode_org_type_u8",
     "decode_pack_state_u8",
+    "decode_alert_code_u8",
 ]
 
 # explicit integer codes. Document order for C++ mirror.
@@ -36,6 +42,25 @@ PACK_STATE_TO_U8: dict[PackState, int] = {
     PackState.UPLOADED: 0,
     PackState.ACTIVE: 1,
     PackState.DECOMISSIONED: 2,
+}
+
+# EMVS decommission reasons. Keep in sync with C++ ``DECOMMISSION_REASON`` in enums.hpp.
+DECOMMISSION_REASON_TO_U8: dict[DecommissionReason, int] = {
+    DecommissionReason.DISPENSED: 0,
+    DecommissionReason.STOLEN: 1,
+    DecommissionReason.EXPORTED: 2,
+    DecommissionReason.DESTROYED: 3,
+    DecommissionReason.SAMPLED: 4,
+    DecommissionReason.LOCKED: 5,
+    DecommissionReason.RECALLED: 6,
+}
+
+# EMVS alert codes emitted by the engine. Keep in sync with C++ ``ALERT_CODE`` in enums.hpp.
+ALERT_CODE_TO_U8: dict[AlertCode, int] = {
+    AlertCode.UNKNOWN_SERIAL: 0,
+    AlertCode.OUT_OF_MARKET: 1,
+    AlertCode.ALREADY_DECOMMISSIONED: 2,
+    AlertCode.DUPLICATE_SERIAL: 3,
 }
 
 
@@ -63,6 +88,10 @@ def _invert_pack_state_map(m: dict[PackState, int]) -> dict[int, PackState]:
 
 U8_TO_ORG_TYPE: dict[int, OrgType] = _invert_org_type_map(ORG_TYPE_TO_U8)
 U8_TO_PACK_STATE: dict[int, PackState] = _invert_pack_state_map(PACK_STATE_TO_U8)
+U8_TO_DECOMMISSION_REASON: dict[int, DecommissionReason] = {
+    v: k for k, v in DECOMMISSION_REASON_TO_U8.items()
+}
+U8_TO_ALERT_CODE: dict[int, AlertCode] = {v: k for k, v in ALERT_CODE_TO_U8.items()}
 
 
 def _assert_maps_cover_enums() -> None:
@@ -111,3 +140,17 @@ def decode_pack_state_u8(code: int | np.uint8) -> PackState:
     if c not in U8_TO_PACK_STATE:
         raise ValueError(f"invalid PackState u8 code: {c}")
     return U8_TO_PACK_STATE[c]
+
+
+def decommission_reason_u8(r: DecommissionReason) -> np.uint8:
+    try:
+        return np.uint8(DECOMMISSION_REASON_TO_U8[r])
+    except KeyError as e:
+        raise KeyError(f"unknown DecommissionReason: {r!r}") from e
+
+
+def decode_alert_code_u8(code: int | np.uint8) -> AlertCode:
+    c = int(code)
+    if c not in U8_TO_ALERT_CODE:
+        raise ValueError(f"invalid AlertCode u8 code: {c}")
+    return U8_TO_ALERT_CODE[c]

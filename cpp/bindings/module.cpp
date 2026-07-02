@@ -45,6 +45,8 @@ static EngineInput load_engine_input(const nb::object& src) {
     in.n_packs = nb::cast<int>(src.attr("n_packs"));
     in.n_markets = nb::cast<int>(src.attr("n_markets"));
     in.n_edges = nb::cast<int>(src.attr("n_edges"));
+    in.n_serials = nb::cast<int>(src.attr("n_serials"));
+    in.reactivation_window_ticks = nb::cast<int>(src.attr("reactivation_window_ticks"));
 
     in.product_demand_weight = load_numpy_1d<float>(src, "product_demand_weight");
     in.product_substitute_offset = load_numpy_1d<std::uint32_t>(src, "product_substitute_offset");
@@ -71,12 +73,14 @@ static EngineInput load_engine_input(const nb::object& src) {
     in.pack_initial_location_id = load_numpy_1d<std::uint32_t>(src, "pack_initial_location_id");
     in.pack_initial_market_id = load_numpy_1d<std::uint32_t>(src, "pack_initial_market_id");
     in.pack_initial_state = load_numpy_1d<std::uint8_t>(src, "pack_initial_state");
+    in.pack_serial_id = load_numpy_1d<std::uint32_t>(src, "pack_serial_id");
 
     in.pack_serial = nb::cast<std::vector<std::string>>(src.attr("pack_serial"));
     in.location_has_behavior = load_numpy_1d<std::uint8_t>(src, "location_has_behavior");
     in.location_verify_prob = load_numpy_1d<float>(src, "location_verify_prob");
     in.location_decommission_prob = load_numpy_1d<float>(src, "location_decommission_prob");
     in.location_reactivate_prob = load_numpy_1d<float>(src, "location_reactivate_prob");
+    in.location_decommission_reason_id = load_numpy_1d<std::uint8_t>(src, "location_decommission_reason_id");
     in.location_demand_policy_id = load_numpy_1d<std::uint8_t>(src, "location_demand_policy_id");
     in.location_supply_policy_id = load_numpy_1d<std::uint8_t>(src, "location_supply_policy_id");
     in.location_initial_on_hand = load_numpy_1d<std::int32_t>(src, "location_initial_on_hand");
@@ -141,6 +145,21 @@ NB_MODULE(_pharmasim_native, m) {
         .def(
             "event_log_to_locations",
             [](const Simulator& s) { return s.events().to_location_id; }
+        )
+        // event_detail: DECOMMISSION_REASON for DECOMMISSION rows, ALERT_CODE for ALERT rows.
+        .def(
+            "event_log_details",
+            [](const Simulator& s) { return s.events().event_detail; }
+        )
+        // event_market_id: national NMVS the transaction hit (sentinel = not market-scoped).
+        .def(
+            "event_log_market_ids",
+            [](const Simulator& s) { return s.events().event_market_id; }
+        )
+        // Per-serial NMVS record state (PACK_STATE), exposed for ground-truth/registry checks.
+        .def(
+            "registry_serial_states",
+            [](const Simulator& s) { return s.state().registry_serial_state; }
         )
         .def(
             "physical_pack_states",
