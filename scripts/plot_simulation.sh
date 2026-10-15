@@ -1,5 +1,6 @@
 SCENARIO=$"multi_market_sparse_scenario()"
 NUM_TICKS=100
+mkdir -p out_logs
 
 PYTHONPATH=python uv run python -c "
 from compiler.compile import compile_scenario

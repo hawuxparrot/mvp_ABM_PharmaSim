@@ -45,6 +45,7 @@ def test_summarize_metrics_single_run_zero_width_ci() -> None:
     assert s.f1.std == 0.0
 
 
+@pytest.mark.slow
 def test_run_fraud_ensemble_reports_distribution() -> None:
     si = build_bulgaria_simulation_input(**BUILD_KW)
     spec = PerturbationSpec(
@@ -63,6 +64,7 @@ def test_run_fraud_ensemble_reports_distribution() -> None:
     assert res.summary.recall.mean > 0.0
 
 
+@pytest.mark.slow
 def test_sweep_detection_threshold_is_monotone_in_recall() -> None:
     si = build_bulgaria_simulation_input(**BUILD_KW)
     spec = PerturbationSpec(

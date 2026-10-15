@@ -1,0 +1,15 @@
+{
+  "learning_rate": 0.05,
+  "l2_strength": 0.0001,
+  "decision_threshold": 0.5,
+  "initial_bias": -1.0,
+  "safe_sample_rate": 0.10,
+  "recent_source_candidate_threshold": 25,
+  "query_budget_per_tick": 8,
+  "uncertainty_margin": 0.15,
+  "exploration_rate": 0.05,
+  "metric_interval": 25,
+  "evaluation_seed": null,
+  "metric_eval_max_cases": 2000,
+  "implementation_note": "The last seed is held out by default; run scripts/run_hitl_acceptance.py for five-fold query-policy acceptance."
+}

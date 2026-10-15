@@ -1,21 +1,39 @@
-*.pdf
-*.PDF
-literature/
-.cache/
+# Python
 __pycache__/
 *.py[cod]
+.venv/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.benchmarks/
+
+# Native build
 build/
 /compile_commands.json
+*.so
+*.dylib
+*.pyd
+
+# Run outputs (regenerate with scripts/)
+out_logs/
+artifacts/
+*.perf.data*
+*.callgrind
+*.log
+
+# Local / private
+.cache/
+literature/
+*.pdf
+*.PDF
+docs/notes/simulation_realism.md
+docs/notes/changes_05_31.md
+
+# Editors / OS
 .DS_Store
 .idea/
 .vscode/
-*.log
 *.bak
 *.tmp
 *.swp
 *.swo
-simulation_realism.md
-changes_31_05.md

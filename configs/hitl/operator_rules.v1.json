@@ -1,0 +1,106 @@
+{
+  "version": "v1",
+  "thresholds": {
+    "high_recent_source_count": 25,
+    "low_trust_score": 0.55,
+    "short_distance_km": 5.0
+  },
+  "rules": [
+    {
+      "id": "unsafe_unknown_serial",
+      "label": true,
+      "confidence": 0.99,
+      "when": {"alert_code": "UNKNOWN_SERIAL"}
+    },
+    {
+      "id": "unsafe_duplicate_serial",
+      "label": true,
+      "confidence": 0.99,
+      "when": {"alert_code": "DUPLICATE_SERIAL"}
+    },
+    {
+      "id": "unsafe_out_of_market",
+      "label": true,
+      "confidence": 0.99,
+      "when": {"alert_code": "OUT_OF_MARKET"}
+    },
+    {
+      "id": "unsafe_stolen_decommission",
+      "label": true,
+      "confidence": 0.98,
+      "when": {"decommission_reason": "STOLEN"}
+    },
+    {
+      "id": "unsafe_hospital_to_hospital_move",
+      "label": true,
+      "confidence": 0.90,
+      "when": {
+        "all": [
+          {"event_type": "MOVE"},
+          {"from_role": "HOSPITAL"},
+          {"to_role": "HOSPITAL"}
+        ]
+      }
+    },
+    {
+      "id": "unsafe_high_recent_source_count",
+      "label": true,
+      "confidence": 0.82,
+      "when": {"source_recent_event_count": {"gt": "threshold.high_recent_source_count"}}
+    },
+    {
+      "id": "unsafe_low_trust_score",
+      "label": true,
+      "confidence": 0.84,
+      "when": {
+        "any": [
+          {"source_trust_score": {"lt": "threshold.low_trust_score"}},
+          {"destination_trust_score": {"lt": "threshold.low_trust_score"}}
+        ]
+      }
+    },
+    {
+      "id": "safe_same_location",
+      "label": false,
+      "confidence": 0.93,
+      "when": {"same_location": true}
+    },
+    {
+      "id": "safe_same_organization",
+      "label": false,
+      "confidence": 0.91,
+      "when": {"same_organization": true}
+    },
+    {
+      "id": "safe_pharmacy_same_postal_code",
+      "label": false,
+      "confidence": 0.86,
+      "when": {
+        "all": [
+          {"event_type": "MOVE"},
+          {"from_role": "PHARMACY"},
+          {"to_role": "PHARMACY"},
+          {"same_postal_code": true}
+        ]
+      }
+    },
+    {
+      "id": "safe_pharmacy_short_distance",
+      "label": false,
+      "confidence": 0.82,
+      "when": {
+        "all": [
+          {"event_type": "MOVE"},
+          {"from_role": "PHARMACY"},
+          {"to_role": "PHARMACY"},
+          {"distance_km": {"lte": "threshold.short_distance_km"}}
+        ]
+      }
+    }
+  ],
+  "default": {
+    "label": false,
+    "confidence": 0.60,
+    "rule_id": "default_safe"
+  }
+}

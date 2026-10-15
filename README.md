@@ -1,252 +1,217 @@
-# PharmaSim (MVP)
+<div align="center">
 
-### Problem overview
+# PharmaSim
 
-Model EU-wide pharmaceutical distribution to study cross-border theft and counterfeiting, starting from synthetic scenarios compatible in spirit with EMVO/NMVO-style data.
+**An agent-based simulator of EU pharmaceutical distribution for studying theft, smuggling and counterfeiting under the Falsified Medicines Directive.**
 
-### MVP definition
+![Python](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)
+![C++20](https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus&logoColor=white)
+![nanobind](https://img.shields.io/badge/bindings-nanobind-4B8BBE)
+![uv](https://img.shields.io/badge/env-uv-DE5FE9)
+![tests](https://img.shields.io/badge/tests-pytest-0A9EDC?logo=pytest&logoColor=white)
 
-Python defines policy and initial state; a C++ SoA kernel runs the simulation and an append-only event log. One EMVO hub, OBPs, wholesalers, local orgs (pharmacies/hospitals), and NMVOs appear as organization types on locations.
+</div>
 
-### Architecture
+PharmaSim models the physical supply chain (manufacturers/OBPs → wholesalers → pharmacies and hospitals) **and** the EU's serialisation layer (EMVS / national NMVS registries) side by side. Because the registry is updated only by scan transactions, it can drift from physical reality, and that drift is exactly where fraud becomes visible. Fraud scenarios are injected into a calibrated network built from **real Bulgarian registry data**. They produce genuine FMD alerts in the engine's event log, and those alerts feed both rule-based detectors and a **human-in-the-loop alert-triage learner**.
 
-> **Note (2026-06-02):** The `canonical` data pipeline and transaction/experiment scaffolding are currently implemented entirely in Python for fast iteration. These modules may later be partially migrated into the C++ engine if per-tick injection of anomalies or richer event semantics is needed. The native `engine_input.v6` ABI was intentionally left unchanged during this pass to keep risk low.
+<p align="center">
+  <img src="docs/images/bulgaria_network.png" width="48%" alt="Bulgaria distribution network built from the pharmacy registry"/>
+  <img src="docs/images/alert_map.png" width="48%" alt="Learned alert decisions plotted on the Bulgaria map"/>
+</p>
+<p align="center"><sub>Left: geocoded Bulgaria network (6 OBP hubs, 40 wholesalers, 304 pharmacies/hospitals). Right: locations flagged from the alert stream compared with the injected fraud sites.</sub></p>
 
-Data sources → Canonical pipeline → Policy/Scenario → Compiler → Engine → Analytics → I/O
+## Highlights
 
-1. **Canonical** (`python/canonical/`): ETL loaders (BG pharmacy registry JSON, EMA SPOR CSV), geocoding with OSM cache, geography-aware routing, Bulgaria scenario assembly, synthetic transaction generation, experiment bundle orchestration. Currently Python-only; may partially migrate to C++ later.
-2. **Policy** (`python/policy/`): `Scenario`, locations, edges, packs, transaction lifecycle contracts (`TransactionIntent`, `TransactionPlan`, `AnomalyLabel`).
-3. **Compiler** (`python/compiler/`): validate, dense IDs, `EngineInput` columnar payload + route CSR. Edges are always compiled from dense columns; default ingress converts `scenario.location_edges`, or callers pass optional `edge_*` numpy arrays for large builders.
-4. **Engine** (`cpp/engine/`): pack/location state, phased `run_ticks`, events.
-5. **Runtime** (`python/runtime/`): `native_bridge`, `simulation_viz`.
-6. **Analytics** (`python/analytics/`): anomaly injection (volume spikes, cross-market), baseline detectors (z-score, market mismatch), evaluation metrics (precision/recall/F1).
+- **Fast C++20 kernel.** It uses a struct-of-arrays (SoA) memory layout, a phased tick loop, multi-hop shipping over a precomputed route CSR (compressed sparse row) table, and an append-only event log. It is exposed to Python via `nanobind`, loading each NumPy column with a single copy, and scales to multi-million-pack stress scenarios.
+- **A realistic EMVS / NMVS registry.** Each market keeps a per-serial registry with `VERIFY` / `DECOMMISSION` / `REACTIVATE` semantics, the FMD reactivation window, and typed alerts (`UNKNOWN_SERIAL`, `OUT_OF_MARKET`, `ALREADY_DECOMMISSIONED`, `DUPLICATE_SERIAL`).
+- **Real-world data pipeline.** Inputs are the Bulgarian pharmacy registry (3,958 entities) and EMA SPOR locations (78k rows), with resumable OpenStreetMap geocoding, a connectivity-first network build, and `scipy.sparse.csgraph` routing.
+- **Fraud as perturbations of the real engine.** Counterfeit injection, cross-market smuggling, distributor theft and volume spikes rewrite the calibrated engine inputs. Ground-truth labels are kept separate from what the detectors see.
+- **Human-in-the-loop alert learning.** An online logistic learner recovers a hidden operator rule set from triage feedback alone. With uncertainty sampling it requests labels for only about 3.5 % of cases at essentially the same F1 as labelling everything.
+- **Supervisor dashboard.** A Streamlit walkthrough shows the network, the layered alert triage with pack histories, the learning curves, and a concrete EMVO/NMVS data request.
 
-Users typically compile and run via `python/runtime` without hand-rolling the C++ ABI.
-
-### End-to-end flow
-
-**Data-driven workflow (new):**
-
-`data/data.json` + `data/spor_locations.csv` → `bulgaria_registry_scenario()` / `bulgaria_registry_experiment_bundle()` → `compile_scenario` → `create_native_simulator` → `run_ticks` → event log and reports.
-
-**Synthetic workflow (existing):**
-
-`two_markets_demo()` → `compile_scenario` → same engine path.
-
-**Large synthetic workflow (performance path):**
-
-`multi_market_sparse_scenario_precomputed()` → `compile_scenario(..., edge_src=..., edge_dst=..., edge_cost=..., edge_capacity=...)` → same engine path. Skips building millions of `LocationEdge` Python objects; use for stress-scale graphs.
-
-After changing C++ or the `EngineInput` layout: rebuild the extension (e.g. `scripts/setup.sh` or CMake + `nanobind` target) and reinstall the editable package (`uv pip install -e .`) so tests load a matching `_pharmasim_native`.
-
-### EngineInput and schema
-
-Stable ABI string `engine_input.v6`: keep `python/compiler/types.py` (`ENGINE_INPUT_SCHEMA_VERSION`) and `cpp/engine/enums.hpp` in sync when adding or reordering columns. Bindings must load every new field (`cpp/bindings/`).
-
-**Compile API:**
-
-Single entry point: `compile_scenario(scenario, *, edge_src_location_id=..., edge_dst_location_id=..., edge_cost=..., edge_capacity=...)`.
-
-| Edge source | How |
-| ----------- | --- |
-| Default | Convert `scenario.location_edges` to columns inside the compiler |
-| Large builders | Pass all four `edge_*` arrays; keep `scenario.location_edges` empty |
-
-Both modes share the same internal columnar compile path (no ABI change).
-
-### Simulation kernel (current)
-
-- **Static inventory**: fixed `n_packs`; no runtime pack creation.
-- **Per tick** (`Simulator::run_ticks`): (1) location phase — demand policies; (2) supply phase — supply policies and scheduled first hops; (3) shipment phase — due moves along edges (multihop via precomputed route CSR, `edge_lead_time_ticks`); (4) pack behavior — EMVS verify / decommission / reactivate transactions per location. (The legacy stochastic per-pack random walk has been removed; there is one engine, one tick loop.)
-- **Policies** (column `policy_id` + params): demand `0/1/2` (none, constant rate, Poisson on `location_demand_poisson_lambda`); supply `0/1/2` (none, wholesaler cap toward preferred edge if downstream backlog, OBP pool activation then ship). First-hop moves respect per-edge `edge_capacity` within the tick.
-- **EMVS / NMVS registry** (`engine_input.v8`): the registry is a real national verification system, keyed by **serial**, updated *only* by transactions (so it can diverge from physical reality — the point of the model):
-  - **VERIFY** queries the scan location's national NMVS and raises typed alerts: `UNKNOWN_SERIAL` (serial in no NMVS), `OUT_OF_MARKET` (serial not provisioned to this market — parallel trade), `ALREADY_DECOMMISSIONED` (serial already retired), `DUPLICATE_SERIAL` (>1 physical pack on one serial — a clone).
-  - **DECOMMISSION** retires the serial with a `DECOMMISSION_REASON` (Dispensed/Stolen/Exported/Destroyed/Sampled/Locked/Recalled) and opens the FMD reactivation window (`reactivation_window_ticks`).
-  - **REACTIVATE** is accepted only within that window, else rejected.
-  - Alerts and reasons land in the `EventLog` (`event_detail` + `event_market_id`, `EventType::ALERT`); `registry_matches_physical()` is a genuine ground-truth consistency check (false under clones/unreported shrinkage).
-- **Fraud → alerts → detection**: perturbations (`python/policy/perturbations.py`) drive *real* EMVS violations — COUNTERFEIT injects fabricated-serial packs (`UNKNOWN_SERIAL`), SMUGGLING diverts a node into a foreign market (`OUT_OF_MARKET`), THEFT emits `STOLEN`-coded decommissions; VOLUME_SPIKE stays a legitimate transaction-volume surge. Python detectors (`python/analytics/fraud.py`) read the alert/reason stream rather than diffing volumes.
-
-Design notes: `simulation_realism.md`.
+## Architecture
 
 ```mermaid
-flowchart TB
-  subgraph data [Data_sources]
-    BG_REG[BGBulgaria_pharmacy_registry_JSON]
-    SPOR[EMASPOR_locations_CSV]
+flowchart LR
+  subgraph data ["Data sources"]
+    REG["BG pharmacy registry"]
+    SPOR["EMA SPOR locations"]
   end
-  subgraph canonical [Python_canonical_pipeline]
-    LOAD[Loaders_normalize]
-    GEO[Geocoding_OSM_cache]
-    ROUTE[Routing_graph]
-    TXGEN[Synthetic_transaction_generation]
+  subgraph py ["Python"]
+    CAN["canonical<br/>ETL · geocoding · routing"]
+    POL["policy<br/>Scenario · perturbations"]
+    CMP["compiler<br/>validate → SoA EngineInput"]
   end
-  subgraph compile [Python_compiler]
-    SC[Scenario]
-    EI[EngineInput_SoA]
+  subgraph cpp ["C++ engine"]
+    SIM["Simulator::run_ticks<br/>demand · supply · shipment · scans"]
+    NMVS["Per-serial NMVS registry"]
+    LOG["EventLog + alerts"]
   end
-  subgraph kernel [C++_Simulator_run_ticks]
-    PHY[Physical_pack_columns]
-    REG[Per_serial_NMVS_registry]
-    CSR[Graph_and_route_CSR]
-    RNG[mt19937_64]
-    LOG[EventLog_with_alerts]
+  subgraph out ["Analysis"]
+    DET["analytics<br/>fraud detectors · ensembles"]
+    HITL["learning<br/>HITL alert triage · dashboard"]
   end
-  subgraph analytics [Python_analytics]
-    INJECT[Anomaly_injectors]
-    DETECT[Baseline_detectors]
-    EVAL[Eval_metrics]
-  end
-  BG_REG --> LOAD
-  SPOR --> LOAD
-  LOAD --> GEO
-  GEO --> ROUTE
-  ROUTE --> SC
-  TXGEN --> SC
-  SC --> EI
-  EI --> PHY
-  EI --> CSR
-  PHY --> REG
-  RNG --> PHY
-  CSR --> PHY
-  PHY --> LOG
-  LOG --> DETECT
-  INJECT --> TXGEN
-  INJECT --> SC
-  DETECT --> EVAL
+  REG --> CAN
+  SPOR --> CAN
+  CAN --> POL --> CMP -->|"engine_input.v8 (nanobind)"| SIM
+  SIM <--> NMVS
+  SIM --> LOG
+  LOG --> DET
+  LOG --> HITL
 ```
 
-### End-to-end Bulgaria fraud/smuggling loop
+Python owns the policy, data and experiments; C++ owns the hot loop. The boundary is a single versioned columnar ABI (`engine_input.v8`), so you rarely need to touch the C++ side to run experiments.
 
-A single reproducible loop now ties the data pipeline, the C++ engine, and detection
-together so anomalies appear in the **real engine event log** (not a parallel synthetic
-plan) and detectors are scored on that log:
+## Quickstart
 
-```
-data (BG registry + SPOR)
-  -> batch geocode cache            scripts/geocode_bg.py  (resumable, OSM + city fallback)
-  -> connectivity-first scenario    python/canonical/scenario_builder.py
-  -> compile + calibrate            python/runtime/experiments.py  (push policies)
-  -> baseline run_ticks             ground-truth event log
-  -> perturbation (Python driver)   python/policy/perturbations.py  -> perturbed EngineInput + labels
-  -> perturbed run_ticks            observable event log
-  -> log detectors + scoring        python/analytics/{fraud,experiment}.py
-```
-
-Run it:
+**Prerequisites:** [uv](https://docs.astral.sh/uv/), CMake ≥ 3.24, Ninja, and a C++20 compiler.
 
 ```bash
-# one-time, resumable; populates data/geocode_cache_bg.json
-uv run python scripts/geocode_bg.py
-
-# build -> compile -> simulate -> export ground-truth log + map plot
-TICKS=300 ./scripts/run_bulgaria.sh
-
-# one-call baseline-vs-perturbed experiment (precision/recall/F1 vs labels)
-uv run python -c "from analytics.experiment import run_fraud_experiment; \
-from policy.perturbations import PerturbationSpec, PerturbationType as T; \
-r=run_fraud_experiment(PerturbationSpec(ptype=T.SMUGGLING)); print(r.metrics)"
+./scripts/setup.sh          # uv sync + CMake/Ninja build of the _pharmasim_native extension
+uv run pytest -m "not slow" # fast test suite
+uv run pytest               # including the larger Bulgaria ensembles
 ```
 
-Perturbation types (`PerturbationType`): `VOLUME_SPIKE`, `SMUGGLING` (cross-market
-diversion), `THEFT` (distributor shrinkage), `COUNTERFEIT` (cloned-serial injection). Each
-rewrites calibrated engine parameters and emits ground-truth `PerturbationLabel`s; the
-matching log detector recovers the injected sites. Map + baseline-vs-perturbed flow plots
-live in `python/runtime/simulation_viz.py` (`plot_location_graph`, `plot_flow_comparison`).
+A minimal synthetic run:
 
-> Engine-fit notes: the supply phase ships along each node's single *preferred* edge, so the
-> calibration disperses import hubs geographically and stocks every wholesaler to get broad,
-> realistic OBP -> wholesaler -> pharmacy coverage; routing precompute now uses
-> `scipy.sparse.csgraph` (compile time dropped from the former bottleneck to a few ms).
+```python
+from compiler.compile import compile_scenario
+from policy.scenarios import two_markets_demo
+from runtime.native_bridge import create_native_simulator
+from runtime.simulation_viz import export_run_report
 
-### Next steps:
-- Enrich event log with transaction/order semantics for richer observability
-- Per-node fan-out distribution (engine currently ships along a single preferred edge)
-- Push anomaly injection into per-tick engine loop (currently pre-computed in Python)
-- Vectorized pack generation / compiled artifact caching for remaining build-time overhead
-- Migrate stable canonical pipeline pieces into C++ EngineInput columns if scalability demands it
-- different order policies by different medicine types -- substitutability of medicines by `ATC (Anatomical Therapeutic Classification)` (prefix tree data structure)
-- More complex/realistic `WHOLESALER` logic for allocation, fairness
-- More complex/realistic `OBP` production behavior, perhaps with production scheduling
-- More realistic/complex penalty (modular, so can be switched for experimentation)
-- Advanced detector methods beyond z-score / rule baselines
-#### Decided
-- Real actor location data
-  - SPOR (European Medicines Agency) — **implemented** in `python/canonical/loaders.py`
-  - Bulgarian pharmacy registry — **implemented** in `python/canonical/loaders.py`
-- Geocoding via OpenStreetMap — **implemented** with cache + resumable batch CLI (`scripts/geocode_bg.py`) and city-centroid fallback in `python/canonical/geocoding.py`
-- Connectivity-first scenario build (no more 0-edge trim) — **implemented** in `python/canonical/scenario_builder.py`
-- Fast `scipy.sparse.csgraph` route precompute — **implemented** in `python/compiler/compile.py`
-- Fraud as a Python policy-driver on the real engine log — **implemented** in `python/policy/perturbations.py`
-- Log-based detectors + precision/recall/F1 scoring + one-call experiment — **implemented** in `python/analytics/{fraud,experiment}.py`
-- Synthetic transaction lifecycle with anomaly injection — **implemented** in `python/canonical/transactions.py`
-- Columnar edge compile in single `compile_scenario` API — **implemented** in `python/compiler/compile.py`
-- Visualizations: geographic graph + baseline-vs-perturbed flow — **implemented** in `python/runtime/simulation_viz.py`
-- --> argue based on plausibility of simulation
+inp = compile_scenario(two_markets_demo())
+sim = create_native_simulator(inp)
+sim.run_ticks(500)
+print("tick", sim.current_tick(), "events", sim.event_count())
+export_run_report(sim, inp, "out_logs", prefix="run")  # CSV / JSONL / final snapshot
+```
 
+The test suite and scripts put `python/` on the path. For ad-hoc runs, use `PYTHONPATH=python uv run python ...`.
 
+## Workflows
 
-
-
-### Directory structure
-
-| Path                | Role                                                         |
-| ------------------- | ------------------------------------------------------------ |
-| `python/canonical/` | BG data loaders, OSM geocoding, routing, scenario assembly, synthetic transaction generation, experiment bundles |
-| `python/policy/`    | Scenarios, models, transaction lifecycle contracts (`transactions.py`) |
-| `python/compiler/`  | AoS → SoA compile; edges always ingested as dense columns |
-| `python/runtime/`   | Native bridge, `simulation_viz.py`                           |
-| `python/analytics/` | Reports, anomaly injection & detection (`fraud.py`)          |
-| `cpp/engine/`       | Kernel                                                       |
-| `cpp/bindings/`     | nanobind module                                              |
-| `schemas/`          | Version and enum docs                                        |
-| `tests/`            | pytest: canonical pipeline, transactions, compiler, validate, dynamics, bridge, viz |
-
-
-Tooling: **uv** (Python), **CMake** + **Ninja** (C++ / extension).
-
-### Logs and visualization
-
-See `python/runtime/native_bridge.py` and `python/runtime/simulation_viz.py`: `events_as_records`, `export_run_report`, `run_ticks_with_hook`, optional plots (`uv sync --extra viz`).
-
-### Usage
-
-- `scripts/setup.sh` — uv env + CMake build of `_pharmasim_native`
-- `scripts/run_simulation.sh` — example scripted run
-- `uv run pytest` — full test suite (`pyproject.toml` sets `pythonpath` for `python/`)
-
-### Performance benchmarks
-
-Benchmarks time the full pipeline in four explicit phases that sum to total wall clock:
-
-1. `build_scenario`
-2. `compile_scenario`
-3. `create_simulator`
-4. `run_ticks`
-
-Phase breakdown is printed at the end of the pytest run (`tests/conftest.py`).
+### 1. Bulgaria end-to-end simulation
 
 ```bash
-# Fast sanity (~sub-second)
-PHARMASIM_BENCH_PROFILE=quick uv run pytest tests/bench.py -v
-
-# Bulgaria registry scale
-PHARMASIM_BENCH_PROFILE=bulgaria uv run pytest tests/bench.py -v
-
-# Full stress profile (can take hours; 4M packs by default)
-PHARMASIM_BENCH_PROFILE=stress uv run pytest tests/bench.py -v
+uv run python scripts/geocode_bg.py   # one-time, resumable; fills data/geocode_cache_bg.json
+TICKS=300 ./scripts/run_bulgaria.sh   # build → compile → calibrate → simulate → out_logs/
 ```
 
-Optional env vars:
+### 2. Fraud experiment (baseline vs. perturbed)
 
-| Variable | Default | Purpose |
-| -------- | ------- | ------- |
-| `PHARMASIM_BENCH_PROFILE` | `stress` | `quick`, `bulgaria`, or `stress` |
-| `PHARMASIM_BENCH_TICKS` | profile-specific | Tick count for `run_ticks` |
-| `PHARMASIM_BENCH_MARKETS` | `DE,FR,IT,UK` | Stress profile markets |
-| `PHARMASIM_BENCH_LOCATIONS` | `10000` | Locations per market (stress) |
-| `PHARMASIM_BENCH_PACKS` | `1000000` | Packs per market (stress) |
-| `PHARMASIM_BENCH_PRECOMPUTED_EDGES` | `1` | Use precomputed-edge compile path in stress profile; set `0` for legacy list-edge path |
+```python
+from analytics.experiment import run_fraud_experiment
+from policy.perturbations import PerturbationSpec, PerturbationType
 
-**Build-time note:** scenario construction and compile still dominate wall clock at large scale (especially millions of `Pack` objects and multihop route precompute). Passing `edge_*` columns avoids materializing `LocationEdge` lists; see `changes_31_05.md` §12–§13.
+result = run_fraud_experiment(PerturbationSpec(ptype=PerturbationType.SMUGGLING))
+print(result.metrics)  # precision / recall / F1 against injected ground truth
+```
 
-@Han Wu [hanwuh@ethz.ch](mailto:hanwuh@ethz.ch)
+| Perturbation | What it does to the engine | Signal in the event log |
+| --- | --- | --- |
+| `COUNTERFEIT` | Injects packs with fabricated serials | `UNKNOWN_SERIAL` alerts |
+| `SMUGGLING` | Diverts a node into a foreign market | `OUT_OF_MARKET` alerts |
+| `THEFT` | Distributor shrinkage | `STOLEN`-coded decommissions |
+| `VOLUME_SPIKE` | Legitimate demand surge (a control case) | Transaction-volume change only |
+
+`analytics.ensemble` runs the same loop across many seeds, reports metric distributions with confidence intervals, and sweeps detector thresholds without re-simulating.
+
+### 3. Human-in-the-loop alert learning
+
+A hidden operator policy (`configs/hitl/operator_rules.v1.json`) labels alerts as safe or unsafe. It is modelled on rules from the Bulgarian Drug Agency: same-town swaps are benign, hospital-to-hospital moves are suspicious, and low-trust actors are flagged. The learner sees only alert features and feedback, never the rule IDs or the perturbation labels.
+
+```bash
+uv run python scripts/run_hitl_demo.py \
+  --scenario bulgaria --ticks 300 --seeds 1,2,3,4,5 \
+  --perturbations COUNTERFEIT,SMUGGLING,THEFT,VOLUME_SPIKE \
+  --query-policy all --mode oracle --safe-sample-rate 0.5 \
+  --output artifacts/hitl_demo/supervisor
+
+uv sync --extra dashboard
+uv run python scripts/run_hitl_dashboard.py --artifact-dir artifacts/hitl_demo/supervisor
+
+uv run python scripts/run_hitl_acceptance.py --ticks 300 --seeds 1,2,3,4,5 \
+  --output artifacts/hitl_acceptance   # five-fold, two-policy check; non-zero exit on failure
+```
+
+The last seed is held out for evaluation. Outputs include `cases.jsonl`, `feedback.jsonl`, `metrics.json`, model weights and checkpoints, seven plots, and the dashboard's `network.json`, `pack_traces.jsonl` and `calibration.json`. `--mode human` replaces the oracle with labelling prompts in the terminal.
+
+**Latest acceptance run** (5 seeds × 4 perturbations, 300 ticks, ≈6.5 M alert cases):
+
+| Query policy | Labels requested | F1 | Precision | Recall | False-positive rate |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Query all | 6,471,704 (100 %) | 0.994 | 0.989 | 0.999 | 0.219 |
+| Uncertainty sampling | 226,131 (3.5 %) | 0.995 | 0.992 | 0.998 | 0.159 |
+
+Six of the seven acceptance criteria pass. These include the F1 target on every held-out seed and the requirement that uncertainty sampling uses at most half the labels while staying within 0.05 F1 of query-all. The false-positive-rate target (≤ 0.10) is **not yet met**. Most of the stream is unsafe, so the few safe alerts are hard to learn; this is the main open item.
+
+<p align="center"><img src="docs/images/oracle_convergence.png" width="70%" alt="Learned vs oracle unsafe rate and decision disagreement as labels accumulate"/></p>
+
+## Simulation kernel
+
+Each `Simulator::run_ticks` step (1 tick ≈ 1 day) runs four phases:
+
+1. **Demand.** Terminals draw demand from a `policy_id`: none, constant rate, or Poisson.
+2. **Supply.** Wholesalers replenish toward their preferred edge when there is downstream backlog. OBPs activate pool stock and ship. Per-edge capacity is enforced within the tick.
+3. **Shipment.** Due moves advance along edges using the precomputed multi-hop route CSR and per-edge lead times.
+4. **Pack behaviour.** Packs are verified, decommissioned or reactivated against the scan location's national NMVS:
+   - `VERIFY` raises typed alerts.
+   - `DECOMMISSION` records a reason (Dispensed, Stolen, Exported, Destroyed, Sampled, Locked or Recalled) and opens the reactivation window.
+   - `REACTIVATE` is accepted only inside that window.
+
+`registry_matches_physical()` is a ground-truth consistency check that fails under clones or unreported shrinkage.
+
+**ABI rule:** when you add or reorder `EngineInput` columns, keep `python/compiler/types.py` and `cpp/engine/enums.hpp` in sync, load the new fields in `cpp/bindings/`, then rebuild with `./scripts/setup.sh`.
+
+## Benchmarks
+
+The benchmarks time the pipeline in four phases: `build_scenario`, `compile_scenario`, `create_simulator` and `run_ticks`.
+
+```bash
+PHARMASIM_BENCH_PROFILE=quick    uv run pytest tests/bench.py -v   # sub-second sanity check
+PHARMASIM_BENCH_PROFILE=bulgaria uv run pytest tests/bench.py -v   # registry scale
+PHARMASIM_BENCH_PROFILE=stress   uv run pytest tests/bench.py -v   # 4 markets × 1M packs (slow)
+```
+
+The stress profile can be tuned with `PHARMASIM_BENCH_TICKS`, `_MARKETS`, `_LOCATIONS`, `_PACKS` and `_PRECOMPUTED_EDGES`. Large builders skip `LocationEdge` objects entirely by passing `edge_*` NumPy columns straight to `compile_scenario`.
+
+## Repository layout
+
+```text
+cpp/engine/          C++ kernel: state, phased tick loop, NMVS registry, event log
+cpp/bindings/        nanobind module (_pharmasim_native)
+python/canonical/    Data loaders, OSM geocoding, routing, Bulgaria scenario builder, ATC substitutability
+python/policy/       Scenario model, synthetic/large scenarios, fraud perturbations
+python/compiler/     Validation and Scenario → columnar EngineInput compile
+python/runtime/      Native bridge, Bulgaria calibration helpers, export & plotting
+python/analytics/    Log-based fraud detectors, experiments, Monte Carlo ensembles
+python/learning/     HITL alert cases, operator oracle, online learner, query policies, dashboard
+configs/hitl/        Demo and operator-rule configs
+data/                BG registry, EMA SPOR locations, geocode cache, product catalogue
+docs/                HITL spec, EMVO data request, calibration statistics, figures
+scripts/             Setup, run, geocoding and HITL entry points
+tests/               pytest suite and benchmarks
+```
+
+Generated outputs (`out_logs/`, `artifacts/`, `build/`) are git-ignored and can be regenerated with the scripts above.
+
+## Documentation
+
+- [HITL learning specification](docs/hitl_learning_spec.md): design and acceptance criteria of the alert-learning loop.
+- [EMVO / NMVS data request](docs/emvo_data_request.md): which aggregates would calibrate which engine parameters.
+- [Calibration statistics](docs/calibration_stats.md): descriptive statistics to collect.
+- [TODO](TODO.md): model gaps, data to collect, calibration workflow.
+
+## Roadmap
+
+- Calibrate against real NMVS transaction aggregates; fit detector thresholds from baseline tails.
+- Fan-out supply allocation (the engine currently ships along one preferred edge per node).
+- Explicit EMVO upload/provisioning lifecycle and NMVO/EMVO organisations.
+- Multi-product scenarios with ATC-based substitutability.
+- Per-tick anomaly injection inside the engine, and richer order/transaction semantics in the log.
+- Lower the HITL false-positive rate with class-balanced learning and a richer feature set.
+
+## Contact
+
+Han Wu: [hanwuh@ethz.ch](mailto:hanwuh@ethz.ch). ETH Zürich, *ABM for EU Pharmaceutical Distribution*.

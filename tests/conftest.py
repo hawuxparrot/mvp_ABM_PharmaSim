@@ -2,7 +2,19 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
 from typing import Any
+
+REPO = Path(__file__).resolve().parent.parent
+PYTHON_DIR = REPO / "python"
+if str(PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(PYTHON_DIR))
+sys.meta_path = [
+    finder
+    for finder in sys.meta_path
+    if not finder.__class__.__module__.startswith("_editable_skbc_pharmasim")
+]
 
 
 def _format_seconds(seconds: float) -> str:
